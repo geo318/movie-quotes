@@ -1,38 +1,55 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { Layout, Navbar, Button, Slides, Footer } from 'components';
-import { SlidePart } from 'public';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import { GetStaticProps } from 'next';
 
-const Home = () => (
-  <>
-    <Head>
-      <title>Epic Movie Quotes</title>
-      <meta name='description' content='Add favorite quotes and share' />
-      <meta name='viewport' content='width=device-width, initial-scale=1' />
-      <link rel='icon' href='/favicon.ico' />
-    </Head>
+const Home = () => {
+  const { t } = useTranslation();
+  return (
+    <>
+      <Head>
+        <title>Epic Movie Quotes</title>
+        <meta name='description' content='Add favorite quotes and share' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
 
-    <Layout padding={false}>
-      <Navbar />
-      <div className='text-white h-screen flex flex-col'>
-        <div className='my-auto flex justify-center'>
-          <div className='flex flex-col justify-center'>
-            <p className='text-app-yellow font-bold text-6xl leading-normal max-w-2xl text-center'>
-              Find any quote in millions of movie lines
-            </p>
-            <Button
-              text='Get started'
-              className='mx-auto mt-7'
-              style='buttonRed'
-            />
+      <Layout padding={false}>
+        <Layout background={false} padding={false}>
+          <Navbar />
+        </Layout>
+
+        <div className='text-white md:h-[90vh] h-[25rem] flex flex-col'>
+          <div className='my-auto flex justify-center'>
+            <div className='flex flex-col justify-center'>
+              <p className='text-app-yellow font-bold text-2xl leading-9 lg:text-6xl lg:leading-normal max-w-[16rem] lg:max-w-2xl text-center'>
+                Find any quote in millions of movie lines
+                {t('home:msg')}
+              </p>
+              <Button
+                text='Get started'
+                className='mx-auto mt-7'
+                style='buttonRed'
+              />
+            </div>
           </div>
         </div>
-        <Image src={SlidePart} alt='' />
-      </div>
-      <Slides />
-      <Footer />
-    </Layout>
-  </>
-);
+        <main>
+          <Slides />
+        </main>
+        <Footer />
+      </Layout>
+    </>
+  );
+};
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale as string, ['home'])),
+    },
+  };
+};

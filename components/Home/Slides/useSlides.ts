@@ -1,6 +1,6 @@
 import { RoyalTenenbaums, Interstellar, LordOfTheRings } from 'public';
 
-export const useHome = () => {
+export const useSlides = () => {
   const slides = [
     {
       img: Interstellar,
