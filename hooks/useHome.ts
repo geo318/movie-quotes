@@ -1,9 +1,4 @@
-import {
-  RoyalTenenbaums,
-  Interstellar,
-  LordOfTheRings,
-  InterstellarPart,
-} from 'public';
+import { RoyalTenenbaums, Interstellar, LordOfTheRings } from 'public';
 
 export const useHome = () => {
   const slides = [
@@ -28,5 +23,5 @@ export const useHome = () => {
       film: 'The Lord of the Rings, 2003',
     },
   ];
-  return { slides, slidePart: InterstellarPart };
+  return { slides };
 };
