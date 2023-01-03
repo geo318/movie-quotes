@@ -9,20 +9,15 @@ const instance = axios.create({
 });
 
 instance.interceptors.response.use(
-  async (response) => {
-    // you can modify response if necessary and return modified version
-    return response;
-  },
+  async (response) => response,
 
   async (error) => {
     const status = error?.response?.status;
 
     if (status === 404) {
-      // do something
+      // use to redirect to 404 page later
     } else if (status === 403) {
-      // do something
-    } else if (status === 401) {
-      // do something
+      // redirect to 403 page page later
     }
 
     return Promise.reject(error);

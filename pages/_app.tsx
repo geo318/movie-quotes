@@ -1,5 +1,5 @@
 import 'styles/globals.css';
-import 'public/fonts/fonts.css';
+import 'public/assets/fonts/fonts.css';
 import type { AppProps } from 'next/app';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { useState } from 'react';

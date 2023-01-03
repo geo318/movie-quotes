@@ -37,3 +37,4 @@ next-env.d.ts
 
 #other
 /.vscode
+/hooks/useQuotes.ts
