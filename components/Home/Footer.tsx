@@ -1,4 +1,4 @@
-import Layout from 'Components/Layout';
+import { Layout } from 'components';
 
 const Footer = () => (
   <Layout padding={false}>

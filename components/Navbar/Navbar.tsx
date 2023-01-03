@@ -1,4 +1,4 @@
-import { Layout, Button } from 'Components';
+import { Layout, Button } from 'components';
 
 const Navbar = () => {
   return (

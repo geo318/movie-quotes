@@ -1,4 +1,4 @@
-import { useHome } from 'hooks';
+import { useHome } from '.';
 import Image from 'next/image';
 
 const Slides = () => {

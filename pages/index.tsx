@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { Layout, Navbar, Button, Slides, Footer } from 'Components';
+import { Layout, Navbar, Button, Slides, Footer } from 'components';
 import { SlidePart } from 'public';
 
 const Home = () => (

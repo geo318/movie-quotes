@@ -15,9 +15,9 @@ instance.interceptors.response.use(
     const status = error?.response?.status;
 
     if (status === 404) {
-      // use to redirect to 404 page later
+      //  TODO: use to redirect to 404 page later
     } else if (status === 403) {
-      // redirect to 403 page page later
+      //  TODO: redirect to 403 page page later
     }
 
     return Promise.reject(error);
