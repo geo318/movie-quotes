@@ -11,8 +11,9 @@ export interface LayoutProps extends Props {
 }
 
 export interface ClickProps extends Props {
-  onClickOutside: () => void;
-  select: RefObject<HTMLInputElement>;
+  selectRef?: RefObject<HTMLInputElement> | null;
+  closeRef?: RefObject<HTMLInputElement> | null;
+  closeOnClick?: boolean;
 }
 
 export interface SelectProps extends Props {
