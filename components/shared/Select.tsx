@@ -5,9 +5,11 @@ import { SelectProps } from 'types';
 export default function Select({
   children,
   className,
+  modalClassName,
   name,
   placeholder,
   value,
+  face,
 }: SelectProps) {
   const select = useRef<HTMLInputElement>(null);
   const [dropdown, toggleDropdown] = useState(false);
@@ -30,10 +32,16 @@ export default function Select({
           readOnly
         />
       ) : (
-        <div>{name}</div>
+        <div ref={select} className={className}>
+          {face}
+        </div>
       )}
       <ModalContainer onClickOutside={handleSelect} select={select}>
-        {dropdown && <div className='select-dropdown'>{children}</div>}
+        {dropdown && (
+          <div className={modalClassName} onClick={handleSelect}>
+            {children}
+          </div>
+        )}
       </ModalContainer>
     </div>
   );

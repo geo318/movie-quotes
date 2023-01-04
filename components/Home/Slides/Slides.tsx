@@ -1,8 +1,10 @@
 import { useSlides } from './useSlides';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 
 const Slides = () => {
   const { slides } = useSlides();
+  const { t } = useTranslation('home');
   return (
     <>
       {slides.map((slide, index) => (
@@ -25,7 +27,7 @@ const Slides = () => {
                 <div className='border-t-2 border-white lg:mt-8 mt-4 w-12 mr-5' />
               </div>
               <p className='lg:text-5xl text-xl font-bold lg:leading-normal leading-7 lg:col-span-7 col-span-9 col-start-3'>
-                {slide.quote}
+                {t(slide.quote)}
               </p>
               <p className='text-base font-bold leading-6 col-span-7 col-start-3 text-[#D9D9D9] mt-5'>
                 {slide.film}

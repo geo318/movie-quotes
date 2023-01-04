@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import React, { RefObject } from 'react';
 
 export interface Props {
   children?: React.ReactNode;
@@ -19,4 +19,6 @@ export interface SelectProps extends Props {
   name?: string;
   placeholder?: string;
   value?: string;
+  modalClassName?: string;
+  face?: React.ReactNode;
 }

@@ -1,9 +1,8 @@
-import { Layout, Button, Select, Lang } from 'components';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { Layout, Button, Lang } from 'components';
+import { useTranslation } from 'next-i18next';
 
 const Navbar = () => {
-  const { locales, locale } = useRouter();
+  const { t } = useTranslation('shared');
   return (
     <div className='py-6 relative top-0 w-full backdrop-blur-xl'>
       <Layout background={false} className='flex-row w-full items-center'>
@@ -13,11 +12,11 @@ const Navbar = () => {
         <nav className='flex ml-auto gap-5 items-center'>
           <Lang />
           <Button
-            text='Sign Up'
+            text={t('signUp')}
             style='buttonRed'
             className='text-base hidden lg:block'
           />
-          <Button text='Log in' className='text-base px-6' />
+          <Button text={t('login')} className='text-base px-6' />
         </nav>
       </Layout>
     </div>
