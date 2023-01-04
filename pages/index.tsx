@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { GetStaticProps } from 'next';
 
 const Home = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
   return (
     <>
       <Head>
@@ -19,13 +19,12 @@ const Home = () => {
         <Layout background={false} padding={false}>
           <Navbar />
         </Layout>
-
         <div className='text-white md:h-[90vh] h-[25rem] flex flex-col'>
           <div className='my-auto flex justify-center'>
             <div className='flex flex-col justify-center'>
               <p className='text-app-yellow font-bold text-2xl leading-9 lg:text-6xl lg:leading-normal max-w-[16rem] lg:max-w-2xl text-center'>
                 Find any quote in millions of movie lines
-                {t('home:msg')}
+                {t('msg')}
               </p>
               <Button
                 text='Get started'

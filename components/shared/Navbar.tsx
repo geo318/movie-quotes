@@ -1,6 +1,9 @@
-import { Layout, Button } from 'components';
+import { Layout, Button, Select, Lang } from 'components';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Navbar = () => {
+  const { locales, locale } = useRouter();
   return (
     <div className='py-6 relative top-0 w-full backdrop-blur-xl'>
       <Layout background={false} className='flex-row w-full items-center'>
@@ -8,7 +11,7 @@ const Navbar = () => {
           Movie Quotes
         </div>
         <nav className='flex ml-auto gap-5 items-center'>
-          <div>Eng</div>
+          <Lang />
           <Button
             text='Sign Up'
             style='buttonRed'
