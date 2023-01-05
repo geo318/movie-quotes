@@ -6,16 +6,24 @@ const ModalContainer = ({
   selectRef = null,
   closeRef = null,
   closeOnClick = false,
+  modalOpenOnload = false,
+  modalControl,
 }: ModalProps) => {
   const { dropdown, ref, onClickOutside } = useModalContainer({
     selectRef,
     closeRef,
+    modalOpenOnload,
+    modalControl,
   });
 
   return (
     <>
       {children && dropdown ? (
-        <div ref={ref} onClick={() => closeOnClick && onClickOutside()}>
+        <div
+          className='z-10'
+          ref={ref}
+          onClick={() => closeOnClick && onClickOutside()}
+        >
           {children}
         </div>
       ) : null}

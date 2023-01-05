@@ -1,13 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ModalProps } from './types';
 
-export const useModalContainer = ({ selectRef, closeRef }: ModalProps) => {
-  const [dropdown, toggleDropdown] = useState(false);
+export const useModalContainer = ({
+  selectRef,
+  closeRef,
+  modalOpenOnload,
+  modalControl,
+}: ModalProps) => {
+  const [dropdown, toggleDropdown] = useState(modalOpenOnload);
   const ref = useRef<HTMLDivElement>(null);
 
   const onClickOutside = useCallback((): void => {
     toggleDropdown((prevState) => !prevState);
   }, []);
+
+  useEffect(() => modalControl && modalControl(), [modalControl, dropdown]);
 
   const handleClickOutside = useCallback(
     (e: MouseEvent | TouchEvent): void => {
