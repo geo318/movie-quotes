@@ -1,4 +1,4 @@
-import { LayoutProps } from 'types';
+import { LayoutProps } from './types';
 
 const Layout = ({
   children,
@@ -12,7 +12,9 @@ const Layout = ({
     }`}
   >
     <div
-      className={`${padding ? 'px-[4.4rem]' : ''} flex text-white ${className}`}
+      className={`${
+        padding ? 'px-9 lg:px-[4.4rem]' : ''
+      } flex text-white ${className}`}
     >
       {children}
     </div>

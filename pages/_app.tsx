@@ -2,6 +2,7 @@ import 'styles/globals.css';
 import 'public/assets/fonts/fonts.css';
 import type { AppProps } from 'next/app';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { appWithTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -15,4 +16,4 @@ const App = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);
