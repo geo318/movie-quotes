@@ -1,4 +1,3 @@
-import { useRef, useEffect, useCallback, useState } from 'react';
 import { ModalProps } from './types';
 import { useModalContainer } from './useModalContainer';
 
@@ -13,14 +12,13 @@ const ModalContainer = ({
     closeRef,
   });
 
-  if (!children) return null;
   return (
     <>
-      {dropdown && (
+      {children && dropdown ? (
         <div ref={ref} onClick={() => closeOnClick && onClickOutside()}>
           {children}
         </div>
-      )}
+      ) : null}
     </>
   );
 };
