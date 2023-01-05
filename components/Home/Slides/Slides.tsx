@@ -1,10 +1,8 @@
 import { useSlides } from './useSlides';
 import Image from 'next/image';
-import { useTranslation } from 'next-i18next';
 
 const Slides = () => {
-  const { slides } = useSlides();
-  const { t } = useTranslation('home');
+  const { slides, t } = useSlides();
   return (
     <>
       {slides.map((slide, index) => (

@@ -1,6 +1,6 @@
-import { useRef } from 'react';
 import { ModalContainer } from 'components';
-import { SelectProps } from 'types';
+import { SelectProps } from './types';
+import { useSelect } from './useSelect';
 
 export default function Select({
   children,
@@ -11,7 +11,7 @@ export default function Select({
   value,
   face,
 }: SelectProps) {
-  const select = useRef<HTMLInputElement>(null);
+  const { select } = useSelect();
   return (
     <div>
       {placeholder ? (

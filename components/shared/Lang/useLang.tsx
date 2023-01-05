@@ -1,9 +1,8 @@
-import { Select } from '.';
-import { useRouter } from 'next/router';
 import { Arrow } from 'components/icons';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const Lang = () => {
+export const useLang = () => {
   const { locale, locales } = useRouter();
   const selector = (
     <div className='flex gap-3 items-center justify-center p-2 cursor-pointer select-none'>
@@ -11,12 +10,8 @@ const Lang = () => {
       <Arrow />
     </div>
   );
-  return (
-    <Select
-      face={selector}
-      className='mr-5'
-      modalClassName='absolute bg-white text-black py-3 rounded-md mt-4 -ml-5 w-32'
-    >
+  const dropdown = (
+    <>
       {locales!.map(
         (lang) =>
           locale !== lang && (
@@ -30,8 +25,7 @@ const Lang = () => {
             </Link>
           )
       )}
-    </Select>
+    </>
   );
+  return { selector, dropdown };
 };
-
-export default Lang;

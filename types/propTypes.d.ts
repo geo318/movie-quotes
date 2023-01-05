@@ -1,25 +1,6 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 
 export interface Props {
   children?: React.ReactNode;
   className?: string;
-}
-
-export interface LayoutProps extends Props {
-  padding?: boolean;
-  background?: boolean;
-}
-
-export interface ClickProps extends Props {
-  selectRef?: RefObject<HTMLInputElement> | null;
-  closeRef?: RefObject<HTMLInputElement> | null;
-  closeOnClick?: boolean;
-}
-
-export interface SelectProps extends Props {
-  name?: string;
-  placeholder?: string;
-  value?: string;
-  modalClassName?: string;
-  face?: React.ReactNode;
 }

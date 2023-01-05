@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { Layout, Navbar, Button, Slides, Footer } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 import { GetStaticProps } from 'next';
+import { useHome } from 'hooks';
 
 const Home = () => {
-  const { t } = useTranslation('home');
+  const { t } = useHome();
   return (
     <>
       <Head>

@@ -1,12 +1,7 @@
-import { useRef, useEffect, useCallback, useState } from 'react';
-import { ClickProps } from 'types';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ModalProps } from './types';
 
-const ModalContainer = ({
-  children,
-  selectRef = null,
-  closeRef = null,
-  closeOnClick = false,
-}: ClickProps) => {
+export const useModalContainer = ({ selectRef, closeRef }: ModalProps) => {
   const [dropdown, toggleDropdown] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -31,17 +26,5 @@ const ModalContainer = ({
     return () =>
       document.removeEventListener('click', handleClickOutside, true);
   }, [handleClickOutside]);
-
-  if (!children) return null;
-  return (
-    <>
-      {dropdown && (
-        <div ref={ref} onClick={() => closeOnClick && onClickOutside()}>
-          {children}
-        </div>
-      )}
-    </>
-  );
+  return { dropdown, ref, onClickOutside, handleClickOutside };
 };
-
-export default ModalContainer;

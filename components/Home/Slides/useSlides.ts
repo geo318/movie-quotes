@@ -1,6 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import { RoyalTenenbaums, Interstellar, LordOfTheRings } from 'public';
 
 export const useSlides = () => {
+  const { t } = useTranslation('home');
   const slides = [
     {
       img: Interstellar,
@@ -21,5 +23,5 @@ export const useSlides = () => {
       film: 'The Lord of the Rings, 2003',
     },
   ];
-  return { slides };
+  return { slides, t };
 };

@@ -1,8 +1,8 @@
 import { Layout, Button, Lang } from 'components';
-import { useTranslation } from 'next-i18next';
+import { useNavbar } from './useNavbar';
 
 const Navbar = () => {
-  const { t } = useTranslation('shared');
+  const { t } = useNavbar();
   return (
     <div className='py-6 relative top-0 w-full backdrop-blur-xl'>
       <Layout background={false} className='flex-row w-full items-center'>
