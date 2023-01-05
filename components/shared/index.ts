@@ -4,3 +4,6 @@ export * from './Lang';
 export * from './ModalContainer';
 export * from './Navbar';
 export * from './Select';
+export * from './Portal';
+export * from './InputText';
+export * from './Textarea';
