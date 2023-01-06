@@ -3,6 +3,7 @@ import { Layout, Navbar, Button, Slides, Footer } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
 import { useHome } from 'hooks';
+import Link from 'next/link';
 
 const Home = () => {
   const { t } = useHome();
@@ -25,11 +26,17 @@ const Home = () => {
               <p className='text-app-yellow font-bold text-2xl leading-9 lg:text-6xl lg:leading-normal max-w-[16rem] lg:max-w-2xl text-center'>
                 {t('welcome')}
               </p>
-              <Button
-                text={t('getStarted')}
+              <Link
+                href='/?register=true'
+                as='/register'
                 className='mx-auto mt-7'
-                style='buttonRed'
-              />
+              >
+                <Button
+                  text={t('getStarted')}
+                  style='buttonRed'
+                  className='lg:text-xl lg:leading-normal'
+                />
+              </Link>
             </div>
           </div>
         </div>

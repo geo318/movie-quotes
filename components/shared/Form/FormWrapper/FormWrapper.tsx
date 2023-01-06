@@ -5,7 +5,7 @@ import { FormLayout } from 'components';
 const FormWrapper: React.FC<Props> = ({ children, className }) => {
   return (
     <FormProvider {...useForm({ mode: 'onBlur' })}>
-      <FormLayout>{children}</FormLayout>
+      <FormLayout className={className}>{children}</FormLayout>
     </FormProvider>
   );
 };

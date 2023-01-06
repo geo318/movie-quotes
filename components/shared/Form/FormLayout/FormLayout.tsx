@@ -6,11 +6,7 @@ const FormLayout: React.FC<Props> = ({ children, className }) => {
   const { handleSubmit, onSubmitForm } = useFormLayout();
 
   return (
-    <form
-      action=''
-      className={`mx-32 ${className}`}
-      onSubmit={handleSubmit(onSubmitForm)}
-    >
+    <form action='' className={className} onSubmit={handleSubmit(onSubmitForm)}>
       {children}
     </form>
   );
