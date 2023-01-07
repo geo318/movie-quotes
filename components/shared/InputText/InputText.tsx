@@ -1,4 +1,4 @@
-import { InputProps } from '.';
+import { InputProps } from './types';
 import { useFormContext } from 'react-hook-form';
 
 const InputText: React.FC<InputProps> = ({

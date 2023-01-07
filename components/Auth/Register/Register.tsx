@@ -25,7 +25,7 @@ const Register = () => {
         />
         <Button text='Get started' style='buttonRed' className='w-full mt-2' />
         <Button text='Sign up with Google' className='w-full mt-4' />
-        <div className='flex gap-1 mt-8 justify-center text-[#6C757D] leading-normal'>
+        <div className='flex gap-1 mt-8 justify-center text-app-dark-gray leading-normal'>
           <span>Already have an account?</span>
           <Link href='/?login' as='/login' className='text-app-link underline'>
             Log in
