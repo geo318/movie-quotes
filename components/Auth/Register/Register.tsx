@@ -1,5 +1,4 @@
-import { InputText, Button, Modal, FormWrapper } from 'components';
-import { Heading } from 'components/shared/Heading';
+import { InputText, Button, Modal, FormWrapper, Heading } from 'components';
 import Link from 'next/link';
 
 const Register = () => {
@@ -16,11 +15,13 @@ const Register = () => {
         <InputText
           name='password'
           label='Password'
+          type='password'
           placeholder='At least 8 & max.15 lower case characters'
         />
         <InputText
           name='repeat_password'
           label='Confirm password'
+          type='password'
           placeholder='Confirm password'
         />
         <Button text='Get started' style='buttonRed' className='w-full mt-2' />

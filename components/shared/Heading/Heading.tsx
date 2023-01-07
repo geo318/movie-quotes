@@ -1,9 +1,17 @@
 import { HeadingProps } from './types';
 
-const Heading = ({ heading, sub, className }: HeadingProps) => (
-  <div className={`flex flex-col items-center gap-3 mb-6 ${className}`}>
-    <h1 className='text-3xl leading-9'>{heading}</h1>
-    <p className='text-app-dark-gray text-base'>{sub}</p>
+const Heading = ({ heading, sub, className, error = false }: HeadingProps) => (
+  <div className={`flex flex-col items-center gap-3 mb-6 ${className || ''}`}>
+    <h1 className={error ? 'text-5xl leading-normal' : 'text-3xl leading-9'}>
+      {heading}
+    </h1>
+    <p
+      className={
+        error ? 'text-2xl leading-normal' : 'text-app-dark-gray text-base'
+      }
+    >
+      {sub}
+    </p>
   </div>
 );
 

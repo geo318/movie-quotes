@@ -8,7 +8,7 @@ const Layout = ({
 }: LayoutProps) => (
   <div
     className={`flex flex-col text-white ${
-      background ? 'bg-gradient-to-b from-[#11101A] to-[#08080D]' : ''
+      background ? 'bg-app-gradient' : ''
     }`}
   >
     <div

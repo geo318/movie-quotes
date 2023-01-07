@@ -5,6 +5,7 @@ import {
   Register,
   Login,
   ForgotPassword,
+  ConfirmPassword,
 } from 'components';
 import { useNavbar } from './useNavbar';
 import Link from 'next/link';
@@ -16,6 +17,7 @@ const Navbar = () => {
       {router.query.hasOwnProperty('register') && <Register />}
       {router.query.hasOwnProperty('login') && <Login />}
       {router.query.hasOwnProperty('forgot-password') && <ForgotPassword />}
+      {router.query.hasOwnProperty('confirm-password') && <ConfirmPassword />}
       <Layout background={false} className='flex-row w-full items-center'>
         <div className='uppercase text-app-yellow text-base leading-6 font-medium'>
           Movie Quotes

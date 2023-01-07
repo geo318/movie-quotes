@@ -15,6 +15,10 @@ module.exports = {
         'app-link': '#0D6EFD',
         'app-dark-gray': '#6C757D',
       },
+      backgroundImage: {
+        'app-gradient':
+          'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
+      },
       fontFamily: {
         helvetica: 'HelveticaNeue',
       },

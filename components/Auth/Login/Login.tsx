@@ -1,5 +1,11 @@
-import { InputText, Button, Modal, FormWrapper, Checkbox } from 'components';
-import { Heading } from 'components/shared/Heading';
+import {
+  InputText,
+  Button,
+  Modal,
+  FormWrapper,
+  Checkbox,
+  Heading,
+} from 'components';
 import Link from 'next/link';
 
 const Login = () => {
@@ -24,7 +30,7 @@ const Login = () => {
         <Button text='Sign in' style='buttonRed' className='w-full' />
         <Button text='Sign in with Google' className='w-full mt-4' />
         <div className='flex gap-1 mt-8 justify-center text-app-dark-gray leading-normal'>
-          <span>Don&apos;t have an account?</span>
+          <span>Don’t have an account?</span>
           <Link
             href='/?register'
             as='/register'

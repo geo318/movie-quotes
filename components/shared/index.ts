@@ -9,4 +9,5 @@ export * from './InputText';
 export * from './Textarea';
 export * from './Form';
 export * from './Modal';
-export * from './Checkbox'
+export * from './Checkbox';
+export * from './Heading';
