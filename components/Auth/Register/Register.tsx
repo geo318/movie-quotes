@@ -1,10 +1,12 @@
 import { InputText, Button, Modal, FormWrapper, Heading } from 'components';
 import Link from 'next/link';
+import { useRegister } from './useRegister';
 
 const Register = () => {
+  const { schema } = useRegister();
   return (
     <Modal className='px-28 py-[3.25rem]' close>
-      <FormWrapper className='mx-2 max-w-sm'>
+      <FormWrapper className='mx-2 max-w-sm' schema={schema}>
         <Heading heading='Create an account' sub='Start your journey!' />
         <InputText
           name='username'

@@ -1,10 +1,17 @@
 import { useForm, FormProvider } from 'react-hook-form';
-import { Props } from 'types';
 import { FormLayout } from 'components';
+import { FormWrapperProps } from './types';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-const FormWrapper: React.FC<Props> = ({ children, className }) => {
+const FormWrapper: React.FC<FormWrapperProps> = ({
+  children,
+  className,
+  schema,
+}) => {
   return (
-    <FormProvider {...useForm({ mode: 'onBlur' })}>
+    <FormProvider
+      {...useForm({ mode: 'onBlur', resolver: zodResolver(schema) })}
+    >
       <FormLayout className={className}>{children}</FormLayout>
     </FormProvider>
   );

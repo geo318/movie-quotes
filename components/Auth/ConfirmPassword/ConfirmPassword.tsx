@@ -7,11 +7,13 @@ import {
   Heading,
 } from 'components';
 import Link from 'next/link';
+import { useConfirmPassword } from './useConfirmPassword';
 
 const ConfirmPassword = () => {
+  const { schema } = useConfirmPassword();
   return (
     <Modal className='px-28 py-[3.25rem]' close>
-      <FormWrapper className='mx-2 max-w-sm'>
+      <FormWrapper className='mx-2 max-w-sm' schema={schema}>
         <Heading
           className='text-center'
           heading='Create new password'

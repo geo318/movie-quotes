@@ -7,17 +7,24 @@ import {
   Heading,
 } from 'components';
 import Link from 'next/link';
+import { useLogin } from './useLogin';
 
 const Login = () => {
+  const { schema } = useLogin();
   return (
     <Modal className='px-28 py-[3.25rem]' close>
-      <FormWrapper className='mx-2 max-w-sm'>
+      <FormWrapper className='mx-2 max-w-sm' schema={schema}>
         <Heading
           heading='Log in to your account'
           sub='Welcome back! Please enter your details.'
         />
         <InputText name='email' label='Email' placeholder='Enter your email' />
-        <InputText name='password' label='Password' placeholder='password' />
+        <InputText
+          name='password'
+          type='password'
+          label='Password'
+          placeholder='password'
+        />
         <Checkbox name='remember_me' label='Remember me' className='mb-4 flex'>
           <Link
             href='/?forgot-password'

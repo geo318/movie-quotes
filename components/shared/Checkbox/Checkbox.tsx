@@ -1,17 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 import { CheckProps } from './types';
 
-const Checkbox = ({
-  name,
-  label,
-  validation,
-  className,
-  children,
-}: CheckProps) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+const Checkbox = ({ name, label, className, children }: CheckProps) => {
+  const { register } = useFormContext();
   return (
     <div className={className}>
       <div className='checkbox'>
@@ -19,7 +10,7 @@ const Checkbox = ({
           type='checkbox'
           id={name}
           className='hidden'
-          {...register!(name, validation || {})}
+          {...register!(name)}
         />
         <label htmlFor={name}>{label}</label>
       </div>

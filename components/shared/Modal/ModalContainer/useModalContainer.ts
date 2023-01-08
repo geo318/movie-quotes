@@ -40,8 +40,11 @@ export const useModalContainer = ({
   );
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
-    return () =>
+    close && document.body.classList.add('overflow-y-hidden');
+    return () => {
       document.removeEventListener('click', handleClickOutside, true);
-  }, [handleClickOutside]);
+      close && document.body.classList.remove('overflow-y-hidden');
+    };
+  }, [handleClickOutside, close]);
   return { dropdown, ref, onClickOutside, handleClickOutside };
 };

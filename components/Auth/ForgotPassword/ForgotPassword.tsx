@@ -1,11 +1,13 @@
 import { InputText, Button, Modal, FormWrapper, ArrowBack } from 'components';
 import { Heading } from 'components/shared/Heading';
 import Link from 'next/link';
+import { useForgotPassword } from './useForgotPassword';
 
 const ForgotPassword = () => {
+  const { schema } = useForgotPassword();
   return (
     <Modal className='px-28 py-[3.25rem]' close>
-      <FormWrapper className='mx-2 max-w-sm'>
+      <FormWrapper className='mx-2 max-w-sm' schema={schema}>
         <Heading
           className='text-center'
           heading='Forgot password?'
