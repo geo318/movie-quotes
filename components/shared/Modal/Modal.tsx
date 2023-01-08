@@ -1,7 +1,8 @@
 import { ModalContainer, Portal } from 'components/shared';
+import { FC } from 'react';
 import { ModalProps } from './types';
 
-const Modal: React.FC<ModalProps> = ({ children, className }) => {
+const Modal: FC<ModalProps> = ({ children, className }) => {
   return (
     <Portal className='flex items-center justify-center h-full modal'>
       <ModalContainer modalOpenOnload={true} close>

@@ -1,6 +1,12 @@
+import { FC } from 'react';
 import { HeadingProps } from './types';
 
-const Heading = ({ heading, sub, className, error = false }: HeadingProps) => (
+const Heading: FC<HeadingProps> = ({
+  heading,
+  sub,
+  className,
+  error = false,
+}) => (
   <div className={`flex flex-col items-center gap-3 mb-6 ${className || ''}`}>
     <h1 className={error ? 'text-5xl leading-normal' : 'text-3xl leading-9'}>
       {heading}

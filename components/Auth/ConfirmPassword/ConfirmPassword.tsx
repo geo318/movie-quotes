@@ -7,9 +7,10 @@ import {
   Heading,
 } from 'components';
 import Link from 'next/link';
+import { FC } from 'react';
 import { useConfirmPassword } from './useConfirmPassword';
 
-const ConfirmPassword = () => {
+const ConfirmPassword: FC = () => {
   const { schema } = useConfirmPassword();
   return (
     <Modal className='px-28 py-[3.25rem]' close>

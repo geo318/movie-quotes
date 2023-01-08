@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Props } from 'types';
 
-const Portal: React.FC<Props> = ({ children, className }) => {
+const Portal: FC<Props> = ({ children, className }) => {
   const ref = useRef<Element | null>(null);
   const [mounted, setMounted] = useState(false);
 

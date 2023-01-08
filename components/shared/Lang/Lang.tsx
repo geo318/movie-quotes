@@ -1,7 +1,8 @@
 import { Select } from 'components';
+import { FC } from 'react';
 import { useLang } from './useLang';
 
-const Lang = () => {
+const Lang: FC = () => {
   const { selector, dropdown } = useLang();
   return (
     <Select

@@ -1,8 +1,8 @@
-import { useForm, useFormContext } from 'react-hook-form';
+import { FC } from 'react';
 import { Props } from 'types';
 import { useFormLayout } from './useFormLayout';
 
-const FormLayout: React.FC<Props> = ({ children, className }) => {
+const FormLayout: FC<Props> = ({ children, className }) => {
   const { handleSubmit, onSubmitForm } = useFormLayout();
 
   return (

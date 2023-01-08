@@ -1,7 +1,8 @@
 import { Button, Layout, Heading, Icon404 } from 'components';
+import { NextPage } from 'next';
 import Link from 'next/link';
 
-const Custom404 = () => {
+const Custom404: NextPage = () => {
   return (
     <Layout className='min-h-screen flex-col items-center justify-center'>
       <Icon404 />

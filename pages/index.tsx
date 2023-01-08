@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { Layout, Navbar, Button, Slides, Footer } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GetStaticProps } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import { useHome } from 'hooks';
 import Link from 'next/link';
 
-const Home = () => {
+const Home: NextPage = () => {
   const { t } = useHome();
   return (
     <>

@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { ModalProps } from './types';
 import { useModalContainer } from './useModalContainer';
 
-const ModalContainer = ({
+const ModalContainer: FC<ModalProps> = ({
   children,
   selectRef = null,
   closeRef = null,
@@ -9,7 +10,7 @@ const ModalContainer = ({
   modalOpenOnload = false,
   modalControl,
   close,
-}: ModalProps) => {
+}) => {
   const { dropdown, ref, onClickOutside } = useModalContainer({
     selectRef,
     closeRef,

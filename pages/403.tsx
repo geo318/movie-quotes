@@ -1,7 +1,8 @@
 import { Button, Layout, Heading, Icon403 } from 'components';
+import { NextPage } from 'next';
 import Link from 'next/link';
 
-const Custom403 = () => {
+const Custom403: NextPage = () => {
   return (
     <Layout className='min-h-screen flex-col items-center justify-center'>
       <div className='max-w-[15rem]'>

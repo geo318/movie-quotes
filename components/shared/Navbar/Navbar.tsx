@@ -9,8 +9,9 @@ import {
 } from 'components';
 import { useNavbar } from './useNavbar';
 import Link from 'next/link';
+import { FC } from 'react';
 
-const Navbar = () => {
+const Navbar: FC = () => {
   const { t, router } = useNavbar();
   return (
     <div className='py-6 relative top-0 w-full backdrop-blur-xl'>

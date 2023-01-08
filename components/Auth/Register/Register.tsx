@@ -1,8 +1,9 @@
 import { InputText, Button, Modal, FormWrapper, Heading } from 'components';
 import Link from 'next/link';
+import { FC } from 'react';
 import { useRegister } from './useRegister';
 
-const Register = () => {
+const Register: FC = () => {
   const { schema } = useRegister();
   return (
     <Modal className='px-28 py-[3.25rem]' close>

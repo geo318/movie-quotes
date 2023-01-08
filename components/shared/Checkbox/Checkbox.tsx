@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { CheckProps } from './types';
 
-const Checkbox = ({ name, label, className, children }: CheckProps) => {
+const Checkbox: FC<CheckProps> = ({ name, label, className, children }) => {
   const { register } = useFormContext();
   return (
     <div className={className}>

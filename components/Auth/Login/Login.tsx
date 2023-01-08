@@ -1,3 +1,5 @@
+import { FC } from 'react';
+import Link from 'next/link';
 import {
   InputText,
   Button,
@@ -6,10 +8,9 @@ import {
   Checkbox,
   Heading,
 } from 'components';
-import Link from 'next/link';
 import { useLogin } from './useLogin';
 
-const Login = () => {
+const Login: FC = () => {
   const { schema } = useLogin();
   return (
     <Modal className='px-28 py-[3.25rem]' close>

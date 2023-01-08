@@ -1,9 +1,10 @@
 import { InputText, Button, Modal, FormWrapper, ArrowBack } from 'components';
 import { Heading } from 'components/shared/Heading';
 import Link from 'next/link';
+import { FC } from 'react';
 import { useForgotPassword } from './useForgotPassword';
 
-const ForgotPassword = () => {
+const ForgotPassword: FC = () => {
   const { schema } = useForgotPassword();
   return (
     <Modal className='px-28 py-[3.25rem]' close>

@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { ButtonProps } from './types';
 import { useButton } from './useButton';
 
-const Button = ({ text, className, style, onClick }: ButtonProps) => {
+const Button: FC<ButtonProps> = ({ text, className, style, onClick }) => {
   const { buttonRed } = useButton();
   return (
     <button

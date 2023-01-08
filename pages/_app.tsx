@@ -6,8 +6,9 @@ import { appWithTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'store';
+import { NextPage } from 'next';
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App: NextPage<AppProps> = ({ Component, pageProps }) => {
   const [queryClient] = useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
