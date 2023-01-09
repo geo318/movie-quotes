@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Layout, Navbar, Button, Slides, Footer } from 'components';
+import { Layout, Navbar, Button, Slides, Footer, Auth } from 'components';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps, NextPage } from 'next';
 import { useHome } from 'hooks';
@@ -16,9 +16,11 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Layout padding={false}>
+      <Layout padding={false} dark>
         <Layout background={false} padding={false}>
-          <Navbar />
+          <Navbar>
+            <Auth />
+          </Navbar>
         </Layout>
         <div className='text-white md:h-[90vh] h-[25rem] flex flex-col'>
           <div className='my-auto flex justify-center'>

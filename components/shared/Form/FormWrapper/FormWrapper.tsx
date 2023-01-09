@@ -4,12 +4,19 @@ import { FormWrapperProps } from './types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 
-const FormWrapper: FC<FormWrapperProps> = ({ children, className, schema }) => {
+const FormWrapper: FC<FormWrapperProps> = ({
+  children,
+  className,
+  schema,
+  onSubmit,
+}) => {
   return (
     <FormProvider
       {...useForm({ mode: 'onBlur', resolver: zodResolver(schema) })}
     >
-      <FormLayout className={className}>{children}</FormLayout>
+      <FormLayout className={className} onSubmit={onSubmit}>
+        {children}
+      </FormLayout>
     </FormProvider>
   );
 };

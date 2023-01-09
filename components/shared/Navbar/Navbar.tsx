@@ -10,15 +10,13 @@ import {
 import { useNavbar } from './useNavbar';
 import Link from 'next/link';
 import { FC } from 'react';
+import { Props } from 'types';
 
-const Navbar: FC = () => {
-  const { t, router } = useNavbar();
+const Navbar: FC<Props> = ({ children }) => {
+  const { t } = useNavbar();
   return (
     <div className='py-6 relative top-0 w-full backdrop-blur-xl'>
-      {router.query.hasOwnProperty('register') && <Register />}
-      {router.query.hasOwnProperty('login') && <Login />}
-      {router.query.hasOwnProperty('forgot-password') && <ForgotPassword />}
-      {router.query.hasOwnProperty('confirm-password') && <ConfirmPassword />}
+      {children}
       <Layout background={false} className='flex-row w-full items-center'>
         <div className='uppercase text-app-yellow text-base leading-6 font-medium'>
           Movie Quotes

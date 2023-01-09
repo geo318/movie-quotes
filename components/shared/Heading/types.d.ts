@@ -4,4 +4,5 @@ export interface HeadingProps extends Props {
   heading: string;
   sub: string;
   error?: boolean;
+  subStyle?: string;
 }

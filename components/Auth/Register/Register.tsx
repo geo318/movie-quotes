@@ -1,13 +1,19 @@
 import { InputText, Button, Modal, FormWrapper, Heading } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
+import { useQuery } from 'react-query';
 import { useRegister } from './useRegister';
+import { register } from 'services';
 
 const Register: FC = () => {
-  const { schema } = useRegister();
+  const { schema, onSubmit } = useRegister();
   return (
     <Modal className='px-28 py-[3.25rem]' close>
-      <FormWrapper className='mx-2 max-w-sm' schema={schema}>
+      <FormWrapper
+        className='mx-2 max-w-sm'
+        schema={schema}
+        onSubmit={onSubmit}
+      >
         <Heading heading='Create an account' sub='Start your journey!' />
         <InputText
           name='username'

@@ -6,10 +6,11 @@ const Layout: FC<LayoutProps> = ({
   padding = true,
   background = true,
   className = 'flex-col',
+  dark = false,
 }) => (
   <div
     className={`flex flex-col text-white ${
-      background ? 'bg-app-gradient' : ''
+      background ? `${dark ? 'bg-app-gradient-dark' : 'bg-app-gradient'}` : ''
     }`}
   >
     <div

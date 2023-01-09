@@ -1,3 +1,4 @@
+import { register, fetchCSRFToken, sendEmail } from 'services';
 import { z } from 'zod';
 
 export const useRegister = () => {
@@ -20,5 +21,16 @@ export const useRegister = () => {
       message: "Passwords don't match",
       path: ['repeat_password'],
     });
-  return { schema };
+
+  const onSubmit = async (data: {
+    [key: string]: string | number | boolean;
+  }) => {
+    const rez = await fetchCSRFToken();
+    console.log(rez);
+    const res = await register(data);
+    console.log(res);
+    const rezz = await sendEmail();
+    console.log(rezz);
+  };
+  return { schema, onSubmit };
 };

@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: process.env.API_BASE_URL,
+  baseURL: process.env.BASE_URL,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
 
 instance.interceptors.response.use(
