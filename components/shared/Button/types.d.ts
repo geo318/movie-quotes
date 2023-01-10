@@ -3,4 +3,5 @@ export type ButtonProps = {
   className?: string;
   style?: 'buttonRed';
   onClick?: () => void;
+  disabled?: boolean;
 };

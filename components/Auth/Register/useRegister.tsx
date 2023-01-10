@@ -1,7 +1,17 @@
 import { register, fetchCSRFToken, sendEmail } from 'services';
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import { z } from 'zod';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { authActions } from 'store';
+import { useRouter } from 'next/router';
 
 export const useRegister = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  getCookie('email-sent') && router.replace('?check-email');
+
   const schema = z
     .object({
       username: z
@@ -25,12 +35,19 @@ export const useRegister = () => {
   const onSubmit = async (data: {
     [key: string]: string | number | boolean;
   }) => {
-    const rez = await fetchCSRFToken();
-    console.log(rez);
-    const res = await register(data);
-    console.log(res);
-    const rezz = await sendEmail();
-    console.log(rezz);
+    try {
+      setIsLoading(true);
+      await fetchCSRFToken();
+      await register(data);
+      await sendEmail();
+      router.replace('?check-email');
+      setCookie('email-sent', true);
+    } catch (e: any) {
+      e.message === 'Request failed with status code 422' &&
+        dispatch(authActions.setRegisterError(e?.response?.data?.errors));
+      deleteCookie('XSRF-TOKEN');
+    }
+    setIsLoading(false);
   };
-  return { schema, onSubmit };
+  return { isLoading, schema, onSubmit };
 };

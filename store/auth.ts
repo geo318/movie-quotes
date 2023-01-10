@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { InitialAuthState } from './types';
 
-const initialAuthState = {
+const initialAuthState: InitialAuthState = {
   isAuthenticated: false,
-  isRegisterModalOpen: false,
-  isLoginModalOpen: false,
+  registerErrors: false,
+  loginErrors: false,
 };
 
 const authSlice = createSlice({
@@ -16,19 +17,17 @@ const authSlice = createSlice({
     logout(state) {
       state.isAuthenticated = false;
     },
-    openRegister(state) {
-      state.isRegisterModalOpen = true;
-      state.isLoginModalOpen = false;
+    setRegisterError(state, action) {
+      state.registerErrors = action.payload;
     },
-    openLogin(state) {
-      state.isLoginModalOpen = true;
-      state.isRegisterModalOpen = false;
+    setLoginError(state, action) {
+      state.loginErrors = action.payload;
     },
-    toggleRegister(state) {
-      state.isRegisterModalOpen = !state.isRegisterModalOpen;
+    clearRegisterError(state) {
+      state.registerErrors = false;
     },
-    toggleLogin(state) {
-      state.isLoginModalOpen = !state.isLoginModalOpen;
+    clearLoginError(state) {
+      state.loginErrors = false;
     },
   },
 });

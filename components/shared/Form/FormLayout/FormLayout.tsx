@@ -1,15 +1,15 @@
 import { FC } from 'react';
-import { Props } from 'types';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { FormLayoutProps } from './types';
 import { useFormLayout } from './useFormLayout';
 
-const FormLayout: FC<Props> = ({ children, className, onSubmit }) => {
-  const { handleSubmit, onSubmitForm } = useFormLayout();
+const FormLayout: FC<FormLayoutProps> = ({ children, className, onSubmit }) => {
+  const { handleSubmit } = useFormLayout();
 
   return (
     <form
-      action=''
       className={className}
-      onSubmit={handleSubmit(onSubmit || onSubmitForm)}
+      onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
     >
       {children}
     </form>

@@ -1,19 +1,26 @@
-import { InputText, Button, Modal, FormWrapper, Heading } from 'components';
+import {
+  InputText,
+  Button,
+  Modal,
+  FormWrapper,
+  Heading,
+  ModalLoadingOverlay,
+} from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
-import { useQuery } from 'react-query';
 import { useRegister } from './useRegister';
-import { register } from 'services';
 
 const Register: FC = () => {
-  const { schema, onSubmit } = useRegister();
+  const { isLoading, schema, onSubmit } = useRegister();
   return (
-    <Modal className='px-28 py-[3.25rem]' close>
+    <Modal className='px-28 py-[3.25rem] relative' close>
       <FormWrapper
         className='mx-2 max-w-sm'
         schema={schema}
         onSubmit={onSubmit}
       >
+        {isLoading && <ModalLoadingOverlay />}
+
         <Heading heading='Create an account' sub='Start your journey!' />
         <InputText
           name='username'
@@ -33,7 +40,12 @@ const Register: FC = () => {
           type='password'
           placeholder='Confirm password'
         />
-        <Button text='Get started' style='buttonRed' className='w-full mt-2' />
+        <Button
+          text='Get started'
+          style='buttonRed'
+          className='w-full mt-2'
+          disabled={isLoading}
+        />
         <Button text='Sign up with Google' className='w-full mt-4' />
         <div className='flex gap-1 mt-8 justify-center text-app-dark-gray leading-normal'>
           <span>Already have an account?</span>

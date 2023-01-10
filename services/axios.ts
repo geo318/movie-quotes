@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const instance = axios.create({
   baseURL: process.env.BASE_URL,
@@ -15,10 +16,16 @@ instance.interceptors.response.use(
   async (error) => {
     const status = error?.response?.status;
 
+    if (status === 401) {
+      return { status: 404, message: 'unauthorized' };
+    }
+
+    if (status === 403) {
+      return { status: 403 };
+    }
+
     if (status === 404) {
-      //  TODO: use to redirect to 404 page later
-    } else if (status === 403) {
-      //  TODO: redirect to 403 page page later
+      return { status: 404 };
     }
 
     return Promise.reject(error);
