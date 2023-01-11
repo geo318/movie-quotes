@@ -11,6 +11,7 @@ const NotificationSocket: FC<NotificationSocketProps> = ({
   sub,
   callToAction,
   loading = false,
+  onClick: onClickHandler,
 }) => {
   return (
     <Modal className='px-20 py-[3.25rem] max-w-[35rem]' close>
@@ -26,7 +27,7 @@ const NotificationSocket: FC<NotificationSocketProps> = ({
               className='text-center mt-5 mb-10'
               subStyle='!text-white'
             />
-            <Link href={link} className='w-full'>
+            <Link href={link} onClick={onClickHandler} className='w-full'>
               <Button
                 text={callToAction}
                 style='buttonRed'

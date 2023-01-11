@@ -1,11 +1,15 @@
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
+import { useDispatch } from 'react-redux';
 import instance from 'services/axios';
+import { authActions } from 'store';
 
 export const useConfirmEmail = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const url = router.asPath;
+
   const XSRF = async () => {
     try {
       await instance({
@@ -14,13 +18,14 @@ export const useConfirmEmail = () => {
       setCookie('email-verified', true);
     } catch (e) {
       console.log(e);
-      router.replace('/404');
     }
   };
-  const { isLoading, isError, status, error } = useQuery({
+  const { isLoading, isError } = useQuery({
     queryKey: ['verify-registration', router.query.signature],
     queryFn: XSRF,
   });
 
-  return { isLoading, isError, status };
+  isError && router.replace('/404');
+  const goToAdmin = () => dispatch(authActions.login());
+  return { isLoading, goToAdmin };
 };

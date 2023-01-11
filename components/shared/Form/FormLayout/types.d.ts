@@ -1,7 +1,5 @@
-import { Props } from 'types';
+import { Props, SubmitDataProps } from 'types';
 
 interface FormLayoutProps extends Props {
-  onSubmit?: (data: {
-    [key: string]: string | number | boolean;
-  }) => Promise<void>;
+  onSubmit?: (data: SubmitDataProps) => Promise<void>;
 }

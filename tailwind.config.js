@@ -19,7 +19,10 @@ module.exports = {
         'app-gradient':
           'linear-gradient(187.16deg, #181623 0.07%, #191725 51.65%, #0D0B14 98.75%)',
         'app-gradient-dark':
-          'linear-gradient(180deg, #11101A 0%, #08080D 50.52%, rgba(0, 0, 0, 90%) 100%);',
+          'linear-gradient(180deg, #11101A 0%, #08080D 50.52%, rgba(0, 0, 0, 90%) 100%)',
+        'app-slide-one': "url('/assets/images/img-1.png')",
+        'app-slide-two': "url('/assets/images/img-2.png')",
+        'app-slide-three': "url('/assets/images/img-3.png')",
       },
       fontFamily: {
         helvetica: 'HelveticaNeue',

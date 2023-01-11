@@ -1,3 +1,4 @@
+import { SubmitDataProps } from 'types';
 import instance from './axios';
 
 export const fetchCSRFToken = async () => {
@@ -9,12 +10,22 @@ export const getQuotes = () => {
   return instance({ url: 'api/quotes' });
 };
 
-export const register = (data: {
-  [key: string]: string | boolean | number;
-}) => {
-  return instance.post('api/register', data);
+export const register = async (data: SubmitDataProps) => {
+  const response = await instance.post('api/register', data);
+  return response;
 };
 
-export const sendEmail = () => {
-  return instance({ url: 'api/email/verify' });
+export const login = async (data: SubmitDataProps) => {
+  const response = await instance.post('api/login', data);
+  return response;
+};
+
+export const logout = async () => {
+  const response = await instance.get('api/logout');
+  return response;
+};
+
+export const sendEmail = async () => {
+  const response = await instance({ url: 'api/email/verify' });
+  return response;
 };

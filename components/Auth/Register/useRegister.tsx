@@ -1,16 +1,16 @@
 import { register, fetchCSRFToken, sendEmail } from 'services';
-import { deleteCookie, getCookie, setCookie } from 'cookies-next';
-import { z } from 'zod';
+import { deleteCookie, setCookie } from 'cookies-next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authActions } from 'store';
 import { useRouter } from 'next/router';
+import { z } from 'zod';
+import { SubmitDataProps } from 'types';
 
 export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  getCookie('email-sent') && router.replace('?check-email');
 
   const schema = z
     .object({
@@ -32,9 +32,7 @@ export const useRegister = () => {
       path: ['repeat_password'],
     });
 
-  const onSubmit = async (data: {
-    [key: string]: string | number | boolean;
-  }) => {
+  const onSubmit = async (data: SubmitDataProps) => {
     try {
       setIsLoading(true);
       await fetchCSRFToken();
@@ -49,5 +47,6 @@ export const useRegister = () => {
     }
     setIsLoading(false);
   };
+
   return { isLoading, schema, onSubmit };
 };

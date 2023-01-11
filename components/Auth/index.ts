@@ -4,3 +4,4 @@ export * from './Login';
 export * from './ForgotPassword';
 export * from './ConfirmPassword';
 export * from './Notifications';
+export * from './Logout';

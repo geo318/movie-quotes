@@ -6,4 +6,5 @@ export type NotificationSocketProps = {
   sub: string;
   callToAction: string;
   loading?: boolean;
+  onClick?: () => void;
 };

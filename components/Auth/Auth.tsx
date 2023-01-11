@@ -12,10 +12,19 @@ import {
 import { useAuth } from './useAuth';
 
 const Auth: FC = () => {
-  const { isActive } = useAuth();
+  const { isActive, isEmailSent, isEmailVerified } = useAuth();
   return (
     <>
-      {isActive('register') && <Register />}
+      {isActive('register') &&
+        (!isEmailSent ? (
+          !isEmailVerified ? (
+            <Register />
+          ) : (
+            <CheckEmail />
+          )
+        ) : (
+          <ConfirmEmail />
+        ))}
       {isActive('login') && <Login />}
       {isActive('forgot-password') && <ForgotPassword />}
       {isActive('confirm-password') && <ConfirmPassword />}
