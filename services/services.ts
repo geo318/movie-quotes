@@ -1,3 +1,5 @@
+import { IncomingMessage } from 'http';
+import { NextApiRequest } from 'next';
 import { SubmitDataProps } from 'types';
 import instance from './axios';
 
@@ -22,6 +24,11 @@ export const login = async (data: SubmitDataProps) => {
 
 export const logout = async () => {
   const response = await instance.get('api/logout');
+  return response;
+};
+
+export const getUser = async () => {
+  const response = await instance.get('api/user');
   return response;
 };
 

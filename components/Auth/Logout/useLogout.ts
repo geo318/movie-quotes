@@ -10,11 +10,11 @@ export const useLogout = () => {
   const handleUserLogout = async () => {
     try {
       await logout();
-      dispatch(authActions.logout());
       deleteCookie('XSRF-TOKEN');
       deleteCookie('logged');
       deleteCookie('email-sent');
       deleteCookie('email-verified');
+      dispatch(authActions.logout());
       router.replace('/');
     } catch (e: any) {
       dispatch(fleshActions.setFleshError(e.response.data));

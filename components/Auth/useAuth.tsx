@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
-import { getCookie, hasCookie } from 'cookies-next';
-import { useEffect } from 'react';
+import { hasCookie } from 'cookies-next';
 
 export const useAuth = () => {
   const router = useRouter();

@@ -25,7 +25,7 @@ export const useLogin = () => {
       const user = await login(data);
       dispatch(authActions.setUser(user.data.user));
       dispatch(authActions.login());
-      Router.replace('admin');
+      Router.push('admin');
     } catch (e: any) {
       dispatch(fleshActions.setFleshError(e.response.data));
       deleteCookie('XSRF-TOKEN');

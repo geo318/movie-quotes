@@ -10,19 +10,19 @@ export const useConfirmEmail = () => {
   const dispatch = useDispatch();
   const url = router.asPath;
 
-  const XSRF = async () => {
+  const confirmEmail = async () => {
     try {
       await instance({
         url: url.replace('?confirm-email=', ''),
       });
       setCookie('email-verified', true);
     } catch (e) {
-      console.log(e);
+      return { e };
     }
   };
   const { isLoading, isError } = useQuery({
     queryKey: ['verify-registration', router.query.signature],
-    queryFn: XSRF,
+    queryFn: confirmEmail,
   });
 
   isError && router.replace('/404');
