@@ -4,11 +4,11 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps, NextPage } from 'next';
 import { useHome } from 'hooks';
 import Link from 'next/link';
-import { getUser } from 'services';
-import instance from 'services/axios';
+import { checkUser } from 'services';
 
 const Home: NextPage = () => {
   const { t } = useHome();
+
   return (
     <>
       <Head>
@@ -56,26 +56,38 @@ const Home: NextPage = () => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-}) => {
-  const data = await getUser();
-  const { user } = await instance({
-    url: 'api/user',
-    headers: { Cookie: req.headers.cookie },
-  });
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+    const cookies = context.req.headers.cookie;
+    await checkUser({ cookies });
 
-  if (user)
     return {
       redirect: {
         destination: '/admin',
         permanent: false,
       },
     };
+  } catch {}
+
+  const url = context.req.url;
+  const translation = await serverSideTranslations(context.locale as string, [
+    'shared',
+    'home',
+  ]);
+
+  if (url === '/' || url!.includes('.json'))
+    return {
+      props: {
+        ...translation,
+      },
+    };
+
+  const lang = context.locale;
+  context.res.writeHead(302, { Location: `/${lang}` });
+  context.res.end();
   return {
     props: {
-      ...(await serverSideTranslations(locale as string, ['shared', 'home'])),
+      ...translation,
     },
   };
 };

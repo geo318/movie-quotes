@@ -17,7 +17,7 @@ export const useLang = () => {
           locale !== lang && (
             <Link
               key={lang}
-              href=''
+              href={`/${lang}`}
               locale={lang}
               className='hover:bg-slate-100 px-5 py-2 flex justify-center'
             >

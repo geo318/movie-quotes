@@ -3,5 +3,6 @@ module.exports = {
     defaultLocale: 'en',
     locales: ['en', 'ka'],
   },
+  react: { useSuspense: false },
   reloadOnPrerender: 'development',
 };
