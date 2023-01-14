@@ -1,35 +1,33 @@
-import { IncomingMessage } from 'http';
-import { NextApiRequest } from 'next';
+import { axiosInstance } from 'services';
 import { SubmitDataProps } from 'types';
-import instance from './axios';
 
 export const fetchCSRFToken = async () => {
-  const response = await instance.get('sanctum/csrf-cookie');
+  const response = await axiosInstance.get('sanctum/csrf-cookie');
   return response;
 };
 
 export const getQuotes = async () => {
-  const response = await instance('api/quotes');
+  const response = await axiosInstance('api/quotes');
   return response;
 };
 
 export const register = async (data: SubmitDataProps) => {
-  const response = await instance.post('api/register', data);
+  const response = await axiosInstance.post('api/register', data);
   return response;
 };
 
 export const login = async (data: SubmitDataProps) => {
-  const response = await instance.post('api/login', data);
+  const response = await axiosInstance.post('api/login', data);
   return response;
 };
 
 export const logout = async () => {
-  const response = await instance.get('api/logout');
+  const response = await axiosInstance.get('api/logout');
   return response;
 };
 
 export const checkUser = async ({ cookies }: { cookies?: string }) => {
-  const response = await instance({
+  const response = await axiosInstance({
     url: 'api/user',
     headers: {
       Cookie: cookies,
@@ -40,11 +38,24 @@ export const checkUser = async ({ cookies }: { cookies?: string }) => {
 };
 
 export const getUser = async () => {
-  const response = await instance.get('api/user');
+  const response = await axiosInstance.get('api/user');
   return response;
 };
 
 export const sendEmail = async () => {
-  const response = await instance('api/email/verify');
+  const response = await axiosInstance.get('api/email/verify');
+  return response;
+};
+
+export const checkEmail = async (data: SubmitDataProps) => {
+  const response = await axiosInstance.post(
+    'http://localhost:8000/api/forgot-password',
+    data
+  );
+  return response;
+};
+
+export const confirmEmail = async (data: SubmitDataProps) => {
+  const response = await axiosInstance.post('api/reset-password', data);
   return response;
 };

@@ -1,7 +1,5 @@
 import { Logout } from 'components';
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { checkUser, getQuotes, getUser } from 'services';
 

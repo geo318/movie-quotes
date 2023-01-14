@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 export type InitialAuthState = {
   isAuthenticated: boolean;
-  registerErrors: AxiosError | any;
+  formErrors: AxiosError | any;
   loginErrors: AxiosError | any;
   user: { [kay: string]: string | boolean | number } | null;
 };

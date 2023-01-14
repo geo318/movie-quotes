@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import { Layout, Navbar, Button, Slides, Footer, Auth } from 'components';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GetServerSideProps, NextPage } from 'next';
+import { Auth, Button, Footer, Layout, Navbar, Slides } from 'components';
 import { useHome } from 'hooks';
+import { GetServerSideProps, NextPage } from 'next';
+import Head from 'next/head';
 import Link from 'next/link';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { checkUser } from 'services';
 
 const Home: NextPage = () => {
@@ -75,7 +75,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     'home',
   ]);
 
-  if (url === '/' || url!.includes('.json'))
+  if (url === '/' || url!.includes('.json') || url!.includes('confirm-email'))
     return {
       props: {
         ...translation,

@@ -5,9 +5,7 @@ import { RootState } from 'store';
 
 export const useFormLayout = () => {
   const { handleSubmit, setError } = useFormContext();
-  const formErrors = useSelector(
-    (state: RootState) => state.auth.registerErrors
-  );
+  const formErrors = useSelector((state: RootState) => state.auth.formErrors);
 
   useEffect(() => {
     Object.keys(formErrors).forEach((e) =>

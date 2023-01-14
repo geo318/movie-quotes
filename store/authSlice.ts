@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { LocalDataObj, localStore } from 'helpers';
+
 import { InitialAuthState } from './types';
 
 const auth: boolean = localStore.get('isAuth');
@@ -7,7 +8,7 @@ const user: LocalDataObj = localStore.get('userInfo');
 
 const initialAuthState: InitialAuthState = {
   isAuthenticated: auth,
-  registerErrors: false,
+  formErrors: false,
   loginErrors: false,
   user: user,
 };
@@ -28,17 +29,11 @@ const authSlice = createSlice({
       state.user = action.payload;
       localStore.set('userInfo', { user: action.payload });
     },
-    setRegisterError(state, action) {
-      state.registerErrors = action.payload;
+    setFormError(state, action) {
+      state.formErrors = action.payload;
     },
-    setLoginError(state, action) {
-      state.loginErrors = action.payload;
-    },
-    clearRegisterError(state) {
-      state.registerErrors = false;
-    },
-    clearLoginError(state) {
-      state.loginErrors = false;
+    clearFormError(state) {
+      state.formErrors = false;
     },
   },
 });

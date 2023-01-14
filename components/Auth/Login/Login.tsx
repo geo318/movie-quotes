@@ -1,13 +1,14 @@
-import { FC } from 'react';
-import Link from 'next/link';
 import {
-  InputText,
   Button,
-  Modal,
-  FormWrapper,
   Checkbox,
+  FormWrapper,
   Heading,
+  InputText,
+  Modal,
 } from 'components';
+import Link from 'next/link';
+import { FC } from 'react';
+
 import { useLogin } from './useLogin';
 
 const Login: FC = () => {

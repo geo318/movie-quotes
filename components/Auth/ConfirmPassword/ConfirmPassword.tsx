@@ -1,14 +1,14 @@
 import {
-  InputText,
-  Button,
-  Modal,
-  FormWrapper,
   ArrowBack,
+  Button,
+  FormWrapper,
   Heading,
+  InputText,
+  Modal,
+  useConfirmPassword,
 } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
-import { useConfirmPassword } from './useConfirmPassword';
 
 const ConfirmPassword: FC = () => {
   const { schema } = useConfirmPassword();

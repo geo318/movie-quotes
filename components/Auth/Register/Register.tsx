@@ -1,14 +1,14 @@
 import {
-  InputText,
   Button,
-  Modal,
   FormWrapper,
   Heading,
+  InputText,
+  Modal,
   ModalLoadingOverlay,
+  useRegister,
 } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
-import { useRegister } from './useRegister';
 
 const Register: FC = () => {
   const { isLoading, schema, onSubmit } = useRegister();

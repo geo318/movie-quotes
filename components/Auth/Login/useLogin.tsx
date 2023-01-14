@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCSRFToken, login } from 'services';
-import { authActions, fleshActions } from 'store';
+import { authActions } from 'store';
 import { SubmitDataProps } from 'types';
 import { z } from 'zod';
 
@@ -27,7 +27,7 @@ export const useLogin = () => {
       dispatch(authActions.login());
       Router.push('admin');
     } catch (e: any) {
-      dispatch(fleshActions.setFleshError(e.response.data));
+      dispatch(authActions.setFormError(e.response.data));
       deleteCookie('XSRF-TOKEN');
     }
     setIsLoading(false);

@@ -1,4 +1,4 @@
-import { Button, Layout, Heading, Icon404 } from 'components';
+import { Button, Heading, Icon404, Layout } from 'components';
 import { NextPage } from 'next';
 import Link from 'next/link';
 
