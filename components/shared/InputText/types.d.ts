@@ -6,6 +6,7 @@ export interface InputProps extends Props {
   label?: string;
   placeholder?: string;
   type?: string;
+  value?: string;
   validation?: {
     [key: string]:
       | {

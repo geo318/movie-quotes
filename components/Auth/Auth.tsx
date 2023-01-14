@@ -27,11 +27,11 @@ const Auth: FC = () => {
         ))}
       {isActive('login') && <Login />}
       {isActive('forgot-password') && <ForgotPassword />}
-      {isActive('confirm-password') && <ConfirmPassword />}
+      {isActive('reset-password') && <ConfirmPassword />}
       {isActive('check-email') && <CheckEmail />}
       {isActive('check-password-email') && <CheckPasswordEmail />}
       {isActive('confirm-email') && <ConfirmEmail />}
-      {isActive('confirm-password-email') && <ConfirmPasswordEmail />}
+      {isActive('reset-success') && <ConfirmPasswordEmail />}
     </>
   );
 };

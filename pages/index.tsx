@@ -75,7 +75,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     'home',
   ]);
 
-  if (url === '/' || url!.includes('.json') || url!.includes('confirm-email'))
+  if (
+    url === '/' ||
+    url!.includes('.json') ||
+    url!.includes('confirm-email') ||
+    url!.includes('reset-password')
+  )
     return {
       props: {
         ...translation,

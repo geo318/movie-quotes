@@ -5,21 +5,29 @@ import {
   Heading,
   InputText,
   Modal,
+  ModalLoadingOverlay,
   useConfirmPassword,
 } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
 
 const ConfirmPassword: FC = () => {
-  const { schema } = useConfirmPassword();
+  const { isLoading, onSubmit, schema, email, token } = useConfirmPassword();
   return (
     <Modal className='px-28 py-[3.25rem]' close>
-      <FormWrapper className='mx-2 max-w-sm' schema={schema}>
+      <FormWrapper
+        className='mx-2 max-w-sm'
+        schema={schema}
+        onSubmit={onSubmit}
+      >
+        {isLoading && <ModalLoadingOverlay />}
         <Heading
           className='text-center'
           heading='Create new password'
           sub='Your new password must be different from previous used passwords'
         />
+        <InputText name='token' type='hidden' value={email} />
+        <InputText name='email' type='hidden' value={token} />
         <InputText
           name='password'
           label='Password'

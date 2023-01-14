@@ -6,9 +6,9 @@ const ConfirmPasswordEmail: FC = () => {
     <NotificationSocket
       heading='Success!'
       sub='Your Email changed successfully'
-      link='/admin'
+      link='/?login'
       icon={<EmailSuccess />}
-      callToAction='Go to my news feed'
+      callToAction='Log in'
     />
   );
 };
