@@ -1,6 +1,5 @@
-import { Select } from 'components';
+import { Select, useLang } from 'components';
 import { FC } from 'react';
-import { useLang } from './useLang';
 
 const Lang: FC = () => {
   const { selector, dropdown } = useLang();
