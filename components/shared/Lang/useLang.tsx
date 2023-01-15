@@ -1,34 +1,34 @@
 import { Arrow } from 'components/icons';
+import { localStore } from 'helpers';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { useEffect } from 'react';
-import { changeLang } from 'services';
 
 export const useLang = () => {
-  const { locale, locales } = useRouter();
+  const lang = localStore.get('locale');
 
   useEffect(() => {
-    (async () => {
-      await changeLang(locale as string);
-    })();
-  }, [locale]);
+    if (Router.locales!.some((loc) => !window.location.pathname.includes(loc)))
+      Router.replace(lang);
+  }, [lang]);
 
   const selector = (
     <div className='flex gap-3 items-center justify-center p-2 cursor-pointer select-none'>
-      {locale === 'en' ? 'Eng' : 'ქარ'}
+      {Router.locale === 'en' ? 'Eng' : 'ქარ'}
       <Arrow />
     </div>
   );
+
   const dropdown = (
     <>
-      {locales!.map(
+      {Router.locales!.map(
         (lang) =>
-          locale !== lang && (
+          Router.locale !== lang && (
             <Link
               key={lang}
-              href={`/${lang}`}
+              href=''
               locale={lang}
-              // onClick={onChangeLanguage}
+              onClick={() => localStore.set('locale', lang)}
               className='hover:bg-slate-100 px-5 py-2 flex justify-center'
             >
               {lang === 'en' ? 'English' : 'ქართული'}

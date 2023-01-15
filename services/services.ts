@@ -59,8 +59,3 @@ export const confirmEmail = async (data: SubmitDataProps) => {
   const response = await axiosInstance.post('api/reset-password', data);
   return response;
 };
-
-export const changeLang = async (lang: string) => {
-  const response = await axiosInstance.get(`api/lang/${lang}`);
-  return response;
-};

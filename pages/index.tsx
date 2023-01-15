@@ -74,7 +74,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     'shared',
     'home',
   ]);
-
   if (
     url === '/' ||
     url!.includes('.json') ||

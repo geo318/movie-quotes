@@ -39,7 +39,6 @@ export const useConfirmPassword = () => {
       router.replace('?reset-success');
       setCookie('password-reset', true);
     } catch (e: any) {
-      console.log(e);
       e.message === 'Request failed with status code 422' &&
         dispatch(authActions.setFormError(e?.response?.data?.errors));
     }

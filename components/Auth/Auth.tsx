@@ -1,14 +1,15 @@
-import { FC } from 'react';
 import {
-  ConfirmPassword,
-  ForgotPassword,
-  Login,
-  Register,
   CheckEmail,
   CheckPasswordEmail,
   ConfirmEmail,
+  ConfirmPassword,
   ConfirmPasswordEmail,
+  ForgotPassword,
+  Login,
+  Register,
 } from 'components';
+import { FC } from 'react';
+
 import { useAuth } from './useAuth';
 
 const Auth: FC = () => {
