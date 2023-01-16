@@ -28,7 +28,9 @@ export default Admin;
 export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
+  res,
 }) => {
+  res.setHeader('set-cookie', ['access-token=1']);
   try {
     const cookies = req.headers.cookie;
     await checkUser({ cookies });

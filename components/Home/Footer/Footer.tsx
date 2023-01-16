@@ -1,5 +1,6 @@
 import { Layout } from 'components';
 import { FC } from 'react';
+
 import { useFooter } from './useFooter';
 
 const Footer: FC = () => {

@@ -26,6 +26,11 @@ const nextConfig = {
         destination: '/?login',
         permanent: true,
       },
+      {
+        source: '/confirm-email',
+        destination: '/?confirm-email',
+        permanent: true,
+      },
     ];
   },
 };

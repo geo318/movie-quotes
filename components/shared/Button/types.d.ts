@@ -4,4 +4,5 @@ export type ButtonProps = {
   style?: 'buttonRed';
   onClick?: () => void;
   disabled?: boolean;
+  typeButton?: boolean;
 };

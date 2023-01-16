@@ -1,5 +1,6 @@
 import { ModalContainer } from 'components';
 import { FC } from 'react';
+
 import { SelectProps } from './types';
 import { useSelect } from './useSelect';
 

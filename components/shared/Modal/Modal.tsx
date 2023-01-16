@@ -1,5 +1,6 @@
 import { ModalContainer, Portal } from 'components/shared';
 import { FC } from 'react';
+
 import { ModalProps } from './types';
 
 const Modal: FC<ModalProps> = ({ children, className }) => {

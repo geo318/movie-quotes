@@ -1,8 +1,8 @@
-import { setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
-import instance from 'services/axios';
+import { axiosInstance } from 'services';
 import { authActions } from 'store';
 
 export const useConfirmEmail = () => {
@@ -12,20 +12,26 @@ export const useConfirmEmail = () => {
 
   const confirmEmail = async () => {
     try {
-      await instance({
+      await axiosInstance({
         url: url.replace('?confirm-email=', ''),
       });
       setCookie('email-verified', true);
-    } catch (e) {
-      return { e };
+    } catch (e: any) {
+      e?.response?.status === 403
+        ? router.replace('/403')
+        : router.replace('/404');
     }
   };
-  const { isLoading, isError } = useQuery({
+  const { isLoading } = useQuery({
     queryKey: ['verify-registration', router.query.signature],
     queryFn: confirmEmail,
   });
 
-  isError && router.replace('/404');
-  const goToAdmin = () => dispatch(authActions.login());
+  const goToAdmin = () => {
+    deleteCookie('email-sent');
+    deleteCookie('email-verified');
+    dispatch(authActions.login());
+    setCookie('admin', true);
+  };
   return { isLoading, goToAdmin };
 };

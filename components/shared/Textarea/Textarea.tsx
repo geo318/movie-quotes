@@ -1,6 +1,7 @@
-import { InputProps } from './types';
-import { useFormContext } from 'react-hook-form';
 import { FC } from 'react';
+import { useFormContext } from 'react-hook-form';
+
+import { InputProps } from './types';
 
 const Textarea: FC<InputProps> = ({ name, label, placeholder }) => {
   const { register } = useFormContext();

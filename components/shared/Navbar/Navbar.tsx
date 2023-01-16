@@ -1,16 +1,9 @@
-import {
-  Layout,
-  Button,
-  Lang,
-  Register,
-  Login,
-  ForgotPassword,
-  ConfirmPassword,
-} from 'components';
-import { useNavbar } from './useNavbar';
+import { Button, Lang, Layout } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
 import { Props } from 'types';
+
+import { useNavbar } from './useNavbar';
 
 const Navbar: FC<Props> = ({ children }) => {
   const { t } = useNavbar();

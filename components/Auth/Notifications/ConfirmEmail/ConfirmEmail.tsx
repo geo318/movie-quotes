@@ -1,5 +1,6 @@
 import { EmailSuccess, NotificationSocket } from 'components';
 import { FC } from 'react';
+
 import { useConfirmEmail } from './useConfirmEmail';
 
 const ConfirmEmail: FC = () => {

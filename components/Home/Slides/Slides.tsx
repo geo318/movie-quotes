@@ -1,6 +1,7 @@
-import { useSlides } from './useSlides';
 import Image from 'next/image';
 import { FC } from 'react';
+
+import { useSlides } from './useSlides';
 
 const Slides: FC = () => {
   const { slides, t } = useSlides();

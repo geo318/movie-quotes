@@ -1,6 +1,7 @@
 import { Button, Heading, Modal, Spinner } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
+
 import { NotificationSocketProps } from './types';
 
 const NotificationSocket: FC<NotificationSocketProps> = ({

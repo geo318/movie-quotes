@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { InitialError } from './types';
 
 const initialErrorState: InitialError = {

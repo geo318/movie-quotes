@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getUser } from '../services';
+import { getUser } from 'services';
 
 export const useAuth = () => {
   const router = useRouter();

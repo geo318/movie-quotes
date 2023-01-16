@@ -8,14 +8,13 @@ import { checkUser } from 'services';
 
 const Home: NextPage = () => {
   const { t } = useHome();
-
   return (
     <>
       <Head>
         <title>Epic Movie Quotes</title>
         <meta name='description' content='Add favorite quotes and share' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/favicon.ico?v=1.0' />
       </Head>
       <Layout padding={false} dark>
         <Layout background={false} padding={false}>
@@ -57,16 +56,21 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const goToAdmin = context.req.cookies['admin'];
+  context.res.setHeader('set-cookie', ['access-token=0']);
+
   try {
     const cookies = context.req.headers.cookie;
     await checkUser({ cookies });
-
-    return {
-      redirect: {
-        destination: '/admin',
-        permanent: false,
-      },
-    };
+    if (goToAdmin) {
+      context.res.setHeader('set-cookie', ['access-token=1']);
+      return {
+        redirect: {
+          destination: '/admin',
+          permanent: false,
+        },
+      };
+    }
   } catch {}
 
   const url = context.req.url;
@@ -74,12 +78,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     'shared',
     'home',
   ]);
-  if (
-    url === '/' ||
-    url!.includes('.json') ||
-    url!.includes('confirm-email') ||
-    url!.includes('reset-password')
-  )
+
+  const preventRedirectQueryList = [
+    '/',
+    '.json',
+    'confirm-email',
+    'reset-password',
+  ];
+
+  if (preventRedirectQueryList.some((query) => url!.includes(query)))
     return {
       props: {
         ...translation,
