@@ -59,3 +59,8 @@ export const confirmEmail = async (data: SubmitDataProps) => {
   const response = await axiosInstance.post('api/reset-password', data);
   return response;
 };
+
+export const gmailAuth = async () => {
+  const response = await axiosInstance.get('api/auth/redirect');
+  return response;
+};
