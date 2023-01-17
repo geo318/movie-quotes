@@ -2,7 +2,7 @@ import { deleteCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchCSRFToken, register, sendEmail } from 'services';
+import { fetchCSRFToken, logout, register, sendEmail } from 'services';
 import { authActions } from 'store';
 import { SubmitDataProps } from 'types';
 import { z } from 'zod';
@@ -41,8 +41,8 @@ export const useRegister = () => {
       router.replace('?check-email');
       setCookie('email-sent', true);
     } catch (e: any) {
-      e.message === 'Request failed with status code 422' &&
-        dispatch(authActions.setFormError(e?.response?.data?.errors));
+      await logout();
+      dispatch(authActions.setFormError(e.response?.data?.errors));
       deleteCookie('XSRF-TOKEN');
     }
     setIsLoading(false);

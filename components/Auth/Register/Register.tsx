@@ -1,6 +1,7 @@
 import {
   Button,
   FormWrapper,
+  GmailAuth,
   Heading,
   InputText,
   Modal,
@@ -46,7 +47,7 @@ const Register: FC = () => {
           className='w-full mt-2'
           disabled={isLoading}
         />
-        <Button text='Sign up with Google' className='w-full mt-4' />
+        <GmailAuth />
         <div className='flex gap-1 mt-8 justify-center text-app-dark-gray leading-normal'>
           <span>Already have an account?</span>
           <Link href='/?login' as='/login' className='text-app-link underline'>

@@ -1,8 +1,10 @@
 import { FC } from 'react';
+
 import { ButtonProps } from './types';
 import { useButton } from './useButton';
 
 const Button: FC<ButtonProps> = ({
+  typeButton,
   text,
   className,
   style,
@@ -12,6 +14,7 @@ const Button: FC<ButtonProps> = ({
   const { buttonRed } = useButton();
   return (
     <button
+      type={typeButton ? 'button' : 'submit'}
       onClick={onClick}
       className={`${
         disabled ? 'pointer-events-none bg-[#EC4C57] select-none' : ''

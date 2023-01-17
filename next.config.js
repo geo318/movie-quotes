@@ -31,6 +31,11 @@ const nextConfig = {
         destination: '/?confirm-email',
         permanent: true,
       },
+      {
+        source: '/google-auth',
+        destination: '/?google-auth',
+        permanent: true,
+      },
     ];
   },
 };

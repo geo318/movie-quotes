@@ -27,7 +27,7 @@ export const useLogin = () => {
       dispatch(authActions.login());
       Router.push('admin');
     } catch (e: any) {
-      dispatch(authActions.setFormError(e.response.data));
+      dispatch(authActions.setFormError(e.response?.data?.errors));
       deleteCookie('XSRF-TOKEN');
     }
     setIsLoading(false);

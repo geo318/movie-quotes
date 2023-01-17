@@ -2,6 +2,7 @@ import {
   Button,
   Checkbox,
   FormWrapper,
+  GmailAuth,
   Heading,
   InputText,
   Modal,
@@ -41,7 +42,7 @@ const Login: FC = () => {
           </Link>
         </Checkbox>
         <Button text='Sign in' style='buttonRed' className='w-full' />
-        <Button text='Sign in with Google' className='w-full mt-4' />
+        <GmailAuth />
         <div className='flex gap-1 mt-8 justify-center text-app-dark-gray leading-normal'>
           <span>Don’t have an account?</span>
           <Link

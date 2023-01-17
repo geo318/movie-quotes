@@ -6,6 +6,7 @@ import {
   ConfirmPasswordEmail,
   ForgotPassword,
   Login,
+  OAuth,
   Register,
 } from 'components';
 import { FC } from 'react';
@@ -33,6 +34,7 @@ const Auth: FC = () => {
       {isActive('check-password-email') && <CheckPasswordEmail />}
       {isActive('confirm-email') && <ConfirmEmail />}
       {isActive('reset-success') && <ConfirmPasswordEmail />}
+      {isActive('state') && <OAuth />}
     </>
   );
 };

@@ -13,6 +13,5 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
   if (config.url!.includes('signature')) config.params = null;
-
   return config;
 });
