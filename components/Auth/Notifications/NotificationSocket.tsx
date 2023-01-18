@@ -15,7 +15,10 @@ const NotificationSocket: FC<NotificationSocketProps> = ({
   onClick: onClickHandler,
 }) => {
   return (
-    <Modal className='px-20 py-[3.25rem] max-w-[35rem]' close>
+    <Modal
+      close={false}
+      className='px-20 py-[3.25rem] max-w-[35rem] top-20 lg:top-0 !w-auto mx-9 max-h-96'
+    >
       <div className='px-2 flex flex-col justify-center items-center'>
         {loading ? (
           <Spinner />

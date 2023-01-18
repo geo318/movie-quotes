@@ -9,7 +9,7 @@ export const useModalContainer = ({
   closeRef,
   modalOpenOnload,
   modalControl,
-  close,
+  closeRoute,
 }: ModalProps) => {
   const router = useRouter();
   const [dropdown, toggleDropdown] = useState(modalOpenOnload);
@@ -17,13 +17,13 @@ export const useModalContainer = ({
 
   const onClickOutside = useCallback((): void => {
     toggleDropdown((prevState) => !prevState);
-    close && router.push('');
-  }, [router, close]);
+    closeRoute && router.push('');
+  }, [router, closeRoute]);
 
   useEsc(() => onClickEsc());
   const onClickEsc = () => {
     toggleDropdown(false);
-    close && router.push('');
+    closeRoute && router.push('');
   };
 
   useEffect(() => modalControl && modalControl(), [modalControl, dropdown]);
@@ -41,11 +41,11 @@ export const useModalContainer = ({
   );
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
-    close && document.body.classList.add('overflow-y-hidden');
+    closeRoute && document.body.classList.add('overflow-y-hidden');
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
-      close && document.body.classList.remove('overflow-y-hidden');
+      closeRoute && document.body.classList.remove('overflow-y-hidden');
     };
-  }, [handleClickOutside, close]);
+  }, [handleClickOutside, closeRoute]);
   return { dropdown, ref, onClickOutside, handleClickOutside };
 };

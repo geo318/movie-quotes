@@ -15,7 +15,7 @@ const Navbar: FC<Props> = ({ children }) => {
           Movie Quotes
         </div>
         <nav className='flex ml-auto gap-5 items-center'>
-          <Lang />
+          <Lang className='sm:block hidden' />
 
           <Link href='/?register' as='/register'>
             <Button

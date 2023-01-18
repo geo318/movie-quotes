@@ -29,11 +29,7 @@ const Home: NextPage = () => {
                 <p className='text-app-yellow font-bold text-2xl leading-9 lg:text-6xl lg:leading-normal max-w-[16rem] lg:max-w-2xl text-center'>
                   {t('welcome')}
                 </p>
-                <Link
-                  href='/?register=true'
-                  as='/register'
-                  className='mx-auto mt-7'
-                >
+                <Link href='/?register' as='/register' className='mx-auto mt-7'>
                   <Button
                     text={t('getStarted')}
                     style='buttonRed'

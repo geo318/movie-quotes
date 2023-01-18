@@ -10,12 +10,20 @@ const Heading: FC<HeadingProps> = ({
   subStyle,
 }) => (
   <div className={`flex flex-col items-center gap-3 mb-6 ${className || ''}`}>
-    <h1 className={error ? 'text-5xl leading-normal' : 'text-3xl leading-9'}>
+    <h1
+      className={
+        error
+          ? 'lg:text-5xl text-2xl leading-7 lg:leading-normal'
+          : 'lg:text-3xl text-2xl leading-9'
+      }
+    >
       {heading}
     </h1>
     <p
       className={`${
-        error ? 'text-2xl leading-normal' : 'text-app-dark-gray text-base'
+        error
+          ? 'lg:text-2xl text-base lg:leading-normal'
+          : 'text-app-dark-gray text-base'
       } ${subStyle}`}
     >
       {sub}

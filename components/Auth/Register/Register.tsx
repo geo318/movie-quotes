@@ -14,12 +14,8 @@ import { FC } from 'react';
 const Register: FC = () => {
   const { isLoading, schema, onSubmit } = useRegister();
   return (
-    <Modal className='px-28 py-[3.25rem] relative' close>
-      <FormWrapper
-        className='mx-2 max-w-sm'
-        schema={schema}
-        onSubmit={onSubmit}
-      >
+    <Modal>
+      <FormWrapper schema={schema} onSubmit={onSubmit}>
         {isLoading && <ModalLoadingOverlay />}
 
         <Heading heading='Create an account' sub='Start your journey!' />

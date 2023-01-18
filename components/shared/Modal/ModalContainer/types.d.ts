@@ -6,7 +6,7 @@ export interface ModalProps extends Props {
   closeOnClick?: boolean;
   modalOpenOnload?: boolean;
   modalControl?: () => void;
-  close?: boolean;
+  closeRoute?: boolean;
 }
 
 export interface HandleClickOutside extends ModalProps {

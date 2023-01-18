@@ -15,12 +15,8 @@ import { useForgotPassword } from './useForgotPassword';
 const ForgotPassword: FC = () => {
   const { onSubmit, schema, isLoading } = useForgotPassword();
   return (
-    <Modal className='px-28 py-[3.25rem]' close>
-      <FormWrapper
-        className='mx-2 max-w-sm'
-        schema={schema}
-        onSubmit={onSubmit}
-      >
+    <Modal>
+      <FormWrapper schema={schema} onSubmit={onSubmit}>
         {isLoading && <ModalLoadingOverlay />}
         <Heading
           className='text-center'

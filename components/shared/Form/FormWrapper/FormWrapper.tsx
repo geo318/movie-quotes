@@ -7,7 +7,7 @@ import { FormWrapperProps } from './types';
 
 const FormWrapper: FC<FormWrapperProps> = ({
   children,
-  className,
+  className = '',
   schema,
   onSubmit,
 }) => {
@@ -15,7 +15,10 @@ const FormWrapper: FC<FormWrapperProps> = ({
     <FormProvider
       {...useForm({ mode: 'onBlur', resolver: zodResolver(schema) })}
     >
-      <FormLayout className={className} onSubmit={onSubmit}>
+      <FormLayout
+        className={`mx-2 lg:max-w-sm ${className}`}
+        onSubmit={onSubmit}
+      >
         {children}
       </FormLayout>
     </FormProvider>

@@ -15,12 +15,8 @@ import { useLogin } from './useLogin';
 const Login: FC = () => {
   const { schema, handleUserLogin } = useLogin();
   return (
-    <Modal className='px-28 py-[3.25rem]' close>
-      <FormWrapper
-        className='mx-2 max-w-sm'
-        schema={schema}
-        onSubmit={handleUserLogin}
-      >
+    <Modal>
+      <FormWrapper schema={schema} onSubmit={handleUserLogin}>
         <Heading
           heading='Log in to your account'
           sub='Welcome back! Please enter your details.'

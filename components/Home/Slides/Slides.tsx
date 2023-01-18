@@ -12,19 +12,18 @@ const Slides: FC = () => {
           key={slide.id}
           className={`${
             slide.id !== 1 && slide.bg
-          } top-0 bg-fixed bg-cover bg-no-repeat relative lg:h-screen max-w-screen justify-center items-center ${
-            slide.id === 1 && 'lg:mt-[-15vh] lg:sticky '
+          } top-0 lg:bg-fixed lg:sticky bg-cover bg-no-repeat relative lg:h-screen max-w-screen justify-center items-center ${
+            slide.id === 1 && 'lg:mt-[-15vh]'
           }`}
         >
-          {slide.id === 1 && (
-            <Image
-              sizes='(max-width: 700px) 50vw, 90vw'
-              src={slide.img}
-              alt={slide.quote}
-              className='object-cover -z-10 min-h-[33rem] md:min-h-[61rem] max-h-screen'
-              {...(slide.id === 1 && { priority: true })}
-            />
-          )}
+          <Image
+            sizes='(max-width: 700px) 50vw, 90vw'
+            src={slide.img}
+            alt={slide.quote}
+            className='object-cover -z-10 min-h-[33rem] md:min-h-[61rem] max-h-screen'
+            {...(slide.id === 1 && { priority: true })}
+          />
+
           <div className='absolute inset-0 flex justify-center items-center'>
             <div className='grid grid-cols-12 text-left w-full'>
               <div className='col-span-1 col-start-2 flex justify-end'>

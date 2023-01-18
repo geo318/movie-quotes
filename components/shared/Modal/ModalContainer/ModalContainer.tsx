@@ -10,14 +10,14 @@ const ModalContainer: FC<ModalProps> = ({
   closeOnClick = false,
   modalOpenOnload = false,
   modalControl,
-  close,
+  closeRoute,
 }) => {
   const { dropdown, ref, onClickOutside } = useModalContainer({
     selectRef,
     closeRef,
     modalOpenOnload,
     modalControl,
-    close,
+    closeRoute,
   });
 
   return (
