@@ -13,21 +13,29 @@ import { FC } from 'react';
 import { useForgotPassword } from './useForgotPassword';
 
 const ForgotPassword: FC = () => {
-  const { onSubmit, schema, isLoading } = useForgotPassword();
+  const { onSubmit, schema, isLoading, t } = useForgotPassword();
   return (
     <Modal>
       <FormWrapper schema={schema} onSubmit={onSubmit}>
         {isLoading && <ModalLoadingOverlay />}
         <Heading
           className='text-center'
-          heading='Forgot password?'
-          sub='Enter the email and we’ll send an email with instructions to reset your password'
+          heading={t('forgot_heading') as string}
+          sub={t('forgot_sub') as string}
         />
-        <InputText name='email' label='Email' placeholder='Enter your email' />
-        <Button text='Send instructions' style='buttonRed' className='w-full' />
+        <InputText
+          name='email'
+          label={t('email') as string}
+          placeholder={t('email_holder') as string}
+        />
+        <Button
+          text={t('send_instructions') as string}
+          style='buttonRed'
+          className='w-full'
+        />
         <div className='flex gap-3 mt-10 justify-center items-center text-app-dark-gray leading-normal'>
           <ArrowBack />
-          <Link href='/?login'>Back to log in</Link>
+          <Link href='/?login'>{t('back_login')}</Link>
         </div>
       </FormWrapper>
     </Modal>

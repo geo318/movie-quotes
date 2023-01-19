@@ -1,14 +1,16 @@
 import { EmailSent, NotificationSocket } from 'components';
+import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
 
 const CheckPasswordEmail: FC = () => {
+  const { t } = useTranslation('home');
   return (
     <NotificationSocket
-      heading='Check your email'
-      sub='We have sent a password recover instructions to your email'
+      heading={t('check_pass_email_heading') as string}
+      sub={t('check_pass_email_sub') as string}
       link='https://gmail.com'
       icon={<EmailSent />}
-      callToAction='Go to my email'
+      callToAction={t('check_pass_email_act') as string}
       skip
     />
   );

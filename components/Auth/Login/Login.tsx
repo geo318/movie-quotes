@@ -13,40 +13,48 @@ import { FC } from 'react';
 import { useLogin } from './useLogin';
 
 const Login: FC = () => {
-  const { schema, handleUserLogin } = useLogin();
+  const { schema, handleUserLogin, t } = useLogin();
   return (
     <Modal>
       <FormWrapper schema={schema} onSubmit={handleUserLogin}>
         <Heading
-          heading='Log in to your account'
-          sub='Welcome back! Please enter your details.'
+          heading={t('login_heading') as string}
+          sub={t('login_sub') as string}
         />
-        <InputText name='email' label='Email' placeholder='Enter your email' />
+        <InputText
+          name='email'
+          label={t('email') as string}
+          placeholder={t('email_holder') as string}
+        />
         <InputText
           name='password'
           type='password'
-          label='Password'
-          placeholder='password'
+          label={t('password') as string}
+          placeholder={t('password') as string}
         />
-        <Checkbox name='remember_me' label='Remember me' className='mb-4 flex'>
+        <Checkbox
+          name='remember_me'
+          label={t('remember') as string}
+          className='mb-4 flex'
+        >
           <Link
             href='/?forgot-password'
             as='/forgot-password'
             className='text-app-link underline ml-auto'
           >
-            Password Reset
+            {t('password_reset')}
           </Link>
         </Checkbox>
-        <Button text='Sign in' style='buttonRed' className='w-full' />
-        <GmailAuth />
+        <Button text={t('sign')} style='buttonRed' className='w-full' />
+        <GmailAuth text={t('sign_in_google') as string} />
         <div className='flex gap-1 mt-8 justify-center text-app-dark-gray leading-normal'>
-          <span>Don’t have an account?</span>
+          <span>{t('no_account')}</span>
           <Link
             href='/?register'
             as='/register'
             className='text-app-link underline'
           >
-            Sign up
+            {t('sing_up')}
           </Link>
         </div>
       </FormWrapper>

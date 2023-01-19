@@ -1,14 +1,16 @@
 import { EmailSent, NotificationSocket } from 'components';
+import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
 
 const CheckEmail: FC = () => {
+  const { t } = useTranslation('home');
   return (
     <NotificationSocket
-      heading='Thank you!'
-      sub='Please check your email and follow the instructions to activate your account.'
+      heading={t('check_email_heading') as string}
+      sub={t('check_email_sub') as string}
       link='https://gmail.com'
       icon={<EmailSent />}
-      callToAction='Go to my email'
+      callToAction={t('check_email_act') as string}
     />
   );
 };

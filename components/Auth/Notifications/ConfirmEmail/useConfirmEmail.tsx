@@ -1,11 +1,13 @@
 import { deleteCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { axiosInstance } from 'services';
 import { authActions } from 'store';
 
 export const useConfirmEmail = () => {
+  const { t } = useTranslation('home');
   const router = useRouter();
   const dispatch = useDispatch();
   const url = router.asPath;
@@ -33,5 +35,5 @@ export const useConfirmEmail = () => {
     dispatch(authActions.login());
     setCookie('admin', true);
   };
-  return { isLoading, goToAdmin };
+  return { isLoading, goToAdmin, t };
 };

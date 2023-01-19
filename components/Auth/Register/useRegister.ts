@@ -1,5 +1,6 @@
 import { deleteCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCSRFToken, logout, register, sendEmail } from 'services';
@@ -9,6 +10,7 @@ import { z } from 'zod';
 
 export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation('home');
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -16,19 +18,22 @@ export const useRegister = () => {
     .object({
       username: z
         .string()
-        .min(3, { message: 'Username is required' })
-        .regex(/[a-z0-9]{3,15}/, 'Invalid username'),
-      email: z.string().min(1, { message: 'Email is required' }).email(),
+        .min(3, { message: t('err_username_req') as string })
+        .regex(/[a-z0-9]{3,15}/, t('err_username_inc') as string),
+      email: z
+        .string()
+        .min(1, { message: t('err_email_inc') as string })
+        .email(t('err_email_inc') as string),
       password: z
         .string()
-        .min(1, { message: 'Password is required' })
-        .regex(/^[a-z0-9]{8,15}$/, 'Incorrect password'),
+        .min(1, { message: t('err_password_req') as string })
+        .regex(/^[a-z0-9]{8,15}$/, t('err_password_inc') as string),
       repeat_password: z
         .string()
-        .min(1, { message: 'Please, repeat password' }),
+        .min(1, { message: t('err_password_repeat') as string }),
     })
     .refine((data) => data.password === data.repeat_password, {
-      message: "Passwords don't match",
+      message: t('err_password_match') as string,
       path: ['repeat_password'],
     });
 
@@ -48,5 +53,5 @@ export const useRegister = () => {
     setIsLoading(false);
   };
 
-  return { isLoading, schema, onSubmit };
+  return { isLoading, schema, onSubmit, t };
 };

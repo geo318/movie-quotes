@@ -1,5 +1,6 @@
 import { Button, Heading, Modal, Spinner } from 'components';
 import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
 
 import { NotificationSocketProps } from './types';
@@ -14,6 +15,7 @@ const NotificationSocket: FC<NotificationSocketProps> = ({
   loading = false,
   onClick: onClickHandler,
 }) => {
+  const { t } = useTranslation('home');
   return (
     <Modal
       close={false}
@@ -44,7 +46,7 @@ const NotificationSocket: FC<NotificationSocketProps> = ({
                   href=''
                   className='text-app-dark-gray leading-normal mt-8'
                 >
-                  Skip, I’ll confirm later
+                  {t('skip') as string}
                 </Link>
               )}
             </>

@@ -4,16 +4,16 @@ import { FC } from 'react';
 import { useConfirmEmail } from './useConfirmEmail';
 
 const ConfirmEmail: FC = () => {
-  const { isLoading, goToAdmin } = useConfirmEmail();
+  const { isLoading, goToAdmin, t } = useConfirmEmail();
   return (
     <NotificationSocket
       loading={isLoading}
-      heading='Thank you!'
-      sub='Your account has been activated.'
+      heading={t('confirm_email_heading') as string}
+      sub={t('confirm_email_sub') as string}
       link='/admin'
       onClick={goToAdmin}
       icon={<EmailSuccess />}
-      callToAction='Go to my news feed'
+      callToAction={t('confirm_email_act') as string}
     />
   );
 };

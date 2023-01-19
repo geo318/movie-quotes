@@ -1,5 +1,6 @@
 import { deleteCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkEmail, fetchCSRFToken } from 'services';
@@ -9,11 +10,15 @@ import { z } from 'zod';
 
 export const useForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation('home');
   const router = useRouter();
   const dispatch = useDispatch();
 
   const schema = z.object({
-    email: z.string().min(1, { message: 'Email is required' }).email(),
+    email: z
+      .string()
+      .min(1, { message: t('err_email_req') as string })
+      .email(t('err_email_inc') as string),
   });
 
   const onSubmit = async (data: SubmitDataProps) => {
@@ -31,5 +36,5 @@ export const useForgotPassword = () => {
     setIsLoading(false);
   };
 
-  return { isLoading, schema, onSubmit };
+  return { isLoading, schema, onSubmit, t };
 };

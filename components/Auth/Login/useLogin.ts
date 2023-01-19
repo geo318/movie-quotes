@@ -1,5 +1,6 @@
 import { deleteCookie } from 'cookies-next';
 import Router from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCSRFToken, login } from 'services';
@@ -9,13 +10,17 @@ import { z } from 'zod';
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { t } = useTranslation('home');
   const dispatch = useDispatch();
   const schema = z.object({
-    email: z.string().min(1, { message: 'Email is required' }).email(),
+    email: z
+      .string()
+      .min(1, { message: t('err_email_req') as string })
+      .email(t('err_email_inc') as string),
     password: z
       .string()
-      .min(1, { message: 'Password is required' })
-      .regex(/^[a-z0-9]{8,15}$/, 'Incorrect password'),
+      .min(1, { message: t('err_password_req') as string })
+      .regex(/^[a-z0-9]{8,15}$/, t('err_password_inc') as string),
     remember_me: z.boolean(),
   });
 
@@ -33,5 +38,5 @@ export const useLogin = () => {
     setIsLoading(false);
   };
 
-  return { schema, handleUserLogin, isLoading };
+  return { schema, handleUserLogin, isLoading, t };
 };

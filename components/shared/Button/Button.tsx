@@ -4,6 +4,7 @@ import { ButtonProps } from './types';
 import { useButton } from './useButton';
 
 const Button: FC<ButtonProps> = ({
+  children,
   typeButton,
   text,
   className,
@@ -24,6 +25,7 @@ const Button: FC<ButtonProps> = ({
           : 'active:border-white active:ring-1 active:ring-white'
       } ${className}`}
     >
+      {children}
       {text}
     </button>
   );
