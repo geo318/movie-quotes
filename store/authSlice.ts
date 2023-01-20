@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { LocalDataObj, localStore } from 'helpers';
+import { localStore } from 'helpers';
 
-import { InitialAuthState } from './types';
+import { InitialAuthState, User } from 'types';
 
 const auth: boolean = localStore.get('isAuth');
-const user: LocalDataObj = localStore.get('userInfo');
+const user: User = localStore.get('userInfo');
 
 const initialAuthState: InitialAuthState = {
   isAuthenticated: auth,

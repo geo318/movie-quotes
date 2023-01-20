@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { confirmEmail } from 'services';
 import { authActions } from 'store';
-import { SubmitDataProps } from 'types';
 import { z } from 'zod';
+import { ResetPasswordProps } from 'types';
 
 export const useConfirmPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ export const useConfirmPassword = () => {
       path: ['repeat_password'],
     });
 
-  const onSubmit = async (data: SubmitDataProps) => {
+  const onSubmit = async (data: ResetPasswordProps) => {
     try {
       setIsLoading(true);
       await confirmEmail(data);

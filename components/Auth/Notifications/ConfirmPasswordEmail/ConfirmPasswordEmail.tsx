@@ -1,9 +1,9 @@
 import { EmailSuccess, NotificationSocket } from 'components';
-import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
+import { useConfirmPasswordEmail } from './useConfirmPasswordEmail';
 
 const ConfirmPasswordEmail: FC = () => {
-  const { t } = useTranslation('home');
+  const { t } = useConfirmPasswordEmail();
   return (
     <NotificationSocket
       heading={t('reset_email_heading') as string}

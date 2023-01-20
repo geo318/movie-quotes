@@ -1,6 +1,5 @@
 import { Button, G } from 'components';
 import { FC } from 'react';
-
 import { useOAuth } from './useGmailAuth';
 
 const OAuth: FC<{ text: string }> = ({ text }) => {

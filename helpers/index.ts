@@ -1,2 +1,2 @@
 export * from './localStorage';
-export * from './types';
+export * from './types.d';

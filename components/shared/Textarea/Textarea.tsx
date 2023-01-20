@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import { useFormContext } from 'react-hook-form';
-
 import { InputProps } from './types';
+import { useTextarea } from './useTextarea';
 
 const Textarea: FC<InputProps> = ({ name, label, placeholder }) => {
-  const { register } = useFormContext();
+  const { register } = useTextarea();
 
   return (
     <div className='max-w-lg'>

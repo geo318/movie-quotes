@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import { LayoutProps } from './types';
 
 const Layout: FC<LayoutProps> = ({

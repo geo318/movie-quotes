@@ -1,4 +1,4 @@
-import { LocalData } from './types';
+import { LocalData } from 'types';
 
 export const localStore = {
   set(name: string, data: LocalData) {
@@ -13,8 +13,7 @@ export const localStore = {
   get(name: string) {
     try {
       const item = localStorage.getItem(name);
-      if (item) return JSON.parse(item);
-      return false;
+      return item ? JSON.parse(item) : false;
     } catch (e) {
       return { error: e };
     }

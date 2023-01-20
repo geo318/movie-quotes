@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import { HeadingProps } from './types';
 
 const Heading: FC<HeadingProps> = ({

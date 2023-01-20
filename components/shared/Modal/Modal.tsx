@@ -1,10 +1,10 @@
 import { Close, ModalContainer, Portal } from 'components';
-import { FC, useRef } from 'react';
-
+import { FC } from 'react';
 import { ModalProps } from './types';
+import { useModal } from './useModal';
 
 const Modal: FC<ModalProps> = ({ children, className = '', close = true }) => {
-  const closeRef = useRef(null);
+  const { closeRef } = useModal();
   return (
     <Portal className='flex lg:items-center items-start justify-center h-full modal bg-gray-900 lg:bg-opacity-0'>
       <ModalContainer modalOpenOnload={true} closeRoute closeRef={closeRef}>

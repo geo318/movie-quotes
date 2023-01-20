@@ -1,9 +1,8 @@
 import { Button, Heading, Modal, Spinner } from 'components';
 import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
-
 import { NotificationSocketProps } from './types';
+import { useNotificationSocket } from './useNotificationSocket';
 
 const NotificationSocket: FC<NotificationSocketProps> = ({
   icon,
@@ -15,7 +14,7 @@ const NotificationSocket: FC<NotificationSocketProps> = ({
   loading = false,
   onClick: onClickHandler,
 }) => {
-  const { t } = useTranslation('home');
+  const { t } = useNotificationSocket();
   return (
     <Modal
       close={false}

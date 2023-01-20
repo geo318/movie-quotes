@@ -1,27 +1,10 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import { Props } from 'types';
+import { usePortal } from './usePortal';
 
 const Portal: FC<Props> = ({ children, className }) => {
-  const ref = useRef<Element | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const portal = document.createElement('div');
-    portal.setAttribute('id', 'portal');
-    portal.classList.add(
-      'fixed',
-      'inset-0',
-      'backdrop-blur-sm',
-      'bg-black',
-      'bg-opacity-50'
-    );
-    document.querySelector<HTMLElement>('body')!.append(portal);
-    ref.current = portal;
-    setMounted(true);
-    return () => portal.remove();
-  }, []);
-
+  const { mounted, ref } = usePortal();
   return mounted && ref.current
     ? createPortal(<div className={className}>{children}</div>, ref.current)
     : null;

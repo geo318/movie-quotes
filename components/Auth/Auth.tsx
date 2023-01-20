@@ -10,7 +10,6 @@ import {
   Register,
 } from 'components';
 import { FC } from 'react';
-
 import { useAuth } from './useAuth';
 
 const Auth: FC = () => {

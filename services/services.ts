@@ -1,5 +1,10 @@
 import { axiosInstance } from 'services';
-import { SubmitDataProps } from 'types';
+import {
+  EmailProps,
+  LoginProps,
+  RegisterProps,
+  ResetPasswordProps,
+} from 'types/formTypes';
 
 export const fetchCSRFToken = async () => {
   const response = await axiosInstance.get('sanctum/csrf-cookie');
@@ -11,12 +16,12 @@ export const getQuotes = async () => {
   return response;
 };
 
-export const register = async (data: SubmitDataProps) => {
+export const register = async (data: RegisterProps) => {
   const response = await axiosInstance.post('api/register', data);
   return response;
 };
 
-export const login = async (data: SubmitDataProps) => {
+export const login = async (data: LoginProps) => {
   const response = await axiosInstance.post('api/login', data);
   return response;
 };
@@ -47,15 +52,12 @@ export const sendEmail = async () => {
   return response;
 };
 
-export const checkEmail = async (data: SubmitDataProps) => {
-  const response = await axiosInstance.post(
-    'http://localhost:8000/api/forgot-password',
-    data
-  );
+export const checkEmail = async (data: EmailProps) => {
+  const response = await axiosInstance.post('api/forgot-password', data);
   return response;
 };
 
-export const confirmEmail = async (data: SubmitDataProps) => {
+export const confirmEmail = async (data: ResetPasswordProps) => {
   const response = await axiosInstance.post('api/reset-password', data);
   return response;
 };

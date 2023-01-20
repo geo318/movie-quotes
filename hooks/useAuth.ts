@@ -7,13 +7,11 @@ export const useAuth = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    (async function () {
+    (async () => {
       try {
         const response = await getUser();
-        console.log(response);
         setUser(response.data.user);
       } catch (e) {
-        console.log(e);
         if (router.pathname === '/admin') {
           router.push('/login');
         }

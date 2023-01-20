@@ -1,9 +1,9 @@
 import { EmailSent, NotificationSocket } from 'components';
-import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
+import { useCheckPasswordEmail } from './useCheckPasswordEmail';
 
 const CheckPasswordEmail: FC = () => {
-  const { t } = useTranslation('home');
+  const { t } = useCheckPasswordEmail();
   return (
     <NotificationSocket
       heading={t('check_pass_email_heading') as string}

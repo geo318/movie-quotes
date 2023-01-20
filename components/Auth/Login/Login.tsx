@@ -9,7 +9,6 @@ import {
 } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
-
 import { useLogin } from './useLogin';
 
 const Login: FC = () => {

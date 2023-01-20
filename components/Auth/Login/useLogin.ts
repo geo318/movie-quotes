@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCSRFToken, login } from 'services';
 import { authActions } from 'store';
-import { SubmitDataProps } from 'types';
 import { z } from 'zod';
+import { LoginProps } from 'types';
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,7 @@ export const useLogin = () => {
     remember_me: z.boolean(),
   });
 
-  const handleUserLogin = async (data: SubmitDataProps) => {
+  const handleUserLogin = async (data: LoginProps) => {
     try {
       await fetchCSRFToken();
       const user = await login(data);

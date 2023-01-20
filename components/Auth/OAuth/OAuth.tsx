@@ -1,5 +1,4 @@
 import { Modal, ModalLoadingOverlay } from 'components';
-
 import { useOAuth } from './useOAuth';
 
 const OAuth = () => {

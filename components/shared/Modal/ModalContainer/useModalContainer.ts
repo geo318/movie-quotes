@@ -1,7 +1,6 @@
 import { useEsc } from 'hooks';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useRef, useState } from 'react';
-
 import { ModalProps } from './types';
 
 export const useModalContainer = ({

@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCSRFToken, logout, register, sendEmail } from 'services';
 import { authActions } from 'store';
-import { SubmitDataProps } from 'types';
 import { z } from 'zod';
+import { RegisterProps } from 'types';
 
 export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +37,7 @@ export const useRegister = () => {
       path: ['repeat_password'],
     });
 
-  const onSubmit = async (data: SubmitDataProps) => {
+  const onSubmit = async (data: RegisterProps) => {
     try {
       setIsLoading(true);
       await fetchCSRFToken();

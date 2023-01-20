@@ -11,4 +11,3 @@ export * from './Form';
 export * from './Modal';
 export * from './Checkbox';
 export * from './Heading';
-export { default as Spinner } from './Spinner';

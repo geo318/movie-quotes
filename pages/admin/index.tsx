@@ -4,15 +4,6 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import { checkUser, getQuotes, getUser } from 'services';
 
 const Admin = () => {
-  const { data: quotesData } = useQuery({
-    queryKey: 'quotes',
-    queryFn: getQuotes,
-  });
-  const { data: userData } = useQuery({
-    queryKey: 'user',
-    queryFn: getQuotes,
-  });
-
   return (
     <>
       <div className='text-black'>

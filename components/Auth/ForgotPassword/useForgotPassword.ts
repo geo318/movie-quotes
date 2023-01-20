@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkEmail, fetchCSRFToken } from 'services';
 import { authActions } from 'store';
-import { SubmitDataProps } from 'types';
 import { z } from 'zod';
+import { EmailProps } from 'types';
 
 export const useForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,7 @@ export const useForgotPassword = () => {
       .email(t('err_email_inc') as string),
   });
 
-  const onSubmit = async (data: SubmitDataProps) => {
+  const onSubmit = async (data: EmailProps) => {
     try {
       setIsLoading(true);
       await fetchCSRFToken();
