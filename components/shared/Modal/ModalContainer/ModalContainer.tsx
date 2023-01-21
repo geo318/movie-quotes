@@ -1,21 +1,32 @@
+import { FC } from 'react';
 import { ModalProps } from './types';
 import { useModalContainer } from './useModalContainer';
 
-const ModalContainer = ({
+const ModalContainer: FC<ModalProps> = ({
   children,
   selectRef = null,
   closeRef = null,
   closeOnClick = false,
-}: ModalProps) => {
+  modalOpenOnload = false,
+  modalControl,
+  closeRoute,
+}) => {
   const { dropdown, ref, onClickOutside } = useModalContainer({
     selectRef,
     closeRef,
+    modalOpenOnload,
+    modalControl,
+    closeRoute,
   });
 
   return (
     <>
       {children && dropdown ? (
-        <div ref={ref} onClick={() => closeOnClick && onClickOutside()}>
+        <div
+          className='z-10'
+          ref={ref}
+          onClick={() => closeOnClick && onClickOutside()}
+        >
           {children}
         </div>
       ) : null}

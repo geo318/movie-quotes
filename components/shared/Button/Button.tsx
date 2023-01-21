@@ -1,14 +1,30 @@
+import { FC } from 'react';
 import { ButtonProps } from './types';
 import { useButton } from './useButton';
 
-const Button = ({ text, className, style }: ButtonProps) => {
+const Button: FC<ButtonProps> = ({
+  children,
+  typeButton,
+  text,
+  className,
+  style,
+  onClick,
+  disabled = false,
+}) => {
   const { buttonRed } = useButton();
   return (
     <button
-      className={`px-4 lg:px-6 py-2 rounded font-normal text-base leading-6 lg:text-xl lg:leading-normal  text-white border
-         transition ${style === 'buttonRed' ? buttonRed : ''} 
-         ${className}`}
+      type={typeButton ? 'button' : 'submit'}
+      onClick={onClick}
+      className={`${
+        disabled ? 'pointer-events-none bg-[#EC4C57] select-none' : ''
+      } px-4 lg:px-6 py-2 rounded font-normal text-base leading-6  text-white border transition  ${
+        style === 'buttonRed'
+          ? buttonRed
+          : 'active:border-white active:ring-1 active:ring-white'
+      } ${className}`}
     >
+      {children}
       {text}
     </button>
   );

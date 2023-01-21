@@ -1,15 +1,19 @@
-import { useSlides } from './useSlides';
 import Image from 'next/image';
+import { FC } from 'react';
 
-const Slides = () => {
+import { useSlides } from './useSlides';
+
+const Slides: FC = () => {
   const { slides, t } = useSlides();
   return (
     <>
-      {slides.map((slide, index) => (
+      {slides.map((slide) => (
         <article
           key={slide.id}
-          className={`lg:sticky relative top-0 lg:h-screen max-w-screen justify-center items-center ${
-            slide.id === 1 && 'lg:mt-[-10vh]'
+          className={`${
+            slide.id !== 1 && slide.bg
+          } top-0 lg:bg-fixed lg:sticky bg-cover bg-no-repeat relative lg:h-screen max-w-screen justify-center items-center ${
+            slide.id === 1 && 'lg:mt-[-15vh]'
           }`}
         >
           <Image
@@ -19,6 +23,7 @@ const Slides = () => {
             className='object-cover -z-10 min-h-[33rem] md:min-h-[61rem] max-h-screen'
             {...(slide.id === 1 && { priority: true })}
           />
+
           <div className='absolute inset-0 flex justify-center items-center'>
             <div className='grid grid-cols-12 text-left w-full'>
               <div className='col-span-1 col-start-2 flex justify-end'>

@@ -1,14 +1,16 @@
+import { FC } from 'react';
 import { LayoutProps } from './types';
 
-const Layout = ({
+const Layout: FC<LayoutProps> = ({
   children,
   padding = true,
   background = true,
   className = 'flex-col',
-}: LayoutProps) => (
+  dark = false,
+}) => (
   <div
     className={`flex flex-col text-white ${
-      background ? 'bg-gradient-to-b from-[#11101A] to-[#08080D]' : ''
+      background ? `${dark ? 'bg-app-gradient-dark' : 'bg-app-gradient'}` : ''
     }`}
   >
     <div

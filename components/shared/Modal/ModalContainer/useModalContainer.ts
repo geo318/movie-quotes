@@ -1,13 +1,31 @@
+import { useEsc } from 'hooks';
+import { useRouter } from 'next/router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ModalProps } from './types';
 
-export const useModalContainer = ({ selectRef, closeRef }: ModalProps) => {
-  const [dropdown, toggleDropdown] = useState(false);
+export const useModalContainer = ({
+  selectRef,
+  closeRef,
+  modalOpenOnload,
+  modalControl,
+  closeRoute,
+}: ModalProps) => {
+  const router = useRouter();
+  const [dropdown, toggleDropdown] = useState(modalOpenOnload);
   const ref = useRef<HTMLDivElement>(null);
 
   const onClickOutside = useCallback((): void => {
     toggleDropdown((prevState) => !prevState);
-  }, []);
+    closeRoute && router.push('');
+  }, [router, closeRoute]);
+
+  useEsc(() => onClickEsc());
+  const onClickEsc = () => {
+    toggleDropdown(false);
+    closeRoute && router.push('');
+  };
+
+  useEffect(() => modalControl && modalControl(), [modalControl, dropdown]);
 
   const handleClickOutside = useCallback(
     (e: MouseEvent | TouchEvent): void => {
@@ -20,11 +38,13 @@ export const useModalContainer = ({ selectRef, closeRef }: ModalProps) => {
     },
     [onClickOutside, selectRef, closeRef]
   );
-
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
-    return () =>
+    closeRoute && document.body.classList.add('overflow-y-hidden');
+    return () => {
       document.removeEventListener('click', handleClickOutside, true);
-  }, [handleClickOutside]);
+      closeRoute && document.body.classList.remove('overflow-y-hidden');
+    };
+  }, [handleClickOutside, closeRoute]);
   return { dropdown, ref, onClickOutside, handleClickOutside };
 };

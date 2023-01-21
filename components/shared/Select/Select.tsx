@@ -1,8 +1,9 @@
 import { ModalContainer } from 'components';
+import { FC } from 'react';
 import { SelectProps } from './types';
 import { useSelect } from './useSelect';
 
-export default function Select({
+const Select: FC<SelectProps> = ({
   children,
   className,
   modalClassName,
@@ -10,7 +11,7 @@ export default function Select({
   placeholder,
   value,
   face,
-}: SelectProps) {
+}) => {
   const { select } = useSelect();
   return (
     <div>
@@ -36,4 +37,6 @@ export default function Select({
       </ModalContainer>
     </div>
   );
-}
+};
+
+export default Select;

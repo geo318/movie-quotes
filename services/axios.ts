@@ -1,27 +1,17 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
+import { i18n } from 'next-i18next';
 
-const instance = axios.create({
-  baseURL: process.env.API_BASE_URL,
+export const axiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  params: { locale: i18n?.language || 'en' },
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 });
 
-instance.interceptors.response.use(
-  async (response) => response,
-
-  async (error) => {
-    const status = error?.response?.status;
-
-    if (status === 404) {
-      //  TODO: use to redirect to 404 page later
-    } else if (status === 403) {
-      //  TODO: redirect to 403 page page later
-    }
-
-    return Promise.reject(error);
-  }
-);
-
-export default instance;
+axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
+  if (config.url!.includes('signature')) config.params = null;
+  return config;
+});
