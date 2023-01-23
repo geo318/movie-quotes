@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-import { InitialError } from './types';
+import { InitialError } from 'types';
 
 const initialErrorState: InitialError = {
   flashError: [] as string[],
