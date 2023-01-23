@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { localStore } from 'helpers';
-
 import { InitialAuthState, User } from 'types';
 
 const auth: boolean = localStore.get('isAuth');
