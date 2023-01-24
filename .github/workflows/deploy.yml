@@ -29,7 +29,6 @@ jobs:
             cd lomidze-epic-movie-quotes-front
             git pull
             npm ci
-            composer install
             npm run build
             pm2 restart movie-quotes
           EOF
