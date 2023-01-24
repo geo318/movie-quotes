@@ -14,6 +14,8 @@ jobs:
         run: cp .env.local.example .env.local
       - name: install npm dependencies
         run: npm ci
+      - name: Install pm2
+        run: npm install -g pm2
       - name: run linter
         run: npm run lint
       - name: Set ssh key 
@@ -31,5 +33,7 @@ jobs:
             git pull
             npm ci
             npm run build
+          - name: Install pm2
+            run: npm install -g pm2
             pm2 restart movie-quotes
           EOF
