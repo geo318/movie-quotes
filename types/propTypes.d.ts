@@ -5,6 +5,10 @@ export interface Props {
   className?: string;
 }
 
+export interface NavbarProps extends Props {
+  admin?: boolean;
+}
+
 type SubmitDataProps = {
   data: {
     [key: string]: string | number | boolean;

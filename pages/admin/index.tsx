@@ -1,16 +1,13 @@
-import { Logout } from 'components';
+import { AdminLayout, Feed } from 'components';
 import { GetServerSideProps } from 'next';
-import { dehydrate, QueryClient, useQuery } from 'react-query';
+import { dehydrate, QueryClient } from 'react-query';
 import { checkUser, getQuotes, getUser } from 'services';
 
 const Admin = () => {
   return (
-    <>
-      <div className='text-black'>
-        <div>admin</div>
-        <Logout />
-      </div>
-    </>
+    <AdminLayout>
+      <Feed data={{} as FeedData} />
+    </AdminLayout>
   );
 };
 

@@ -15,7 +15,7 @@ export type InitialAuthState = {
   user: User;
 };
 
-type User = {
+export type User = {
   username: string;
   email: string;
   avatar: string;
