@@ -6,17 +6,16 @@ import { AvatarProps } from './types';
 const Avatar: FC<AvatarProps> = ({
   img,
   className,
-  details = true,
   text,
   subText,
-  active,
+  active = false,
   size,
   loading,
 }) => {
   return (
     <div className='flex gap-6'>
       <div
-        className={`overflow-hidden bg-[#D9D9D9] flex justify-center items-center rounded-full ${
+        className={`overflow-hidden flex justify-center items-center rounded-full ${
           active && 'border-2 border-app-red'
         } ${className}`}
       >
@@ -33,12 +32,14 @@ const Avatar: FC<AvatarProps> = ({
         )}
       </div>
 
-      {details && (
-        <div className='flex flex-col justify-center'>
-          <p className='text-2xl leading-9'>{text}</p>
-          <p className='text-base'>{subText}</p>
-        </div>
-      )}
+      <div className='flex flex-col justify-center'>
+        {text && (
+          <p className={subText ? 'text-2xl leading-9' : 'text-xl leading-7'}>
+            {text}
+          </p>
+        )}
+        {subText && <p className='text-base'>{subText}</p>}
+      </div>
     </div>
   );
 };

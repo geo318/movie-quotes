@@ -1,15 +1,17 @@
 import { AdminLayout, Feed } from 'components';
 import { useAdmin } from 'hooks';
 import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { dehydrate, QueryClient } from 'react-query';
 import { checkUser, getQuotes, getUser } from 'services';
 
 const Admin = () => {
-  const { quotesData } = useAdmin();
-  // console.log(quotesData);
+  const { quotes } = useAdmin();
+
+  console.log(quotes);
   return (
     <AdminLayout>
-      <Feed data={{} as FeedData} />
+      <Feed data={quotes as FeedData[]} />
     </AdminLayout>
   );
 };
@@ -37,7 +39,12 @@ export const getServerSideProps: GetServerSideProps = async ({
   await queryClient.prefetchQuery('user', getUser);
   await queryClient.prefetchQuery('quotes', getQuotes);
 
+  const translation = await serverSideTranslations(locale as string, [
+    'shared',
+    'home',
+  ]);
+
   return {
-    props: { dehydratedState: dehydrate(queryClient) },
+    props: { dehydratedState: dehydrate(queryClient), ...translation },
   };
 };

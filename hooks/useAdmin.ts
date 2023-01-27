@@ -19,5 +19,5 @@ export const useAdmin = () => {
     dispatch(authActions.setUser(userData?.data.user));
   }, [dispatch, userData]);
 
-  return { quotesData, userData };
+  return { quotes: quotesData?.data };
 };

@@ -12,3 +12,4 @@ export { default as ClearInput } from './ClearInput';
 export { default as Spinner } from './Spinner';
 export * from './aside';
 export * from './eyes';
+export * from './feed';
