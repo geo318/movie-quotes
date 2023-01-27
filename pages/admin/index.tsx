@@ -1,9 +1,12 @@
 import { AdminLayout, Feed } from 'components';
+import { useAdmin } from 'hooks';
 import { GetServerSideProps } from 'next';
 import { dehydrate, QueryClient } from 'react-query';
 import { checkUser, getQuotes, getUser } from 'services';
 
 const Admin = () => {
+  const { quotesData } = useAdmin();
+  // console.log(quotesData);
   return (
     <AdminLayout>
       <Feed data={{} as FeedData} />

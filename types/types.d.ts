@@ -8,7 +8,7 @@ export type LocalDataObj = { [key: string]: DataProp };
 
 export type LocalData = DataProp | LocalDataObj;
 
-export type InitialAuthState = {
+export type AuthState = {
   isAuthenticated: boolean;
   formErrors: AxiosError | any;
   loginErrors: AxiosError | any;
