@@ -1,5 +1,8 @@
-export type InputProps = {
+import { Props } from 'types';
+
+export interface InputProps extends Props {
   name: string;
-  label: string;
-  placeholder: string;
-};
+  label?: string;
+  placeholder?: string;
+  rows?: number;
+}

@@ -6,5 +6,5 @@ export interface AvatarProps extends Props {
   subText?: string;
   active?: boolean;
   size: number;
-  loading: boolean;
+  loading?: boolean;
 }

@@ -53,20 +53,20 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const goToAdmin = context.req.cookies['admin'];
-  context.res.setHeader('set-cookie', ['access-token=0']);
+  const lang = context.locale;
+  // context.res.setHeader('set-cookie', ['access-token=0']);
 
   try {
     const cookies = context.req.headers.cookie;
     await checkUser({ cookies });
-    if (goToAdmin) {
-      context.res.setHeader('set-cookie', ['access-token=1']);
-      return {
-        redirect: {
-          destination: '/admin',
-          permanent: false,
-        },
-      };
-    }
+
+    context.res.setHeader('set-cookie', ['access-token=1']);
+    return {
+      redirect: {
+        destination: `/${lang}/admin`,
+        permanent: false,
+      },
+    };
   } catch {}
 
   const url = context.req.url;
@@ -89,7 +89,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
 
-  const lang = context.locale;
   context.res.writeHead(302, { Location: `/${lang}` });
   context.res.end();
   return {

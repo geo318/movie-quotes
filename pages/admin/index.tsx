@@ -6,12 +6,11 @@ import { dehydrate, QueryClient } from 'react-query';
 import { checkUser, getQuotes, getUser } from 'services';
 
 const Admin = () => {
-  const { quotes } = useAdmin();
+  const { quotes, fetchNextPageData, loading } = useAdmin();
 
-  console.log(quotes);
   return (
     <AdminLayout>
-      <Feed data={quotes as FeedData[]} />
+      <Feed data={quotes} nextPage={fetchNextPageData} loading={loading} />
     </AdminLayout>
   );
 };
@@ -37,7 +36,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery('user', getUser);
-  await queryClient.prefetchQuery('quotes', getQuotes);
 
   const translation = await serverSideTranslations(locale as string, [
     'shared',

@@ -4,15 +4,16 @@ import {
   LoginProps,
   RegisterProps,
   ResetPasswordProps,
-} from 'types/formTypes';
+  AddCommentProps,
+} from 'types';
 
 export const fetchCSRFToken = async () => {
   const response = await axiosInstance.get('sanctum/csrf-cookie');
   return response;
 };
 
-export const getQuotes = async () => {
-  const response = await axiosInstance('api/quotes');
+export const getQuotes = async ({ page = 1 }: { page?: number }) => {
+  const response = await axiosInstance(`api/quotes?page=${page}`);
   return response;
 };
 
@@ -64,5 +65,10 @@ export const confirmEmail = async (data: ResetPasswordProps) => {
 
 export const gmailAuth = async () => {
   const response = await axiosInstance.get('api/auth/redirect');
+  return response;
+};
+
+export const addComment = async (data: AddCommentProps) => {
+  const response = await axiosInstance.post('api/comment', data);
   return response;
 };

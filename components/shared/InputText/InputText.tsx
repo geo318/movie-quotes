@@ -34,10 +34,12 @@ const InputText: FC<InputProps> = ({
           type === 'hidden' ? 'hidden' : ''
         }`}
       >
-        <label htmlFor={name} className='block font-normal text-base pb-2'>
-          {label}
-          <span className='text-app-red'> *</span>
-        </label>
+        {label && (
+          <label htmlFor={name} className='block font-normal text-base pb-2'>
+            {label}
+            <span className='text-app-red'> *</span>
+          </label>
+        )}
         <div className='relative'>
           <input
             className={`appearance-none outline-none w-full border px-3 py-[.375rem] rounded-[.25rem] text-app-black text-base font-normal bg-app-gray ${

@@ -29,3 +29,26 @@ export interface RootState {
 export type InitialError = {
   flashError: string[];
 };
+
+export type UserData = { id: number; avatar: string; username: string };
+
+export type Comment = {
+  id: number;
+  user_id: number;
+  quote_id: number;
+  comment: string;
+  user: UserData;
+};
+
+export type Like = {
+  id: number;
+  quote_id: number;
+  like: number;
+};
+
+export type Movie = {
+  id: number;
+  movie_title: number;
+  movie_image: string;
+  year: number;
+};

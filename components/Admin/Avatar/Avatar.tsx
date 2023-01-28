@@ -5,7 +5,7 @@ import { AvatarProps } from './types';
 
 const Avatar: FC<AvatarProps> = ({
   img,
-  className,
+  className = '',
   text,
   subText,
   active = false,
