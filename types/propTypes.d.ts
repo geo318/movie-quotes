@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { RefObject } from 'react';
 
 export interface Props {
   children?: React.ReactNode;
   className?: string;
+  ref?: Element | HTMLFormElement | null | RefObject<HTMLFormElement>;
 }
 
 export interface NavbarProps extends Props {

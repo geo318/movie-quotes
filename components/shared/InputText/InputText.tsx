@@ -6,7 +6,6 @@ import {
   InputSuccess,
 } from 'components';
 import { FC } from 'react';
-
 import { InputProps } from './types';
 import { useInputText } from './useInputText';
 
@@ -16,6 +15,8 @@ const InputText: FC<InputProps> = ({
   placeholder,
   type = 'text',
   value,
+  inputStyle = '',
+  submit = false,
 }) => {
   const {
     register,
@@ -44,7 +45,7 @@ const InputText: FC<InputProps> = ({
           <input
             className={`appearance-none outline-none w-full border px-3 py-[.375rem] rounded-[.25rem] text-app-black text-base font-normal bg-app-gray ${
               errors[name] ? 'border-app-red' : 'border-app-gray'
-            }`}
+            } ${inputStyle}`}
             type={show ? 'text' : type}
             value={value}
             {...register!(name, {
@@ -61,7 +62,7 @@ const InputText: FC<InputProps> = ({
               {show ? <Eye /> : <EyeHidden />}
             </div>
           )}
-          {dirtyFields[name] && (
+          {dirtyFields[name] && !submit && (
             <div
               className={`absolute top-1/2 -translate-y-1/2 cursor-pointer ${
                 type === 'password' ? 'right-8' : 'right-[.875rem]'

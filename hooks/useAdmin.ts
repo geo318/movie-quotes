@@ -26,16 +26,15 @@ export const useAdmin = () => {
   const pages = data?.pages.length;
 
   const fetchNextPageData = useCallback(() => {
-    if (hasNextPage) {
+    if (hasNextPage && pages) {
       fetchNextPage();
-      pages &&
-        pages > 2 &&
+      pages > 2 &&
         setFeedData((oldData) => [
           ...oldData,
           ...data?.pages[data?.pages.length - 1].data.data,
         ]);
     }
-  }, [pages, hasNextPage]);
+  }, [pages, hasNextPage, data?.pages, fetchNextPage]);
 
   useEffect(() => {
     if (pages && pages === 1) setFeedData(data?.pages[0].data.data);

@@ -14,4 +14,6 @@ export interface InputProps extends Props {
         }
       | number;
   };
+  inputStyle?: string;
+  submit?: boolean;
 }

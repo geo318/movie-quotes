@@ -10,6 +10,7 @@ const FormWrapper: FC<FormWrapperProps> = ({
   schema,
   onSubmit,
   fill = false,
+  ref = null,
 }) => {
   return (
     <FormProvider
@@ -18,6 +19,7 @@ const FormWrapper: FC<FormWrapperProps> = ({
       <FormLayout
         className={`${fill ? 'w-full' : 'mx-2 lg:max-w-sm'} ${className}`}
         onSubmit={onSubmit}
+        ref={ref}
       >
         {children}
       </FormLayout>

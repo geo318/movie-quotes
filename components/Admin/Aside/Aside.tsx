@@ -1,4 +1,5 @@
 import { Avatar, HomeIcon, MovieIcon } from 'components';
+import { getImage } from 'helpers';
 import Link from 'next/link';
 import { FC } from 'react';
 import { Props } from 'types';
@@ -12,7 +13,7 @@ const Aside: FC<Props> = ({ className = '' }) => {
       <Link href='/admin/profile'>
         <Avatar
           className='w-[3.75rem] h-[3.75rem]'
-          img={`${process.env.NEXT_PUBLIC_BASE_URL}${user?.avatar}`}
+          img={getImage(user?.avatar)}
           text='name surname'
           subText='Edit your profile'
           active={nav.profile === path}

@@ -1,7 +1,7 @@
 import { getImage } from 'helpers';
 import { FC } from 'react';
 import { Comment } from 'types';
-import { Avatar } from 'components';
+import { Avatar, Divider } from 'components';
 import { useComment } from './useComment';
 
 const Comment: FC<{ data: Comment[] }> = ({ data }) => {
@@ -18,7 +18,10 @@ const Comment: FC<{ data: Comment[] }> = ({ data }) => {
               size={52}
               text={item.user.username}
             />
-            <p className='lg:ml-[4.75rem]'>{item.comment}</p>
+            <div className='lg:ml-[4.75rem]'>
+              <p className='mb-6'>{item.comment}</p>
+              <Divider />
+            </div>
           </div>
         );
       })}
