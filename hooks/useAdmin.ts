@@ -1,15 +1,19 @@
-import { FeedData } from 'components/Admin/Feed/types';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useInfiniteQuery, useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getQuotes, getUser } from 'services';
-import { authActions } from 'store';
+import { authActions, feedActions } from 'store';
+import { RootState } from 'types';
 
 export const useAdmin = () => {
+  const feedData = useSelector((state: RootState) => state.feed.feedData);
+
+  const dispatch = useDispatch();
   const { fetchNextPage, hasNextPage, isFetchingNextPage, data } =
     useInfiniteQuery({
       queryKey: ['feed-data'],
-      queryFn: ({ pageParam = 0 }) => getQuotes({ page: pageParam }),
+      queryFn: ({ pageParam = 1 }) => getQuotes({ page: pageParam }),
       getNextPageParam: (lastPage) => {
         const nextPage = lastPage?.data.current_page + 1;
         if (nextPage > lastPage?.data.last_page) return;
@@ -17,30 +21,31 @@ export const useAdmin = () => {
       },
     });
 
-  const [feedData, setFeedData] = useState<FeedData[]>([]);
+  const pages = data?.pages.length;
+  const nextBatch = data?.pages[data?.pages.length - 1].data.data;
+  const fetchNextPageData = useCallback(() => {
+    if (hasNextPage && pages) {
+      fetchNextPage();
+      if (pages > 2) {
+        dispatch(feedActions.updateFeed(nextBatch));
+      }
+    }
+  }, [pages, hasNextPage, fetchNextPage, nextBatch, dispatch]);
+
+  const firstBatch = data?.pages[0].data.data;
+  useEffect(() => {
+    if (feedData.length > 0) return;
+
+    if (pages === 1) {
+      console.log(1);
+      dispatch(feedActions.updateFeed(firstBatch));
+    }
+  }, [pages, dispatch, firstBatch, feedData.length]);
 
   const { data: userData } = useQuery({
     queryKey: 'user',
     queryFn: getUser,
   });
-  const pages = data?.pages.length;
-
-  const fetchNextPageData = useCallback(() => {
-    if (hasNextPage && pages) {
-      fetchNextPage();
-      pages > 2 &&
-        setFeedData((oldData) => [
-          ...oldData,
-          ...data?.pages[data?.pages.length - 1].data.data,
-        ]);
-    }
-  }, [pages, hasNextPage, data?.pages, fetchNextPage]);
-
-  useEffect(() => {
-    if (pages && pages === 1) setFeedData(data?.pages[0].data.data);
-  }, [data?.pages, pages]);
-
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authActions.setUser(userData?.data.user));
   }, [dispatch, userData]);

@@ -1,5 +1,6 @@
-import { useAuthUser } from 'hooks';
+import { useAdmin, useAuthUser } from 'hooks';
 import { useCallback, useRef } from 'react';
+import { addLike } from 'services';
 
 export const useFeed = ({
   nextPage,
@@ -7,9 +8,25 @@ export const useFeed = ({
 }: {
   nextPage: () => void;
   loading: boolean;
+  refetch?: () => void;
 }) => {
   const authUser = useAuthUser();
-  const observer = useRef<any>();
+  const observer = useRef<IntersectionObserver | null>();
+  const { updateFeedState } = useAdmin();
+
+  const handleLike = async ({
+    userId,
+    quoteId,
+  }: {
+    userId: number;
+    quoteId: number;
+  }) => {
+    try {
+      await addLike({ userId, quoteId });
+    } catch (e) {
+      updateFeedState({ quoteId });
+    }
+  };
 
   const lastFeedElementRef = useCallback(
     (node: any) => {
@@ -22,5 +39,6 @@ export const useFeed = ({
     },
     [loading, nextPage]
   );
-  return { authUser, lastFeedElementRef };
+
+  return { authUser, lastFeedElementRef, handleLike };
 };

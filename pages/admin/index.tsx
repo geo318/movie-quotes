@@ -3,7 +3,7 @@ import { useAdmin } from 'hooks';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { dehydrate, QueryClient } from 'react-query';
-import { checkUser, getQuotes, getUser } from 'services';
+import { checkUser, getUser } from 'services';
 
 const Admin = () => {
   const { quotes, fetchNextPageData, loading } = useAdmin();

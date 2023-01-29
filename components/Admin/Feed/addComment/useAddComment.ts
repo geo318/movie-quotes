@@ -25,7 +25,7 @@ export const useAddComment = () => {
     try {
       setIsLoading(true);
       await addComment(data);
-      alert('comment added');
+      console.log(data, 'comment');
     } catch (e: any) {
       e.message === 'Request failed with status code 422' &&
         dispatch(authActions.setFormError(e?.response?.data?.errors));

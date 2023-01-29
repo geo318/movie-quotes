@@ -14,7 +14,10 @@ import { getImage } from 'helpers';
 import { useFeed } from './useFeed';
 
 const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
-  const { authUser, lastFeedElementRef } = useFeed({ nextPage, loading });
+  const { authUser, lastFeedElementRef, handleLike } = useFeed({
+    nextPage,
+    loading,
+  });
   return (
     <div className='grid grid-cols-3 min-h-full gap-10 pb-28'>
       {data?.map((item: FeedData, index: number) => (
@@ -51,11 +54,18 @@ const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
               <ChatIcon />
             </Figure>
             <Figure count={item.likes.length}>
-              <HeartIcon />
+              <div
+                onClick={() =>
+                  handleLike({ userId: authUser.id, quoteId: item.id })
+                }
+                className='cursor-pointer'
+              >
+                {item.likes.user_id !== authUser.id && <HeartIcon />}
+              </div>
             </Figure>
           </div>
           <Divider />
-          <Comment data={item.comments} />
+          <Comment data={item.comments.slice().reverse()} />
           <div className='flex mt-6'>
             <Avatar
               className='h-[3.25rem] w-[3.25rem]'

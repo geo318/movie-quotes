@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios';
+import { FeedData } from 'components/Admin/Feed/types';
 import { gmailAuth } from 'services';
 import { FormSubmitProps } from './formTypes';
 
@@ -24,6 +25,7 @@ export type User = {
 
 export interface RootState {
   auth: InitialAuthState;
+  feed: { feedData: FeedData[] };
 }
 
 export type InitialError = {
@@ -43,6 +45,7 @@ export type Comment = {
 export type Like = {
   id: number;
   quote_id: number;
+  user_id: number;
   like: number;
 };
 

@@ -72,3 +72,16 @@ export const addComment = async (data: AddCommentProps) => {
   const response = await axiosInstance.post('api/comment', data);
   return response;
 };
+
+export const addLike = async ({
+  userId,
+  quoteId,
+}: {
+  userId: number;
+  quoteId: number;
+}) => {
+  const response = await axiosInstance.get(
+    `api/like?quote_id=${quoteId}&user_id=${userId}&like=1`
+  );
+  return response;
+};

@@ -4,6 +4,7 @@ export interface FeedProps {
   data: array<FeedData>;
   nextPage: () => void;
   loading: boolean;
+  refetch?: () => void;
 }
 
 export type FeedData = {
