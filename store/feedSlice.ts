@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { FeedData } from 'components/Admin/Feed/types';
-import { Like } from 'types';
-import { v4 as uuid } from 'uuid';
+import { AddComment, Like, ToggleLike } from 'types';
 
 const initialFeedState = {
   feedData: [] as FeedData[],
@@ -20,37 +19,39 @@ const feedSlice = createSlice({
       }
       state.feedData = action.payload;
     },
-    addComment(state, action) {
+    addComment(state, action: { payload: AddComment }) {
       const feed = state.feedData;
-      const quoteId = action.payload.quoteId;
-      const userId = action.payload.userId;
-      const quoteIndex = feed.findIndex((e) => e.id === quoteId);
+      const quoteId = action.payload.quote_id;
+      const userId = action.payload.user_id;
+      const quoteIndex = feed.findIndex((e) => e.id == quoteId);
+
+      if (quoteIndex < 0) return;
       const newComment = {
-        id: uuid(),
+        id: new Date().valueOf(),
         quote_id: quoteId,
         user_id: userId,
         comment: action.payload.comment,
+        user: action.payload.user,
       };
       state.feedData[quoteIndex].comments.push(newComment);
     },
-    addLike(state, action) {
+    toggleLike(state, action: { payload: ToggleLike }) {
       const feed = state.feedData;
       const quoteId = action.payload.quoteId;
       const userId = action.payload.userId;
-      const quoteIndex = feed.findIndex((e) => e.id === quoteId);
+      const quoteIndex = feed.findIndex((e) => e.id == quoteId);
       const likeIndex = feed.findIndex(
-        (e) =>
-          e.id === quoteId && e.likes.some((l: Like) => l.user_id === userId)
+        (e) => e.id == quoteId && e.likes.some((l: Like) => l.user_id == userId)
       );
 
       if (likeIndex >= 0) {
         state.feedData[likeIndex].likes = feed[likeIndex].likes.filter(
-          (like: Like) => like.user_id !== userId
+          (like: Like) => like.user_id != userId
         );
         return;
       }
       state.feedData[quoteIndex].likes.push({
-        id: uuid(),
+        id: new Date().valueOf(),
         quote_id: quoteId,
         user_id: userId,
         like: 1,

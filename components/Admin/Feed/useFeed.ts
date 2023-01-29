@@ -1,6 +1,8 @@
-import { useAdmin, useAuthUser } from 'hooks';
+import { useAuthUser } from 'hooks';
 import { useCallback, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { addLike } from 'services';
+import { feedActions } from 'store';
 
 export const useFeed = ({
   nextPage,
@@ -11,8 +13,8 @@ export const useFeed = ({
   refetch?: () => void;
 }) => {
   const authUser = useAuthUser();
+  const dispatch = useDispatch();
   const observer = useRef<IntersectionObserver | null>();
-  const { updateFeedState } = useAdmin();
 
   const handleLike = async ({
     userId,
@@ -23,18 +25,18 @@ export const useFeed = ({
   }) => {
     try {
       await addLike({ userId, quoteId });
-    } catch (e) {
-      updateFeedState({ quoteId });
-    }
+      dispatch(feedActions.toggleLike({ userId, quoteId }));
+    } catch {}
   };
 
   const lastFeedElementRef = useCallback(
-    (node: any) => {
+    (node: Element) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) nextPage();
       });
+
       if (node) observer!.current!.observe(node);
     },
     [loading, nextPage]

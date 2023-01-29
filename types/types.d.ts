@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { FeedData } from 'components/Admin/Feed/types';
 import { gmailAuth } from 'services';
-import { FormSubmitProps } from './formTypes';
+import { AddCommentProps, FormSubmitProps } from './formTypes';
 
 export type DataProp = number | string | boolean;
 
@@ -55,3 +55,8 @@ export type Movie = {
   movie_image: string;
   year: number;
 };
+
+export type ToggleLike = { quoteId: number; userId: number };
+export interface AddComment extends AddCommentProps {
+  user: UserData;
+}

@@ -12,6 +12,7 @@ import { FeedData, FeedProps } from './types';
 import Image from 'next/image';
 import { getImage } from 'helpers';
 import { useFeed } from './useFeed';
+import { Like } from 'types';
 
 const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
   const { authUser, lastFeedElementRef, handleLike } = useFeed({
@@ -60,7 +61,11 @@ const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
                 }
                 className='cursor-pointer'
               >
-                {item.likes.user_id !== authUser.id && <HeartIcon />}
+                {item.likes.some((e: Like) => e.user_id === authUser.id) ? (
+                  <HeartIcon active />
+                ) : (
+                  <HeartIcon />
+                )}
               </div>
             </Figure>
           </div>

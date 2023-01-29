@@ -37,7 +37,6 @@ export const useAdmin = () => {
     if (feedData.length > 0) return;
 
     if (pages === 1) {
-      console.log(1);
       dispatch(feedActions.updateFeed(firstBatch));
     }
   }, [pages, dispatch, firstBatch, feedData.length]);

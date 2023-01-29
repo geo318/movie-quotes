@@ -1,8 +1,7 @@
-import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addComment } from 'services';
-import { authActions } from 'store';
+import { authActions, feedActions } from 'store';
 import { z } from 'zod';
 import { AddCommentProps } from 'types';
 import { useAuthUser } from 'hooks';
@@ -25,7 +24,7 @@ export const useAddComment = () => {
     try {
       setIsLoading(true);
       await addComment(data);
-      console.log(data, 'comment');
+      dispatch(feedActions.addComment({ ...data, user: authUser }));
     } catch (e: any) {
       e.message === 'Request failed with status code 422' &&
         dispatch(authActions.setFormError(e?.response?.data?.errors));
