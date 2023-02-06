@@ -23,11 +23,17 @@ export const useAddComment = () => {
     if (!data.comment.length) return;
     try {
       setIsLoading(true);
-      await addComment(data);
       dispatch(feedActions.addComment({ ...data, user: authUser }));
+      await addComment(data);
     } catch (e: any) {
-      e.message === 'Request failed with status code 422' &&
-        dispatch(authActions.setFormError(e?.response?.data?.errors));
+      e.message === 'Request failed with status code 422'
+        ? dispatch(authActions.setFormError(e?.response?.data?.errors))
+        : dispatch(
+            authActions.setFormError({
+              name: 'comment',
+              error: 'comment not sent',
+            })
+          );
     }
     setIsLoading(false);
   };

@@ -1,4 +1,4 @@
-import { Button, Lang, Layout, Logout } from 'components';
+import { Button, Lang, Layout, Logout, Notification } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
 import { NavbarProps } from 'types';
@@ -20,6 +20,7 @@ const Navbar: FC<NavbarProps> = ({ children, admin = false }) => {
           Movie Quotes
         </div>
         <nav className='flex ml-auto gap-5 items-center'>
+          <Notification />
           <Lang className='sm:block hidden' />
           {admin ? (
             <Logout />

@@ -3,15 +3,9 @@ import { useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLike } from 'services';
 import { feedActions } from 'store';
+import { UseFeedProps } from './types';
 
-export const useFeed = ({
-  nextPage,
-  loading = false,
-}: {
-  nextPage: () => void;
-  loading: boolean;
-  refetch?: () => void;
-}) => {
+export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {
   const authUser = useAuthUser();
   const dispatch = useDispatch();
   const observer = useRef<IntersectionObserver | null>();
@@ -24,9 +18,11 @@ export const useFeed = ({
     quoteId: number;
   }) => {
     try {
-      await addLike({ userId, quoteId });
       dispatch(feedActions.toggleLike({ userId, quoteId }));
-    } catch {}
+      await addLike({ userId, quoteId });
+    } catch {
+      dispatch(feedActions.toggleLike({ userId, quoteId }));
+    }
   };
 
   const lastFeedElementRef = useCallback(

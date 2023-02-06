@@ -26,6 +26,7 @@ export type User = {
 export interface RootState {
   auth: InitialAuthState;
   feed: { feedData: FeedData[] };
+  note: { notifications: Notification[] };
 }
 
 export type InitialError = {
@@ -60,3 +61,10 @@ export type ToggleLike = { quoteId: number; userId: number };
 export interface AddComment extends AddCommentProps {
   user: UserData;
 }
+
+export type Notification = {
+  id: number;
+  user: UserData;
+  read: 0 | 1;
+  created_at: string;
+};

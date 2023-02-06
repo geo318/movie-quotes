@@ -85,3 +85,18 @@ export const addLike = async ({
   );
   return response;
 };
+
+export const getNotifications = async () => {
+  const response = await axiosInstance.get('api/notifications');
+  return response;
+};
+
+export const markAsRead = async ({ id }: { id: number }) => {
+  const response = await axiosInstance.get(`api/mark-as-read?id=${id}`);
+  return response;
+};
+
+export const markAllAsRead = async ({ num }: { num: number }) => {
+  const response = await axiosInstance.get(`api/mark-all-as-read?num=${num}`);
+  return response;
+};

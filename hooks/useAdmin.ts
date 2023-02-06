@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getQuotes, getUser } from 'services';
+import { echo, getQuotes, getUser } from 'services';
 import { authActions, feedActions } from 'store';
 import { RootState } from 'types';
 
@@ -22,7 +22,7 @@ export const useAdmin = () => {
     });
 
   const pages = data?.pages.length;
-  const nextBatch = data?.pages[data?.pages.length - 1].data.data;
+  const nextBatch = pages && data?.pages[pages - 1].data.data;
   const fetchNextPageData = useCallback(() => {
     if (hasNextPage && pages) {
       fetchNextPage();
@@ -47,6 +47,7 @@ export const useAdmin = () => {
   });
   useEffect(() => {
     dispatch(authActions.setUser(userData?.data.user));
+    return () => echo.disconnect();
   }, [dispatch, userData]);
 
   return {

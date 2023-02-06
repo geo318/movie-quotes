@@ -10,6 +10,7 @@ export { default as InputError } from './InputError';
 export { default as InputSuccess } from './InputSuccess';
 export { default as ClearInput } from './ClearInput';
 export { default as Spinner } from './Spinner';
+export { default as Bell } from './Bell';
 export * from './aside';
 export * from './eyes';
 export * from './feed';

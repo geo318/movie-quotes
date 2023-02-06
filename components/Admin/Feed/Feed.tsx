@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, LegacyRef, RefObject, useEffect } from 'react';
 import {
   Avatar,
   ChatIcon,
@@ -13,19 +13,22 @@ import Image from 'next/image';
 import { getImage } from 'helpers';
 import { useFeed } from './useFeed';
 import { Like } from 'types';
+import { useAuthUser } from 'hooks';
+import { echo } from 'services';
 
 const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
   const { authUser, lastFeedElementRef, handleLike } = useFeed({
     nextPage,
     loading,
   });
+
   return (
     <div className='grid grid-cols-3 min-h-full gap-10 pb-28'>
       {data?.map((item: FeedData, index: number) => (
         <div
           key={item.id}
           className='col-span-2 rounded-xl bg-app-black-dark px-6 pt-6 pb-10'
-          ref={lastFeedElementRef}
+          ref={lastFeedElementRef as LegacyRef<HTMLDivElement> | undefined}
         >
           <Avatar
             text={item.user.username}

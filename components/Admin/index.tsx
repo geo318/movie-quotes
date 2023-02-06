@@ -5,3 +5,4 @@ export * from './Feed';
 export * from './Divider';
 export * from './Comment';
 export * from './Figure';
+export * from './Notification';

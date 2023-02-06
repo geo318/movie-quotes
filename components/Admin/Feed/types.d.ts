@@ -18,3 +18,8 @@ export type FeedData = {
   likes: array<Like>;
   user: UserData;
 };
+
+export type UseFeedProps = {
+  nextPage: () => void;
+  loading: boolean;
+};
