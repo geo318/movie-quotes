@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { echo, getQuotes, getUser } from 'services';
+import { getQuotes, getUser } from 'services';
 import { authActions, feedActions } from 'store';
 import { RootState } from 'types';
 
@@ -47,7 +47,6 @@ export const useAdmin = () => {
   });
   useEffect(() => {
     dispatch(authActions.setUser(userData?.data.user));
-    return () => echo.disconnect();
   }, [dispatch, userData]);
 
   return {

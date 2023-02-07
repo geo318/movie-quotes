@@ -15,6 +15,7 @@ module.exports = {
         'app-bg': '#222030',
         'app-link': '#0D6EFD',
         'app-dark-gray': '#6C757D',
+        'app-green': '#198754',
       },
       backgroundImage: {
         'app-gradient':

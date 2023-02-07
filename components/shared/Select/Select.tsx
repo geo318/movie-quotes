@@ -11,6 +11,7 @@ const Select: FC<SelectProps> = ({
   placeholder,
   value,
   face,
+  closeOnClick = true,
 }) => {
   const { select } = useSelect();
   return (
@@ -32,7 +33,7 @@ const Select: FC<SelectProps> = ({
           {face}
         </div>
       )}
-      <ModalContainer selectRef={select} closeOnClick>
+      <ModalContainer selectRef={select} closeOnClick={closeOnClick}>
         <div className={modalClassName}>{children}</div>
       </ModalContainer>
     </div>

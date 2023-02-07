@@ -6,4 +6,5 @@ export interface SelectProps extends Props {
   value?: string;
   modalClassName?: string;
   face?: React.ReactNode;
+  closeOnClick?: boolean;
 }

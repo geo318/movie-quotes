@@ -64,7 +64,12 @@ export interface AddComment extends AddCommentProps {
 
 export type Notification = {
   id: number;
+  quote_id: number;
   user: UserData;
+  destination_user_id: number;
   read: 0 | 1;
   created_at: string;
+  comment_id: number | null;
+  like_id: number | null;
+  comment: AddComment | null;
 };

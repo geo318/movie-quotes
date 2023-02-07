@@ -2,7 +2,7 @@ import { useAuthUser } from 'hooks';
 import { useCallback, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLike } from 'services';
-import { feedActions } from 'store';
+import { feedActions, noteActions } from 'store';
 import { UseFeedProps } from './types';
 
 export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {

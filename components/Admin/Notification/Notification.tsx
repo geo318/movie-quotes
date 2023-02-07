@@ -7,8 +7,9 @@ const Notification = () => {
     <div>
       <Select
         face={selector}
+        closeOnClick={false}
         className='mr-5'
-        modalClassName='absolute bg-black py-3 rounded-md mt-7 -ml-10 w-32'
+        modalClassName='absolute bg-black py-3 rounded-xl mt-7 right-0 lg:w-[58rem]'
       >
         {dropdown}
       </Select>

@@ -19,8 +19,8 @@ const Navbar: FC<NavbarProps> = ({ children, admin = false }) => {
         <div className='uppercase text-app-yellow text-base leading-6 font-medium'>
           Movie Quotes
         </div>
-        <nav className='flex ml-auto gap-5 items-center'>
-          <Notification />
+        <nav className='flex ml-auto gap-5 items-center relative'>
+          {admin && <Notification />}
           <Lang className='sm:block hidden' />
           {admin ? (
             <Logout />

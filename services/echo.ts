@@ -4,10 +4,8 @@ import { axiosInstance } from './axios';
 
 const echo = new Echo({
   broadcaster: 'pusher',
-  key: '1b12e92b72895d9120f9',
+  key: '2e71e42be2a39d6063d6',
   cluster: 'eu',
-  encrypted: true,
-  forceTLS: true,
   Pusher,
   authorizer: (channel: { name: string }) => {
     return {

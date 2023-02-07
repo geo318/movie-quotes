@@ -23,7 +23,7 @@ export const useLang = () => {
               href=''
               locale={lang}
               onClick={() => localStore.set('locale', lang)}
-              className='hover:bg-slate-100 px-5 py-2 flex justify-center'
+              className='hover:bg-gray-800 px-5 py-2 flex justify-center'
             >
               {lang === 'en' ? 'English' : 'ქართული'}
             </Link>
