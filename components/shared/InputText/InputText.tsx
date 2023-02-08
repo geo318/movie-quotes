@@ -17,6 +17,7 @@ const InputText: FC<InputProps> = ({
   value,
   inputStyle = '',
   submit = false,
+  className,
 }) => {
   const {
     register,
@@ -33,7 +34,7 @@ const InputText: FC<InputProps> = ({
       <div
         className={`${errors?.[name] ? 'mb-1' : 'mb-4'} ${
           type === 'hidden' ? 'hidden' : ''
-        }`}
+        } ${className}`}
       >
         {label && (
           <label htmlFor={name} className='block font-normal text-base pb-2'>

@@ -5,4 +5,5 @@ export interface InputProps extends Props {
   label?: string;
   placeholder?: string;
   rows?: number;
+  inputStyle?: string;
 }

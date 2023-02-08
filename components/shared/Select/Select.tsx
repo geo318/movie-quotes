@@ -5,8 +5,8 @@ import { useSelect } from './useSelect';
 
 const Select: FC<SelectProps> = ({
   children,
-  className,
-  modalClassName,
+  className = '',
+  modalClassName = '',
   name,
   placeholder,
   value,

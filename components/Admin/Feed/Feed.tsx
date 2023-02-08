@@ -7,23 +7,48 @@ import {
   HeartIcon,
   Figure,
   AddComment,
+  Search,
+  AddQuote,
 } from 'components';
 import { FeedData, FeedProps } from './types';
 import Image from 'next/image';
 import { getImage } from 'helpers';
 import { useFeed } from './useFeed';
 import { Like } from 'types';
-import { useAuthUser } from 'hooks';
-import { echo } from 'services';
 
 const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
-  const { authUser, lastFeedElementRef, handleLike } = useFeed({
+  const {
+    authUser,
+    lastFeedElementRef,
+    handleLike,
+    ref,
+    search,
+    handleSearch,
+  } = useFeed({
     nextPage,
     loading,
   });
 
   return (
     <div className='grid grid-cols-3 min-h-full gap-10 pb-28'>
+      <div className='col-span-2 gap-10 grid grid-cols-3 text-xl -mb-4'>
+        <div className='col-span-3'>
+          <AddQuote
+            className={`${
+              search ? 'w-[30%]' : 'w-[82%]'
+            } inline-block transition-all`}
+          />
+          <div
+            onClick={handleSearch}
+            ref={ref}
+            className={`${
+              search ? 'w-[70%]' : 'w-[18%]'
+            } inline-block float-right transition-all`}
+          >
+            <Search className='w-full' active={search} />
+          </div>
+        </div>
+      </div>
       {data?.map((item: FeedData, index: number) => (
         <div
           key={item.id}

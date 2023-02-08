@@ -11,9 +11,10 @@ const Avatar: FC<AvatarProps> = ({
   active = false,
   size,
   loading,
+  containerStyle = '',
 }) => {
   return (
-    <div className='flex gap-6'>
+    <div className={`flex gap-6 ${containerStyle}`}>
       <div
         className={`overflow-hidden flex justify-center items-center rounded-full ${
           active && 'border-2 border-app-red'

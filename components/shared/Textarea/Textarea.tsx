@@ -6,29 +6,38 @@ const Textarea: FC<InputProps> = ({
   name,
   label,
   placeholder,
-  className,
+  className = '',
   rows,
+  inputStyle = '',
 }) => {
-  const { register } = useTextarea();
+  const { register, errors } = useTextarea();
 
   return (
-    <div className={`max-w-lg ${className}`}>
+    <div className={`relative ${className}`}>
       {label && (
         <label
           htmlFor={name}
-          className='block font-bold text-[1.375rem] leading-7 mb-6'
+          className={`absolute right-5 top-3 block text-xl`}
         >
           {label}
         </label>
       )}
       <div className='flex flex-col'>
         <textarea
-          className='block min-h-[3.25rem] text-xl leading-normal text-[#CED4DA] resize-none h-full max-h-24 w-full rounded-[0.625rem] bg-[#24222F] bg-opacity-60 py-3 px-7'
+          className={`${inputStyle} border border-app-dark-gray focus:outline-none focus:ring-1 focus:ring-white min-h-[5rem] text-2xl leading-normal 
+            h-full max-h-36 w-full rounded-[0.25rem] bg-transparent py-2 pl-3 pr-16`}
           placeholder={placeholder}
           id={name}
           {...register!(name)}
           rows={rows}
         />
+        {errors?.[name] ? (
+          <div className='mt-1'>
+            <span className='text-app-red text-sm leading-6'>
+              {errors?.[name] && <p>{errors[name]!.message as string}</p>}
+            </span>
+          </div>
+        ) : null}
       </div>
     </div>
   );

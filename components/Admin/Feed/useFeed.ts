@@ -1,5 +1,5 @@
-import { useAuthUser } from 'hooks';
-import { useCallback, useRef } from 'react';
+import { useAuthUser, useClickOutSide } from 'hooks';
+import { useCallback, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLike } from 'services';
 import { feedActions, noteActions } from 'store';
@@ -38,5 +38,16 @@ export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {
     [loading, nextPage]
   );
 
-  return { authUser, lastFeedElementRef, handleLike };
+  const [search, setSearch] = useState(false);
+  const handleSearch = () => setSearch(true);
+  const ref = useClickOutSide({ cb: () => setSearch(false) });
+
+  return {
+    authUser,
+    lastFeedElementRef,
+    handleLike,
+    search,
+    ref,
+    handleSearch,
+  };
 };

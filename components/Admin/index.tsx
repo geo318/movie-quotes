@@ -6,3 +6,5 @@ export * from './Divider';
 export * from './Comment';
 export * from './Figure';
 export * from './Notification';
+export * from './AddQuote';
+export * from './Search';

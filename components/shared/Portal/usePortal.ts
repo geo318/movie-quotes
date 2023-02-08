@@ -1,8 +1,11 @@
+import { RootState } from 'types';
 import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const usePortal = () => {
   const ref = useRef<Element | null>(null);
   const [mounted, setMounted] = useState(false);
+  const isAuth = useSelector((state: RootState) => state.auth.isAuthenticated);
 
   useEffect(() => {
     const portal = document.createElement('div');
@@ -10,9 +13,9 @@ export const usePortal = () => {
     portal.classList.add(
       'fixed',
       'inset-0',
-      'backdrop-blur-sm',
-      'bg-black',
-      'bg-opacity-50'
+      `${isAuth ? 'backdrop-blur-[2px]' : 'backdrop-blur-sm'}`,
+      `${isAuth ? 'bg-[#181623]' : 'bg-black'}`,
+      `${isAuth ? 'bg-opacity-10' : 'bg-opacity-50'}`
     );
     document.querySelector<HTMLElement>('body')!.append(portal);
     ref.current = portal;
