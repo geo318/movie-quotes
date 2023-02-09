@@ -16,4 +16,6 @@ export interface InputProps extends Props {
   };
   inputStyle?: string;
   submit?: boolean;
+  select?: boolean;
+  error?: string;
 }

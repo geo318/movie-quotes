@@ -18,13 +18,11 @@ const ImageUpload: FC<InputProps> = ({ name }) => {
   });
 
   return (
-    <div
-      className={`w-full px-4 py-5 border border-app-dark-gray rounded-[.25rem] hover:border-white ${
-        dragging ? 'border-dashed' : image ? '!border-white' : ''
-      }`}
-    >
+    <div>
       <div
-        className='flex gap-4 text-lg items-center relative'
+        className={`flex gap-4 text-lg items-center relative w-full px-4 py-5 border border-app-dark-gray rounded-[.25rem] hover:border-white ${
+          dragging ? 'border-dashed' : image ? '!border-white' : ''
+        }`}
         {...getRootProps()}
       >
         <Photo />

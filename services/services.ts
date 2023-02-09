@@ -100,3 +100,8 @@ export const markAllAsRead = async ({ num }: { num: number }) => {
   const response = await axiosInstance.get(`api/mark-all-as-read?num=${num}`);
   return response;
 };
+
+export const getMovies = async () => {
+  const response = await axiosInstance.get('api/movies');
+  return response;
+};

@@ -8,13 +8,13 @@ export const useFormLayout = () => {
     handleSubmit,
     setError,
     reset,
-    formState: { isSubmitted },
+    formState: { isSubmitted, isValid },
   } = useFormContext();
   const formErrors = useSelector((state: RootState) => state.auth.formErrors);
 
   useEffect(() => {
-    reset();
-  }, [isSubmitted, reset]);
+    if (isValid && isSubmitted) reset();
+  }, [isSubmitted, reset, isValid]);
 
   useEffect(() => {
     Object.keys(formErrors).forEach((e) =>

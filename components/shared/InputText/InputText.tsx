@@ -17,7 +17,10 @@ const InputText: FC<InputProps> = ({
   value,
   inputStyle = '',
   submit = false,
-  className,
+  className = '',
+  refObj,
+  select,
+  error,
 }) => {
   const {
     register,
@@ -28,7 +31,7 @@ const InputText: FC<InputProps> = ({
     blur,
     setBlur,
     setValue,
-  } = useInputText();
+  } = useInputText({ name, value, select });
   return (
     <>
       <div
@@ -43,18 +46,31 @@ const InputText: FC<InputProps> = ({
           </label>
         )}
         <div className='relative'>
-          <input
-            className={`appearance-none outline-none w-full border px-3 py-[.375rem] rounded-[.25rem] text-app-black text-base font-normal bg-app-gray ${
-              errors[name] ? 'border-app-red' : 'border-app-gray'
-            } ${inputStyle}`}
-            type={show ? 'text' : type}
-            value={value}
-            {...register!(name, {
-              onBlur: () => setBlur(true),
-            })}
-            onFocus={() => setBlur(false)}
-            placeholder={placeholder}
-          />
+          {!select ? (
+            <input
+              className={`appearance-none outline-none w-full border px-3 py-[.375rem] rounded-[.25rem] text-app-black text-base font-normal bg-app-gray ${
+                errors[name] ? 'border-app-red' : 'border-app-gray'
+              } ${inputStyle}`}
+              type={show ? 'text' : type}
+              {...register!(name, {
+                onChange: () => {
+                  if (value) setValue(name, value);
+                },
+                onBlur: () => setBlur(true),
+              })}
+              onFocus={() => setBlur(false)}
+              placeholder={placeholder}
+              ref={refObj}
+            />
+          ) : (
+            <input
+              type='hidden'
+              {...register(name)}
+              readOnly
+              value={value}
+              ref={refObj}
+            />
+          )}
           {type === 'password' && (
             <div
               className='absolute top-1/2 -translate-y-1/2 right-[.875rem] cursor-pointer'
@@ -83,7 +99,7 @@ const InputText: FC<InputProps> = ({
         {errors?.[name] ? (
           <div className='mt-1'>
             <span className='text-app-red text-sm leading-6'>
-              {errors?.[name] && <p>{errors[name]!.message as string}</p>}
+              {errors?.[name] && <p>{errors[name]?.message as string}</p>}
             </span>
           </div>
         ) : null}

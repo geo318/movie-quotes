@@ -1,9 +1,9 @@
-import React, { RefObject } from 'react';
+import React, { LegacyRef, RefObject } from 'react';
 
 export interface Props {
   children?: React.ReactNode;
   className?: string;
-  ref?: Element | HTMLFormElement | null | RefObject<HTMLFormElement>;
+  refObj?: LegacyRef<T> | undefined;
 }
 
 export interface NavbarProps extends Props {

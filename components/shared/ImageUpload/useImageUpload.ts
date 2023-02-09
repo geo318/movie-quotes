@@ -22,9 +22,14 @@ export const useImageUpload = ({ name }: { name: string }) => {
             message: 'This file is of a wrong type',
           });
         }, 0);
-
         return;
       }
+      const readImage = new FileReader();
+      readImage.readAsDataURL(file);
+      readImage.onload = async () => {
+        setImage(readImage.result);
+        console.log(readImage.result);
+      };
     },
     [name, setError]
   );
@@ -41,11 +46,6 @@ export const useImageUpload = ({ name }: { name: string }) => {
   const readImage = useCallback(
     async (file: Blob) => {
       checkFile(file);
-      const readImage = new FileReader();
-      readImage.readAsDataURL(file);
-      readImage.onload = async () => {
-        setImage(readImage.result);
-      };
     },
     [checkFile]
   );

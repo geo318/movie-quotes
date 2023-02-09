@@ -59,7 +59,7 @@ const AddQuoteModal: FC = () => {
           <Button
             text={t('Post') as string}
             style='buttonRed'
-            className='w-full mt-10'
+            className='w-full mt-10 !text-xl'
             disabled={isLoading}
           />
         </div>
