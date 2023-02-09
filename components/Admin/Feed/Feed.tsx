@@ -15,6 +15,7 @@ import Image from 'next/image';
 import { getImage } from 'helpers';
 import { useFeed } from './useFeed';
 import { Like } from 'types';
+import { isBase64 } from 'helpers/isBase64';
 
 const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
   const {
@@ -24,6 +25,7 @@ const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
     ref,
     search,
     handleSearch,
+    lang,
   } = useFeed({
     nextPage,
     loading,
@@ -62,16 +64,20 @@ const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
             loading={false}
           />
           <p className='text-xl leading-7 font-normal mt-4 mb-7'>
-            <span className='mr-2'>&ldquo;{item.quote_title}&rdquo;</span>
+            <span className='mr-2'>&ldquo;{item.quote_title[lang]}&rdquo;</span>
             <span className='font-medium text-app-yellow mr-2'>
-              {item.movie.movie_title}
+              {item.movie.movie_title[lang]}
             </span>
             <span>{`(${item.movie.year})`}</span>
           </p>
           <div className='relative h-[31rem] rounded-[.625rem] overflow-hidden'>
             <Image
-              src={getImage(item.quote_image)}
-              alt={item.quote_title}
+              src={
+                item.quote_image.length > 200
+                  ? item.quote_image
+                  : getImage(item.quote_image)
+              }
+              alt={item.quote_title[lang]}
               fill
               sizes='(max-width: 700px) 50vw, 90vw'
               className='min-w-full h-full object-cover'

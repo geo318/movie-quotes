@@ -12,8 +12,8 @@ export const useAddComment = () => {
   const dispatch = useDispatch();
 
   const schema = z.object({
-    quote_id: z.string(),
-    user_id: z.string(),
+    quote_id: z.coerce.number(),
+    user_id: z.coerce.number(),
     comment: z
       .string()
       .max(500, { message: 'Maximum comment length exceeded' }),

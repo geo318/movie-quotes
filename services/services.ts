@@ -5,6 +5,7 @@ import {
   RegisterProps,
   ResetPasswordProps,
   AddCommentProps,
+  Quote,
 } from 'types';
 
 export const fetchCSRFToken = async () => {
@@ -103,5 +104,14 @@ export const markAllAsRead = async ({ num }: { num: number }) => {
 
 export const getMovies = async () => {
   const response = await axiosInstance.get('api/movies');
+  return response;
+};
+
+export const addQuote = async (data: Quote) => {
+  const response = await axiosInstance.post('api/add-quote', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
   return response;
 };

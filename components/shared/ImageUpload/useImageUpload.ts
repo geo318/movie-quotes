@@ -1,9 +1,14 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useDropzone } from 'react-dropzone';
 
-export const useImageUpload = ({ name }: { name: string }) => {
-  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
+export const useImageUpload = ({
+  name,
+  handleImage,
+}: {
+  name: string;
+  handleImage: (img: string) => void;
+}) => {
   const {
     register,
     setValue,
@@ -15,7 +20,7 @@ export const useImageUpload = ({ name }: { name: string }) => {
     (file: Blob) => {
       const imageTypes = ['image/bmp', 'image/webp', 'image/png', 'image/jpeg'];
       if (!imageTypes.includes(file.type) || !file.size) {
-        setImage(null);
+        handleImage('');
         setTimeout(() => {
           setError(name, {
             type: 'custom',
@@ -27,11 +32,10 @@ export const useImageUpload = ({ name }: { name: string }) => {
       const readImage = new FileReader();
       readImage.readAsDataURL(file);
       readImage.onload = async () => {
-        setImage(readImage.result);
-        console.log(readImage.result);
+        handleImage(readImage.result as string);
       };
     },
-    [name, setError]
+    [name, setError, handleImage]
   );
 
   const handleDrop = (file: Blob[]) => {
@@ -57,7 +61,6 @@ export const useImageUpload = ({ name }: { name: string }) => {
     dragging: isDragActive,
     getRootProps,
     getInputProps,
-    image,
     handleDrop,
   };
 };

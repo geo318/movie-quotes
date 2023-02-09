@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { FeedData } from 'components/Admin/Feed/types';
-import { AddComment, Like, ToggleLike } from 'types';
+import { AddComment, Like, Quote, ToggleLike } from 'types';
 
 const initialFeedState = {
   feedData: [] as FeedData[],
@@ -10,6 +10,9 @@ const feedSlice = createSlice({
   name: 'infiniteFeedScroll',
   initialState: initialFeedState,
   reducers: {
+    addQuote(state, action: { payload: FeedData }) {
+      state.feedData.unshift(action.payload);
+    },
     updateFeed(state, action) {
       let feed = state.feedData;
       if (feed.some((e: FeedData) => e.id === action.payload[0].id)) return;

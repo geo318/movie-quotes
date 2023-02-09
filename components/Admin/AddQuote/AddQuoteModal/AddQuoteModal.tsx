@@ -14,8 +14,17 @@ import { FC } from 'react';
 import { useAddQuoteModal } from './useAddQuoteModal';
 
 const AddQuoteModal: FC = () => {
-  const { isLoading, schema, onSubmit, user, select, dropdown, t } =
-    useAddQuoteModal();
+  const {
+    isLoading,
+    schema,
+    onSubmit,
+    user,
+    select,
+    dropdown,
+    handleImage,
+    image,
+    t,
+  } = useAddQuoteModal();
 
   return (
     <Modal
@@ -36,6 +45,7 @@ const AddQuoteModal: FC = () => {
             size={60}
             className='w-[3.75rem] h-[3.75rem]'
             containerStyle='mt-[1.875rem] items-center mb-6'
+            loading={!user?.id}
           />
           <div className='flex flex-col gap-6'>
             <Textarea
@@ -50,7 +60,11 @@ const AddQuoteModal: FC = () => {
               label='ქარ'
               rows={2}
             />
-            <ImageUpload name='quote_image' />
+            <ImageUpload
+              name='quote_image'
+              handleImage={handleImage}
+              image={image}
+            />
             <Select face={select} className=''>
               {dropdown}
             </Select>

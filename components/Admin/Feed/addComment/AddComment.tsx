@@ -10,7 +10,7 @@ const AddComment = ({ quoteId }: { quoteId: number }) => {
       <InputText
         name='comment'
         placeholder='Write a comment'
-        inputStyle='border-0 min-w-full text-xl leading-[2rem] !text-[#CED4DA] rounded-[0.625rem] !bg-[#24222F] bg-opacity-60 py-3 px-7'
+        inputStyle='border-0 min-w-full text-xl leading-[2rem] !text-[#CED4DA] rounded-[0.625rem] !bg-[#24222F] bg-opacity-60 !py-3 px-7'
         submit
       />
       <button type='submit' className='hidden' />

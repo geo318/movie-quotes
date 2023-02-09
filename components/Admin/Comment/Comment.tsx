@@ -25,12 +25,14 @@ const Comment: FC<{ data: Comment[] }> = ({ data }) => {
           </div>
         );
       })}
-      <p
-        onClick={toggleShow}
-        className='text-app-link text-base cursor-pointer lg:ml-[4.75rem]'
-      >
-        {show ? 'Hide' : 'See more'}
-      </p>
+      {data?.length > 2 && (
+        <p
+          onClick={toggleShow}
+          className='text-app-link text-base cursor-pointer lg:ml-[4.75rem]'
+        >
+          {show ? 'Hide' : 'See more'}
+        </p>
+      )}
     </div>
   );
 };

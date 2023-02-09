@@ -4,18 +4,14 @@ import { Button } from '../Button';
 import { InputProps } from '../InputText/types';
 import { useImageUpload } from './useImageUpload';
 
-const ImageUpload: FC<InputProps> = ({ name }) => {
-  const {
-    register,
-    readImage,
-    errors,
-    dragging,
-    getRootProps,
-    getInputProps,
-    image,
-  } = useImageUpload({
-    name,
-  });
+const ImageUpload: FC<
+  InputProps & { image: string; handleImage: (img: string) => void }
+> = ({ name, image, handleImage }) => {
+  const { register, readImage, errors, dragging, getRootProps, getInputProps } =
+    useImageUpload({
+      handleImage,
+      name,
+    });
 
   return (
     <div>

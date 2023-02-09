@@ -23,7 +23,7 @@ const Modal: FC<ModalProps> = ({
             ref={closeRef}
             className={`${
               isAuth ? 'lg:block' : 'lg:hidden'
-            } absolute top-5 right-4 p-3`}
+            } absolute top-5 right-4 p-3 cursor-pointer`}
           >
             {(close || isAuth) && <Close />}
           </div>

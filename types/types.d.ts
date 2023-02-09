@@ -52,7 +52,7 @@ export type Like = {
 
 export type Movie = {
   id: number;
-  movie_title: string;
+  movie_title: { en: string; ka: string };
   movie_image: string;
   year: number;
 };

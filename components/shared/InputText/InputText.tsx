@@ -19,8 +19,7 @@ const InputText: FC<InputProps> = ({
   submit = false,
   className = '',
   refObj,
-  select,
-  error,
+  select = false,
 }) => {
   const {
     register,
@@ -60,7 +59,6 @@ const InputText: FC<InputProps> = ({
               })}
               onFocus={() => setBlur(false)}
               placeholder={placeholder}
-              ref={refObj}
             />
           ) : (
             <input

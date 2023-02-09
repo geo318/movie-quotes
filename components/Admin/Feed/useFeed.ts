@@ -1,14 +1,15 @@
-import { useAuthUser, useClickOutSide } from 'hooks';
+import { useAuthUser, useClickOutSide, useLang } from 'hooks';
 import { useCallback, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLike } from 'services';
-import { feedActions, noteActions } from 'store';
+import { feedActions } from 'store';
 import { UseFeedProps } from './types';
 
 export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {
   const authUser = useAuthUser();
   const dispatch = useDispatch();
   const observer = useRef<IntersectionObserver | null>();
+  const { lang } = useLang();
 
   const handleLike = async ({
     userId,
@@ -49,5 +50,6 @@ export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {
     search,
     ref,
     handleSearch,
+    lang,
   };
 };

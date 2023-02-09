@@ -19,7 +19,8 @@ export const useInputText = ({
   } = useFormContext();
   const toggleShow = () => setShow((prev) => !prev);
   useEffect(() => {
-    if (select) setValue(name, value);
+    if (!select && !value) return;
+    setValue(name, value);
   }, [value, name, select, setValue]);
 
   return {

@@ -8,6 +8,7 @@ const FormLayout: FC<FormLayoutProps> = ({ children, className, onSubmit }) => {
 
   return (
     <form
+      method='post'
       className={className}
       onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}
     >
