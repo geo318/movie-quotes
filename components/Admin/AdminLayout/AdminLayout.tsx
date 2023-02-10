@@ -2,8 +2,11 @@ import { Aside, Auth, Layout, Navbar } from 'components';
 import Head from 'next/head';
 import { FC } from 'react';
 import { Props } from 'types';
+import { useAdminLayout } from './useAdminLayout';
 
 const AdminLayout: FC<Props> = ({ children, className = '' }) => {
+  const { isMobile } = useAdminLayout();
+  console.log(isMobile);
   return (
     <>
       <Head>
@@ -20,12 +23,16 @@ const AdminLayout: FC<Props> = ({ children, className = '' }) => {
         </Layout>
         <Layout
           background={false}
-          className='text-white flex-col min-h-screen mt-8 grid grid-cols-4'
+          className={`text-white flex-col min-h-screen mt-8 grid xl:grid-cols-4 grid-cols-5 ${
+            isMobile ? '' : 'gap-10'
+          } xl:gap-0`}
         >
-          <div className='col-span-1 w-full'>
-            <Aside className='fixed top-32' />
+          <div className='xl:col-span-1 col-span-2 w-full'>
+            {isMobile ? null : <Aside className='fixed top-32' />}
           </div>
-          <div className='col-span-3'>{children}</div>
+          <div className={isMobile ? 'col-span-5' : 'col-span-3'}>
+            {children}
+          </div>
         </Layout>
       </Layout>
     </>

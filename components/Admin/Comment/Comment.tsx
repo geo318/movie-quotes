@@ -11,15 +11,15 @@ const Comment: FC<{ data: Comment[] }> = ({ data }) => {
       {data?.map((item: Comment, index: number) => {
         if (index > 1 && !show) return;
         return (
-          <div key={item.id} className='mb-6 text-xl leading-7'>
+          <div key={item.id} className='lg:mb-6 mb-4 lg:text-xl lg:leading-7'>
             <Avatar
-              className='h-[3.25rem] w-[3.25rem]'
+              className='lg:h-[3.25rem] lg:w-[3.25rem] w-10 h-10'
               img={getImage(item.user.avatar)}
               size={52}
               text={item.user.username}
             />
-            <div className='lg:ml-[4.75rem]'>
-              <p className='mb-6'>{item.comment}</p>
+            <div className='lg:ml-[4.75rem] lg:mt-0 mt-3'>
+              <p className='lg:mb-6 mb-5'>{item.comment}</p>
               <Divider />
             </div>
           </div>

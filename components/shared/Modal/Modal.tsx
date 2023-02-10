@@ -8,11 +8,13 @@ const Modal: FC<ModalProps> = ({
   className = '',
   close = true,
   containerStyle = '',
+  z,
 }) => {
   const { closeRef, isAuth } = useModal();
 
   return (
     <Portal
+      z
       className={`flex lg:items-center items-start justify-center h-full modal bg-gray-900 lg:bg-opacity-0 ${containerStyle}`}
     >
       <ModalContainer modalOpenOnload={true} closeRoute closeRef={closeRef}>

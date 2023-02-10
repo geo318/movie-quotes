@@ -28,13 +28,14 @@ const AddQuoteModal: FC = () => {
 
   return (
     <Modal
-      containerStyle='!items-start mt-28'
-      className='lg:max-w-[60rem] bg-app-black-dark !px-0 !py-10'
+      z
+      containerStyle='!items-start lg:mt-28'
+      className='lg:max-w-[60rem] !bg-app-black-dark !px-0 !py-10 !z-50'
     >
       <FormWrapper schema={schema} onSubmit={onSubmit} fill>
         {isLoading && <ModalLoadingOverlay admin />}
         <div className='px-8 mb-6'>
-          <h3 className='text-2xl text-center'>Write New Quote</h3>
+          <h3 className='lg:text-2xl text-xl text-center'>Write New Quote</h3>
         </div>
         <Divider />
 
@@ -65,9 +66,7 @@ const AddQuoteModal: FC = () => {
               handleImage={handleImage}
               image={image}
             />
-            <Select face={select} className=''>
-              {dropdown}
-            </Select>
+            <Select face={select}>{dropdown}</Select>
           </div>
 
           <Button

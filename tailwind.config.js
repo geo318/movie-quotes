@@ -31,7 +31,12 @@ module.exports = {
       fontFamily: {
         helvetica: 'HelveticaNeue',
       },
+      aspectRatio: {
+        '9/5': '9 / 5',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 };

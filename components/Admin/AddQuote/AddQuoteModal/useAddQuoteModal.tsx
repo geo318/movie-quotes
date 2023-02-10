@@ -93,7 +93,7 @@ export const useAddQuoteModal = () => {
   };
   const select = (
     <div>
-      <div className='flex items-center cursor-pointer gap-4 w-full px-4 py-5 border border-app-dark-gray rounded-[.25rem] hover:border-white text-xl leading-9'>
+      <div className='flex items-center cursor-pointer gap-4 w-full px-4 py-5 border border-app-dark-gray rounded-[.25rem] hover:border-white lg:text-xl text-base leading-9'>
         <Camera />
         <p>{selector}</p>
         <Arrow className='ml-auto' />
@@ -112,7 +112,7 @@ export const useAddQuoteModal = () => {
   const dropdown = (
     <div className='relative'>
       {isMoviesLoading && <ModalLoadingOverlay />}
-      <ul className='absolute bg-black rounded-sm inset-x-0 top-2 max-h-80 overflow-y-auto'>
+      <ul className='absolute bg-black rounded-sm inset-x-0 top-0 max-h-80 overflow-y-auto'>
         {movies?.length ? (
           movies.map((m: Movie) => (
             <li

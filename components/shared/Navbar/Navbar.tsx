@@ -1,11 +1,19 @@
-import { Button, Lang, Layout, Logout, Notification } from 'components';
+import {
+  BurgerMenu,
+  Button,
+  Lang,
+  Layout,
+  Logout,
+  Magnifier,
+  Notification,
+} from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
 import { NavbarProps } from 'types';
 import { useNavbar } from './useNavbar';
 
 const Navbar: FC<NavbarProps> = ({ children, admin = false }) => {
-  const { t } = useNavbar();
+  const { t, isMobile } = useNavbar();
   return (
     <div
       className={`py-6 relative top-0 w-full backdrop-blur-xl ${
@@ -16,14 +24,26 @@ const Navbar: FC<NavbarProps> = ({ children, admin = false }) => {
     >
       {children}
       <Layout background={false} className='flex-row w-full items-center'>
-        <div className='uppercase text-app-yellow text-base leading-6 font-medium'>
-          Movie Quotes
-        </div>
-        <nav className='flex ml-auto gap-5 items-center relative'>
+        {isMobile ? (
+          <BurgerMenu />
+        ) : (
+          <div className='uppercase text-app-yellow text-base leading-6 font-medium'>
+            Movie Quotes
+          </div>
+        )}
+        <nav className='flex ml-auto sm:gap-5 items-center relative'>
+          {admin && isMobile && (
+            <>
+              <Magnifier menu />
+              <div className='w-5 sm:hidden' />
+            </>
+          )}
           {admin && <Notification />}
           <Lang className='sm:block hidden' />
           {admin ? (
-            <Logout />
+            <div className='sm:block hidden'>
+              <Logout />
+            </div>
           ) : (
             <>
               <Link href='/?register' as='/register'>

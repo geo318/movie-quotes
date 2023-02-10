@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useDropzone } from 'react-dropzone';
+import { useScreenWidth } from 'hooks';
 
 export const useImageUpload = ({
   name,
@@ -15,7 +16,7 @@ export const useImageUpload = ({
     setError,
     formState: { errors },
   } = useFormContext();
-
+  const isMobile = useScreenWidth();
   const checkFile = useCallback(
     (file: Blob) => {
       const imageTypes = ['image/bmp', 'image/webp', 'image/png', 'image/jpeg'];
@@ -62,5 +63,6 @@ export const useImageUpload = ({
     getRootProps,
     getInputProps,
     handleDrop,
+    isMobile,
   };
 };

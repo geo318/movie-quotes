@@ -7,25 +7,32 @@ import { useImageUpload } from './useImageUpload';
 const ImageUpload: FC<
   InputProps & { image: string; handleImage: (img: string) => void }
 > = ({ name, image, handleImage }) => {
-  const { register, readImage, errors, dragging, getRootProps, getInputProps } =
-    useImageUpload({
-      handleImage,
-      name,
-    });
+  const {
+    register,
+    readImage,
+    errors,
+    dragging,
+    getRootProps,
+    getInputProps,
+    isMobile,
+  } = useImageUpload({
+    handleImage,
+    name,
+  });
 
   return (
     <div>
       <div
-        className={`flex gap-4 text-lg items-center relative w-full px-4 py-5 border border-app-dark-gray rounded-[.25rem] hover:border-white ${
+        className={`flex gap-4 lg:text-lg text-base items-center relative w-full px-4 py-5 border border-app-dark-gray rounded-[.25rem] hover:border-white ${
           dragging ? 'border-dashed' : image ? '!border-white' : ''
         }`}
         {...getRootProps()}
       >
         <Photo />
-        <p>Drag & drop your image here or</p>
+        <p>{isMobile ? 'Upload image ' : 'Drag & drop your image here or'}</p>
         <Button
           text='Choose file'
-          className='!rounded-sm !bg-[#9747FF] !bg-opacity-60 !border-0 hover:!bg-opacity-40'
+          className='!rounded-sm !bg-[#9747FF] !bg-opacity-60 !border-0 hover:!bg-opacity-40 ml-auto lg:ml-0'
           typeButton
         >
           <input

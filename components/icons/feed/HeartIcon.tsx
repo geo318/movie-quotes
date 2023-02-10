@@ -1,9 +1,11 @@
 const HeartIcon = ({
   active = false,
   full = false,
+  className = '',
 }: {
   active?: boolean;
   full?: boolean;
+  className?: string;
 }) => (
   <>
     {full ? (
@@ -13,6 +15,7 @@ const HeartIcon = ({
         viewBox='0 0 24 24'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
+        className={className}
       >
         <g clipPath='url(#clip0_638_29966)'>
           <path
@@ -35,6 +38,7 @@ const HeartIcon = ({
         viewBox='0 0 32 32'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
+        className={className}
       >
         <g clipPath='url(#clip0_13203_20114)'>
           <path

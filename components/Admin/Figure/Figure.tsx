@@ -8,7 +8,7 @@ const Figure: FC<Props & { count: number }> = ({
 }) => {
   return (
     <div className={`flex gap-3 ${className}`}>
-      <span className='text-xl leading-7'>{count}</span>
+      <span className='text-xl'>{count}</span>
       {children}
     </div>
   );

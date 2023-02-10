@@ -16,6 +16,7 @@ export { default as Pencil } from './Pencil';
 export { default as Magnifier } from './Magnifier';
 export { default as Camera } from './Camera';
 export { default as Photo } from './Photo';
+export { default as Burger } from './Burger';
 export * from './aside';
 export * from './eyes';
 export * from './feed';
