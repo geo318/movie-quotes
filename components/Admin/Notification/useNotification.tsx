@@ -1,6 +1,7 @@
 import { Avatar, Bell, HeartIcon, Quote } from 'components';
 import { getImage, getTimeElapsed } from 'helpers';
 import { useAuthUser } from 'hooks';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
@@ -12,6 +13,7 @@ import { RootState, Notification, AddComment } from 'types';
 export const useNotification = () => {
   const [initialized, setInitialized] = useState(false);
   const dispatch = useDispatch();
+  const { t } = useTranslation('shared');
   const router = useRouter();
   const { data } = useQuery({
     queryKey: 'notifications',
@@ -92,12 +94,12 @@ export const useNotification = () => {
   const dropdown = (
     <div className='notification overflow-y-auto max-h-[48rem] lg:py-10 py-3 px-8 flex flex-col gap-4'>
       <div className='mb-5 flex items-center'>
-        <h3 className='lg:text-3xl text-xl'>Notifications</h3>
+        <h3 className='lg:text-3xl text-xl'>{t('notifications')}</h3>
         <p
           className='lg:text-xl text-sm underline cursor-pointer ml-auto'
           onClick={() => markAllAsReadHandler({ num: notifications.length })}
         >
-          Mark All As Read
+          {t('markAllAsRead')}
         </p>
       </div>
       {notifications?.length ? (
@@ -120,18 +122,19 @@ export const useNotification = () => {
               <div className='flex gap-3 mt-1 lg:mt-0'>
                 {n.comment_id ? <Quote /> : <HeartIcon full />}
                 <p className='text-[#CED4DA] line-clamp-1'>
-                  {n.comment_id
-                    ? 'Commented to your movie quote'
-                    : 'Reacted to your quote'}
+                  {n.comment_id ? t('commented') : t('reacted')}
                 </p>
               </div>
             </div>
             <div className='ml-auto mt-1 lg:mt-0 lg:text-xl text-base flex lg:flex-col flex-row-reverse lg:justify-center justify-end lg:items-end gap-2 w-full lg:w-auto'>
               <p className='text-app-gray lg:text-white ml-1 lg:ml-0'>
-                {getTimeElapsed(n.created_at, router.locale as 'ka' | 'en')} ago
+                {`${getTimeElapsed(
+                  n.created_at,
+                  router.locale as 'ka' | 'en'
+                )} ${t('ago')}`}
               </p>
               <p className='min-h-[1.8rem] text-app-green lg:w-auto w-14 text-center'>
-                {!n.read ? 'New' : ''}
+                {!n.read ? t('new') : ''}
               </p>
             </div>
           </div>

@@ -5,11 +5,13 @@ import { authActions, feedActions } from 'store';
 import { z } from 'zod';
 import { AddCommentProps } from 'types';
 import { useAuthUser } from 'hooks';
+import { useTranslation } from 'next-i18next';
 
 export const useAddComment = () => {
   const [isLoading, setIsLoading] = useState(false);
   const authUser = useAuthUser();
   const dispatch = useDispatch();
+  const { t } = useTranslation('shared');
 
   const schema = z.object({
     quote_id: z.coerce.number(),
@@ -38,5 +40,5 @@ export const useAddComment = () => {
     setIsLoading(false);
   };
 
-  return { isLoading, schema, onSubmit, authUser };
+  return { isLoading, schema, onSubmit, authUser, t };
 };

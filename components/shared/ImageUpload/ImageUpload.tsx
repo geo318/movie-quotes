@@ -15,6 +15,7 @@ const ImageUpload: FC<
     getRootProps,
     getInputProps,
     isMobile,
+    t,
   } = useImageUpload({
     handleImage,
     name,
@@ -29,9 +30,9 @@ const ImageUpload: FC<
         {...getRootProps()}
       >
         <Photo />
-        <p>{isMobile ? 'Upload image ' : 'Drag & drop your image here or'}</p>
+        <p>{isMobile ? t('uploadImage') : t('dragAndDrop')}</p>
         <Button
-          text='Choose file'
+          text={t('chooseFile')}
           className='!rounded-sm !bg-[#9747FF] !bg-opacity-60 !border-0 hover:!bg-opacity-40 ml-auto lg:ml-0'
           typeButton
         >

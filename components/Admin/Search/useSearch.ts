@@ -1,6 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import { z } from 'zod';
 
 export const useSearch = () => {
+  const { t } = useTranslation('shared');
   const schema = z.object({
     quote_id: z.string(),
     user_id: z.string(),
@@ -12,14 +14,7 @@ export const useSearch = () => {
 
   const onSubmit = async (data: any) => {
     if (!data.comment.length) return;
-    try {
-      // setIsLoading(true);
-      // await addComment(data);
-    } catch (e: any) {
-      // e.message === 'Request failed with status code 422' &&
-      //   dispatch(authActions.setFormError(e?.response?.data?.errors));
-    }
-    // setIsLoading(false);
+    // TODO: Submit Data To the Server
   };
-  return { onSubmit, schema };
+  return { onSubmit, schema, t };
 };

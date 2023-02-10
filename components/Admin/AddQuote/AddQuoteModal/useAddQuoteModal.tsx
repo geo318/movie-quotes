@@ -23,7 +23,7 @@ export const useAddQuoteModal = () => {
     queryFn: getMovies,
   });
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('shared');
   const { lang } = useLang();
   const authUser = useAuthUser();
   const router = useRouter();
@@ -84,7 +84,7 @@ export const useAddQuoteModal = () => {
     setIsLoading(false);
   };
 
-  const [selector, setSelector] = useState('Choose movie');
+  const [selector, setSelector] = useState(t('chooseMovie'));
   const [id, setId] = useState(0);
 
   const handleSelector = (sel: string, id: number) => {
@@ -125,7 +125,7 @@ export const useAddQuoteModal = () => {
             </li>
           ))
         ) : (
-          <li className='p-4'>No movies yet</li>
+          <li className='p-4'>{t('noMoviesYet')}</li>
         )}
       </ul>
     </div>

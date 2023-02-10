@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useDropzone } from 'react-dropzone';
 import { useScreenWidth } from 'hooks';
+import { useTranslation } from 'next-i18next';
 
 export const useImageUpload = ({
   name,
@@ -17,6 +18,8 @@ export const useImageUpload = ({
     formState: { errors },
   } = useFormContext();
   const isMobile = useScreenWidth();
+  const { t } = useTranslation('shared');
+
   const checkFile = useCallback(
     (file: Blob) => {
       const imageTypes = ['image/bmp', 'image/webp', 'image/png', 'image/jpeg'];
@@ -64,5 +67,6 @@ export const useImageUpload = ({
     getInputProps,
     handleDrop,
     isMobile,
+    t,
   };
 };

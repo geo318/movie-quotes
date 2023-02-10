@@ -35,7 +35,7 @@ const AddQuoteModal: FC = () => {
       <FormWrapper schema={schema} onSubmit={onSubmit} fill>
         {isLoading && <ModalLoadingOverlay admin />}
         <div className='px-8 mb-6'>
-          <h3 className='lg:text-2xl text-xl text-center'>Write New Quote</h3>
+          <h3 className='lg:text-2xl text-xl text-center'>{t('writeQuote')}</h3>
         </div>
         <Divider />
 
@@ -51,7 +51,7 @@ const AddQuoteModal: FC = () => {
           <div className='flex flex-col gap-6'>
             <Textarea
               name='quote_title_en'
-              placeholder='Start create new quote'
+              placeholder='Create new quote'
               label='Eng'
               rows={2}
             />
@@ -70,7 +70,7 @@ const AddQuoteModal: FC = () => {
           </div>
 
           <Button
-            text={t('Post') as string}
+            text={t('post') as string}
             style='buttonRed'
             className='w-full mt-10 !text-xl'
             disabled={isLoading}

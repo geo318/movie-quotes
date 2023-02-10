@@ -4,7 +4,7 @@ import { Props } from 'types';
 import { useSearch } from './useSearch';
 
 const Search: FC<Props & { active: boolean }> = ({ className, active }) => {
-  const { onSubmit, schema } = useSearch();
+  const { onSubmit, schema, t } = useSearch();
   return (
     <div className={`float-right py-1 ${className}`}>
       <div className='ml-6'>
@@ -14,11 +14,7 @@ const Search: FC<Props & { active: boolean }> = ({ className, active }) => {
             <InputText
               submit
               name='search'
-              placeholder={`${
-                active
-                  ? 'Enter @ to search movies, Enter # to search quotes '
-                  : 'Search by'
-              }`}
+              placeholder={`${active ? t('enterToSearch') : t('searchBy')}`}
               className='!mb-0 !py-1 w-full'
               inputStyle={`!bg-transparent border-0 !text-[#CED4DA] !text-xl !px-0 !py-1 ${
                 active ? 'w-full' : 'w-24'

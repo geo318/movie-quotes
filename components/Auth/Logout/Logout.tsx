@@ -2,11 +2,11 @@ import { Button } from 'components/shared';
 import { useLogout } from './useLogout';
 
 const Logout = () => {
-  const { handleUserLogout } = useLogout();
+  const { handleUserLogout, t } = useLogout();
   return (
     <Button
       onClick={handleUserLogout}
-      text='Log out'
+      text={t('logOut')}
       className='text-base px-6'
     />
   );

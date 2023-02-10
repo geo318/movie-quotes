@@ -6,7 +6,7 @@ import { AddQuoteModal } from './AddQuoteModal';
 import { useAddQuote } from './useAddQuote';
 
 const AddQuote: FC<Props> = ({ className }) => {
-  const { isActive } = useAddQuote();
+  const { isActive, t } = useAddQuote();
   return (
     <div
       className={`lg:px-4 py-3 xl:bg-app-bg bg-opacity-[.6] rounded-lg ${className}`}
@@ -15,7 +15,7 @@ const AddQuote: FC<Props> = ({ className }) => {
       <Link href='?add-quote'>
         <div className='flex gap-4 items-center'>
           <Pencil />
-          <p>Write a new quote</p>
+          <p>{t('writeAQuote')}</p>
         </div>
       </Link>
     </div>
