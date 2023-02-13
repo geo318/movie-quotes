@@ -1,4 +1,4 @@
-import { Button } from 'components/shared';
+import { Button } from 'components';
 import { useLogout } from './useLogout';
 
 const Logout = () => {
