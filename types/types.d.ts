@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
-import { FeedData } from 'components/Admin/Feed/types';
 import { gmailAuth } from 'services';
 import { AddCommentProps, FormSubmitProps } from './formTypes';
+import { Props } from './propTypes';
 
 export type DataProp = number | string | boolean;
 
@@ -23,9 +23,21 @@ export type User = {
   gmail: string;
 } | null;
 
+export type FeedData = {
+  id: number;
+  movie_id: number;
+  user_id: number;
+  quote_image: string;
+  quote_title: { en: string; ka: string };
+  movie: array<Movie>;
+  comments: array<Comment>;
+  likes: array<Like>;
+  user: UserData;
+};
+
 export interface RootState {
   auth: InitialAuthState;
-  feed: { feedData: FeedData[] };
+  feed: { feedData: FeedData[]; query: string };
   note: { notifications: Notification[] };
 }
 
@@ -73,3 +85,24 @@ export type Notification = {
   like_id: number | null;
   comment: AddComment | null;
 };
+
+export interface InputProps extends Props {
+  name: string;
+  onChange?: React.FormEvent<HTMLInputElement>;
+  label?: string;
+  placeholder?: string;
+  type?: string;
+  value?: string | number;
+  validation?: {
+    [key: string]:
+      | {
+          [key: string]: string | number | boolean | RegExp;
+        }
+      | number;
+  };
+  inputStyle?: string;
+  submit?: boolean;
+  select?: boolean;
+  error?: string;
+  rows?: number;
+}

@@ -6,7 +6,7 @@ import {
   InputSuccess,
 } from 'components';
 import { FC } from 'react';
-import { InputProps } from './types';
+import { InputProps } from 'types';
 import { useInputText } from './useInputText';
 
 const InputText: FC<InputProps> = ({

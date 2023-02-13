@@ -1,4 +1,4 @@
-import { Spinner } from 'components/icons';
+import { Spinner } from 'components';
 import Image from 'next/image';
 import { FC } from 'react';
 import { AvatarProps } from './types';
@@ -36,12 +36,18 @@ const Avatar: FC<AvatarProps> = ({
       <div className='flex flex-col justify-center'>
         {text && (
           <p
-            className={subText ? 'sm:text-2xl text-xl sm:leading-9' : 'text-xl leading-7'}
+            className={
+              subText ? 'sm:text-2xl text-xl sm:leading-9' : 'text-xl leading-7'
+            }
           >
             {text}
           </p>
         )}
-        {subText && <p className='sm:text-base sm:text-white text-sm text-app-gray'>{subText}</p>}
+        {subText && (
+          <p className='sm:text-base sm:text-white text-sm text-app-gray'>
+            {subText}
+          </p>
+        )}
       </div>
     </div>
   );

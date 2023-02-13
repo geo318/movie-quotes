@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { InputProps } from './types';
+import { InputProps } from 'types';
 import { useTextarea } from './useTextarea';
 
 const Textarea: FC<InputProps> = ({

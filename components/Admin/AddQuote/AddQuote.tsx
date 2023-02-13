@@ -1,4 +1,4 @@
-import { Pencil } from 'components/icons';
+import { Pencil } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
 import { Props } from 'types';

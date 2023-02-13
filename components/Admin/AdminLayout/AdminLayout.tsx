@@ -6,7 +6,7 @@ import { useAdminLayout } from './useAdminLayout';
 
 const AdminLayout: FC<Props> = ({ children, className = '' }) => {
   const { isMobile } = useAdminLayout();
-  console.log(isMobile);
+
   return (
     <>
       <Head>
@@ -27,9 +27,11 @@ const AdminLayout: FC<Props> = ({ children, className = '' }) => {
             isMobile ? '' : 'gap-10'
           } xl:gap-0`}
         >
-          <div className='xl:col-span-1 col-span-2 w-full'>
-            {isMobile ? null : <Aside className='fixed top-32' />}
-          </div>
+          {!isMobile && (
+            <div className='xl:col-span-1 col-span-2 w-full'>
+              <Aside className='fixed top-32' />
+            </div>
+          )}
           <div className={isMobile ? 'col-span-5' : 'col-span-3'}>
             {children}
           </div>
