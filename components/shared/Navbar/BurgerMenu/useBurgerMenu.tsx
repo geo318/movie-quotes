@@ -1,5 +1,4 @@
-import { Aside } from 'components/Admin';
-import { Burger } from 'components/icons';
+import { Aside, Burger } from 'components';
 
 export const useBurgerMenu = () => {
   const menu = <Burger />;
