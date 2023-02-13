@@ -1,20 +1,24 @@
+import { useScreenWidth } from 'hooks';
+import { useDebounce } from 'hooks/useDebounce';
 import { useTranslation } from 'next-i18next';
-import { z } from 'zod';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { feedActions } from 'store';
 
 export const useSearch = () => {
   const { t } = useTranslation('shared');
-  const schema = z.object({
-    quote_id: z.string(),
-    user_id: z.string(),
-    comment: z
-      .string()
-      .min(3, { message: 'Use at least 3 symbols' })
-      .max(100, { message: 'Maximum comment length exceeded' }),
-  });
+  const isMobile = useScreenWidth();
+  const [query, setQuery] = useState('');
+  const debouncedQuery = useDebounce({ query });
+  const dispatch = useDispatch();
 
-  const onSubmit = async (data: any) => {
-    if (!data.comment.length) return;
-    // TODO: Submit Data To the Server
+  useEffect(() => {
+    if ((!debouncedQuery || debouncedQuery.length < 3) && debouncedQuery !== '')
+      return;
+    dispatch(feedActions.setQuery(debouncedQuery));
+  }, [debouncedQuery, dispatch]);
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(() => e.target.value);
   };
-  return { onSubmit, schema, t };
+  return { handleSearch, isMobile, t };
 };

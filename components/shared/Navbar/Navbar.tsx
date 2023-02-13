@@ -4,8 +4,8 @@ import {
   Lang,
   Layout,
   Logout,
-  Magnifier,
   Notification,
+  SearchMenu,
 } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -34,7 +34,7 @@ const Navbar: FC<NavbarProps> = ({ children, admin = false }) => {
         <nav className='flex ml-auto sm:gap-5 items-center relative'>
           {admin && isMobile && (
             <>
-              <Magnifier menu />
+              <SearchMenu />
               <div className='w-5 sm:hidden' />
             </>
           )}

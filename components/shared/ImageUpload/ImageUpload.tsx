@@ -1,5 +1,6 @@
-import { Photo, Button, InputProps } from 'components';
+import { Photo, Button } from 'components';
 import { FC } from 'react';
+import { InputProps } from 'types';
 import { useImageUpload } from './useImageUpload';
 
 const ImageUpload: FC<

@@ -1,3 +1,4 @@
+import { RefObject } from 'react';
 import { Props } from 'types';
 
 export interface SelectProps extends Props {
@@ -7,4 +8,5 @@ export interface SelectProps extends Props {
   modalClassName?: string;
   face?: React.ReactNode;
   closeOnClick?: boolean;
+  closeRef?: RefObject<HTMLElement> | null;
 }
