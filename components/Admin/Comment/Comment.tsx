@@ -5,7 +5,7 @@ import { Avatar, Divider } from 'components';
 import { useComment } from './useComment';
 
 const Comment: FC<{ data: Comment[] }> = ({ data }) => {
-  const { show, toggleShow } = useComment();
+  const { show, toggleShow, t } = useComment();
   return (
     <div className='my-6'>
       {data?.map((item: Comment, index: number) => {
@@ -30,7 +30,7 @@ const Comment: FC<{ data: Comment[] }> = ({ data }) => {
           onClick={toggleShow}
           className='text-app-link text-base cursor-pointer lg:ml-[4.75rem]'
         >
-          {show ? 'Hide' : 'See more'}
+          {show ? t('hide') : t('seeMore')}
         </p>
       )}
     </div>

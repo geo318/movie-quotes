@@ -8,17 +8,21 @@ import { RootState } from 'types';
 
 export const useAdmin = () => {
   const feedData = useSelector((state: RootState) => state.feed.feedData);
+  const searchQuery = useSelector((state: RootState) => state.feed.query);
 
   const dispatch = useDispatch();
-  const { fetchNextPage, hasNextPage, isFetchingNextPage, data } =
+  const { fetchNextPage, hasNextPage, isFetchingNextPage, data, refetch } =
     useInfiniteQuery({
+      queryHash: searchQuery,
       queryKey: ['feed-data'],
-      queryFn: ({ pageParam = 1 }) => getQuotes({ page: pageParam }),
+      queryFn: ({ pageParam = 1 }) =>
+        getQuotes({ page: pageParam, query: searchQuery }),
       getNextPageParam: (lastPage) => {
         const nextPage = lastPage?.data.current_page + 1;
         if (nextPage > lastPage?.data.last_page) return;
         return nextPage;
       },
+      retry: 1,
     });
 
   const pages = data?.pages.length;
@@ -26,7 +30,7 @@ export const useAdmin = () => {
   const fetchNextPageData = useCallback(() => {
     if (hasNextPage && pages) {
       fetchNextPage();
-      if (pages > 2) {
+      if (pages > 1) {
         dispatch(feedActions.updateFeed(nextBatch));
       }
     }
@@ -34,12 +38,12 @@ export const useAdmin = () => {
 
   const firstBatch = data?.pages[0].data.data;
   useEffect(() => {
-    if (feedData.length > 0) return;
+    if (feedData?.length > 0) return;
 
     if (pages === 1) {
       dispatch(feedActions.updateFeed(firstBatch));
     }
-  }, [pages, dispatch, firstBatch, feedData.length]);
+  }, [pages, dispatch, firstBatch, feedData?.length]);
 
   const { data: userData } = useQuery({
     queryKey: 'user',
@@ -48,6 +52,11 @@ export const useAdmin = () => {
   useEffect(() => {
     dispatch(authActions.setUser(userData?.data.user));
   }, [dispatch, userData]);
+
+  useEffect(() => {
+    dispatch(feedActions.resetFeed());
+    refetch();
+  }, [searchQuery, dispatch, refetch]);
 
   return {
     quotes: feedData,

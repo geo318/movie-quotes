@@ -13,8 +13,12 @@ export const fetchCSRFToken = async () => {
   return response;
 };
 
-export const getQuotes = async ({ page = 1 }: { page?: number }) => {
-  const response = await axiosInstance(`api/quotes?page=${page}`);
+export const getQuotes = async ({ page = 1, query = '*' }) => {
+  const url = new URL(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/quotes?page=${page}`
+  );
+  url.searchParams.set('search', query);
+  const response = await axiosInstance({ url: url.toString() });
   return response;
 };
 

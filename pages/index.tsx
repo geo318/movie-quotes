@@ -52,9 +52,7 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const goToAdmin = context.req.cookies['admin'];
   const lang = context.locale;
-  // context.res.setHeader('set-cookie', ['access-token=0']);
 
   try {
     const cookies = context.req.headers.cookie;

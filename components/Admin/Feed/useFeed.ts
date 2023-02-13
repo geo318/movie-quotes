@@ -1,4 +1,5 @@
 import { useAuthUser, useClickOutSide, useLang } from 'hooks';
+import { useTranslation } from 'next-i18next';
 import { useCallback, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addLike } from 'services';
@@ -10,6 +11,7 @@ export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {
   const dispatch = useDispatch();
   const observer = useRef<IntersectionObserver | null>();
   const { lang } = useLang();
+  const { t } = useTranslation('shared');
 
   const handleLike = async ({
     userId,
@@ -51,5 +53,6 @@ export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {
     ref,
     handleSearch,
     lang,
+    t,
   };
 };

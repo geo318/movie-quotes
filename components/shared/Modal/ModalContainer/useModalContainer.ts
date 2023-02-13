@@ -5,7 +5,7 @@ import { ModalProps } from './types';
 
 export const useModalContainer = ({
   selectRef,
-  closeRef,
+  closeRef = null,
   modalOpenOnload,
   modalControl,
   closeRoute,
@@ -32,7 +32,7 @@ export const useModalContainer = ({
       if (
         (ref.current && !ref.current.contains(e.target as Node)) ||
         (selectRef && selectRef.current!.contains(e.target as Node)) ||
-        (closeRef && closeRef.current!.contains(e.target as Node))
+        (closeRef && closeRef.current?.contains(e.target as Node))
       )
         onClickOutside();
     },

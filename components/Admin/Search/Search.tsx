@@ -1,27 +1,23 @@
-import { FormWrapper, InputText, Magnifier } from 'components';
-import { FC } from 'react';
-import { Props } from 'types';
+import { Magnifier } from 'components';
 import { useSearch } from './useSearch';
 
-const Search: FC<Props & { active: boolean }> = ({ className, active }) => {
-  const { onSubmit, schema, t } = useSearch();
+const Search = ({ className = '', active = false }) => {
+  const { handleSearch, isMobile, t } = useSearch();
   return (
-    <div className={`float-right py-1 ${className}`}>
-      <div className='ml-6'>
-        <FormWrapper fill onSubmit={onSubmit} schema={schema}>
-          <div className='flex gap-4 items-center shadow-bottom'>
-            <Magnifier />
-            <InputText
-              submit
-              name='search'
-              placeholder={`${active ? t('enterToSearch') : t('searchBy')}`}
-              className='!mb-0 !py-1 w-full'
-              inputStyle={`!bg-transparent border-0 !text-[#CED4DA] !text-xl !px-0 !py-1 ${
-                active ? 'w-full' : 'w-24'
-              }`}
-            />
-          </div>
-        </FormWrapper>
+    <div className={`lg:float-right py-1 ${className}`}>
+      <div className='lg:ml-6'>
+        <div className='flex lg:gap-4 gap-6 items-center lg:shadow-bottom'>
+          {!isMobile && <Magnifier />}
+          <input
+            type='text'
+            name='search'
+            onChange={handleSearch}
+            placeholder={`${active ? t('enterToSearch') : t('searchBy')}`}
+            className={`outline-none bg-transparent border-0 text-[#CED4DA] text-xl px-0 py-1 ${
+              active || isMobile ? 'w-full' : 'w-24'
+            }`}
+          />
+        </div>
       </div>
     </div>
   );
