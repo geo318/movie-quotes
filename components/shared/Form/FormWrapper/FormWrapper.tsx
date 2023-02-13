@@ -9,13 +9,14 @@ const FormWrapper: FC<FormWrapperProps> = ({
   className = '',
   schema,
   onSubmit,
+  fill = false,
 }) => {
   return (
     <FormProvider
       {...useForm({ mode: 'onBlur', resolver: zodResolver(schema) })}
     >
       <FormLayout
-        className={`mx-2 lg:max-w-sm ${className}`}
+        className={`${fill ? 'w-full' : 'mx-2 lg:max-w-sm'} ${className}`}
         onSubmit={onSubmit}
       >
         {children}

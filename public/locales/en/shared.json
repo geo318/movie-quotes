@@ -1,5 +1,27 @@
 {
     "signUp":"Sign Up",
     "login":"Log in",
-    "allRightsReserved":"All rights reserved."
+    "allRightsReserved":"All rights reserved.",
+    "logOut":"Log out",
+    "editProfile":"Edit your profile",
+    "newsFeed":"News feed",
+    "listOfMovies":"List of movies",
+    "notifications":"Notifications",
+    "noNotifications":"No notifications yet...",
+    "markAllAsRead":"Mark All As Read",
+    "ago":"ago",
+    "new":"New",
+    "commented":"Commented to your movie quote",
+    "reacted":"Reacted to your quote",
+    "searchBy":"Search by",
+    "enterToSearch":"Enter @ to search movies, Enter # to search quotes",
+    "writeAQuote":"Write a new quote",
+    "writeQuote":"Write New Quote",
+    "writeComment":"Write a comment",
+    "dragAndDrop":"Drag & drop your image here or",
+    "chooseFile":"Choose File",
+    "uploadImage":"Upload image",
+    "chooseMovie":"Choose movie",
+    "noMoviesYet":"No movies yet...",
+    "post":"Post"
 }

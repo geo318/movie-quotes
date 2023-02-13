@@ -51,3 +51,37 @@
         transform: translateY(0);
     }
 }
+
+.notification:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #000;
+    top: -10px;
+    rotate: -45deg;
+    right: 256px;
+}
+
+@media (min-width:1024px) and (max-width:1279px) {
+    .notification:before {
+        right: 306px;
+    }
+}
+
+@media (min-width: 640px) and (max-width:1023px) {
+    .notification:before {
+        right: 268px;
+    }
+}
+
+@media (max-width:639px) {
+    .notification:before {
+        right: 32px;
+    }
+}
+
+.shadow-bottom:focus-within {
+    box-shadow: 0px 8px 0px 0px #181623, 0px 9px 0px 0px rgba(239, 239, 239, 0.3);;
+}

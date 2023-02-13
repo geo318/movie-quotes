@@ -10,10 +10,12 @@ module.exports = {
         'app-yellow': '#DDCCAA',
         'app-red': '#E31221',
         'app-gray': '#CED4DA',
+        'app-black-dark': '#11101A',
         'app-black': '#212529',
         'app-bg': '#222030',
         'app-link': '#0D6EFD',
         'app-dark-gray': '#6C757D',
+        'app-green': '#198754',
       },
       backgroundImage: {
         'app-gradient':
@@ -29,7 +31,12 @@ module.exports = {
       fontFamily: {
         helvetica: 'HelveticaNeue',
       },
+      aspectRatio: {
+        '9/5': '9 / 5',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 };

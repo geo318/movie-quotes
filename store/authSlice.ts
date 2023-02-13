@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { localStore } from 'helpers';
-import { InitialAuthState, User } from 'types';
+import { AuthState, User } from 'types';
 
 const auth: boolean = localStore.get('isAuth');
 const user: User = localStore.get('userInfo');
 
-const initialAuthState: InitialAuthState = {
+const initialAuthState: AuthState = {
   isAuthenticated: auth,
   formErrors: false,
   loginErrors: false,

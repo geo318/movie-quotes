@@ -1,7 +1,14 @@
 import { Spinner } from 'components';
+import { FC } from 'react';
 
-const ModalLoadingOverlay = () => (
-  <div className='absolute inset-0 bg-black bg-opacity-20 backdrop-blur-sm flex justify-center items-center'>
+const ModalLoadingOverlay: FC<{ admin?: boolean }> = ({ admin = false }) => (
+  <div
+    className={`absolute inset-0 ${
+      admin
+        ? 'bg-app-gradient backdrop-blur-[2px] bg-opacity-30'
+        : 'bg-black backdrop-blur-sm bg-opacity-20'
+    } flex justify-center items-center`}
+  >
     <Spinner />
   </div>
 );

@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-export const useInputText = () => {
+export const useInputText = ({
+  name,
+  value,
+  select,
+}: {
+  name: string;
+  value?: string | number;
+  select?: boolean;
+}) => {
   const [show, setShow] = useState(false);
   const [blur, setBlur] = useState(false);
   const {
@@ -10,6 +18,11 @@ export const useInputText = () => {
     formState: { errors, dirtyFields },
   } = useFormContext();
   const toggleShow = () => setShow((prev) => !prev);
+  useEffect(() => {
+    if (!select && !value) return;
+    setValue(name, value);
+  }, [value, name, select, setValue]);
+
   return {
     register,
     errors,

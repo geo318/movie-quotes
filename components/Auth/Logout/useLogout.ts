@@ -1,4 +1,5 @@
 import { deleteCookie, setCookie } from 'cookies-next';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { logout } from 'services';
@@ -6,6 +7,7 @@ import { authActions, fleshActions } from 'store';
 
 export const useLogout = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation('shared');
   const router = useRouter();
   const handleUserLogout = async () => {
     try {
@@ -19,5 +21,5 @@ export const useLogout = () => {
     }
   };
 
-  return { handleUserLogout };
+  return { handleUserLogout, t };
 };

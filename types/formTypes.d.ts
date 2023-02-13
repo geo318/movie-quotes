@@ -33,3 +33,18 @@ export type FormSubmitUnionProps =
   | LoginProps
   | EmailProps
   | ResetPasswordProps;
+
+export interface AddCommentProps {
+  comment: string;
+  user_id: number;
+  quote_id: number;
+}
+
+export interface Quote {
+  user_id: number;
+  movie_id: number;
+  quote_image: Blob | string;
+  quote_title?: { en: string; ka: string };
+  quote_title_en: string;
+  quote_title_ka: string;
+}

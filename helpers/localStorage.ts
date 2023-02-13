@@ -2,8 +2,12 @@ import { LocalData } from 'types';
 
 export const localStore = {
   set(name: string, data: LocalData) {
-    localStorage.setItem(name, JSON.stringify(data));
-    return true;
+    try {
+      localStorage.setItem(name, JSON.stringify(data));
+      return true;
+    } catch (e) {
+      return { error: e };
+    }
   },
 
   clear(name: string) {

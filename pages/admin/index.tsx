@@ -1,16 +1,17 @@
-import { Logout } from 'components';
+import { AdminLayout, Feed } from 'components';
+import { useAdmin } from 'hooks';
 import { GetServerSideProps } from 'next';
-import { dehydrate, QueryClient, useQuery } from 'react-query';
-import { checkUser, getQuotes, getUser } from 'services';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { dehydrate, QueryClient } from 'react-query';
+import { checkUser, getUser } from 'services';
 
 const Admin = () => {
+  const { quotes, fetchNextPageData, loading } = useAdmin();
+
   return (
-    <>
-      <div className='text-black'>
-        <div>admin</div>
-        <Logout />
-      </div>
-    </>
+    <AdminLayout>
+      <Feed data={quotes} nextPage={fetchNextPageData} loading={loading} />
+    </AdminLayout>
   );
 };
 
@@ -35,9 +36,13 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery('user', getUser);
-  await queryClient.prefetchQuery('quotes', getQuotes);
+
+  const translation = await serverSideTranslations(locale as string, [
+    'shared',
+    'home',
+  ]);
 
   return {
-    props: { dehydratedState: dehydrate(queryClient) },
+    props: { dehydratedState: dehydrate(queryClient), ...translation },
   };
 };

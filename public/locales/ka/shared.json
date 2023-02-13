@@ -1,5 +1,27 @@
 {
     "signUp":"რეგისტრაცია",
     "login":"შესვლა",
-    "allRightsReserved":"ყველა უფლება დაცულია."
+    "allRightsReserved":"ყველა უფლება დაცულია.",
+    "logOut":"გასვლა",
+    "editProfile":"პროფილის რედაქტირება",
+    "newsFeed":"ნიუს ფიდი",
+    "listOfMovies":"ფილმების ლისტი",
+    "notifications":"შეტყობინებები",
+    "noNotifications":"ჯერ არაა შეტყობინებები...",
+    "markAllAsRead":"წაკითხულად მონიშვნა",
+    "ago":"წინ",
+    "new":"ახალი",
+    "commented":"დატოვა კომენტარი პოსტზე",
+    "reacted":"ჰქონდა რეაქცია ციტატაზე",
+    "searchBy":"ძებნა",
+    "enterToSearch":"ჩაწერე @ ფილმის, ხოლო - # ციტატის მოსაძებნად",
+    "writeAQuote":"შექმენი პოსტი",
+    "writeQuote":"ახალი ციტატა",
+    "writeComment":"დატოვე კომენტარი...",
+    "dragAndDrop":"ჩააგდე ფოტო ან",
+    "chooseFile":"აირჩიე",
+    "uploadImage":"ატვირთე ფოტო",
+    "chooseMovie":"აირჩიე ფილმი",
+    "noMoviesYet":"ფილმები ჯერ არ დამატებულა...",
+    "post":"პოსტი"
 }

@@ -4,8 +4,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'types';
 
 export const useFormLayout = () => {
-  const { handleSubmit, setError } = useFormContext();
+  const {
+    handleSubmit,
+    setError,
+    reset,
+    formState: { isSubmitted, isValid },
+  } = useFormContext();
   const formErrors = useSelector((state: RootState) => state.auth.formErrors);
+
+  useEffect(() => {
+    if (isValid && isSubmitted) reset();
+  }, [isSubmitted, reset, isValid]);
 
   useEffect(() => {
     Object.keys(formErrors).forEach((e) =>
@@ -13,5 +22,5 @@ export const useFormLayout = () => {
     );
   }, [formErrors, setError]);
 
-  return { handleSubmit };
+  return { handleSubmit, reset };
 };
