@@ -1,14 +1,15 @@
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addQuote } from 'services';
 import { z } from 'zod';
-import { Quote } from 'types';
+import { Quote, RootState } from 'types';
 import { useAuthUser, useLang } from 'hooks';
 import { authActions } from 'store';
+import { useSelector } from 'react-redux';
 
-export const useViewQuote = () => {
+export const useViewQuote = (refetch: () => {}) => {
   const [image, setImage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation('shared');
@@ -16,6 +17,10 @@ export const useViewQuote = () => {
   const authUser = useAuthUser();
   const router = useRouter();
   const dispatch = useDispatch();
+  const id = useSelector((state: RootState) => state.quote.quote.id);
+  const quote = useSelector((state: RootState) =>
+    state.feed.feedData.find((e) => e.id === id)
+  );
 
   const schema = z.object({
     quote_title_en: z
@@ -56,6 +61,12 @@ export const useViewQuote = () => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    return () => {
+      refetch();
+    };
+  }, [refetch]);
+
   const user = useAuthUser();
   return {
     isLoading,
@@ -63,6 +74,7 @@ export const useViewQuote = () => {
     onSubmit,
     user,
     handleImage,
+    quote,
     image,
     lang,
     t,

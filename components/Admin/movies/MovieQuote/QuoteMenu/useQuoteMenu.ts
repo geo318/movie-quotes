@@ -1,12 +1,13 @@
-import { useActiveQuery } from 'hooks';
+import { useDispatch } from 'react-redux';
+import { feedActions } from 'store';
+import { quoteActions } from 'store/quoteSlice';
+import { FeedData } from 'types';
 
 export const useQuoteMenu = () => {
-  const { isActive } = useActiveQuery();
-  //   const [open, setOpen] = useState(false);
-  //   const toggleMenu = () => {
-  //     setTimeout(() => {
-  //       setOpen((b) => !b);
-  //     }, 500);
-  //   };
-  return { isActive };
+  const dispatch = useDispatch();
+  const setQuoteHandler = (quote: FeedData) => {
+    dispatch(quoteActions.setQuote(quote));
+    dispatch(feedActions.updateFeed([quote]));
+  };
+  return { setQuoteHandler };
 };

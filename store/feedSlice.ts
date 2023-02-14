@@ -23,7 +23,7 @@ const feedSlice = createSlice({
     setQuery(state, action: { payload: string }) {
       state.query = action.payload;
     },
-    updateFeed(state, action) {
+    updateFeed(state, action: { payload: FeedData[] }) {
       let feed = state.feedData;
       if (feed?.some((e: FeedData) => e.id === action.payload[0].id)) return;
       if (feed?.length > 1) {

@@ -8,6 +8,7 @@ import {
   Pen,
   Plus,
   Description,
+  ViewQuote,
 } from 'components';
 import { getImage, loadText } from 'helpers';
 import { GetServerSideProps } from 'next';
@@ -18,7 +19,7 @@ import { checkUser, getUser } from 'services';
 import { useMovie } from './useMovie';
 
 const Post = () => {
-  const { movie, isLoading, lang, id, refetch } = useMovie();
+  const { movie, isLoading, lang, id, refetch, isActive } = useMovie();
   return (
     <AdminLayout>
       <h2 className='text-2xl'>Movie description</h2>
@@ -69,7 +70,7 @@ const Post = () => {
               <NewQuote refetch={refetch} movie={movie} />
             </AddButton>
           </div>
-          <div className='mt-14 pb-36'>
+          <div className='mt-14 pb-36 gap-10 flex flex-col'>
             <MovieQuote
               refetch={refetch}
               quotes={movie?.quotes}

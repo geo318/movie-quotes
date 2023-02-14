@@ -41,6 +41,7 @@ export interface RootState {
   feed: { feedData: FeedData[]; query: string };
   note: { notifications: Notification[] };
   movie: { movies: Movie[]; query: string };
+  quote: { quote: FeedData };
 }
 
 export type InitialError = {

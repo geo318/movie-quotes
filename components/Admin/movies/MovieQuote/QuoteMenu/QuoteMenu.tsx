@@ -1,16 +1,15 @@
-import { Bin, Dots, Eye, Pen, Select, ViewQuote } from 'components';
+import { Bin, Dots, Eye, Pen, Select } from 'components';
 import Link from 'next/link';
 import { FC } from 'react';
 import { QuoteMenuProps } from './type';
 import { useQuoteMenu } from './useQuoteMenu';
 
 const QuoteMenu: FC<QuoteMenuProps> = ({ quote, id, handleDelete }) => {
-  const { isActive } = useQuoteMenu();
+  const { setQuoteHandler } = useQuoteMenu();
   return (
     <>
-      {isActive('view-quote') && <ViewQuote quote={quote} />}
       <Select face={<Dots />}>
-        <div className='absolute'>
+        <div className='absolute' onClick={() => setQuoteHandler(quote)}>
           <ul className='flex flex-col gap-8 bg-[#24222F] px-10 py-8 rounded-ten lg:w-[15rem] text-base'>
             <li>
               <Link href={`${id}?view-quote`}>

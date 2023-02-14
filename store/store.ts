@@ -3,6 +3,7 @@ import authReducer from './authSlice';
 import feedReducer from './feedSlice';
 import noteReducer from './noteSlice';
 import movieReducer from './movieSlice';
+import quoteReducer from './quoteSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     feed: feedReducer,
     note: noteReducer,
     movie: movieReducer,
+    quote: quoteReducer,
   },
 });

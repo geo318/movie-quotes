@@ -13,6 +13,7 @@ export const usePortal = ({ z = false }) => {
     portal.classList.add(
       'fixed',
       'inset-0',
+      'overflow-y-auto',
       `${isAuth ? 'backdrop-blur-[2px]' : 'backdrop-blur-sm'}`,
       `${isAuth ? 'bg-[#181623]' : 'bg-black'}`,
       `${isAuth ? 'bg-opacity-10' : 'bg-opacity-50'}`,

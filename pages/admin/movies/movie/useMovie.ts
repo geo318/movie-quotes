@@ -1,4 +1,4 @@
-import { useGetUser, useLang } from 'hooks';
+import { useActiveQuery, useGetUser, useLang } from 'hooks';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useQuery } from 'react-query';
@@ -13,6 +13,7 @@ export const useMovie = () => {
   const { lang } = useLang();
   const router = useRouter();
   const { id } = router.query;
+  const { isActive } = useActiveQuery();
 
   const { data, isLoading, refetch, isFetched } = useQuery({
     queryKey: ['movie', id],
@@ -21,5 +22,5 @@ export const useMovie = () => {
   });
   const movie: Movie = data?.data;
 
-  return { lang, movie, isLoading, id, refetch };
+  return { lang, movie, isLoading, id, refetch, isActive };
 };

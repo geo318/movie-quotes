@@ -3,5 +3,6 @@ import { FeedData } from 'types';
 
 interface Post {
   post: FeedData[];
-  lastFeedElementRef: LegacyRef<Element>;
+  lastFeedElementRef?: LegacyRef<HTMLDivElement>;
+  modal?: boolean;
 }

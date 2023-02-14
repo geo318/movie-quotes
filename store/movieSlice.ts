@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FeedData, Movie } from 'types';
+import { Movie } from 'types';
 
 const initialMovieState = {
   movies: [] as Movie[],

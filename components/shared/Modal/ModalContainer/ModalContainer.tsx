@@ -23,7 +23,7 @@ const ModalContainer: FC<ModalProps> = ({
     <>
       {children && dropdown ? (
         <div
-          className='z-10'
+          className='z-10 pb-14'
           ref={ref}
           onClick={() => closeOnClick && onClickOutside()}
         >
