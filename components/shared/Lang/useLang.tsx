@@ -1,5 +1,6 @@
 import { Arrow } from 'components/icons';
 import { localStore } from 'helpers';
+import { i18n } from 'next-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -20,9 +21,8 @@ export const useLang = () => {
           router.locale !== lang && (
             <Link
               key={lang}
-              href=''
+              href={`/${lang}${router.asPath}`}
               locale={lang}
-              onClick={() => localStore.set('locale', lang)}
               className='hover:bg-gray-800 px-5 py-2 flex justify-center'
             >
               {lang === 'en' ? 'English' : 'ქართული'}
