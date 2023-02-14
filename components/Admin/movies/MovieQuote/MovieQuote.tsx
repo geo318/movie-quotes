@@ -9,10 +9,12 @@ import {
   Eye,
   Pen,
   Bin,
+  AddButton,
+  ViewQuote,
+  QuoteMenu,
 } from 'components';
 import { getImage } from 'helpers';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FC } from 'react';
 import { MovieQuoteProps } from './type';
 import { useMovieQuote } from './useMovieQuote';
@@ -33,32 +35,7 @@ const MovieQuote: FC<MovieQuoteProps> = ({
           className='col-span-5 bg-app-black-dark py-6 px-8 rounded-ten relative'
         >
           <div className='absolute right-8'>
-            <Select face={<Dots />}>
-              <div className='absolute'>
-                <ul className='flex flex-col gap-8 bg-[#24222F] px-10 py-8 rounded-ten lg:w-[15rem] text-base'>
-                  <li>
-                    <Link
-                      href={`${id}?add-quote`}
-                      className='flex items-center gap-4'
-                    >
-                      <Eye big />
-                      View Quote
-                    </Link>
-                  </li>
-                  <li className='flex items-center gap-4 cursor-pointer'>
-                    <Pen />
-                    Edit
-                  </li>
-                  <li
-                    className='flex items-center gap-4 cursor-pointer'
-                    onClick={() => handleDelete(q.id)}
-                  >
-                    <Bin />
-                    Delete
-                  </li>
-                </ul>
-              </div>
-            </Select>
+            <QuoteMenu quote={q} id={id} handleDelete={handleDelete} />
           </div>
           <div className='flex gap-8 items-center'>
             <div className='relative max-w-[14rem] w-full aspect-3/2 rounded-sm overflow-hidden'>

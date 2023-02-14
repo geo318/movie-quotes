@@ -7,3 +7,4 @@ export * from './useClickOutside';
 export * from './useLang';
 export * from './useScreenWidth';
 export * from './useGetUser';
+export * from './useActiveQuery';
