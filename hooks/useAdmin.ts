@@ -1,12 +1,13 @@
 import { useCallback, useEffect } from 'react';
-import { useInfiniteQuery, useQuery } from 'react-query';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { getQuotes, getUser } from 'services';
-import { authActions, feedActions } from 'store';
+import { useInfiniteQuery } from 'react-query';
+import { useSelector, useDispatch } from 'react-redux';
+import { getQuotes } from 'services';
+import { feedActions } from 'store';
 import { RootState } from 'types';
+import { useGetUser } from 'hooks';
 
 export const useAdmin = () => {
+  useGetUser();
   const feedData = useSelector((state: RootState) => state.feed.feedData);
   const searchQuery = useSelector((state: RootState) => state.feed.query);
 
@@ -44,14 +45,6 @@ export const useAdmin = () => {
       dispatch(feedActions.updateFeed(firstBatch));
     }
   }, [pages, dispatch, firstBatch, feedData?.length]);
-
-  const { data: userData } = useQuery({
-    queryKey: 'user',
-    queryFn: getUser,
-  });
-  useEffect(() => {
-    dispatch(authActions.setUser(userData?.data.user));
-  }, [dispatch, userData]);
 
   useEffect(() => {
     dispatch(feedActions.resetFeed());

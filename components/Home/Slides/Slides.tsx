@@ -20,7 +20,7 @@ const Slides: FC = () => {
             sizes='(max-width: 700px) 50vw, 90vw'
             src={slide.img}
             alt={slide.quote}
-            className='object-cover -z-10 min-h-[33rem] md:min-h-[61rem] max-h-screen'
+            className='object-cover -z-10 min-h-[33rem] md:min-h-[61rem] max-h-screen max-w-screen w-full'
             {...(slide.id === 1 && { priority: true })}
           />
 

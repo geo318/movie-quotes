@@ -111,11 +111,34 @@ export const getMovies = async () => {
   return response;
 };
 
+export const getMovie = async (id?: string | string[]) => {
+  if (id) {
+    const response = await axiosInstance.get(`api/movie?id=${id}`);
+    return response;
+  }
+};
+
 export const addQuote = async (data: Quote) => {
   const response = await axiosInstance.post('api/add-quote', data, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
+  return response;
+};
+
+export const updateQuote = async (data: Quote, id?: string | string[]) => {
+  if (id) {
+    const response = await axiosInstance.post(`api/edit-quote?id=${id}`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response;
+  }
+};
+
+export const deleteQuote = async (id: number) => {
+  const response = await axiosInstance.delete(`api/delete-quote?id=${id}`);
   return response;
 };

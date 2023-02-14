@@ -23,7 +23,7 @@ const AdminLayout: FC<Props> = ({ children, className = '' }) => {
         </Layout>
         <Layout
           background={false}
-          className={`text-white flex-col min-h-screen mt-8 grid xl:grid-cols-4 grid-cols-5 ${
+          className={`mx-auto text-white max-w-[120rem] flex-col min-h-screen mt-8 grid xl:grid-cols-4 grid-cols-5 ${
             isMobile ? '' : 'gap-10'
           } xl:gap-0`}
         >

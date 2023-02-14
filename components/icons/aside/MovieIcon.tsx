@@ -1,4 +1,4 @@
-const MovieIcon= ({ active = false, className = '' }) => {
+const MovieIcon = ({ active = false, className = '' }) => {
   return (
     <svg
       width='32'

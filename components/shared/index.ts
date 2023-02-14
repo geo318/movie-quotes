@@ -12,3 +12,4 @@ export * from './Modal';
 export * from './Checkbox';
 export * from './Heading';
 export * from './ImageUpload';
+export * from './Img';

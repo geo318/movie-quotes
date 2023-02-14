@@ -16,6 +16,10 @@ const feedSlice = createSlice({
     resetFeed(state) {
       state.feedData = [];
     },
+    deleteQuote(state, action: { payload: number }) {
+      const index = state.feedData.findIndex((e) => (e.id = action.payload));
+      state.feedData.splice(index, 1);
+    },
     setQuery(state, action: { payload: string }) {
       state.query = action.payload;
     },

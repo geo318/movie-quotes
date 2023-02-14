@@ -1,5 +1,6 @@
 import { AxiosError } from 'axios';
 import { gmailAuth } from 'services';
+import { string } from 'zod';
 import { AddCommentProps, FormSubmitProps } from './formTypes';
 import { Props } from './propTypes';
 
@@ -39,6 +40,7 @@ export interface RootState {
   auth: InitialAuthState;
   feed: { feedData: FeedData[]; query: string };
   note: { notifications: Notification[] };
+  movie: { movies: Movie[]; query: string };
 }
 
 export type InitialError = {
@@ -62,11 +64,21 @@ export type Like = {
   like: number;
 };
 
+interface Translation {
+  en: string;
+  ka: string;
+}
+
 export type Movie = {
   id: number;
-  movie_title: { en: string; ka: string };
+  movie_title: Translation;
   movie_image: string;
   year: number;
+  quotes: FeedData[];
+  description: Translation;
+  director: Translation;
+  budget: string;
+  genres: Genre[];
 };
 
 export type ToggleLike = { quoteId: number; userId: number };
@@ -106,3 +118,8 @@ export interface InputProps extends Props {
   error?: string;
   rows?: number;
 }
+
+type Genre = {
+  id: number;
+  name: Translation;
+};

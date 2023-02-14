@@ -6,3 +6,4 @@ export * from './useAuthUser';
 export * from './useClickOutside';
 export * from './useLang';
 export * from './useScreenWidth';
+export * from './useGetUser';

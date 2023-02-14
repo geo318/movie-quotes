@@ -30,7 +30,7 @@ const Select: FC<SelectProps> = ({
           readOnly
         />
       ) : (
-        <div ref={select} className={className}>
+        <div ref={select} className={`cursor-pointer ${className}`}>
           {face}
         </div>
       )}

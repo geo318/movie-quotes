@@ -16,13 +16,13 @@ export const useModalContainer = ({
 
   const onClickOutside = useCallback((): void => {
     toggleDropdown((prevState) => !prevState);
-    closeRoute && router.push('');
+    closeRoute && router.back();
   }, [router, closeRoute]);
 
   useEsc(() => onClickEsc());
   const onClickEsc = () => {
     toggleDropdown(false);
-    closeRoute && router.push('');
+    closeRoute && router.back();
   };
 
   useEffect(() => modalControl && modalControl(), [modalControl, dropdown]);

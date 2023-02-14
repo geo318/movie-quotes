@@ -78,14 +78,14 @@ const Feed: FC<FeedProps> = ({ data, nextPage, loading }) => {
               </span>
               <span>{`(${item.movie.year})`}</span>
             </p>
-            <div className='relative lg:h-[31rem] max-w-full w-full aspect-9/5 rounded-[.625rem] overflow-hidden'>
+            <div className='relative lg:h-[31rem] max-w-full w-full aspect-9/5 rounded-ten overflow-hidden'>
               <Image
                 src={
                   item.quote_image.length > 200
                     ? item.quote_image
                     : getImage(item.quote_image)
                 }
-                alt={item.quote_title?.[lang]}
+                alt={item.quote_title?.[lang] || 'quote_image'}
                 fill
                 sizes='(max-width: 700px) 50vw, 90vw'
                 className='min-w-full h-full object-cover'
