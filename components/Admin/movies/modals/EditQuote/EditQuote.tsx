@@ -6,23 +6,19 @@ import {
   FormWrapper,
   ImageUpload,
   Img,
-  InputText,
-  Label,
   Modal,
   ModalLoadingOverlay,
-  Pen,
-  Photo,
-  Post,
   Textarea,
-  useMovieQuote,
 } from 'components';
-import { getImage, loadText } from 'helpers';
-import Link from 'next/link';
+import { getImage } from 'helpers';
 import { FC } from 'react';
-import { FeedData, Movie } from 'types';
+import { FeedData } from 'types';
 import { useEditQuote } from './useEditQuote';
 
-const EditQuote: FC<{ refetch: () => {} }> = ({ refetch }) => {
+const EditQuote: FC<{ refetch: () => {}; quotes: FeedData[] }> = ({
+  refetch,
+  quotes,
+}) => {
   const {
     handleQuoteDelete,
     isLoading,
@@ -34,7 +30,7 @@ const EditQuote: FC<{ refetch: () => {} }> = ({ refetch }) => {
     lang,
     t,
     quote,
-  } = useEditQuote(refetch);
+  } = useEditQuote({ refetch, quotes });
 
   return (
     <Modal
@@ -73,13 +69,13 @@ const EditQuote: FC<{ refetch: () => {} }> = ({ refetch }) => {
             name='quote_title_en'
             label='Eng'
             labelStyle='text-app-dark-gray'
-            value={quote?.quote_title.en}
+            value={quote?.quote_title?.en}
           ></Textarea>
           <Textarea
             name='quote_title_ka'
             label='ქარ'
             labelStyle='text-app-dark-gray'
-            value={quote?.quote_title.ka}
+            value={quote?.quote_title?.ka}
           />
           <div className='relative flex justify-center items-center'>
             <div className='absolute z-20 '>

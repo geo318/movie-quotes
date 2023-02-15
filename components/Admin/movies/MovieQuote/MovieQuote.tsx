@@ -25,8 +25,12 @@ const MovieQuote: FC<MovieQuoteProps> = ({
 
   return (
     <>
-      {isActive('view-quote') && <ViewQuote refetch={refetch} />}
-      {isActive('edit-quote') && <EditQuote refetch={refetch} />}
+      {isActive('view-quote') && (
+        <ViewQuote refetch={refetch} quotes={quotes} />
+      )}
+      {isActive('edit-quote') && (
+        <EditQuote refetch={refetch} quotes={quotes} />
+      )}
       {quotes?.map((q) => (
         <div key={q.id}>
           <div className='col-span-5 bg-app-black-dark py-6 px-8 rounded-ten relative'>

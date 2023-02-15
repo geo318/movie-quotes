@@ -1,11 +1,22 @@
-import { Avatar, Bin, Divider, Modal, Pen, Post } from 'components';
+import {
+  Avatar,
+  Bin,
+  Divider,
+  Modal,
+  Pen,
+  Post,
+  QuoteModalProps,
+} from 'components';
 import { getImage } from 'helpers';
 import Link from 'next/link';
 import { FC } from 'react';
 import { useViewQuote } from './useViewQuote';
 
-const ViewQuote: FC<{ refetch: () => {} }> = ({ refetch }) => {
-  const { handleQuoteDelete, user, t, quote } = useViewQuote(refetch);
+const ViewQuote: FC<QuoteModalProps> = ({ refetch, quotes }) => {
+  const { handleQuoteDelete, user, t, quote } = useViewQuote({
+    refetch,
+    quotes,
+  });
 
   return (
     <Modal

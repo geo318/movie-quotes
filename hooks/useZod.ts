@@ -14,14 +14,9 @@ export const useZod = () => {
       'Please, use Latin symbols only'
     );
 
-  const MAX_IMAGE_SIZE = 500000;
-  const ACCEPTED_MIME_TYPES = [
-    'image/jpeg',
-    'image/jpg',
-    'image/png',
-    'image/webp',
-  ];
-  const validateImage = z.instanceof(File);
+  const validateImage = z
+    .instanceof(File)
+    .refine((file) => file.name !== '' && file.size !== 0, 'File is required');
 
   const quoteSchemaObj = {
     quote_title_en: validateEnglish,

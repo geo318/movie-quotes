@@ -1,16 +1,13 @@
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addQuote, updateQuote } from 'services';
-import { z } from 'zod';
-import { FeedData, Quote, RootState } from 'types';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateQuote } from 'services';
+import { FeedData, RootState } from 'types';
 import { useAuthUser, useLang, useZod, useCloseModal } from 'hooks';
 import { authActions } from 'store';
-import { useSelector } from 'react-redux';
-import { useMovieQuote } from '../../MovieQuote';
+import { QuoteModalProps, useMovieQuote } from 'components';
 
-export const useEditQuote = (refetch: () => {}) => {
+export const useEditQuote = ({ refetch, quotes }: QuoteModalProps) => {
   const [image, setImage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { handleDelete } = useMovieQuote(refetch);
@@ -18,13 +15,10 @@ export const useEditQuote = (refetch: () => {}) => {
   const { editQuoteSchema: schema } = useZod();
   const { t } = useTranslation('shared');
   const { lang } = useLang();
-  const authUser = useAuthUser();
-  const router = useRouter();
+  const close = useCloseModal();
   const dispatch = useDispatch();
   const id = useSelector((state: RootState) => state.quote.quote.id);
-  const quote = useSelector((state: RootState) =>
-    state.feed.feedData.find((e) => e.id === id)
-  );
+  const quote = quotes.find((q) => q.id === id);
 
   const handleQuoteDelete = (id?: number) => {
     if (id) {
@@ -37,24 +31,23 @@ export const useEditQuote = (refetch: () => {}) => {
     setImage(img);
   };
 
-  const onSubmit = async (quoteData: Quote) => {
-    // console.log(quoteData);
+  const onSubmit = async (quoteData: Partial<FeedData>) => {
     if (!quote?.id) return;
     try {
       setIsLoading(true);
-
-      const res = await updateQuote(quoteData, quote.id);
-      router.back();
+      await updateQuote(quoteData, quote.id);
+      refetch();
+      close();
     } catch (e: any) {
       console.log(e);
-      // e.message === 'Request failed with status code 422'
-      //   ? dispatch(authActions.setFormError(e?.response?.data?.errors))
-      //   : dispatch(
-      //       authActions.setFormError({
-      //         name: 'quote_title_ka',
-      //         error: 'something wrong',
-      //       })
-      //     );
+      e.message === 'Request failed with status code 422'
+        ? dispatch(authActions.setFormError(e?.response?.data?.errors))
+        : dispatch(
+            authActions.setFormError({
+              name: 'quote_title_ka',
+              error: 'something wrong',
+            })
+          );
     }
     setIsLoading(false);
   };

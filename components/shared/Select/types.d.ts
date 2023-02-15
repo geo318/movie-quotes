@@ -9,4 +9,5 @@ export interface SelectProps extends Props {
   face?: React.ReactNode;
   closeOnClick?: boolean;
   closeRef?: RefObject<HTMLElement> | null;
+  onClick?: () => void;
 }

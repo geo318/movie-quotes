@@ -13,6 +13,7 @@ const Select: FC<SelectProps> = ({
   face,
   closeOnClick = true,
   closeRef,
+  onClick,
 }) => {
   const { select } = useSelect();
   return (
@@ -30,7 +31,11 @@ const Select: FC<SelectProps> = ({
           readOnly
         />
       ) : (
-        <div ref={select} className={`cursor-pointer ${className}`}>
+        <div
+          ref={select}
+          onClick={onClick}
+          className={`cursor-pointer ${className}`}
+        >
           {face}
         </div>
       )}

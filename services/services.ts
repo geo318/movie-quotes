@@ -6,6 +6,7 @@ import {
   ResetPasswordProps,
   AddCommentProps,
   Quote,
+  FeedData,
 } from 'types';
 
 export const fetchCSRFToken = async () => {
@@ -127,7 +128,7 @@ export const addQuote = async (data: Quote) => {
   return response;
 };
 
-export const updateQuote = async (data: Quote, id: number) => {
+export const updateQuote = async (data: Partial<FeedData>, id: number) => {
   const response = await axiosInstance.post(
     `api/edit-quote/${id}`,
     { ...data, ...{ _method: 'PATCH' } },

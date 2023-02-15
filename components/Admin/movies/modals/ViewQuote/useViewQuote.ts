@@ -5,16 +5,15 @@ import { useAuthUser } from 'hooks';
 import { useSelector } from 'react-redux';
 import { useMovieQuote } from '../../MovieQuote';
 import { useCloseModal } from 'hooks/useCloseModal';
+import { QuoteModalProps } from '../type';
 
-export const useViewQuote = (refetch: () => {}) => {
+export const useViewQuote = ({ refetch, quotes }: QuoteModalProps) => {
   const { handleDelete } = useMovieQuote(refetch);
   const handleClose = useCloseModal();
   const { t } = useTranslation('shared');
 
   const id = useSelector((state: RootState) => state.quote.quote.id);
-  const quote = useSelector((state: RootState) =>
-    state.feed.feedData.find((e) => e.id === id)
-  );
+  const quote = quotes.find((q) => q.id === id);
 
   const handleQuoteDelete = (id?: number) => {
     if (id) {

@@ -69,7 +69,7 @@ const Post: FC<Post> = ({ post, lastFeedElementRef, modal }) => {
               <div className='relative lg:h-[31rem] max-w-full w-full aspect-9/5 rounded-ten overflow-hidden'>
                 <Image
                   src={
-                    item.quote_image.length > 200
+                    item.quote_image?.length > 200
                       ? item.quote_image
                       : getImage(item.quote_image)
                   }
