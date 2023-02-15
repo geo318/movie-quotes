@@ -103,6 +103,7 @@ export interface InputProps extends Props {
   name: string;
   onChange?: React.FormEvent<HTMLInputElement>;
   label?: string;
+  labelStyle?: string;
   placeholder?: string;
   type?: string;
   value?: string | number;

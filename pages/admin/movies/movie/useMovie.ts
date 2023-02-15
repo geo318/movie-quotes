@@ -1,12 +1,8 @@
 import { useActiveQuery, useGetUser, useLang } from 'hooks';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 import { getMovie } from 'services';
-import { feedActions } from 'store';
-import { Movie, RootState } from 'types';
+import { Movie } from 'types';
 
 export const useMovie = () => {
   useGetUser();
@@ -15,7 +11,7 @@ export const useMovie = () => {
   const { id } = router.query;
   const { isActive } = useActiveQuery();
 
-  const { data, isLoading, refetch, isFetched } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['movie', id],
     queryFn: () => getMovie(id),
     retry: 1,

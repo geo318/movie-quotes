@@ -13,8 +13,6 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
-import { dehydrate, QueryClient } from 'react-query';
-import { checkUser, getUser } from 'services';
 import { Movie } from 'types';
 import { useMovies } from './useMovies';
 
@@ -88,32 +86,15 @@ const Movies = () => {
 };
 export default Movies;
 
-export const getServerSideProps: GetServerSideProps = async ({
-  locale,
-  req,
-  res,
-}) => {
-  res.setHeader('set-cookie', ['access-token=1']);
-  try {
-    const cookies = req.headers.cookie;
-    await checkUser({ cookies });
-  } catch {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery('user', getUser);
-
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const translation = await serverSideTranslations(locale as string, [
     'shared',
     'home',
   ]);
 
   return {
-    props: { dehydratedState: dehydrate(queryClient), ...translation },
+    props: {
+      ...translation,
+    },
   };
 };

@@ -5,7 +5,7 @@ import { Genre, Props } from 'types';
 const Label: FC<Props & { genres: Genre[] }> = ({ genres, className }) => {
   const { lang } = useLang();
   return (
-    <div className={`${className} flex gap-2 mt-4`}>
+    <div className={`${className} flex flex-wrap gap-2 mt-4`}>
       {genres?.map((g) => (
         <div
           key={g.id}

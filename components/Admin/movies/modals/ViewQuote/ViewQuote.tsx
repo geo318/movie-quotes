@@ -1,43 +1,35 @@
-import {
-  Avatar,
-  Button,
-  Divider,
-  FormWrapper,
-  ImageUpload,
-  Img,
-  InputText,
-  Label,
-  Modal,
-  ModalLoadingOverlay,
-  Post,
-  Textarea,
-} from 'components';
-import { getImage, loadText } from 'helpers';
+import { Avatar, Bin, Divider, Modal, Pen, Post } from 'components';
+import { getImage } from 'helpers';
+import Link from 'next/link';
 import { FC } from 'react';
-import { FeedData, Movie } from 'types';
 import { useViewQuote } from './useViewQuote';
 
 const ViewQuote: FC<{ refetch: () => {} }> = ({ refetch }) => {
-  const {
-    isLoading,
-    schema,
-    onSubmit,
-    user,
-    handleImage,
-    image,
-    lang,
-    t,
-    quote,
-  } = useViewQuote(refetch);
+  const { handleQuoteDelete, user, t, quote } = useViewQuote(refetch);
 
   return (
     <Modal
       z
       containerStyle='!items-start lg:mt-28 !lg:max-w-[60rem]'
-      className='lg:min-w-[60rem] !bg-app-black-dark !px-0 !py-10 !z-50'
+      className='lg:min-w-[60rem] !bg-app-black-dark !px-0 !py-6 !z-50'
     >
-      {isLoading && <ModalLoadingOverlay admin />}
-      <div className='px-8 mb-6'>
+      <div className='px-8 mb-6 relative'>
+        <div className='flex absolute'>
+          {quote?.movie_id && (
+            <Link href={`${quote?.movie_id}?edit-quote`}>
+              <div className='pr-6 py-1'>
+                <Pen />
+              </div>
+            </Link>
+          )}
+          <div className='w-0 border-r border-app-dark-gray my-1' />
+          <div
+            className='pl-6 py-1 cursor-pointer'
+            onClick={() => handleQuoteDelete(quote?.id)}
+          >
+            <Bin />
+          </div>
+        </div>
         <h3 className='lg:text-2xl text-xl text-center'>{t('addQuote')}</h3>
       </div>
       <Divider />

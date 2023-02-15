@@ -1,13 +1,9 @@
 import { loadText } from 'helpers';
 import { FC } from 'react';
-import { Movie } from 'types';
 import { Label } from 'components';
+import { DescProps } from './types';
 
-const Description: FC<{
-  movie: Movie;
-  isLoading: boolean;
-  lang: 'en' | 'ka';
-}> = ({ movie, isLoading, lang }) => {
+const Description: FC<DescProps> = ({ movie, lang }) => {
   return (
     <>
       <Label genres={movie?.genres} />

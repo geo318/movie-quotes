@@ -23,11 +23,12 @@ const ModalContainer: FC<ModalProps> = ({
     <>
       {children && dropdown ? (
         <div
-          className='z-10 pb-14'
+          className='z-10'
           ref={ref}
           onClick={() => closeOnClick && onClickOutside()}
         >
           {children}
+          <div className='h-12' />
         </div>
       ) : null}
     </>

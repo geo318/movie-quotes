@@ -9,6 +9,8 @@ const Textarea: FC<InputProps> = ({
   className = '',
   rows,
   inputStyle = '',
+  labelStyle = '',
+  value,
 }) => {
   const { register, errors } = useTextarea();
 
@@ -17,7 +19,7 @@ const Textarea: FC<InputProps> = ({
       {label && (
         <label
           htmlFor={name}
-          className={`absolute right-5 top-3 block lg:text-xl text-base`}
+          className={`${labelStyle} absolute right-5 top-3 block lg:text-xl text-base`}
         >
           {label}
         </label>
@@ -30,6 +32,7 @@ const Textarea: FC<InputProps> = ({
           id={name}
           {...register!(name)}
           rows={rows}
+          defaultValue={value || ''}
         />
         {errors?.[name] ? (
           <div className='mt-1'>

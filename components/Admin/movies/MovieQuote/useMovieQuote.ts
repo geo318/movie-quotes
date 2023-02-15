@@ -1,6 +1,8 @@
+import { useActiveQuery } from 'hooks';
 import { deleteQuote } from 'services';
 
 export const useMovieQuote = (refetch: () => void) => {
+  const { isActive } = useActiveQuery();
   const handleDelete = async (id?: number) => {
     try {
       if (id) {
@@ -13,5 +15,5 @@ export const useMovieQuote = (refetch: () => void) => {
       return e;
     }
   };
-  return { handleDelete };
+  return { handleDelete, isActive };
 };

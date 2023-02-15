@@ -127,15 +127,17 @@ export const addQuote = async (data: Quote) => {
   return response;
 };
 
-export const updateQuote = async (data: Quote, id?: string | string[]) => {
-  if (id) {
-    const response = await axiosInstance.post(`api/edit-quote?id=${id}`, data, {
+export const updateQuote = async (data: Quote, id: number) => {
+  const response = await axiosInstance.post(
+    `api/edit-quote/${id}`,
+    { ...data, ...{ _method: 'PATCH' } },
+    {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-    });
-    return response;
-  }
+    }
+  );
+  return response;
 };
 
 export const deleteQuote = async (id: number) => {

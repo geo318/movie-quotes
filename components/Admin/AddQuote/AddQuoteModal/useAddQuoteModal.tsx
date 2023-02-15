@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addQuote, getMovies } from 'services';
 import { z } from 'zod';
 import { Movie, Quote } from 'types';
-import { useAuthUser, useLang } from 'hooks';
+import { useAuthUser, useLang, useZod } from 'hooks';
 import {
   Arrow,
   Camera,
@@ -23,28 +23,12 @@ export const useAddQuoteModal = () => {
     queryFn: getMovies,
   });
   const [isLoading, setIsLoading] = useState(false);
+  const { addQuoteSchema: schema } = useZod();
   const { t } = useTranslation('shared');
   const { lang } = useLang();
   const authUser = useAuthUser();
   const router = useRouter();
   const dispatch = useDispatch();
-
-  const schema = z.object({
-    quote_title_en: z
-      .string()
-      .regex(
-        new RegExp('^[a-zA-Z0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
-        'Please, use Latin symbols only'
-      ),
-    quote_title_ka: z
-      .string()
-      .regex(
-        new RegExp('^[ა-ჰ0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
-        'Please, use Georgian symbols only'
-      ),
-    quote_image: z.any(),
-    movie_id: z.number().min(1, { message: 'Please, select a movie' }),
-  });
 
   const handleImage = (img: string) => {
     setImage(img);

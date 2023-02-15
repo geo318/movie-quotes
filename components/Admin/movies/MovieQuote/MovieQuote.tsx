@@ -6,9 +6,9 @@ import {
   Figure,
   QuoteMenu,
   ViewQuote,
+  EditQuote,
 } from 'components';
 import { getImage } from 'helpers';
-import { useActiveQuery } from 'hooks';
 import Image from 'next/image';
 import { FC } from 'react';
 import { MovieQuoteProps } from './type';
@@ -21,11 +21,12 @@ const MovieQuote: FC<MovieQuoteProps> = ({
   id,
   refetch,
 }) => {
-  const { handleDelete } = useMovieQuote(refetch);
-  const { isActive } = useActiveQuery();
+  const { handleDelete, isActive } = useMovieQuote(refetch);
+
   return (
     <>
       {isActive('view-quote') && <ViewQuote refetch={refetch} />}
+      {isActive('edit-quote') && <EditQuote refetch={refetch} />}
       {quotes?.map((q) => (
         <div key={q.id}>
           <div className='col-span-5 bg-app-black-dark py-6 px-8 rounded-ten relative'>

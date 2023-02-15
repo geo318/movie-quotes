@@ -20,8 +20,12 @@ const QuoteMenu: FC<QuoteMenuProps> = ({ quote, id, handleDelete }) => {
               </Link>
             </li>
             <li className='flex items-center gap-4 cursor-pointer'>
-              <Pen />
-              Edit
+              <Link href={`${id}?edit-quote`}>
+                <div className='flex items-center gap-4'>
+                  <Pen />
+                  Edit
+                </div>
+              </Link>
             </li>
             <li
               className='flex items-center gap-4 cursor-pointer'
