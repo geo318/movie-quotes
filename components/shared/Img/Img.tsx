@@ -7,6 +7,7 @@ const Img = ({
   size = '',
   className = '',
   image = '',
+  priority = false,
 }) => {
   return (
     <>
@@ -18,6 +19,7 @@ const Img = ({
             fill
             sizes={size ? size : '(max-width: 500px) 50vw, 90vw'}
             className='w-full object-cover'
+            priority={priority}
           />
         </div>
       )}

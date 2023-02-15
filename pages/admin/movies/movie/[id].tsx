@@ -2,12 +2,11 @@ import {
   AddButton,
   NewQuote,
   AdminLayout,
-  Bin,
   ModalLoadingOverlay,
   MovieQuote,
-  Pen,
   Plus,
   Description,
+  EditMovie,
 } from 'components';
 import { getImage, loadText } from 'helpers';
 import { GetServerSideProps } from 'next';
@@ -43,15 +42,7 @@ const Post = () => {
                 !isLoading
               )}
             </h1>
-            <div className='flex bg-[#24222F] bg-opacity-40 rounded-lg p-[0.125rem] ml-2'>
-              <div className='px-6 py-3'>
-                <Pen />
-              </div>
-              <div className='w-0 border-r border-app-dark-gray my-3' />
-              <div className='px-6 py-3'>
-                <Bin />
-              </div>
-            </div>
+            <EditMovie />
           </div>
           <div className='flex flex-col gap-5'>
             <Description movie={movie} lang={lang} isLoading={isLoading} />

@@ -6,6 +6,7 @@ import {
   ImageUpload,
   Modal,
   ModalLoadingOverlay,
+  MultipleSelect,
   Select,
   Textarea,
 } from 'components';
@@ -14,17 +15,8 @@ import { FC } from 'react';
 import { useNewMovie } from './useNewMovie';
 
 const NewMovie: FC = () => {
-  const {
-    isLoading,
-    schema,
-    onSubmit,
-    user,
-    select,
-    dropdown,
-    handleImage,
-    image,
-    t,
-  } = useNewMovie();
+  const { isLoading, schema, onSubmit, user, handleImage, image, t } =
+    useNewMovie();
 
   return (
     <Modal
@@ -50,23 +42,53 @@ const NewMovie: FC = () => {
           />
           <div className='flex flex-col gap-6'>
             <Textarea
-              name='quote_title_en'
-              placeholder='Create new quote'
+              name='movie_title_en'
+              placeholder='Movie name'
               label='Eng'
-              rows={2}
+              inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
+              labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
             />
             <Textarea
-              name='quote_title_ka'
-              placeholder='ახალი ციტატა'
+              name='movie_title_ka'
+              placeholder='ფილმის სახელი'
               label='ქარ'
-              rows={2}
+              inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
+              labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+            />
+            <MultipleSelect />
+            <Textarea
+              name='director_en'
+              placeholder='Director'
+              label='Eng'
+              inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
+              labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+            />
+            <Textarea
+              name='director_ka'
+              placeholder='რეჟისორი'
+              label='ქარ'
+              inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
+              labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+            />
+            <Textarea
+              name='description_en'
+              placeholder='Movie description'
+              label='Eng'
+              rows={3}
+              labelStyle='!text-xl text-app-dark-gray'
+            />
+            <Textarea
+              name='description_ka'
+              placeholder='ფილმის აღწერა'
+              label='ქარ'
+              rows={3}
+              labelStyle='!text-xl text-app-dark-gray'
             />
             <ImageUpload
-              name='quote_image'
+              name='movie_image'
               handleImage={handleImage}
               image={image}
             />
-            <Select face={select}>{dropdown}</Select>
           </div>
 
           <Button

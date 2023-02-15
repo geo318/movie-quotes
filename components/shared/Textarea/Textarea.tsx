@@ -7,7 +7,7 @@ const Textarea: FC<InputProps> = ({
   label,
   placeholder,
   className = '',
-  rows,
+  rows = 1,
   inputStyle = '',
   labelStyle = '',
   value,

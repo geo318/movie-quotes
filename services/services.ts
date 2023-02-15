@@ -145,3 +145,11 @@ export const deleteQuote = async (id: number) => {
   const response = await axiosInstance.delete(`api/delete-quote?id=${id}`);
   return response;
 };
+
+export const deleteMovie = async (id: number) => {
+  return await axiosInstance.delete(`api/delete-movie/${id}`);
+};
+
+export const getGenres = async () => {
+  return await axiosInstance.get(`api/genres/`);
+};
