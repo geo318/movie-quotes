@@ -34,11 +34,13 @@ export const useMultipleSelect = (data: Genre[], selected?: Genre[]) => {
     setLabelClicked(true);
   };
 
+  const genresList = collection?.length ? collection : data;
+
   return {
     labelClicked: labelClicked && !!genres?.length,
     handlePop,
     labelRef,
-    collection,
+    genresList,
     handleSelect,
     genres,
     lang,

@@ -23,6 +23,7 @@ export const useNewMovie = (id?: number, refetch?: () => void) => {
   const { lang } = useLang();
   const dispatch = useDispatch();
   const handleClose = useCloseModal();
+
   const onSubmit = async (movie: Movie) => {
     try {
       if (id) {

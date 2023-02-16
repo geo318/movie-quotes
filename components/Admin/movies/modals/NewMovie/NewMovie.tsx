@@ -12,7 +12,6 @@ import {
 } from 'components';
 import { getImage } from 'helpers';
 import { FC } from 'react';
-import { Movie } from 'types';
 import { useNewMovie } from './useNewMovie';
 
 const NewMovie: FC<NewMovieProps> = ({ movie, refetch }) => {

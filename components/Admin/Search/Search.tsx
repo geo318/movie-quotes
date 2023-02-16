@@ -1,7 +1,12 @@
 import { Magnifier } from 'components';
 import { useSearch } from './useSearch';
 
-const Search = ({ className = '', active = false, full = false }) => {
+const Search = ({
+  className = '',
+  active = false,
+  full = false,
+  movies = false,
+}) => {
   const { handleSearch, isMobile, t } = useSearch();
   return (
     <div className={`lg:float-right py-1 ${className}`}>
@@ -12,7 +17,13 @@ const Search = ({ className = '', active = false, full = false }) => {
             type='text'
             name='search'
             onChange={handleSearch}
-            placeholder={`${active ? t('enterToSearch') : t('searchBy')}`}
+            placeholder={`${
+              !movies
+                ? active
+                  ? t('enterToSearch')
+                  : t('searchBy')
+                : t('search')
+            }`}
             className={`outline-none bg-transparent border-0 text-[#CED4DA] text-xl px-0 py-1 ${
               active || isMobile || full ? 'w-full' : 'w-24'
             }`}

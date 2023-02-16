@@ -11,22 +11,31 @@ export const useMovies = () => {
   useGetUser();
   const { lang } = useLang();
 
+  const query = useSelector((state: RootState) => state.feed.query);
   const dispatch = useDispatch();
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
+    queryHash: query,
     queryKey: 'movies',
-    queryFn: getMovies,
+    queryFn: () => getMovies(query),
     retry: 0,
   });
 
   const movieData = useSelector((state: RootState) => state.movie.movies);
   const movies: Movie[] = data?.data;
   useEffect(() => {
-    if (!movieData?.length)
-      dispatch(movieActions.updateMovies(movies?.reverse()));
-  }, [dispatch, movies, movieData]);
+    if (query) refetch();
+  }, [query, refetch]);
 
   const [search, setSearch] = useState(false);
   const handleSearch = () => setSearch(true);
   const ref = useClickOutSide({ cb: () => setSearch(false) });
-  return { search, handleSearch, movieData, lang, isLoading, ref };
+  return {
+    movieData: movies?.slice().reverse(),
+    handleSearch,
+    isLoading,
+    refetch,
+    search,
+    lang,
+    ref,
+  };
 };

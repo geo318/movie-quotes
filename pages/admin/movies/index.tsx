@@ -18,7 +18,8 @@ import { Movie } from 'types';
 import { useMovies } from './useMovies';
 
 const Movies = () => {
-  const { lang, handleSearch, search, movieData, isLoading, ref } = useMovies();
+  const { lang, handleSearch, search, movieData, isLoading, ref, refetch } =
+    useMovies();
   return (
     <AdminLayout>
       <div className='flex items-center'>
@@ -38,10 +39,11 @@ const Movies = () => {
               search && 'shadow-bottom'
             }`}
             full
+            movies
           />
         </div>
         <AddButton text='add-movie' icon={<Pen />}>
-          <NewMovie />
+          <NewMovie refetch={refetch} />
         </AddButton>
       </div>
       <div className='grid grid-cols-3 gap-12 mt-14 pb-14'>
