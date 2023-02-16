@@ -58,7 +58,7 @@ export const useZod = () => {
       }),
   };
   const addMovieSchema = z.object(movieSchemaObj);
-  const editMovieSchema = addQuoteSchema.partial();
+  const editMovieSchema = addMovieSchema.partial();
 
   return { editQuoteSchema, addQuoteSchema, addMovieSchema, editMovieSchema };
 };

@@ -1,3 +1,3 @@
 export const loadText = (text: string | undefined, isLoading?: boolean) => {
-  return !isLoading || text ? text : '...';
+  return !isLoading || !text?.includes('undefined') ? text : '...';
 };

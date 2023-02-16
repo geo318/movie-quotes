@@ -1,14 +1,15 @@
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addMovie, getGenres } from 'services';
+import { addMovie, getGenres, updateMovie } from 'services';
 import { Movie } from 'types';
 import { useAuthUser, useCloseModal, useLang, useZod } from 'hooks';
 import { useQuery } from 'react-query';
 import { authActions } from 'store';
 
-export const useNewMovie = () => {
-  const { addMovieSchema: schema } = useZod();
+export const useNewMovie = (id?: number, refetch?: () => void) => {
+  const { addMovieSchema, editMovieSchema } = useZod();
+  const schema = id ? editMovieSchema : addMovieSchema;
   const [image, setImage] = useState('');
   const handleImage = (img: string) => {
     setImage(img);
@@ -24,7 +25,12 @@ export const useNewMovie = () => {
   const handleClose = useCloseModal();
   const onSubmit = async (movie: Movie) => {
     try {
-      await addMovie(movie);
+      if (id) {
+        await updateMovie(movie, id);
+      } else {
+        await addMovie(movie);
+      }
+      refetch && refetch();
       handleClose();
     } catch (e: any) {
       e.message === 'Request failed with status code 422'

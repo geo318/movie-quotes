@@ -28,6 +28,9 @@ const movieSlice = createSlice({
       }
       state.movies = action.payload;
     },
+    deleteMovie(state, action: { payload: number }) {
+      state.movies = state.movies.filter((m) => m.id !== action.payload);
+    },
   },
 });
 

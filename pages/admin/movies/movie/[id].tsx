@@ -6,7 +6,8 @@ import {
   MovieQuote,
   Plus,
   Description,
-  EditMovie,
+  EditMovieLabel,
+  NewMovie,
 } from 'components';
 import { getImage, loadText } from 'helpers';
 import { GetServerSideProps } from 'next';
@@ -16,9 +17,10 @@ import { checkUser } from 'services';
 import { useMovie } from './useMovie';
 
 const Post = () => {
-  const { movie, isLoading, lang, id, refetch } = useMovie();
+  const { movie, isLoading, lang, id, refetch, isActive } = useMovie();
   return (
     <AdminLayout>
+      {isActive('edit-movie') && <NewMovie movie={movie} refetch={refetch} />}
       <h2 className='text-2xl'>Movie description</h2>
       <div className='grid grid-cols-9 mt-8 gap-5'>
         <div className='col-span-5 relative max-w-full w-full aspect-9/5 rounded-ten overflow-hidden'>
@@ -37,13 +39,13 @@ const Post = () => {
         </div>
         <div className='col-span-4'>
           <div className='flex items-center'>
-            <h1 className='text-2xl text-app-yellow line-clamp-1'>
+            <h1 className='text-2xl text-app-yellow line-clamp-1 mr-auto'>
               {loadText(
                 `${movie?.movie_title[lang]} (${movie?.year})`,
                 !isLoading
               )}
             </h1>
-            <EditMovie />
+            <EditMovieLabel />
           </div>
           <div className='flex flex-col gap-5'>
             <Description movie={movie} lang={lang} isLoading={isLoading} />

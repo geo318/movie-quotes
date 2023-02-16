@@ -1,9 +1,9 @@
 import { Bin, Pen } from 'components';
 import Link from 'next/link';
-import { useEditMovie } from './useEditMovie';
+import { useEditMovieLabel } from './useEditMovieLabel';
 
 const EditMovie = () => {
-  const { path, handleDelete } = useEditMovie();
+  const { path, handleDelete } = useEditMovieLabel();
   return (
     <div className='flex bg-[#24222F] bg-opacity-40 rounded-lg p-[0.125rem] ml-2'>
       <Link href={`${path}?edit-movie`}>

@@ -70,7 +70,7 @@ const EditQuote: FC<{ refetch: () => {}; quotes: FeedData[] }> = ({
             label='Eng'
             labelStyle='text-app-dark-gray'
             value={quote?.quote_title?.en}
-          ></Textarea>
+          />
           <Textarea
             name='quote_title_ka'
             label='ქარ'

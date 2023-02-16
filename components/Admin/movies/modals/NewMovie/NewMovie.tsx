@@ -4,6 +4,7 @@ import {
   Divider,
   FormWrapper,
   ImageUpload,
+  Img,
   Modal,
   ModalLoadingOverlay,
   MultipleSelect,
@@ -11,11 +12,12 @@ import {
 } from 'components';
 import { getImage } from 'helpers';
 import { FC } from 'react';
+import { Movie } from 'types';
 import { useNewMovie } from './useNewMovie';
 
-const NewMovie: FC = () => {
+const NewMovie: FC<NewMovieProps> = ({ movie, refetch }) => {
   const { isLoading, schema, onSubmit, user, handleImage, image, genres, t } =
-    useNewMovie();
+    useNewMovie(movie?.id, refetch);
 
   return (
     <Modal
@@ -46,6 +48,7 @@ const NewMovie: FC = () => {
               label='Eng'
               inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
               labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+              value={movie?.movie_title?.en}
             />
             <Textarea
               name='movie_title_ka'
@@ -53,15 +56,17 @@ const NewMovie: FC = () => {
               label='ქარ'
               inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
               labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+              value={movie?.movie_title?.ka}
             />
 
-            <MultipleSelect genres={genres} />
+            <MultipleSelect genres={genres} selected={movie?.genres} />
             <Textarea
               name='director_en'
               placeholder='Director'
               label='Eng'
               inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
               labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+              value={movie?.director.en}
             />
             <Textarea
               name='director_ka'
@@ -69,6 +74,7 @@ const NewMovie: FC = () => {
               label='ქარ'
               inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
               labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+              value={movie?.director.ka}
             />
             <Textarea
               name='description_en'
@@ -76,6 +82,7 @@ const NewMovie: FC = () => {
               label='Eng'
               rows={3}
               labelStyle='!text-xl text-app-dark-gray'
+              value={movie?.description.en}
             />
             <Textarea
               name='description_ka'
@@ -83,24 +90,47 @@ const NewMovie: FC = () => {
               label='ქარ'
               rows={3}
               labelStyle='!text-xl text-app-dark-gray'
+              value={movie?.description.ka}
             />
             <Textarea
               name='year'
               placeholder='წელი'
               inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
               labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+              value={movie?.year}
             />
             <Textarea
               name='budget'
               placeholder='ბიუჯეტი'
               inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
               labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+              value={movie?.budget}
             />
-            <ImageUpload
-              name='movie_image'
-              handleImage={handleImage}
-              image={image}
-            />
+            <>
+              {!movie ? (
+                <ImageUpload
+                  name='movie_image'
+                  handleImage={handleImage}
+                  image={image}
+                />
+              ) : (
+                <div className='relative flex justify-center items-center'>
+                  <div className='absolute z-20 '>
+                    <ImageUpload
+                      reUpload
+                      handleImage={handleImage}
+                      name='movie_image'
+                    />
+                  </div>
+
+                  <Img
+                    path={movie?.movie_image}
+                    className='w-full aspect-9/5 rounded-ten'
+                    image={image}
+                  />
+                </div>
+              )}
+            </>
           </div>
 
           <Button
