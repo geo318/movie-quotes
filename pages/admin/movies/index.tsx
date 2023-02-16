@@ -53,11 +53,9 @@ const Movies = () => {
                   <div className='relative max-w-full w-full aspect-6/5 rounded-ten overflow-hidden'>
                     <Image
                       src={
-                        m.movie_image
-                          ? m.movie_image.length > 200
-                            ? m.movie_image
-                            : getImage(m.movie_image)
-                          : getImage(`/storage/quotes/1ddtvH.jpg?n=${i}`)
+                        m.movie_image.length > 200
+                          ? m.movie_image
+                          : getImage(m.movie_image)
                       }
                       alt={m.movie_title?.[lang] || 'movie_image'}
                       fill
@@ -109,6 +107,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return {
     props: {
+      destination: '/admin/movies',
       ...translation,
     },
   };

@@ -7,6 +7,7 @@ import {
   AddCommentProps,
   Quote,
   FeedData,
+  Movie,
 } from 'types';
 
 export const fetchCSRFToken = async () => {
@@ -143,6 +144,28 @@ export const updateQuote = async (data: Partial<FeedData>, id: number) => {
 
 export const deleteQuote = async (id: number) => {
   const response = await axiosInstance.delete(`api/delete-quote?id=${id}`);
+  return response;
+};
+
+export const addMovie = async (data: Movie) => {
+  const response = await axiosInstance.post('api/add-movie', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return response;
+};
+
+export const updateMovie = async (data: Partial<Movie>, id: number) => {
+  const response = await axiosInstance.post(
+    `api/edit-movie/${id}`,
+    { ...data, ...{ _method: 'PATCH' } },
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
   return response;
 };
 

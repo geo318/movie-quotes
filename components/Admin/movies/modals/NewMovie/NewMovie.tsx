@@ -7,7 +7,6 @@ import {
   Modal,
   ModalLoadingOverlay,
   MultipleSelect,
-  Select,
   Textarea,
 } from 'components';
 import { getImage } from 'helpers';
@@ -15,7 +14,7 @@ import { FC } from 'react';
 import { useNewMovie } from './useNewMovie';
 
 const NewMovie: FC = () => {
-  const { isLoading, schema, onSubmit, user, handleImage, image, t } =
+  const { isLoading, schema, onSubmit, user, handleImage, image, genres, t } =
     useNewMovie();
 
   return (
@@ -55,7 +54,8 @@ const NewMovie: FC = () => {
               inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
               labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
             />
-            <MultipleSelect />
+
+            <MultipleSelect genres={genres} />
             <Textarea
               name='director_en'
               placeholder='Director'
@@ -83,6 +83,18 @@ const NewMovie: FC = () => {
               label='ქარ'
               rows={3}
               labelStyle='!text-xl text-app-dark-gray'
+            />
+            <Textarea
+              name='year'
+              placeholder='წელი'
+              inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
+              labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
+            />
+            <Textarea
+              name='budget'
+              placeholder='ბიუჯეტი'
+              inputStyle='min-h-[3rem] !text-xl pl-4 resize-none'
+              labelStyle='!text-xl text-app-dark-gray top-[.6rem]'
             />
             <ImageUpload
               name='movie_image'

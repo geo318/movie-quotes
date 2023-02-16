@@ -21,7 +21,8 @@ export const useMovies = () => {
   const movieData = useSelector((state: RootState) => state.movie.movies);
   const movies: Movie[] = data?.data;
   useEffect(() => {
-    if (!movieData?.length) dispatch(movieActions.updateMovies(movies));
+    if (!movieData?.length)
+      dispatch(movieActions.updateMovies(movies?.reverse()));
   }, [dispatch, movies, movieData]);
 
   const [search, setSearch] = useState(false);
