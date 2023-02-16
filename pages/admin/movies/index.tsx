@@ -13,6 +13,7 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
+import { checkUser } from 'services';
 import { Movie } from 'types';
 import { useMovies } from './useMovies';
 
@@ -86,7 +87,21 @@ const Movies = () => {
 };
 export default Movies;
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  locale,
+  req,
+}) => {
+  try {
+    const cookies = req.headers.cookie;
+    await checkUser({ cookies });
+  } catch {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
   const translation = await serverSideTranslations(locale as string, [
     'shared',
     'home',

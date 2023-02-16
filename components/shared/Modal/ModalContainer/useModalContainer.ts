@@ -9,6 +9,7 @@ export const useModalContainer = ({
   modalOpenOnload,
   modalControl,
   closeRoute,
+  intercept,
 }: ModalProps) => {
   const [dropdown, toggleDropdown] = useState(modalOpenOnload);
   const ref = useRef<HTMLDivElement>(null);
@@ -29,6 +30,7 @@ export const useModalContainer = ({
 
   const handleClickOutside = useCallback(
     (e: MouseEvent | TouchEvent): void => {
+      if (intercept) return;
       if (
         (ref.current && !ref.current.contains(e.target as Node)) ||
         (selectRef && selectRef.current!.contains(e.target as Node)) ||
@@ -36,7 +38,7 @@ export const useModalContainer = ({
       )
         onClickOutside();
     },
-    [onClickOutside, selectRef, closeRef]
+    [onClickOutside, selectRef, closeRef, intercept]
   );
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);

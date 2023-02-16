@@ -12,6 +12,7 @@ import { getImage, loadText } from 'helpers';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
+import { checkUser } from 'services';
 import { useMovie } from './useMovie';
 
 const Post = () => {
@@ -78,8 +79,19 @@ export default Post;
 export const getServerSideProps: GetServerSideProps = async ({
   locale,
   req,
-  res,
 }) => {
+  try {
+    const cookies = req.headers.cookie;
+    await checkUser({ cookies });
+  } catch {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
   const translation = await serverSideTranslations(locale as string, [
     'shared',
     'home',

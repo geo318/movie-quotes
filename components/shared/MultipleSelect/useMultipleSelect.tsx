@@ -5,7 +5,7 @@ import {
   Label,
   ModalLoadingOverlay,
 } from 'components';
-import { useLang } from 'hooks';
+import { useClickOutSide, useLang } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
@@ -20,14 +20,25 @@ export const useMultipleSelect = () => {
     queryFn: getGenres,
     retry: 1,
   });
+  const [labelClicked, setLabelClicked] = useState(false);
+  const labelRef = useClickOutSide({
+    cb: () => setLabelClicked(false),
+  });
+
+  const genreList: Genre[] = data?.data;
+  const [collection, setCollection] = useState<Genre[]>(genreList);
   const [genres, setGenres] = useState<Genre[]>([]);
 
-  const handleGenres = (genre: Genre) =>
+  const handleSelect = (genre: Genre, id: number) => {
+    setCollection((prevState) => prevState.filter((g) => g.id !== id));
     setGenres((prevState) => [...prevState, genre]);
-  const handlePop = (id: number) =>
-    setGenres((prevState) => prevState.filter((e) => e.id !== id));
+  };
 
-  const collection = data?.data;
+  const handlePop = (genre: Genre, id: number) => {
+    setCollection((prevState: Genre[]) => [genre, ...prevState]);
+    setGenres((prevState) => prevState.filter((e) => e.id !== id));
+    setLabelClicked(true);
+  };
 
   const select = (
     <div>
@@ -37,6 +48,7 @@ export const useMultipleSelect = () => {
             <Label
               genres={genres}
               cb={handlePop}
+              labelRef={labelRef}
               className='mt-0 rounded-none'
               modal
             />
@@ -65,7 +77,7 @@ export const useMultipleSelect = () => {
             collection.map((g: Genre) => (
               <li
                 key={g.id}
-                onClick={() => handleGenres(g)}
+                onClick={() => handleSelect(g, g.id)}
                 className='cursor-pointer hover:bg-white hover:bg-opacity-10'
               >
                 <p className='p-4'>{g.name[lang]}</p>
@@ -79,5 +91,5 @@ export const useMultipleSelect = () => {
       </div>
     </div>
   );
-  return { select, dropdown };
+  return { labelClicked: labelClicked && genres.length, select, dropdown };
 };

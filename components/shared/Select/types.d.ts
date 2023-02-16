@@ -10,4 +10,5 @@ export interface SelectProps extends Props {
   closeOnClick?: boolean;
   closeRef?: RefObject<HTMLElement> | null;
   onClick?: () => void;
+  intercept?: boolean;
 }
