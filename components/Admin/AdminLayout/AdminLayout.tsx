@@ -1,4 +1,4 @@
-import { Aside, Auth, Layout, Navbar } from 'components';
+import { Aside, Layout, Navbar } from 'components';
 import Head from 'next/head';
 import { FC } from 'react';
 import { Props } from 'types';
@@ -30,7 +30,7 @@ const AdminLayout: FC<Props & { movies?: boolean }> = ({
       </Head>
       <Layout padding={false} className={`h-full flex flex-col ${className}`}>
         <Layout background={false} padding={false} admin>
-          <Navbar admin={movies} movies />
+          <Navbar admin movies={movies} />
         </Layout>
         <Layout
           background={false}

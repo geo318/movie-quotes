@@ -26,9 +26,9 @@ const Navbar: FC<NavbarProps> = ({
           : ''
       }`}
     >
-      {children}
+      {!admin && children}
       <Layout background={false} className='flex-row w-full items-center'>
-        {isMobile ? (
+        {admin && isMobile ? (
           <BurgerMenu />
         ) : (
           <div className='uppercase text-app-yellow text-base leading-6 font-medium'>
@@ -38,29 +38,33 @@ const Navbar: FC<NavbarProps> = ({
         <nav className='flex ml-auto sm:gap-5 items-center relative'>
           {admin && isMobile && (
             <>
-              <SearchMenu movies />
+              <SearchMenu movies={movies} />
               <div className='w-5 sm:hidden' />
             </>
           )}
           {admin && <Notification />}
-          <Lang className='sm:block hidden' />
-          {admin ? (
-            <div className='sm:block hidden'>
-              <Logout />
-            </div>
-          ) : (
+          {admin && !isMobile ? (
             <>
-              <Link href='/?register' as='/register'>
-                <Button
-                  text={t('signUp')}
-                  style='buttonRed'
-                  className='text-base hidden lg:block'
-                />
-              </Link>
-              <Link href='/?login' as='/login'>
-                <Button text={t('login')} className='text-base px-6' />
-              </Link>
+              <Lang className='sm:block hidden' />
+              <div className='sm:block hidden'>
+                <Logout />
+              </div>
             </>
+          ) : (
+            !admin && (
+              <>
+                <Link href='/?register' as='/register'>
+                  <Button
+                    text={t('signUp')}
+                    style='buttonRed'
+                    className='text-base hidden lg:block'
+                  />
+                </Link>
+                <Link href='/?login' as='/login'>
+                  <Button text={t('login')} className='text-base px-6' />
+                </Link>
+              </>
+            )
           )}
         </nav>
       </Layout>
