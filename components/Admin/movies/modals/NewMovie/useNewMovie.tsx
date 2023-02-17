@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMovie, getGenres, updateMovie } from 'services';
 import { Movie } from 'types';
-import { useAuthUser, useCloseModal, useLang, useZod } from 'hooks';
+import { useAuthUser, useCloseModal, useZod } from 'hooks';
 import { useQuery } from 'react-query';
 import { authActions } from 'store';
 
@@ -20,7 +20,6 @@ export const useNewMovie = (id?: number, refetch?: () => void) => {
     retry: 1,
   });
   const { t } = useTranslation('shared');
-  const { lang } = useLang();
   const dispatch = useDispatch();
   const handleClose = useCloseModal();
 
@@ -47,13 +46,13 @@ export const useNewMovie = (id?: number, refetch?: () => void) => {
 
   const user = useAuthUser();
   return {
-    isLoading,
-    schema,
-    onSubmit,
-    user,
-    handleImage,
-    image,
     genres: data?.data,
+    handleImage,
+    isLoading,
+    onSubmit,
+    schema,
+    image,
+    user,
     t,
   };
 };

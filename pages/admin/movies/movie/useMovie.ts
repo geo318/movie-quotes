@@ -1,4 +1,5 @@
 import { useActiveQuery, useGetUser, useLang } from 'hooks';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { getMovie } from 'services';
@@ -16,6 +17,6 @@ export const useMovie = () => {
     retry: 1,
   });
   const movie: Movie = data?.data;
-
-  return { lang, movie, isLoading, id, refetch, isActive };
+  const { t } = useTranslation('shared');
+  return { lang, movie, isLoading, id, refetch, isActive, t };
 };

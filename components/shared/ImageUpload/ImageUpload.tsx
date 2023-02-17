@@ -34,7 +34,7 @@ const ImageUpload: FC<ImageUpProps> = ({
           <div className='w-5'>
             <Photo />
           </div>
-          <p>Change photo</p>
+          <p>{t('changePhoto')}</p>
           <input
             id={name}
             type='file'

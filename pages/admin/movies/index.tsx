@@ -24,8 +24,8 @@ const Movies = () => {
     <AdminLayout movies>
       <div className='flex items-center'>
         <h1 className='sm:text-2xl text-xl sm:line-clamp-none line-clamp-1'>
-          My list of movies
-          <span className='ml-1 xl:inline-flex hidden'>{`(Total ${
+          {t('myMovieList')}
+          <span className='ml-1 xl:inline-flex hidden'>{`(${t('total')} ${
             movieData?.length ? movieData?.length : ''
           })`}</span>
         </h1>
@@ -44,7 +44,7 @@ const Movies = () => {
             movies
           />
         </div>
-        <AddButton text={t('add-movie')} icon={<Pen />}>
+        <AddButton text={t('addMovie')} icon={<Pen />}>
           <NewMovie refetch={refetch} />
         </AddButton>
       </div>

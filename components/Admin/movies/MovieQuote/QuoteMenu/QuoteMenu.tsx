@@ -5,7 +5,7 @@ import { QuoteMenuProps } from './type';
 import { useQuoteMenu } from './useQuoteMenu';
 
 const QuoteMenu: FC<QuoteMenuProps> = ({ quote, id, handleDelete }) => {
-  const { setQuoteHandler } = useQuoteMenu();
+  const { setQuoteHandler, t } = useQuoteMenu();
   return (
     <>
       <Select face={<Dots />}>
@@ -18,7 +18,7 @@ const QuoteMenu: FC<QuoteMenuProps> = ({ quote, id, handleDelete }) => {
               <Link href={`${id}?view-quote`}>
                 <div className='flex items-center gap-4'>
                   <Eye big />
-                  View Quote
+                  {t('viewQuote')}
                 </div>
               </Link>
             </li>
@@ -26,7 +26,7 @@ const QuoteMenu: FC<QuoteMenuProps> = ({ quote, id, handleDelete }) => {
               <Link href={`${id}?edit-quote`}>
                 <div className='flex items-center gap-4'>
                   <Pen />
-                  Edit
+                  {t('edit')}
                 </div>
               </Link>
             </li>
@@ -35,7 +35,7 @@ const QuoteMenu: FC<QuoteMenuProps> = ({ quote, id, handleDelete }) => {
               onClick={() => handleDelete(quote.id)}
             >
               <Bin />
-              Delete
+              {t('delete')}
             </li>
           </ul>
         </div>

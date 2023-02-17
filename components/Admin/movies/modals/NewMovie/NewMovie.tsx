@@ -27,7 +27,9 @@ const NewMovie: FC<NewMovieProps> = ({ movie, refetch }) => {
       <FormWrapper schema={schema} onSubmit={onSubmit} fill>
         {isLoading && <ModalLoadingOverlay admin />}
         <div className='px-8 mb-6'>
-          <h3 className='lg:text-2xl text-xl text-center'>{t('writeQuote')}</h3>
+          <h3 className='lg:text-2xl text-xl text-center capitalize'>
+            {t(`${movie?.id ? 'editMovie' : 'addMovie'}`)}
+          </h3>
         </div>
         <Divider />
 
@@ -133,7 +135,7 @@ const NewMovie: FC<NewMovieProps> = ({ movie, refetch }) => {
           </div>
 
           <Button
-            text={t('post') as string}
+            text={t(`${movie?.id ? 'editMovie' : 'addMovie'}`) as string}
             style='buttonRed'
             className='w-full mt-10 !text-xl'
             disabled={isLoading}

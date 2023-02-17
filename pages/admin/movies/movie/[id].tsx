@@ -18,11 +18,11 @@ import { checkUser } from 'services';
 import { useMovie } from './useMovie';
 
 const Post = () => {
-  const { movie, isLoading, lang, id, refetch, isActive } = useMovie();
+  const { movie, isLoading, lang, id, refetch, isActive, t } = useMovie();
   return (
     <AdminLayout movies={false}>
       {isActive('edit-movie') && <NewMovie movie={movie} refetch={refetch} />}
-      <h2 className='text-2xl'>Movie description</h2>
+      <h2 className='text-2xl'>{t('movieDes')}</h2>
       <div className='grid xl:grid-cols-9 gird-cols-5 mt-8 gap-5'>
         <div className='col-span-5 relative max-w-full w-full aspect-9/5 rounded-ten overflow-hidden'>
           {!isLoading ? (
@@ -55,16 +55,16 @@ const Post = () => {
         <div className='col-span-5 xl:mt-6 mt-5'>
           <div className='flex gap-0 xl:gap-4 items-center'>
             <div className='text-2xl hidden xl:flex'>
-              Quotes {`(total ${movie?.quotes.length})`}
+              {`${t('quotes')} (${t('total')} ${movie?.quotes.length})`}
             </div>
             <div className='w-0 border-r border-app-dark-gray my-1' />
-            <AddButton text='Add quote' icon={<Plus />} prop={id}>
+            <AddButton text={t('addQuote')} icon={<Plus />} prop={id}>
               <NewQuote refetch={refetch} movie={movie} />
             </AddButton>
           </div>
           <Divider className='my-10 flex xl:hidden' />
           <div className='text-2xl xl:hidden'>
-            All Quotes
+            {t('allQuotes')}
             <p className='text-base'>{`(total ${movie?.quotes.length})`}</p>
           </div>
           <div className='xl:mt-14 mt-9 pb-36 gap-10 flex flex-col xl:mx-0 -mx-[2.1875rem]'>

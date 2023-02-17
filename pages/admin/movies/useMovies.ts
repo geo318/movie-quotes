@@ -10,7 +10,7 @@ import { Movie, RootState } from 'types';
 export const useMovies = () => {
   useGetUser();
   const { lang } = useLang();
-  const { t } = useTranslation();
+  const { t } = useTranslation('shared');
 
   const query = useSelector((state: RootState) => state.feed.query);
   const dispatch = useDispatch();

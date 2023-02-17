@@ -63,7 +63,7 @@ const MovieQuote: FC<MovieQuoteProps> = ({
               <Figure count={q.likes.length}>
                 <HeartIcon className='w-6 xl:w-auto' />
               </Figure>
-              <div className='ml-auto'>
+              <div className='ml-auto xl:hidden'>
                 <QuoteMenu quote={q} id={id} handleDelete={handleDelete} />
               </div>
             </div>

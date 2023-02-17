@@ -33,7 +33,7 @@ const MultipleSelect: FC<{
                   modal
                 />
               ) : (
-                <span>აირჩიე ჟანრი</span>
+                <span>{t('chooseGenre')}</span>
               )}
             </div>
             <Arrow className='ml-auto' />
