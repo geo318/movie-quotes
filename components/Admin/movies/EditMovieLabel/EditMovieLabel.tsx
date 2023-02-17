@@ -5,7 +5,7 @@ import { useEditMovieLabel } from './useEditMovieLabel';
 const EditMovie = () => {
   const { path, handleDelete } = useEditMovieLabel();
   return (
-    <div className='flex bg-[#24222F] bg-opacity-40 rounded-lg p-[0.125rem] ml-2'>
+    <div className='flex bg-[#24222F] bg-opacity-40 rounded-lg p-[0.125rem] lg:ml-2 mr-auto lg:mr-0'>
       <Link href={`${path}?edit-movie`}>
         <div className='px-6 py-3'>
           <Pen />

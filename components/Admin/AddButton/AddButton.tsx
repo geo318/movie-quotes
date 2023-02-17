@@ -23,7 +23,7 @@ const AddButton: FC<AddButton> = ({
           <Button
             text={text}
             style='buttonRed'
-            className='flex justify-center items-center gap-2 text-xl'
+            className='flex justify-center items-center gap-2 text-xl !px-2 lg:!px-4 !min-w-[8rem]'
           >
             {icon && icon}
           </Button>

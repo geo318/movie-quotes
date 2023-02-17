@@ -5,7 +5,7 @@ export const useCloseModal = () => {
   const baseUrl = router.asPath.split('?').shift();
 
   const handleClose = () => {
-    router.push(baseUrl || '');
+    baseUrl?.includes('admin') ? router.push(baseUrl || '') : router.push('');
   };
   return handleClose;
 };

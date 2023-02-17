@@ -12,7 +12,11 @@ import { FC } from 'react';
 import { NavbarProps } from 'types';
 import { useNavbar } from './useNavbar';
 
-const Navbar: FC<NavbarProps> = ({ children, admin = false }) => {
+const Navbar: FC<NavbarProps> = ({
+  children,
+  admin = false,
+  movies = false,
+}) => {
   const { t, isMobile } = useNavbar();
   return (
     <div
@@ -34,7 +38,7 @@ const Navbar: FC<NavbarProps> = ({ children, admin = false }) => {
         <nav className='flex ml-auto sm:gap-5 items-center relative'>
           {admin && isMobile && (
             <>
-              <SearchMenu />
+              <SearchMenu movies />
               <div className='w-5 sm:hidden' />
             </>
           )}

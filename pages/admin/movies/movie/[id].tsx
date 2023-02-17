@@ -8,6 +8,7 @@ import {
   Description,
   EditMovieLabel,
   NewMovie,
+  Divider,
 } from 'components';
 import { getImage, loadText } from 'helpers';
 import { GetServerSideProps } from 'next';
@@ -19,10 +20,10 @@ import { useMovie } from './useMovie';
 const Post = () => {
   const { movie, isLoading, lang, id, refetch, isActive } = useMovie();
   return (
-    <AdminLayout>
+    <AdminLayout movies={false}>
       {isActive('edit-movie') && <NewMovie movie={movie} refetch={refetch} />}
       <h2 className='text-2xl'>Movie description</h2>
-      <div className='grid grid-cols-9 mt-8 gap-5'>
+      <div className='grid xl:grid-cols-9 gird-cols-5 mt-8 gap-5'>
         <div className='col-span-5 relative max-w-full w-full aspect-9/5 rounded-ten overflow-hidden'>
           {!isLoading ? (
             <Image
@@ -37,8 +38,8 @@ const Post = () => {
             <ModalLoadingOverlay />
           )}
         </div>
-        <div className='col-span-4'>
-          <div className='flex items-center'>
+        <div className='xl:col-span-4 col-span-5'>
+          <div className='flex flex-col lg:flex-row justify-center gap-5 xl:items-center'>
             <h1 className='text-2xl text-app-yellow line-clamp-1 mr-auto'>
               {loadText(
                 `${movie?.movie_title[lang]} (${movie?.year})`,
@@ -51,9 +52,9 @@ const Post = () => {
             <Description movie={movie} lang={lang} isLoading={isLoading} />
           </div>
         </div>
-        <div className='col-span-5 mt-6'>
-          <div className='flex gap-4 items-center'>
-            <div className='text-2xl'>
+        <div className='col-span-5 xl:mt-6 mt-5'>
+          <div className='flex gap-0 xl:gap-4 items-center'>
+            <div className='text-2xl hidden xl:flex'>
               Quotes {`(total ${movie?.quotes.length})`}
             </div>
             <div className='w-0 border-r border-app-dark-gray my-1' />
@@ -61,7 +62,12 @@ const Post = () => {
               <NewQuote refetch={refetch} movie={movie} />
             </AddButton>
           </div>
-          <div className='mt-14 pb-36 gap-10 flex flex-col'>
+          <Divider className='my-10 flex xl:hidden' />
+          <div className='text-2xl xl:hidden'>
+            All Quotes
+            <p className='text-base'>{`(total ${movie?.quotes.length})`}</p>
+          </div>
+          <div className='xl:mt-14 mt-9 pb-36 gap-10 flex flex-col xl:mx-0 -mx-[2.1875rem]'>
             <MovieQuote
               refetch={refetch}
               quotes={movie?.quotes}

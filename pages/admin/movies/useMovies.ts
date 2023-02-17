@@ -1,15 +1,16 @@
 import { useClickOutSide, useGetUser, useLang } from 'hooks';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getMovies } from 'services';
-import { movieActions } from 'store/movieSlice';
 import { Movie, RootState } from 'types';
 
 export const useMovies = () => {
   useGetUser();
   const { lang } = useLang();
+  const { t } = useTranslation();
 
   const query = useSelector((state: RootState) => state.feed.query);
   const dispatch = useDispatch();
@@ -37,5 +38,6 @@ export const useMovies = () => {
     search,
     lang,
     ref,
+    t,
   };
 };

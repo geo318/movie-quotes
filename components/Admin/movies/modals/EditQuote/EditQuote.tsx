@@ -52,7 +52,7 @@ const EditQuote: FC<{ refetch: () => {}; quotes: FeedData[] }> = ({
           </div>
           <h3 className='lg:text-2xl text-xl text-center'>{t('editQuote')}</h3>
         </div>
-        <Divider className='border-opacity-20ზ„' />
+        <Divider className='border-opacity-20' />
 
         <div className='px-8'>
           <Avatar

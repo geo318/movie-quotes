@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 
 import { useRef } from 'react';
 
-export const useSearchMenu = () => {
+export const useSearchMenu = (movies = false) => {
   const close = useRef(null);
   const menu = <Magnifier menu />;
   const { t } = useTranslation('shared');
@@ -19,8 +19,18 @@ export const useSearchMenu = () => {
       <>
         <Divider className='mt-5 -ml-8 -mr-8' />
         <div className='flex flex-col justify-center gap-6 mt-7 ml-10 '>
-          <p className='text-app-dark-gray text-base'>{t('enterToSearch@')},</p>
-          <p className='text-app-dark-gray text-base'>{t('enterToSearch#')}</p>
+          {movies ? (
+            <p className='text-app-dark-gray text-base'>{t('searchMovies')}</p>
+          ) : (
+            <>
+              <p className='text-app-dark-gray text-base'>
+                {t('enterToSearch@')},
+              </p>
+              <p className='text-app-dark-gray text-base'>
+                {t('enterToSearch#')}
+              </p>
+            </>
+          )}
         </div>
       </>
     </div>

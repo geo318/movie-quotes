@@ -1,7 +1,8 @@
 import { useSearchMenu } from './useSearchMenu';
 import { Select } from 'components';
-const SearchMenu = ({ className = '' }) => {
-  const { menu, aside, close } = useSearchMenu();
+
+const SearchMenu = ({ className = '', movies = false }) => {
+  const { menu, aside, close } = useSearchMenu(movies);
   return (
     <Select
       face={menu}

@@ -9,7 +9,10 @@ const QuoteMenu: FC<QuoteMenuProps> = ({ quote, id, handleDelete }) => {
   return (
     <>
       <Select face={<Dots />}>
-        <div className='absolute' onClick={() => setQuoteHandler(quote)}>
+        <div
+          className='absolute right-8 bottom-4 xl:right-0 xl:bottom-auto z-10'
+          onClick={() => setQuoteHandler(quote)}
+        >
           <ul className='flex flex-col gap-8 bg-[#24222F] px-10 py-8 rounded-ten lg:w-[15rem] text-base'>
             <li>
               <Link href={`${id}?view-quote`}>

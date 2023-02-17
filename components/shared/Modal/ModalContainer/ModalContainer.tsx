@@ -30,7 +30,7 @@ const ModalContainer: FC<ModalProps> = ({
           onClick={() => closeOnClick && onClickOutside()}
         >
           {children}
-          {!selectRef && <div className='h-12' />}
+          {!selectRef && <div className='lg:h-12' />}
         </div>
       ) : null}
     </>

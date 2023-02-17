@@ -7,15 +7,15 @@ const Description: FC<DescProps> = ({ movie, lang }) => {
   return (
     <>
       <Label genres={movie?.genres} />
-      <div className='text-lg ml-3'>
+      <div className='text-lg xl:ml-3'>
         Director: &nbsp;
         {loadText(movie?.director[lang])}
       </div>
-      <div className='text-lg ml-3'>
+      <div className='text-lg xl:ml-3'>
         Budget: &nbsp;
         {loadText(parseInt(movie?.budget).toLocaleString('en-DE'))}$
       </div>
-      <div className='text-lg ml-3 text-app-gray'>
+      <div className='text-lg xl:ml-3 text-app-gray'>
         {loadText(movie?.description[lang])}
       </div>
     </>

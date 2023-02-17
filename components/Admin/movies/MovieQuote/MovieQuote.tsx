@@ -34,11 +34,11 @@ const MovieQuote: FC<MovieQuoteProps> = ({
       {quotes?.map((q) => (
         <div key={q.id}>
           <div className='col-span-5 bg-app-black-dark py-6 px-8 rounded-ten relative'>
-            <div className='absolute right-8'>
+            <div className='absolute right-8 hidden xl:block'>
               <QuoteMenu quote={q} id={id} handleDelete={handleDelete} />
             </div>
-            <div className='flex gap-8 items-center'>
-              <div className='relative max-w-[14rem] w-full aspect-3/2 rounded-sm overflow-hidden'>
+            <div className='flex flex-col xl:flex-row gap-8 xl:items-center items-start'>
+              <div className='relative xl:max-w-[14rem] w-full xl:aspect-3/2 aspect-5/2 rounded-sm overflow-hidden'>
                 {!isLoading ? (
                   <Image
                     src={getImage(q.quote_image)}
@@ -58,11 +58,14 @@ const MovieQuote: FC<MovieQuoteProps> = ({
             <Divider className='my-6' />
             <div className='flex gap-8 mt-6'>
               <Figure count={q.comments.length} className='gap-4'>
-                <ChatIcon className='w-6 lg:w-auto' />
+                <ChatIcon className='w-6 xl:w-auto' />
               </Figure>
               <Figure count={q.likes.length}>
-                <HeartIcon className='w-6 lg:w-auto' />
+                <HeartIcon className='w-6 xl:w-auto' />
               </Figure>
+              <div className='ml-auto'>
+                <QuoteMenu quote={q} id={id} handleDelete={handleDelete} />
+              </div>
             </div>
           </div>
         </div>

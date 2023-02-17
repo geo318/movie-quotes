@@ -18,14 +18,16 @@ import { Movie } from 'types';
 import { useMovies } from './useMovies';
 
 const Movies = () => {
-  const { lang, handleSearch, search, movieData, isLoading, ref, refetch } =
+  const { lang, t, handleSearch, search, movieData, isLoading, ref, refetch } =
     useMovies();
   return (
-    <AdminLayout>
+    <AdminLayout movies>
       <div className='flex items-center'>
-        <h1 className='text-2xl'>
+        <h1 className='sm:text-2xl text-xl sm:line-clamp-none line-clamp-1'>
           My list of movies
-          {`  (Total ${movieData?.length ? movieData?.length : ''})`}
+          <span className='ml-1 xl:inline-flex hidden'>{`(Total ${
+            movieData?.length ? movieData?.length : ''
+          })`}</span>
         </h1>
         <div
           onClick={handleSearch}
@@ -42,11 +44,14 @@ const Movies = () => {
             movies
           />
         </div>
-        <AddButton text='add-movie' icon={<Pen />}>
+        <AddButton text={t('add-movie')} icon={<Pen />}>
           <NewMovie refetch={refetch} />
         </AddButton>
       </div>
-      <div className='grid grid-cols-3 gap-12 mt-14 pb-14'>
+      <span className='xl:hidden block text-base'>{`  (Total ${
+        movieData?.length ? movieData?.length : ''
+      })`}</span>
+      <div className='grid xl:grid-cols-3 grid-cols-1 gap-12 mt-14 pb-14'>
         {!isLoading ? (
           movieData?.length ? (
             movieData?.map((m: Movie, i: number) => (
