@@ -1,8 +1,10 @@
 import {
   AdminLayout,
+  Button,
   Divider,
   FormWrapper,
   Input,
+  Plus,
   ProfileImageUpload,
   ProfileModals,
 } from 'components';
@@ -18,7 +20,7 @@ const Profile = () => {
     <AdminLayout>
       <ProfileModals />
       <div className='grid xl:grid-cols-9 grid-cols-2'>
-        <div className='lg:col-span-6 col-span-9'>
+        <div className='lg:col-span-7 col-span-9'>
           <h1 className='sm:text-2xl text-xl sm:line-clamp-none line-clamp-1 pb-14'>
             {t('myProfile')}
           </h1>
@@ -41,12 +43,12 @@ const Profile = () => {
                   cancel={isFormSubmittable}
                 />
                 <Divider className='my-10 flex w-[70%]' />
-                <div className='flex flex-col gap-8 w-full'>
+                <div className='flex flex-col gap-4 w-full'>
                   <Input
                     label='Email'
                     primary
                     control='Primary Email'
-                    value='some text'
+                    value={user.email}
                   />
                   <Input
                     label='Email'
@@ -54,11 +56,29 @@ const Profile = () => {
                     control='verify email'
                     value='some other text'
                   />
-                  <Input
-                    label='E mail'
-                    control='verify email'
-                    value='some other text'
-                  />
+                  {user?.emails
+                    ?.slice()
+                    .filter((e) => e.email !== user.email)
+                    .map((e) => (
+                      <div key={e.id}>
+                        <Input
+                          label='Email'
+                          control={
+                            e.email_verified_at === 'verify'
+                              ? 'Not verified'
+                              : 'Make this primary'
+                          }
+                          primary={e.email === user.email}
+                          value={e.email}
+                        />
+                      </div>
+                    ))}
+                  <Button
+                    text='Add new email'
+                    className='mr-auto flex items-center gap-2 xl:!text-xl mt-4'
+                  >
+                    <Plus />
+                  </Button>
                 </div>
               </div>
               {isFormSubmittable && (

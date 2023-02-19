@@ -14,7 +14,7 @@ import { getImage, loadText } from 'helpers';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
-import { checkUser } from 'services';
+import { checkLoggedIn, checkUser } from 'services';
 import { useMovie } from './useMovie';
 
 const Post = () => {
@@ -90,7 +90,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   try {
     const cookies = req.headers.cookie;
-    await checkUser({ cookies });
+    await checkLoggedIn({ cookies });
   } catch {
     return {
       redirect: {

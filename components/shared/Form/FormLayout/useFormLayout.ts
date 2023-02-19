@@ -17,9 +17,10 @@ export const useFormLayout = () => {
   }, [isSubmitted, reset, isValid]);
 
   useEffect(() => {
-    Object.keys(formErrors).forEach((e) =>
-      setError(e, { type: 'custom', message: formErrors[e] })
-    );
+    if (typeof formErrors === 'object' && formErrors !== null)
+      Object?.keys(formErrors).forEach((e) =>
+        setError(e, { type: 'custom', message: formErrors[e] })
+      );
   }, [formErrors, setError]);
 
   return { handleSubmit, reset };

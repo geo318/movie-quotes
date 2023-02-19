@@ -20,6 +20,7 @@ const InputText: FC<InputProps> = ({
   className = '',
   refObj,
   select = false,
+  asterisk = true,
 }) => {
   const {
     register,
@@ -41,7 +42,7 @@ const InputText: FC<InputProps> = ({
         {label && (
           <label htmlFor={name} className='block font-normal text-base pb-2'>
             {label}
-            <span className='text-app-red'> *</span>
+            {asterisk && <span className='text-app-red'> *</span>}
           </label>
         )}
         <div className='relative'>

@@ -3,7 +3,7 @@ import { useAdmin } from 'hooks';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { dehydrate, QueryClient } from 'react-query';
-import { checkUser, getUser } from 'services';
+import { checkLoggedIn, checkUser, getUser } from 'services';
 
 const Admin = () => {
   const { quotes, fetchNextPageData, loading } = useAdmin();
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   res.setHeader('set-cookie', ['access-token=1']);
   try {
     const cookies = req.headers.cookie;
-    await checkUser({ cookies });
+    await checkLoggedIn({ cookies });
   } catch {
     return {
       redirect: {

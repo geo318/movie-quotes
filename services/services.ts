@@ -155,3 +155,17 @@ export const deleteMovie = async (id: number) => {
 export const getGenres = async () => {
   return await axiosInstance.get(`api/genres/`);
 };
+
+export const addEmail = async (email: { email: string }) => {
+  return await axiosInstance.post('api/add-email', email);
+};
+
+export const checkLoggedIn = async ({ cookies = '' }) => {
+  return await axiosInstance({
+    url: 'api/check',
+    headers: {
+      Cookie: cookies,
+      referer: process.env.NEXT_PUBLIC_FRONT_URL,
+    },
+  });
+};

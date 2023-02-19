@@ -24,3 +24,4 @@ export { default as Dots } from './Dots';
 export * from './aside';
 export * from './eyes';
 export * from './feed';
+export * from './profile';
