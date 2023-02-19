@@ -8,6 +8,7 @@ export interface Props {
 
 export interface NavbarProps extends Props {
   admin?: boolean;
+  movies?: boolean;
 }
 
 type SubmitDataProps = {

@@ -8,3 +8,6 @@ export * from './Figure';
 export * from './Notification';
 export * from './AddQuote';
 export * from './Search';
+export * from './AddButton';
+export * from './movies/modals/NewMovie';
+export * from './movies';

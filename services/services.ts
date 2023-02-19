@@ -6,11 +6,12 @@ import {
   ResetPasswordProps,
   AddCommentProps,
   Quote,
+  FeedData,
+  Movie,
 } from 'types';
 
 export const fetchCSRFToken = async () => {
-  const response = await axiosInstance.get('sanctum/csrf-cookie');
-  return response;
+  return await axiosInstance.get('sanctum/csrf-cookie');
 };
 
 export const getQuotes = async ({ page = 1, query = '*' }) => {
@@ -18,64 +19,53 @@ export const getQuotes = async ({ page = 1, query = '*' }) => {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/quotes?page=${page}`
   );
   url.searchParams.set('search', query);
-  const response = await axiosInstance({ url: url.toString() });
-  return response;
+  return await axiosInstance({ url: url.toString() });
 };
 
 export const register = async (data: RegisterProps) => {
-  const response = await axiosInstance.post('api/register', data);
-  return response;
+  return await axiosInstance.post('api/register', data);
 };
 
 export const login = async (data: LoginProps) => {
-  const response = await axiosInstance.post('api/login', data);
-  return response;
+  return await axiosInstance.post('api/login', data);
 };
 
 export const logout = async () => {
-  const response = await axiosInstance.get('api/logout');
-  return response;
+  return await axiosInstance.get('api/logout');
 };
 
 export const checkUser = async ({ cookies }: { cookies?: string }) => {
-  const response = await axiosInstance({
+  return await axiosInstance({
     url: 'api/user',
     headers: {
       Cookie: cookies,
       referer: process.env.NEXT_PUBLIC_FRONT_URL,
     },
   });
-  return response;
 };
 
 export const getUser = async () => {
-  const response = await axiosInstance.get('api/user');
-  return response;
+  return await axiosInstance.get('api/user');
 };
 
 export const sendEmail = async () => {
-  const response = await axiosInstance.get('api/email/verify');
-  return response;
+  return await axiosInstance.get('api/email/verify');
 };
 
 export const checkEmail = async (data: EmailProps) => {
-  const response = await axiosInstance.post('api/forgot-password', data);
-  return response;
+  return await axiosInstance.post('api/forgot-password', data);
 };
 
 export const confirmEmail = async (data: ResetPasswordProps) => {
-  const response = await axiosInstance.post('api/reset-password', data);
-  return response;
+  return await axiosInstance.post('api/reset-password', data);
 };
 
 export const gmailAuth = async () => {
-  const response = await axiosInstance.get('api/auth/redirect');
-  return response;
+  return await axiosInstance.get('api/auth/redirect');
 };
 
 export const addComment = async (data: AddCommentProps) => {
-  const response = await axiosInstance.post('api/comment', data);
-  return response;
+  return await axiosInstance.post('api/comment', data);
 };
 
 export const addLike = async ({
@@ -85,37 +75,83 @@ export const addLike = async ({
   userId: number;
   quoteId: number;
 }) => {
-  const response = await axiosInstance.get(
+  return await axiosInstance.get(
     `api/like?quote_id=${quoteId}&user_id=${userId}&like=1`
   );
-  return response;
 };
 
 export const getNotifications = async () => {
-  const response = await axiosInstance.get('api/notifications');
-  return response;
+  return await axiosInstance.get('api/notifications');
 };
 
 export const markAsRead = async ({ id }: { id: number }) => {
-  const response = await axiosInstance.get(`api/mark-as-read?id=${id}`);
-  return response;
+  return await axiosInstance.get(`api/mark-as-read?id=${id}`);
 };
 
 export const markAllAsRead = async ({ num }: { num: number }) => {
-  const response = await axiosInstance.get(`api/mark-all-as-read?num=${num}`);
-  return response;
+  return await axiosInstance.get(`api/mark-all-as-read?num=${num}`);
 };
 
-export const getMovies = async () => {
-  const response = await axiosInstance.get('api/movies');
-  return response;
+export const getMovies = async (query = '') => {
+  const url = new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/api/movies`);
+  if (query) url.searchParams.set('search', query);
+  return await axiosInstance({ url: url.toString() });
+};
+
+export const getMovie = async (id?: string | string[]) => {
+  if (id) {
+    return await axiosInstance.get(`api/movie?id=${id}`);
+  }
 };
 
 export const addQuote = async (data: Quote) => {
-  const response = await axiosInstance.post('api/add-quote', data, {
+  return await axiosInstance.post('api/add-quote', data, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
-  return response;
+};
+
+export const updateQuote = async (data: Partial<FeedData>, id: number) => {
+  return await axiosInstance.post(
+    `api/edit-quote/${id}`,
+    { ...data, ...{ _method: 'PATCH' } },
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+};
+
+export const deleteQuote = async (id: number) => {
+  return await axiosInstance.delete(`api/delete-quote?id=${id}`);
+};
+
+export const addMovie = async (data: Movie) => {
+  return await axiosInstance.post('api/add-movie', data, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
+
+export const updateMovie = async (data: Partial<Movie>, id: number) => {
+  return await axiosInstance.post(
+    `api/edit-movie/${id}`,
+    { ...data, ...{ _method: 'PATCH' } },
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+};
+
+export const deleteMovie = async (id: number) => {
+  return await axiosInstance.delete(`api/delete-movie/${id}`);
+};
+
+export const getGenres = async () => {
+  return await axiosInstance.get(`api/genres/`);
 };

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { AddComment, Like, ToggleLike, FeedData } from 'types';
 
 const initialFeedState = {
@@ -13,13 +13,21 @@ const feedSlice = createSlice({
     addQuote(state, action: { payload: FeedData }) {
       state.feedData.unshift(action.payload);
     },
+    updateQuote(state, action: { payload: Partial<FeedData> }) {
+      const index = state.feedData.findIndex((e) => e.id === action.payload.id);
+      state.feedData[index] = { ...state.feedData[index], ...action.payload };
+    },
     resetFeed(state) {
       state.feedData = [];
+    },
+    deleteQuote(state, action: { payload: number }) {
+      const index = state.feedData.findIndex((e) => e.id === action.payload);
+      state.feedData.splice(index, 1);
     },
     setQuery(state, action: { payload: string }) {
       state.query = action.payload;
     },
-    updateFeed(state, action) {
+    updateFeed(state, action: { payload: FeedData[] }) {
       let feed = state.feedData;
       if (feed?.some((e: FeedData) => e.id === action.payload[0].id)) return;
       if (feed?.length > 1) {

@@ -1,4 +1,4 @@
-const ChatIcon = ({className = ''}) => (
+const ChatIcon = ({ className = '' }) => (
   <svg
     width='32'
     height='32'

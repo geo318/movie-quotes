@@ -3,7 +3,7 @@ import { Props } from 'types';
 
 const Divider: FC<Props> = ({ className = '' }) => (
   <p
-    className={`flex border-b border-[#EFEFEF] border-opacity-[.3] ${className}`}
+    className={` ${className} flex border-b border-[#EFEFEF] border-opacity-[.3]`}
   ></p>
 );
 export default Divider;

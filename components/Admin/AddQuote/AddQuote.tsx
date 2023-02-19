@@ -11,8 +11,8 @@ const AddQuote: FC<Props> = ({ className }) => {
     <div
       className={`lg:px-4 py-3 xl:bg-app-bg bg-opacity-[.6] rounded-lg ${className}`}
     >
-      {isActive('add-quote') && <AddQuoteModal />}
-      <Link href='?add-quote'>
+      {isActive('add-new-quote') && <AddQuoteModal />}
+      <Link href='?add-new-quote'>
         <div className='flex gap-4 items-center'>
           <Pencil />
           <p>{t('writeAQuote')}</p>

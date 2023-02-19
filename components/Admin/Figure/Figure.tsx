@@ -3,7 +3,7 @@ import { Props } from 'types';
 
 const Figure: FC<Props & { count: number }> = ({
   children,
-  className,
+  className = '',
   count,
 }) => {
   return (

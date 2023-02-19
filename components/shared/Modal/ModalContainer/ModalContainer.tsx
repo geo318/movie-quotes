@@ -10,6 +10,7 @@ const ModalContainer: FC<ModalProps> = ({
   modalOpenOnload = false,
   modalControl,
   closeRoute,
+  intercept,
 }) => {
   const { dropdown, ref, onClickOutside } = useModalContainer({
     selectRef,
@@ -17,6 +18,7 @@ const ModalContainer: FC<ModalProps> = ({
     modalOpenOnload,
     modalControl,
     closeRoute,
+    intercept,
   });
 
   return (
@@ -28,6 +30,7 @@ const ModalContainer: FC<ModalProps> = ({
           onClick={() => closeOnClick && onClickOutside()}
         >
           {children}
+          {!selectRef && <div className='lg:h-12' />}
         </div>
       ) : null}
     </>

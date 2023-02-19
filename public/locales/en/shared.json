@@ -28,5 +28,26 @@
     "uploadImage":"Upload image",
     "chooseMovie":"Choose movie",
     "noMoviesYet":"No movies yet...",
-    "post":"Post"
+    "post":"Post",
+    "myMovieList":"My list of movies",
+    "search":"Search",
+    "searchMovies":"Search you movie list",
+    "total":"Total",
+    "addMovie":"Add movie",
+    "chooseGenre":"Choose genre",
+    "editMovie":"Edit movie",
+    "changePhoto":"Change photo",
+    "movieDes":"Movie Description",
+    "quotes":"Quotes",
+    "allQuotes":"All Quotes",
+    "director":"Director",
+    "budget":"Budget",
+    "viewQuote":"View Quote",
+    "edit":"Edit",
+    "delete":"Delete",
+    "addQuoteCall":"Add quote",
+    "addQuote":"Add Quote"
+
+    
+
 }

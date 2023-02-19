@@ -1,32 +1,13 @@
-import { useAuthUser, useClickOutSide, useLang } from 'hooks';
+import { useClickOutSide } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { useCallback, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addLike } from 'services';
-import { feedActions } from 'store';
 import { UseFeedProps } from './types';
 
 export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {
-  const authUser = useAuthUser();
   const dispatch = useDispatch();
   const observer = useRef<IntersectionObserver | null>();
-  const { lang } = useLang();
   const { t } = useTranslation('shared');
-
-  const handleLike = async ({
-    userId,
-    quoteId,
-  }: {
-    userId: number;
-    quoteId: number;
-  }) => {
-    try {
-      dispatch(feedActions.toggleLike({ userId, quoteId }));
-      await addLike({ userId, quoteId });
-    } catch {
-      dispatch(feedActions.toggleLike({ userId, quoteId }));
-    }
-  };
 
   const lastFeedElementRef = useCallback(
     (node: Element) => {
@@ -46,13 +27,10 @@ export const useFeed = ({ nextPage, loading = false }: UseFeedProps) => {
   const ref = useClickOutSide({ cb: () => setSearch(false) });
 
   return {
-    authUser,
     lastFeedElementRef,
-    handleLike,
     search,
     ref,
     handleSearch,
-    lang,
     t,
   };
 };

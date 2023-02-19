@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      borderRadius: {
+        ten: '10px',
+      },
       colors: {
         'app-yellow': '#DDCCAA',
         'app-red': '#E31221',
@@ -33,10 +36,11 @@ module.exports = {
       },
       aspectRatio: {
         '9/5': '9 / 5',
+        '6/5': '6 / 5',
+        '3/2': '3 / 2',
+        '5/2': '5 / 2',
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-  ],
+  plugins: [require('@tailwindcss/line-clamp')],
 };
