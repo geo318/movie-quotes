@@ -18,11 +18,18 @@ export type AuthState = {
 };
 
 export type User = {
+  id: string;
   username: string;
   email: string;
   avatar: string;
   gmail: string;
-} | null;
+  emails: {
+    id: number;
+    user_id: number;
+    email: string;
+    email_verified_at: null | string;
+  }[];
+};
 
 export type FeedData = {
   id: number;
@@ -33,7 +40,7 @@ export type FeedData = {
   movie: array<Movie>;
   comments: array<Comment>;
   likes: array<Like>;
-  user: UserData;
+  user: User;
 };
 
 export interface RootState {
@@ -84,7 +91,7 @@ export type Movie = {
 
 export type ToggleLike = { quoteId: number; userId: number };
 export interface AddComment extends AddCommentProps {
-  user: UserData;
+  user: User;
 }
 
 export type Notification = {
@@ -115,10 +122,13 @@ export interface InputProps extends Props {
       | number;
   };
   inputStyle?: string;
+  primary?: boolean;
+  verified?: boolean;
   submit?: boolean;
   select?: boolean;
   error?: string;
   rows?: number;
+  asterisk?: boolean;
 }
 
 type Genre = {
