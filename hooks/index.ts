@@ -10,3 +10,5 @@ export * from './useGetUser';
 export * from './useActiveQuery';
 export * from './useZod';
 export * from './useCloseModal';
+export * from './useProfile';
+export * from './useMovies';

@@ -13,9 +13,9 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
-import { checkUser } from 'services';
+import { checkLoggedIn } from 'services';
 import { Movie } from 'types';
-import { useMovies } from './useMovies';
+import { useMovies } from 'hooks';
 
 const Movies = () => {
   const { lang, t, handleSearch, search, movieData, isLoading, ref, refetch } =
@@ -98,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   try {
     const cookies = req.headers.cookie;
-    await checkUser({ cookies });
+    await checkLoggedIn({ cookies });
   } catch {
     return {
       redirect: {

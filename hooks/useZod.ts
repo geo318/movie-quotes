@@ -15,7 +15,6 @@ export const useZod = () => {
     );
 
   const validateImage = z.any();
-  // .refine((file) => file.name !== '' && file.size !== 0, 'File is required');
 
   const quoteSchemaObj = {
     quote_title_en: validateEnglish,
@@ -59,6 +58,19 @@ export const useZod = () => {
   };
   const addMovieSchema = z.object(movieSchemaObj);
   const editMovieSchema = addMovieSchema.partial();
+  const emailValidation = {
+    email: z
+      .string()
+      .min(1, { message: 'email required' as string })
+      .email('Incorrect email' as string),
+  };
+  const EmailSchema = z.object(emailValidation);
 
-  return { editQuoteSchema, addQuoteSchema, addMovieSchema, editMovieSchema };
+  return {
+    editQuoteSchema,
+    addQuoteSchema,
+    addMovieSchema,
+    editMovieSchema,
+    EmailSchema,
+  };
 };
