@@ -3,7 +3,6 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addQuote, getMovies } from 'services';
-import { z } from 'zod';
 import { Movie, Quote } from 'types';
 import { useAuthUser, useLang, useZod } from 'hooks';
 import {
@@ -20,7 +19,8 @@ export const useAddQuoteModal = () => {
   const [image, setImage] = useState('');
   const { data, isLoading: isMoviesLoading } = useQuery({
     queryKey: 'movie-list',
-    queryFn: getMovies,
+    queryFn: () => getMovies(),
+    retry: 1,
   });
   const [isLoading, setIsLoading] = useState(false);
   const { addQuoteSchema: schema } = useZod();
@@ -51,7 +51,7 @@ export const useAddQuoteModal = () => {
           comments: [],
           likes: [],
           movie_id: 0,
-          user_id: authUser.id,
+          user_id: parseInt(authUser.id),
         })
       );
       router.push('/admin');
