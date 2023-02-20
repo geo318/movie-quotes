@@ -18,11 +18,20 @@ export type AuthState = {
 };
 
 export type User = {
+  id: number;
   username: string;
   email: string;
+  primary_email: string;
+  email_verified_at: string;
   avatar: string;
   gmail: string;
-} | null;
+  emails: {
+    id: number;
+    user_id: number;
+    email: string;
+    email_verified_at: string;
+  }[];
+};
 
 export type FeedData = {
   id: number;
@@ -84,7 +93,7 @@ export type Movie = {
 
 export type ToggleLike = { quoteId: number; userId: number };
 export interface AddComment extends AddCommentProps {
-  user: UserData;
+  user: User;
 }
 
 export type Notification = {
@@ -115,6 +124,7 @@ export interface InputProps extends Props {
       | number;
   };
   inputStyle?: string;
+  asterisk?: boolean;
   submit?: boolean;
   select?: boolean;
   error?: string;

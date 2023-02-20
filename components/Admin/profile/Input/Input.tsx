@@ -12,8 +12,9 @@ const Input = ({
   value = '',
   checkFormState = (state = false) => {},
   cancel = false,
+  editable = false,
 }) => {
-  const { readOnly, handleReadOnly, addEmailHandler } = useInput(
+  const { readOnly, handleReadOnly, setPrimaryEmail, verifyEmail } = useInput(
     checkFormState,
     cancel
   );
@@ -24,7 +25,7 @@ const Input = ({
           <>
             <InputText
               name={name}
-              className={`${!full && 'max-w-[33rem]'}`}
+              className={`${!full ? 'w-full max-w-[33rem]' : 'w-full'}`}
               inputStyle='text-base xl:text-xl !py-2'
               label={label}
               asterisk={false}
@@ -55,7 +56,6 @@ const Input = ({
                   value={value}
                   readOnly
                 />
-                <div className='h-4' />
                 {
                   <div
                     className={`absolute top-1/2 -translate-y-1/2 cursor-pointer right-[.875rem]`}
@@ -70,10 +70,22 @@ const Input = ({
                   </div>
                 }
               </div>
+              <div className='h-4' />
             </div>
             <div className='h-16 inline-flex flex-1 items-center pt-8 text-xl'>
               <div className='flex items-center'>
-                <div onClick={handleReadOnly}>{control}</div>
+                <div
+                  onClick={() => {
+                    editable && handleReadOnly();
+                    !editable &&
+                      !primary &&
+                      !verify &&
+                      setPrimaryEmail({ email: value });
+                    verify && verifyEmail({ email: value });
+                  }}
+                >
+                  {control}
+                </div>
                 {!primary && label === 'Email' && (
                   <>
                     <div className='border-r h-2 border-app-dark-gray mx-2' />

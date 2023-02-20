@@ -12,10 +12,12 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { checkLoggedIn } from 'services';
 import { useProfile } from 'hooks';
+import Link from 'next/link';
 
 const Profile = () => {
   const { lang, user, t, schema, onSubmit, isFormSubmittable, checkFormState } =
     useProfile();
+
   return (
     <AdminLayout>
       <ProfileModals />
@@ -34,21 +36,26 @@ const Profile = () => {
                 />
               </div>
               <div className='flex flex-col lg:px-20 justify-center items-start mt-10'>
-                <Input
-                  label='Username'
-                  name='username'
-                  control='Edit'
-                  value='some other text'
-                  checkFormState={checkFormState as () => {}}
-                  cancel={isFormSubmittable}
-                />
+                <div className='w-full'>
+                  <Input
+                    label='Username'
+                    name='username'
+                    control='Edit'
+                    value={user.username}
+                    checkFormState={checkFormState as () => {}}
+                    placeholder={user.username}
+                    cancel={isFormSubmittable}
+                    editable
+                  />
+                </div>
+
                 <Divider className='my-10 flex w-[70%]' />
                 <div className='flex flex-col gap-4 w-full'>
                   <Input
                     label='Email'
                     primary
                     control='Primary Email'
-                    value={user.email}
+                    value={user.primary_email || user.email}
                   />
                   <Input
                     label='Email'
@@ -73,12 +80,14 @@ const Profile = () => {
                         />
                       </div>
                     ))}
-                  <Button
-                    text='Add new email'
-                    className='mr-auto flex items-center gap-2 xl:!text-xl mt-4'
-                  >
-                    <Plus />
-                  </Button>
+                  <Link href='?add-email'>
+                    <Button
+                      text='Add new email'
+                      className='mr-auto flex items-center gap-2 xl:!text-xl mt-4'
+                    >
+                      <Plus />
+                    </Button>
+                  </Link>
                 </div>
               </div>
               {isFormSubmittable && (

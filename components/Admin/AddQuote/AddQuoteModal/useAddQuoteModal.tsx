@@ -20,7 +20,8 @@ export const useAddQuoteModal = () => {
   const [image, setImage] = useState('');
   const { data, isLoading: isMoviesLoading } = useQuery({
     queryKey: 'movie-list',
-    queryFn: getMovies,
+    queryFn: () => getMovies(),
+    retry: 1,
   });
   const [isLoading, setIsLoading] = useState(false);
   const { addQuoteSchema: schema } = useZod();

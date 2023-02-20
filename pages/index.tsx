@@ -57,8 +57,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const cookies = context.req.headers.cookie;
     await checkUser({ cookies });
-
+    const req = context.req;
     context.res.setHeader('set-cookie', ['access-token=1']);
+
+    if (req.url?.includes('confirm-email')) {
+      return {
+        redirect: {
+          destination: `/${lang}/admin/profile${req.url.slice(1)}`,
+          permanent: false,
+        },
+      };
+    }
+
     return {
       redirect: {
         destination: `/${lang}/admin`,

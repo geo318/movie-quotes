@@ -14,7 +14,7 @@ const Avatar: FC<AvatarProps> = ({
   containerStyle = '',
 }) => {
   return (
-    <div className={`flex gap-6 ${containerStyle}`}>
+    <div className={`flex gap-6 group ${containerStyle}`}>
       <div
         className={`overflow-hidden flex justify-center items-center rounded-full ${
           active && 'border-2 border-app-red'
@@ -44,7 +44,7 @@ const Avatar: FC<AvatarProps> = ({
           </p>
         )}
         {subText && (
-          <p className='sm:text-base sm:text-white text-sm text-app-gray'>
+          <p className='sm:text-base sm:text-white text-sm text-app-gray group-hover:underline'>
             {subText}
           </p>
         )}

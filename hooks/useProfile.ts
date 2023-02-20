@@ -1,4 +1,4 @@
-import { useAuthUser, useGetUser, useLang } from 'hooks';
+import { useActiveQuery, useAuthUser, useGetUser, useLang } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { User } from 'types';
@@ -17,5 +17,14 @@ export const useProfile = () => {
   const onSubmit = (data: Partial<User>) => {
     console.log(data);
   };
-  return { schema, checkFormState, isFormSubmittable, onSubmit, lang, user, t };
+
+  return {
+    schema,
+    checkFormState,
+    isFormSubmittable,
+    onSubmit,
+    lang,
+    user,
+    t,
+  };
 };
