@@ -4,6 +4,7 @@ import feedReducer from './feedSlice';
 import noteReducer from './noteSlice';
 import movieReducer from './movieSlice';
 import quoteReducer from './quoteSlice';
+import flashReducer from './flashSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     note: noteReducer,
     movie: movieReducer,
     quote: quoteReducer,
+    flash: flashReducer,
   },
 });

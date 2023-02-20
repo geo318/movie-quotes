@@ -15,12 +15,20 @@ import { useProfile } from 'hooks';
 import Link from 'next/link';
 
 const Profile = () => {
-  const { lang, user, t, schema, onSubmit, isFormSubmittable, checkFormState } =
-    useProfile();
+  const {
+    lang,
+    user,
+    refetch,
+    t,
+    schema,
+    onSubmit,
+    isFormSubmittable,
+    checkFormState,
+  } = useProfile();
 
   return (
     <AdminLayout>
-      <ProfileModals />
+      <ProfileModals refetch={refetch} />
       <div className='grid xl:grid-cols-9 grid-cols-2'>
         <div className='lg:col-span-7 col-span-9'>
           <h1 className='sm:text-2xl text-xl sm:line-clamp-none line-clamp-1 pb-14'>
@@ -57,26 +65,24 @@ const Profile = () => {
                     control='Primary Email'
                     value={user.primary_email || user.email}
                   />
-                  <Input
-                    label='Email'
-                    verify
-                    control='verify email'
-                    value='some other text'
-                  />
                   {user?.emails
                     ?.slice()
-                    .filter((e) => e.email !== user.email)
+                    .filter((e) => e.email !== user.primary_email)
                     .map((e) => (
                       <div key={e.id}>
                         <Input
                           label='Email'
                           control={
-                            e.email_verified_at === 'verify'
+                            !e.email_verified_at && e.email === user.email
                               ? 'Not verified'
                               : 'Make this primary'
                           }
-                          primary={e.email === user.email}
+                          verify={
+                            !e.email_verified_at && e.email === user.email
+                          }
+                          verified={!!e.email_verified_at}
                           value={e.email}
+                          refetch={refetch}
                         />
                       </div>
                     ))}

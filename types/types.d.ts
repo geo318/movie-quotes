@@ -51,6 +51,7 @@ export interface RootState {
   note: { notifications: Notification[] };
   movie: { movies: Movie[]; query: string };
   quote: { quote: FeedData };
+  flash: { flash: string; isLoading: boolean };
 }
 
 export type InitialError = {

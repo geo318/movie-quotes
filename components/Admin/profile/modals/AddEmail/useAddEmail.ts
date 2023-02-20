@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEmail } from 'services';
 import { useCloseModal, useLang, useZod } from 'hooks';
-import { authActions } from 'store';
+import { authActions, flashActions } from 'store';
 
-export const useAddEmail = () => {
+export const useAddEmail = ({ refetch }: { refetch: () => {} }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { EmailSchema: schema } = useZod();
   const close = useCloseModal();
@@ -15,8 +15,11 @@ export const useAddEmail = () => {
 
   const onSubmit = async (email: { email: string }) => {
     setIsLoading(true);
+    const flashMessage = `New email added - ${email.email}`;
     try {
       await addEmail(email);
+      refetch();
+      dispatch(flashActions.setFlashMessage(flashMessage));
       close();
     } catch (e: any) {
       e.message === 'Request failed with status code 422'

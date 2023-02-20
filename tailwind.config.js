@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       borderRadius: {
         ten: '10px',
+        four: '4px',
       },
       colors: {
         'app-yellow': '#DDCCAA',

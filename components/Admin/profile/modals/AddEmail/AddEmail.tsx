@@ -7,11 +7,10 @@ import {
   ModalLoadingOverlay,
 } from 'components';
 import Link from 'next/link';
-import { FC } from 'react';
 import { useAddEmail } from './useAddEmail';
 
-const AddEmail: FC = () => {
-  const { isLoading, schema, onSubmit, lang, t } = useAddEmail();
+const AddEmail = ({ refetch }: { refetch: () => {} }) => {
+  const { isLoading, schema, onSubmit, lang, t } = useAddEmail({ refetch });
 
   return (
     <Modal

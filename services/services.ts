@@ -173,3 +173,7 @@ export const checkLoggedIn = async ({ cookies = '' }) => {
 export const setEmailAsPrimary = async (email: string, id: number) => {
   return await axiosInstance.get(`api/set-primary-email/${id}?email=${email}`);
 };
+
+export const removeEmail = async (email: string) => {
+  return await axiosInstance.delete(`api/delete-email?email=${email}`);
+};

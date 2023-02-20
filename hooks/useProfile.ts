@@ -1,11 +1,11 @@
-import { useActiveQuery, useAuthUser, useGetUser, useLang } from 'hooks';
+import { useAuthUser, useGetUser, useLang } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { User } from 'types';
 import { z } from 'zod';
 
 export const useProfile = () => {
-  useGetUser();
+  const { refetch } = useGetUser();
   const { lang } = useLang();
   const { t } = useTranslation('shared');
   const user = useAuthUser();
@@ -23,6 +23,7 @@ export const useProfile = () => {
     checkFormState,
     isFormSubmittable,
     onSubmit,
+    refetch,
     lang,
     user,
     t,
