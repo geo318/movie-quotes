@@ -23,6 +23,7 @@ const ProfileImageUpload = ({ name = '', className = '', path = '' }) => {
           path={path}
           className='w-full max-w-[11.75rem] aspect-square rounded-full'
           image={image}
+          priority
         />
         <div className='bg-app-gradient-dark opacity-80 inset-0 -z-10 rounded-ten text-xl' />
         <p className='group-hover:underline'>{t('changePhoto')}</p>

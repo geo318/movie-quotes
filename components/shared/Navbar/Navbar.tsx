@@ -32,7 +32,7 @@ const Navbar: FC<NavbarProps> = ({
           <BurgerMenu />
         ) : (
           <div className='uppercase text-app-yellow text-base leading-6 font-medium'>
-            Movie Quotes
+            <Link href='/'> Movie Quotes</Link>
           </div>
         )}
         <nav className='flex ml-auto sm:gap-5 items-center relative'>

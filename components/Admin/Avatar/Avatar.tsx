@@ -26,7 +26,7 @@ const Avatar: FC<AvatarProps> = ({
           <Image
             src={img}
             alt={`${text} avatar`}
-            className='object-cover w-full'
+            className='object-cover w-full h-full'
             width={size}
             height={size}
           />

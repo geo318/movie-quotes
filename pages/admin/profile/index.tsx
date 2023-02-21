@@ -13,7 +13,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { checkLoggedIn } from 'services';
 import { useProfile } from 'hooks';
 import Link from 'next/link';
-import { ProfileSubmitProps } from 'types';
 
 const Profile = () => {
   const { lang, user, refetch, t, schema, onSubmit, formState, setFormState } =
@@ -24,7 +23,7 @@ const Profile = () => {
       <ProfileModals refetch={refetch} />
       <div className='grid xl:grid-cols-9 grid-cols-2'>
         <div className='lg:col-span-7 col-span-9'>
-          <h1 className='sm:text-2xl text-xl sm:line-clamp-none line-clamp-1 pb-14'>
+          <h1 className='block sm:text-2xl text-xl sm:line-clamp-none line-clamp-1 mb-[8rem]'>
             {t('myProfile')}
           </h1>
           <div>
@@ -35,9 +34,9 @@ const Profile = () => {
               className='flex flex-col'
             >
               <div className='bg-app-black-dark rounded-xl mb-12 px-20'>
-                <div className='w-full flex items-center justify-center mt-16'>
+                <div className='w-full flex items-center justify-center -mt-2'>
                   <ProfileImageUpload
-                    name='user_avatar'
+                    name='avatar'
                     path={user.avatar}
                     className='-mt-16 w-full'
                   />

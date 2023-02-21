@@ -26,9 +26,10 @@ export const useProfile = () => {
   };
 
   const onSubmit = async (data: Partial<User>) => {
-    console.log(data);
     try {
       await updateUser(data);
+      dispatch(profileActions.setFormPassive());
+      refetch();
     } catch (e: any) {
       e.message === 'Request failed with status code 422'
         ? dispatch(authActions.setFormError(e?.response?.data?.errors))

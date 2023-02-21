@@ -84,7 +84,7 @@ export const useZod = () => {
 
   const ProfileSchema = z
     .object({
-      user_avatar: validateImage,
+      avatar: validateImage,
       username: z
         .string()
         .min(3, { message: t('err_username_req') as string })
