@@ -19,6 +19,7 @@ module.exports = {
         'app-bg': '#222030',
         'app-link': '#0D6EFD',
         'app-dark-gray': '#6C757D',
+        'app-gray-text': '#9C9A9A',
         'app-green': '#198754',
       },
       backgroundImage: {

@@ -13,7 +13,7 @@ export const useFormLayout = () => {
   const formErrors = useSelector((state: RootState) => state.auth.formErrors);
 
   useEffect(() => {
-    if (isValid && isSubmitted) reset();
+    // if (isValid && isSubmitted) reset();
   }, [isSubmitted, reset, isValid]);
 
   useEffect(() => {

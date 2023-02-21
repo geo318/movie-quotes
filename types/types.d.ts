@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { gmailAuth } from 'services';
 import { string } from 'zod';
 import { AddCommentProps, FormSubmitProps } from './formTypes';
-import { Props } from './propTypes';
+import { ProfileSubmitProps, Props } from './propTypes';
 
 export type DataProp = number | string | boolean;
 
@@ -52,6 +52,7 @@ export interface RootState {
   movie: { movies: Movie[]; query: string };
   quote: { quote: FeedData };
   flash: { flash: string; isLoading: boolean };
+  profile: { activeInput: ProfileSubmitProps[]; active: boolean };
 }
 
 export type InitialError = {

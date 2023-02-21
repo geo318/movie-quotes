@@ -1,6 +1,9 @@
+import { useTranslation } from 'next-i18next';
 import { z } from 'zod';
 
 export const useZod = () => {
+  const { t } = useTranslation('errors');
+
   const validateGeorgian = z
     .string()
     .regex(
@@ -13,8 +16,21 @@ export const useZod = () => {
       new RegExp('^[a-zA-Z0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
       'Please, use Latin symbols only'
     );
-
-  const validateImage = z.any();
+  const MAX_FILE_SIZE = 2000000;
+  const ACCEPTED_MIME_TYPES = [
+    'image/jpeg',
+    'image/jpg',
+    'image/png',
+    'image/webp',
+  ];
+  const validateImage = z
+    .any()
+    .refine((file) => !!file, 'image is required')
+    .refine((file) => file?.size <= MAX_FILE_SIZE, 'Max file size is 2MB.')
+    .refine(
+      (file) => ACCEPTED_MIME_TYPES.includes(file?.type),
+      '.jpg, .jpeg, .png and .webp files are accepted.'
+    );
 
   const quoteSchemaObj = {
     quote_title_en: validateEnglish,
@@ -66,11 +82,36 @@ export const useZod = () => {
   };
   const EmailSchema = z.object(emailValidation);
 
+  const ProfileSchema = z
+    .object({
+      user_avatar: validateImage,
+      username: z
+        .string()
+        .min(3, { message: t('err_username_req') as string })
+        .regex(/[a-z0-9]{3,15}/, t('err_username_inc') as string),
+      password: z
+        .string()
+        .min(1, { message: t('err_password_req') as string })
+        .regex(/^[a-z0-9]{8,15}$/, t('err_password_inc') as string),
+      repeat_password: z
+        .string()
+        .min(1, { message: t('err_password_repeat') as string }),
+    })
+    .partial()
+    .refine(
+      (data) => (data.password ? data.password === data.repeat_password : true),
+      {
+        message: t('err_password_match') as string,
+        path: ['repeat_password'],
+      }
+    );
+
   return {
     editQuoteSchema,
     addQuoteSchema,
     addMovieSchema,
     editMovieSchema,
     EmailSchema,
+    ProfileSchema,
   };
 };

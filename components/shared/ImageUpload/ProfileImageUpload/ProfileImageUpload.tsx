@@ -1,12 +1,7 @@
-import { ImageUpProps, Img } from 'components';
-import { FC } from 'react';
+import { Img } from 'components';
 import { useProfileImageUpload } from './useProfileImageUpload';
 
-const ProfileImageUpload: FC<ImageUpProps> = ({
-  name,
-  className,
-  path = '',
-}) => {
+const ProfileImageUpload = ({ name = '', className = '', path = '' }) => {
   const {
     register,
     readImage,

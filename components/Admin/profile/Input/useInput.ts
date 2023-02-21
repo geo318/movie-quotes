@@ -1,26 +1,37 @@
 import { useAuthUser } from 'hooks';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addEmail, removeEmail, setEmailAsPrimary } from 'services';
 import { flashActions } from 'store';
+import { profileActions } from 'store/profileSlice';
+import { ProfileSubmitProps, RootState } from 'types';
 
-export const useInput = (
-  checkFormState = (state: boolean) => {},
+export const useInput = ({
   refetch = () => {},
-  cancel = false,
-  verified = false
-) => {
+  verified = false,
+  name = '',
+}) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation(['home', 'shared']);
   const [readOnly, setReadOnly] = useState(true);
   const user = useAuthUser();
-  const handleReadOnly = () => {
-    checkFormState(true);
-    setReadOnly((b) => !b);
-  };
+  const formState = useSelector((state: RootState) => state.profile.active);
+  const { unregister } = useFormContext();
 
   useEffect(() => {
-    setReadOnly(() => !cancel);
-  }, [cancel]);
+    if (formState) return;
+    setReadOnly(true);
+    unregister(name);
+    if (name === 'password') unregister('repeat_password');
+  }, [formState, unregister, name]);
+
+  const handleFormState = (name: ProfileSubmitProps) => {
+    setReadOnly((b) => !b);
+    dispatch(profileActions.setFormActive());
+  };
 
   const setPrimaryEmail = async ({ email }: { email: string }) => {
     const flashMessage = verified
@@ -56,9 +67,11 @@ export const useInput = (
 
   return {
     readOnly,
-    handleReadOnly,
+    handleFormState,
     setPrimaryEmail,
     verifyEmail,
     handleRemove,
+    formState,
+    t,
   };
 };

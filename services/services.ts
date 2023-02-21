@@ -8,6 +8,7 @@ import {
   Quote,
   FeedData,
   Movie,
+  User,
 } from 'types';
 
 export const fetchCSRFToken = async () => {
@@ -176,4 +177,16 @@ export const setEmailAsPrimary = async (email: string, id: number) => {
 
 export const removeEmail = async (email: string) => {
   return await axiosInstance.delete(`api/delete-email?email=${email}`);
+};
+
+export const updateUser = async (data: Partial<User>) => {
+  return await axiosInstance.post(
+    'api/edit-user',
+    { ...data, ...{ _method: 'PATCH' } },
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
 };

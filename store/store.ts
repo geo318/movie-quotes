@@ -5,6 +5,7 @@ import noteReducer from './noteSlice';
 import movieReducer from './movieSlice';
 import quoteReducer from './quoteSlice';
 import flashReducer from './flashSlice';
+import profileReducer from './profileSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     movie: movieReducer,
     quote: quoteReducer,
     flash: flashReducer,
+    profile: profileReducer,
   },
 });
