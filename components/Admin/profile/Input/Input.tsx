@@ -60,7 +60,7 @@ const Input: FC<ProfileInputProps> = ({
             />
 
             {control && (
-              <div className='h-16 inline-flex flex-1 items-center pt-8 text-xl'>
+              <div className='h-16 inline-flex flex-1 items-center pt-8 lg:text-xl text-lg lg:min-w-[18rem]'>
                 <div className='flex items-center'>
                   <div
                     className='cursor-pointer'

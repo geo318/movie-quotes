@@ -34,18 +34,16 @@ const AdminLayout: FC<Props & { movies?: boolean }> = ({
         </Layout>
         <Layout
           background={false}
-          className={`mx-auto w-full text-white max-w-[130rem] flex-col min-h-screen mt-8 grid xl:grid-cols-4 grid-cols-5 ${
+          className={`mx-auto w-full text-white max-w-[130rem] flex-col min-h-screen mt-8 grid lg:grid-cols-4 grid-cols-12 ${
             isMobile ? '' : 'gap-10'
           } xl:gap-0`}
         >
           {!isMobile && (
-            <div className='xl:col-span-1 col-span-2 w-full'>
+            <div className='lg:col-span-1 col-span-1 w-full lg:block hidden'>
               <Aside className='fixed top-32' />
             </div>
           )}
-          <div className={isMobile ? 'col-span-5' : 'col-span-3'}>
-            {children}
-          </div>
+          <div className='col-span-12 lg:col-span-3'>{children}</div>
         </Layout>
       </Layout>
     </>

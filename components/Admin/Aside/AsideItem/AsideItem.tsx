@@ -7,7 +7,7 @@ const AsideItem: FC<Props & { text: string }> = ({ children, text }) => {
       <div className='flex items-center justify-center lg:w-[3.75rem] w-10'>
         {children}
       </div>
-      <span className='flex items-center lg:text-2xl text-xl lg:leading-9'>
+      <span className='flex items-center xl:text-2xl text-xl lg:leading-9'>
         {text}
       </span>
     </div>

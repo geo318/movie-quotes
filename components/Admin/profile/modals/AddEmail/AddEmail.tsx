@@ -13,41 +13,47 @@ const AddEmail = ({ refetch }: { refetch: () => {} }) => {
   const { isLoading, schema, onSubmit, lang, t } = useAddEmail({ refetch });
 
   return (
-    <Modal
-      z
-      containerStyle='!items-start lg:mt-80 !lg:max-w-[60rem] !h-auto'
-      className='lg:min-w-[38.5rem] mt !bg-app-black-dark !px-0 !py-10 !z-50'
-    >
-      <FormWrapper schema={schema} onSubmit={onSubmit} fill>
-        {isLoading && <ModalLoadingOverlay admin />}
-        <div className='px-8 mb-6'>
-          <h3 className='lg:text-2xl text-xl text-left'>{t('addNewEmail')}</h3>
-        </div>
-        <Divider />
+    <>
+      <div className='bg-app-black fixed inset-0 -z-10 opacity-20' />
 
-        <div className='flex flex-col px-8 mt-14'>
-          <div className='flex w-full flex-col gap-6'>
-            <Input
-              name='email'
-              full
-              placeholder='Enter new email'
-              label='New Email'
-            />
+      <Modal
+        z
+        containerStyle='!items-start lg:mt-80 !lg:max-w-[60rem] !h-auto'
+        className='lg:min-w-[38.5rem] mt !bg-black !px-0 !py-10 !z-50'
+      >
+        <FormWrapper schema={schema} onSubmit={onSubmit} fill>
+          {isLoading && <ModalLoadingOverlay admin />}
+          <div className='px-8 mb-6'>
+            <h3 className='lg:text-2xl text-xl text-left'>
+              {t('addNewEmail')}
+            </h3>
           </div>
-          <div className='flex justify-end items-end'>
-            <Link href='' className='ml-auto p-2 px-5 lg:text-xl'>
-              Cancel
-            </Link>
-            <Button
-              text={t('add') as string}
-              style='buttonRed'
-              className='ml-3 mt-10 !text-xl !px-4'
-              disabled={isLoading}
-            />
+          <Divider />
+
+          <div className='flex flex-col px-8 mt-14'>
+            <div className='flex w-full flex-col gap-6'>
+              <Input
+                name='email'
+                full
+                placeholder='Enter new email'
+                label='New Email'
+              />
+            </div>
+            <div className='flex justify-end items-end'>
+              <Link href='' className='ml-auto p-2 px-5 lg:text-xl'>
+                Cancel
+              </Link>
+              <Button
+                text={t('add') as string}
+                style='buttonRed'
+                className='ml-3 mt-10 !text-xl !px-4'
+                disabled={isLoading}
+              />
+            </div>
           </div>
-        </div>
-      </FormWrapper>
-    </Modal>
+        </FormWrapper>
+      </Modal>
+    </>
   );
 };
 

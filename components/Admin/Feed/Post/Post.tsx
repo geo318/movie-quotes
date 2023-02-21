@@ -27,7 +27,7 @@ const Post: FC<Post> = ({ post, lastFeedElementRef, modal }) => {
               key={item.id}
               className={`col-span-2 rounded-xl bg-app-black-dark ${
                 !modal && 'xl:px-6 px-9 pt-6 lg:pb-10 pb-4'
-              } mb-8 xl:m-0 ${!modal && '-mx-8'}`}
+              } mb-8 lg:m-0 ${!modal && '-mx-8'}`}
               ref={lastFeedElementRef as LegacyRef<HTMLDivElement>}
             >
               {!modal && (

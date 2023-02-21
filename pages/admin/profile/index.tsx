@@ -22,7 +22,7 @@ const Profile = () => {
     <AdminLayout>
       <ProfileModals refetch={refetch} />
       <div className='grid xl:grid-cols-9 grid-cols-2'>
-        <div className='lg:col-span-7 col-span-9'>
+        <div className='2xl:col-span-7 col-span-9'>
           <h1 className='block sm:text-2xl text-xl sm:line-clamp-none line-clamp-1 mb-[8rem]'>
             {t('myProfile')}
           </h1>
@@ -33,7 +33,7 @@ const Profile = () => {
               fill
               className='flex flex-col'
             >
-              <div className='bg-app-black-dark rounded-xl mb-12 px-20'>
+              <div className='bg-app-black-dark rounded-xl mb-12 xl:px-20 px-8 pb-12'>
                 <div className='w-full flex items-center justify-center -mt-2'>
                   <ProfileImageUpload
                     name='avatar'
