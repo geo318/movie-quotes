@@ -16,5 +16,3 @@ type SubmitDataProps = {
     [key: string]: string | number | boolean;
   };
 };
-
-export type ProfileSubmitProps = 'user_avatar' | 'username' | 'password';

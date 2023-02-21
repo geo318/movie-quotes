@@ -12,3 +12,4 @@ export * from './useZod';
 export * from './useCloseModal';
 export * from './useProfile';
 export * from './useMovies';
+export * from './useSearchBar';

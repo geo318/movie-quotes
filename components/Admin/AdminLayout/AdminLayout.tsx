@@ -4,11 +4,9 @@ import { FC } from 'react';
 import { Props } from 'types';
 import { useAdminLayout } from './useAdminLayout';
 
-const AdminLayout: FC<Props & { movies?: boolean }> = ({
-  children,
-  className = '',
-  movies,
-}) => {
+const AdminLayout: FC<
+  Props & { movies?: boolean; layoutClassName?: string }
+> = ({ children, className = '', layoutClassName = '', movies }) => {
   const { isMobile } = useAdminLayout();
 
   return (
@@ -34,8 +32,8 @@ const AdminLayout: FC<Props & { movies?: boolean }> = ({
         </Layout>
         <Layout
           background={false}
-          className={`mx-auto w-full text-white max-w-[130rem] flex-col min-h-screen mt-8 grid lg:grid-cols-4 grid-cols-12 ${
-            isMobile ? '' : 'gap-10'
+          className={`${layoutClassName} mx-auto w-full text-white max-w-[130rem] flex-col min-h-screen mt-8 grid lg:grid-cols-4 grid-cols-12 ${
+            isMobile ? '' : 'lg:gap-10'
           } xl:gap-0`}
         >
           {!isMobile && (

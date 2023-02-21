@@ -21,6 +21,7 @@ export { default as Plus } from './Plus';
 export { default as Pen } from './Pen';
 export { default as Bin } from './Bin';
 export { default as Dots } from './Dots';
+export { default as ArrowOutline } from './ArrowOutline';
 export * from './aside';
 export * from './eyes';
 export * from './feed';

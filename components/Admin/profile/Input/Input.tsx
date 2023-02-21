@@ -28,14 +28,18 @@ const Input: FC<ProfileInputProps> = ({
   } = useInput({ refetch, verified, name });
   return (
     <>
-      <div className={`flex ${!full ? 'gap-8' : ''} items-center`}>
+      <div
+        className={`${value.includes('@') ? 'flex-col lg:flex-row' : ''} flex ${
+          !full ? 'lg:gap-8' : 'w-full'
+        } items-center relative`}
+      >
         {(!readOnly || full) && !primary && !verify ? (
           <>
             {!password ? (
-              <div className='w-full max-w-[33rem]'>
+              <div className={!full ? 'lg:max-w-[33rem]' : 'w-full'}>
                 <InputText
                   name={name}
-                  className={`${!full ? 'w-full' : 'w-full'}`}
+                  className='w-full'
                   inputStyle='text-base xl:text-xl !py-2'
                   label={label}
                   asterisk={false}
@@ -60,10 +64,24 @@ const Input: FC<ProfileInputProps> = ({
             />
 
             {control && (
-              <div className='h-16 inline-flex flex-1 items-center pt-8 lg:text-xl text-lg lg:min-w-[18rem]'>
-                <div className='flex items-center'>
+              <div
+                className={`h-16 relative lg:inline-flex flex-1 items-center lg:pt-5 pt-2 lg:text-xl text-base w-full lg:w-auto lg:min-w-[18rem] ${
+                  primary && 'hidden'
+                }`}
+              >
+                <div
+                  className={`lg:flex lg:items-center ${
+                    editable &&
+                    'lg:relative absolute right-0 lg:top-auto top-5 flex'
+                  } ${!primary && !editable ? 'lg:w-full w-auto' : ''} ${
+                    !editable && !primary && !verify ? 'flex' : ''
+                  }`}
+                >
                   <div
-                    className='cursor-pointer'
+                    className={`cursor-pointer ${
+                      !editable &&
+                      'border border-white rounded-md lg:border-0 px-4 py-2 lg:p-0'
+                    }`}
                     onClick={() => {
                       editable && handleFormState(name as ProfileSubmitProps);
                       !editable &&
@@ -76,11 +94,15 @@ const Input: FC<ProfileInputProps> = ({
                     {control}
                   </div>
 
-                  {!primary && label === 'Email' && (
+                  {!primary && value.includes('@') && (
                     <>
-                      <div className='border-r h-4 border-app-dark-gray mx-5' />
                       <div
-                        className='cursor-pointer'
+                        className={`lg:block hidden border-r h-4 border-app-dark-gray mx-5`}
+                      />
+                      <div
+                        className={`cursor-pointer ml-auto lg:mg-0 ${
+                          !editable && 'py-2 lg:p-0'
+                        }`}
                         onClick={() => handleRemove(value)}
                       >
                         Remove

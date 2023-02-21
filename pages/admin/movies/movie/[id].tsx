@@ -14,7 +14,7 @@ import { getImage, loadText } from 'helpers';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
-import { checkLoggedIn, checkUser } from 'services';
+import { checkLoggedIn } from 'services';
 import { useMovie } from './useMovie';
 
 const Post = () => {

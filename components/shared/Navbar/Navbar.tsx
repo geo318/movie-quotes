@@ -17,7 +17,7 @@ const Navbar: FC<NavbarProps> = ({
   admin = false,
   movies = false,
 }) => {
-  const { t, isMobile } = useNavbar();
+  const { t, isMobile, isSearch } = useNavbar();
   return (
     <div
       className={`py-6 relative top-0 w-full backdrop-blur-xl ${
@@ -36,7 +36,7 @@ const Navbar: FC<NavbarProps> = ({
           </div>
         )}
         <nav className='flex ml-auto sm:gap-5 items-center relative'>
-          {admin && isMobile && (
+          {admin && isMobile && isSearch && (
             <>
               <SearchMenu movies={movies} />
               <div className='w-5 sm:hidden' />

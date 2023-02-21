@@ -70,12 +70,6 @@
     }
 }
 
-@media (min-width: 640px) and (max-width:1023px) {
-    .notification:before {
-        right: 268px;
-    }
-}
-
 @media (max-width:639px) {
     .notification:before {
         right: 32px;

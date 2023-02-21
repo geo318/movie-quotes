@@ -1,5 +1,12 @@
-import { useAuthUser, useGetUser, useLang, useZod } from 'hooks';
+import {
+  useActiveQuery,
+  useAuthUser,
+  useGetUser,
+  useScreenWidth,
+  useZod,
+} from 'hooks';
 import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { updateUser } from 'services';
@@ -8,8 +15,9 @@ import { profileActions } from 'store/profileSlice';
 import { ProfileSubmitProps, RootState, User } from 'types';
 
 export const useProfile = () => {
-  const { refetch } = useGetUser();
-  const { lang } = useLang();
+  const { refetch, isLoading } = useGetUser();
+  const isMobile = useScreenWidth();
+  const isActive = useActiveQuery();
   const { t } = useTranslation('shared');
   const user = useAuthUser();
   const dispatch = useDispatch();
@@ -42,13 +50,30 @@ export const useProfile = () => {
     }
   };
 
+  const router = useRouter();
+
+  const profileNavigationKeys = [
+    'emails',
+    'password',
+    'addEmail',
+    'submit',
+  ] as const;
+
+  const isActiveProfile = profileNavigationKeys.some((key) =>
+    router.query.hasOwnProperty(key)
+  );
+
   return {
-    schema,
+    profileNavigationKeys,
+    isActiveProfile,
     setFormState,
+    isActive,
+    schema,
     formState,
     onSubmit,
     refetch,
-    lang,
+    isMobile,
+    isLoading,
     user,
     t,
   };

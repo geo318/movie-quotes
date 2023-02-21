@@ -2,3 +2,8 @@ export * from './Input';
 export * from './modals';
 export * from './Popup';
 export * from './Flash';
+export * from './ProfileHeader';
+export * from './AddEmailButton';
+export * from './FormSubmit';
+export * from './Mobile';
+export * from './Emails';

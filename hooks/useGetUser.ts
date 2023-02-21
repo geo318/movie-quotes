@@ -6,7 +6,11 @@ import { authActions } from 'store';
 
 export const useGetUser = () => {
   const dispatch = useDispatch();
-  const { data: userData, refetch } = useQuery({
+  const {
+    data: userData,
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: 'user',
     queryFn: getUser,
     retry: 1,
@@ -15,5 +19,5 @@ export const useGetUser = () => {
     if (!userData?.data.user.id) return;
     dispatch(authActions.setUser(userData?.data.user));
   }, [dispatch, userData]);
-  return { refetch };
+  return { refetch, isLoading };
 };

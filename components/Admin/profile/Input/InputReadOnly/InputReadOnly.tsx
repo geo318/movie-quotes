@@ -10,7 +10,7 @@ const InputReadOnly = ({
   password = false,
 }) => {
   return (
-    <div className='flex grow flex-col max-w-[33rem] justify-start items-start relative'>
+    <div className='flex grow flex-col w-full lg:max-w-[33rem] justify-start items-start relative'>
       <label htmlFor={name} className='block font-normal text-base pb-2'>
         {label}
       </label>
@@ -28,14 +28,13 @@ const InputReadOnly = ({
           </div>
         )}
         <input
-          className={`w-full appearance-none outline-none text-base xl:text-xl
-       border px-3 py-2 rounded-[.25rem] font-normal cursor-auto ${
-         primary || verify
-           ? primary
-             ? 'text-white bg-app-green border-app-green bg-opacity-20'
-             : 'text-white bg-[#EC9524] border-[#EC9524] bg-opacity-20'
-           : 'text-app-black bg-app-gray border-app-gray'
-       }`}
+          className={`w-full appearance-none outline-none text-lg xl:text-xl border lg:px-3 lg:py-2 lg:rounded-[.25rem] font-normal cursor-auto ${
+            primary || verify
+              ? primary
+                ? 'text-white bg-app-green border-app-green bg-opacity-20 px-3 py-2 rounded-[.25rem]'
+                : 'text-white bg-[#EC9524] border-[#EC9524] bg-opacity-20'
+              : 'lg:text-app-black lg:bg-app-gray lg:border-app-gray bg-transparent border-transparent border-b-app-gray border-opacity-50 pb-4 rounded-none px-0'
+          }`}
           placeholder={placeholder}
           value={password ? '123456789012' : value}
           readOnly
