@@ -1,15 +1,10 @@
-import {
-  useActiveQuery,
-  useAuthUser,
-  useGetUser,
-  useScreenWidth,
-  useZod,
-} from 'hooks';
+import { useActiveQuery, useAuthUser, useGetUser, useScreenWidth } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from 'services';
 import { authActions, flashActions, profileActions } from 'store';
 import { ProfileSubmitProps, RootState, User } from 'types';
+import { profileSchema as schema } from 'schema';
 
 export const useProfile = () => {
   const { refetch, isLoading } = useGetUser();
@@ -19,7 +14,6 @@ export const useProfile = () => {
   const user = useAuthUser();
   const dispatch = useDispatch();
   const formState = useSelector((state: RootState) => state.profile.active);
-  const { profileSchema: schema } = useZod();
 
   const setFormState = (state?: ProfileSubmitProps) => {
     dispatch(profileActions.setFormPassive());

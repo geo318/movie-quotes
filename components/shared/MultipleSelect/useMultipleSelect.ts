@@ -1,19 +1,26 @@
 import { useClickOutSide, useLang } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { Genre } from 'types';
 
 export const useMultipleSelect = (data: Genre[], selected?: Genre[]) => {
   const { lang } = useLang();
   const { t } = useTranslation('shared');
-
+  const value = useWatch({ name: 'genres' });
   const [labelClicked, setLabelClicked] = useState(false);
   const labelRef = useClickOutSide({
     cb: () => setLabelClicked(false),
   });
-
   const [collection, setCollection] = useState<Genre[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
+  const { clearErrors } = useFormContext();
+
+  useEffect(() => {
+    value && clearErrors(['genres']);
+    return () => clearErrors(['genres']);
+  }, [value, clearErrors]);
+
   useEffect(() => {
     if (data && selected) {
       setGenres(selected);

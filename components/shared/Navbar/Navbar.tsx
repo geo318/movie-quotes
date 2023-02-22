@@ -32,7 +32,7 @@ const Navbar: FC<NavbarProps> = ({
           <BurgerMenu />
         ) : (
           <div className='uppercase text-app-yellow text-base leading-6 font-medium'>
-            <Link href='/'> Movie Quotes</Link>
+            <Link href='/'>Movie Quotes</Link>
           </div>
         )}
         <nav className='flex ml-auto sm:gap-5 items-center relative'>
@@ -43,6 +43,7 @@ const Navbar: FC<NavbarProps> = ({
             </>
           )}
           {admin && <Notification />}
+          {!admin && !isMobile && <Lang className='sm:block hidden' />}
           {admin && !isMobile ? (
             <>
               <Lang className='sm:block hidden' />

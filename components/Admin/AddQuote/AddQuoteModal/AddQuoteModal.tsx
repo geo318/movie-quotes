@@ -6,7 +6,7 @@ import {
   ImageUpload,
   Modal,
   ModalLoadingOverlay,
-  Select,
+  SelectMovie,
   Textarea,
 } from 'components';
 import { getImage } from 'helpers';
@@ -14,17 +14,8 @@ import { FC } from 'react';
 import { useAddQuoteModal } from './useAddQuoteModal';
 
 const AddQuoteModal: FC = () => {
-  const {
-    isLoading,
-    schema,
-    onSubmit,
-    user,
-    select,
-    dropdown,
-    handleImage,
-    image,
-    t,
-  } = useAddQuoteModal();
+  const { isLoading, schema, onSubmit, user, handleImage, movies, image, t } =
+    useAddQuoteModal();
 
   return (
     <Modal
@@ -66,7 +57,7 @@ const AddQuoteModal: FC = () => {
               handleImage={handleImage}
               image={image}
             />
-            <Select face={select}>{dropdown}</Select>
+            <SelectMovie movies={movies} />
           </div>
 
           <Button

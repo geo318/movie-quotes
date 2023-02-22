@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateQuote } from 'services';
 import { FeedData, RootState } from 'types';
-import { useAuthUser, useLang, useZod, useCloseModal } from 'hooks';
+import { useAuthUser, useLang, useCloseModal } from 'hooks';
 import { authActions } from 'store';
 import { QuoteModalProps, useMovieQuote } from 'components';
+import { editQuoteSchema as schema } from 'schema';
 
 export const useEditQuote = ({ refetch, quotes }: QuoteModalProps) => {
   const [image, setImage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { handleDelete } = useMovieQuote(refetch);
   const handleClose = useCloseModal();
-  const { editQuoteSchema: schema } = useZod();
   const { t } = useTranslation('shared');
   const { lang } = useLang();
   const close = useCloseModal();

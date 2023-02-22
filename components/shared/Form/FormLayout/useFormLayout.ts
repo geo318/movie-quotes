@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { authActions } from 'store';
 import { RootState } from 'types';
 
 export const useFormLayout = () => {
@@ -11,10 +13,15 @@ export const useFormLayout = () => {
     formState: { isSubmitSuccessful },
   } = useFormContext();
   const formErrors = useSelector((state: RootState) => state.auth.formErrors);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isSubmitSuccessful) reset();
-  }, [isSubmitSuccessful, reset]);
+    isSubmitSuccessful && reset();
+    return () => {
+      dispatch(authActions.clearFormError());
+      reset();
+    };
+  }, [isSubmitSuccessful, reset, dispatch]);
 
   useEffect(() => {
     if (typeof formErrors === 'object' && formErrors !== null)

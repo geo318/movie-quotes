@@ -2,12 +2,12 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEmail } from 'services';
-import { useCloseModal, useZod } from 'hooks';
+import { useCloseModal } from 'hooks';
 import { authActions, flashActions } from 'store';
+import { emailSchema as schema } from 'schema';
 
 export const useAddEmail = ({ refetch }: { refetch: () => {} }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { emailSchema: schema } = useZod();
   const close = useCloseModal();
   const { t } = useTranslation('profile');
   const dispatch = useDispatch();

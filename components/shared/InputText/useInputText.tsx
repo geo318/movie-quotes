@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -10,6 +11,7 @@ export const useInputText = ({
   value?: string | number;
   select?: boolean;
 }) => {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const [blur, setBlur] = useState(false);
   const {
@@ -32,5 +34,6 @@ export const useInputText = ({
     blur,
     setBlur,
     setValue,
+    t,
   };
 };
