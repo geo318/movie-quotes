@@ -9,7 +9,7 @@ export const loginSchema = z.object({
   email: z
     .string()
     .regex(
-      /(^[a-z0-9]{3,15}$)|(^[a-z0-9]{2,20}?(\.)[a-z0-9]{2,20})(@[a-z0-9]{2,20}\.([a-z0-9]{2,4}))+/,
+      /(^[a-z0-9]+$)|(^[a-z0-9]+(\.|[a-z0-9])[a-z0-9]+)(@[a-z0-9]+\.([a-z0-9]+))+/,
       'shared:invalidUsernameOrEmail'
     ),
   ...passwordValidationWithoutConfirmation,
