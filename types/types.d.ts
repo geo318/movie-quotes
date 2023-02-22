@@ -29,7 +29,7 @@ export type User = {
     id: number;
     user_id: number;
     email: string;
-    email_verified_at: string;
+    email_verified_at: null | string;
   }[];
   password?: string;
   repeat_password?: string;
@@ -44,7 +44,7 @@ export type FeedData = {
   movie: array<Movie>;
   comments: array<Comment>;
   likes: array<Like>;
-  user: UserData;
+  user: User;
 };
 
 export interface RootState {
@@ -128,11 +128,13 @@ export interface InputProps extends Props {
       | number;
   };
   inputStyle?: string;
-  asterisk?: boolean;
+  primary?: boolean;
+  verified?: boolean;
   submit?: boolean;
   select?: boolean;
   error?: string;
   rows?: number;
+  asterisk?: boolean;
 }
 
 type Genre = {

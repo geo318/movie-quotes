@@ -28,6 +28,7 @@ const Post: FC<Post> = ({ post, lastFeedElementRef, modal }) => {
               className={`col-span-2 rounded-xl bg-app-black-dark ${
                 !modal && 'xl:px-6 px-9 pt-6 lg:pb-10 pb-4'
               } mb-8 lg:m-0 ${!modal && '-mx-8'}`}
+
               ref={lastFeedElementRef as LegacyRef<HTMLDivElement>}
             >
               {!modal && (
@@ -87,12 +88,15 @@ const Post: FC<Post> = ({ post, lastFeedElementRef, modal }) => {
                 <Figure count={item.likes.length}>
                   <div
                     onClick={() =>
-                      handleLike({ userId: authUser.id, quoteId: item.id })
+                      handleLike({
+                        userId: parseInt(authUser.id),
+                        quoteId: item.id,
+                      })
                     }
                     className='cursor-pointer'
                   >
                     {item.likes.some(
-                      (e: Like) => e.user_id === authUser?.id
+                      (e: Like) => e.user_id == parseInt(authUser?.id)
                     ) ? (
                       <HeartIcon active className='w-6 lg:w-auto' />
                     ) : (

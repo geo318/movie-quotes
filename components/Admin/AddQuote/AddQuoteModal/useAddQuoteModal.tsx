@@ -52,7 +52,7 @@ export const useAddQuoteModal = () => {
           comments: [],
           likes: [],
           movie_id: 0,
-          user_id: authUser.id,
+          user_id: parseInt(authUser.id),
         })
       );
       router.push('/admin');
