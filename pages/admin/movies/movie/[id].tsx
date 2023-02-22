@@ -103,6 +103,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const translation = await serverSideTranslations(locale as string, [
     'shared',
     'home',
+    'errors',
   ]);
 
   return {

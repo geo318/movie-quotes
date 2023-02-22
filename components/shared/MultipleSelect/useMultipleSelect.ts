@@ -5,7 +5,7 @@ import { Genre } from 'types';
 
 export const useMultipleSelect = (data: Genre[], selected?: Genre[]) => {
   const { lang } = useLang();
-  const { t } = useTranslation();
+  const { t } = useTranslation('shared');
 
   const [labelClicked, setLabelClicked] = useState(false);
   const labelRef = useClickOutSide({

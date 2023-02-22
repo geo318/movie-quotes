@@ -46,5 +46,17 @@
     "edit":"Edit",
     "delete":"Delete",
     "addQuoteCall":"Add quote",
-    "addQuote":"Add Quote"
+    "addQuote":"Add Quote",
+    "useGeorgian":"Please, use Georgian symbols only",
+    "useLatin":"Please, use Latin symbols only",
+    "mimes":".jpg, .jpeg, .png and .webp files are accepted.",
+    "selectMovie":"Please, select a movie",
+    "noEmpty":"Input must not be empty",
+    "noLower1000":"Lower then $1000 is unrealistic, select more",
+    "noLower1895":"The first film was made in 1895",
+    "noMoreThenCurrent":"You can't select more then current year",
+    "emailRequired":"Email required",
+    "incorrectEmail":"Incorrect email",
+    "imageRequired":"image is required",
+    "max2MB":"Max file size is 2MB."
 }

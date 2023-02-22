@@ -2,20 +2,21 @@ import { useTranslation } from 'next-i18next';
 import { z } from 'zod';
 
 export const useZod = () => {
-  const { t } = useTranslation('errors');
+  const { t } = useTranslation(['shared', 'home']);
 
   const validateGeorgian = z
     .string()
     .regex(
       new RegExp('^[ა-ჰ0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
-      'Please, use Georgian symbols only'
+      t('useGeorgian') as string
     );
   const validateEnglish = z
     .string()
     .regex(
       new RegExp('^[a-zA-Z0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
-      'Please, use Latin symbols only'
+      t('useLatin') as string
     );
+
   const MAX_FILE_SIZE = 2000000;
   const ACCEPTED_MIME_TYPES = [
     'image/jpeg',
@@ -25,11 +26,11 @@ export const useZod = () => {
   ];
   const validateImage = z
     .any()
-    .refine((file) => !!file, 'image is required')
-    .refine((file) => file?.size <= MAX_FILE_SIZE, 'Max file size is 2MB.')
+    .refine((file) => !!file, t('imageRequired') as string)
+    .refine((file) => file?.size <= MAX_FILE_SIZE, t('max2MB') as string)
     .refine(
       (file) => ACCEPTED_MIME_TYPES.includes(file?.type),
-      '.jpg, .jpeg, .png and .webp files are accepted.'
+      t('mimes') as string
     );
 
   const quoteSchemaObj = {
@@ -42,8 +43,9 @@ export const useZod = () => {
 
   const addQuoteSchema = z.object({
     ...quoteSchemaObj,
-    movie_id: z.number().min(1, { message: 'Please, select a movie' }),
+    movie_id: z.number().min(1, { message: t('selectMovie') as string }),
   });
+
   const movieSchemaObj = {
     movie_title_en: validateEnglish,
     movie_title_ka: validateGeorgian,
@@ -55,7 +57,7 @@ export const useZod = () => {
           return false;
         }
       },
-      { message: 'Input must not be empty' }
+      { message: t('') as string }
     ),
     director_en: validateEnglish,
     director_ka: validateGeorgian,
@@ -64,22 +66,24 @@ export const useZod = () => {
     movie_image: validateImage,
     budget: z.coerce
       .number()
-      .min(1000, { message: 'Lower then $1000 is unrealistic, select more' }),
+      .min(1000, { message: t('noLower1000') as string }),
     year: z.coerce
       .number()
-      .min(1895, { message: 'The first film was made in 1895' })
+      .min(1895, { message: t('noLower1895') as string })
       .max(new Date().getFullYear(), {
-        message: `You can't select more then current year`,
+        message: t('noMoreThenCurrent') as string,
       }),
   };
+
   const addMovieSchema = z.object(movieSchemaObj);
   const editMovieSchema = addMovieSchema.partial();
   const emailValidation = {
     email: z
       .string()
-      .min(1, { message: 'email required' as string })
-      .email('Incorrect email' as string),
+      .min(1, { message: t('emailRequired') as string })
+      .email(t('incorrectEmail') as string),
   };
+
   const passwordValidation = {
     password: z
       .string()
