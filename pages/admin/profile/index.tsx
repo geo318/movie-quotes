@@ -10,9 +10,11 @@ import {
   Input,
   LoadingSlot,
   Mobile,
+  PasswordPage,
   ProfileHeader,
   ProfileImageUpload,
   ProfileModals,
+  UsernamePage,
 } from 'components';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -52,6 +54,12 @@ const Profile = () => {
           >
             {isMobile && isActive(profileNavigationKeys[2]) && (
               <AddEmailPage refetch={refetch} />
+            )}
+            {isMobile && isActive(profileNavigationKeys[1]) && (
+              <PasswordPage refetch={refetch} />
+            )}
+            {isMobile && isActive(profileNavigationKeys[3]) && (
+              <UsernamePage refetch={refetch} />
             )}
             <FormWrapper
               schema={schema}

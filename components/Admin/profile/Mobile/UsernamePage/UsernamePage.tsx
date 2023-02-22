@@ -1,20 +1,20 @@
 import { Button, Dialog, FormWrapper, Input } from 'components';
-import { useAddEmailPage } from './useAddEmailPage';
+import { useUsernamePage } from './useUsernamePage';
 
-const AddEmailPage = ({ refetch }: { refetch: () => {} }) => {
+const PasswordPage = ({ refetch }: { refetch: () => {} }) => {
   const { isLoading, schema, onSubmit, t, goBack, open, toggleDialog } =
-    useAddEmailPage({ refetch });
+    useUsernamePage({ refetch });
 
   return (
     <>
       <FormWrapper schema={schema} onSubmit={onSubmit} fill>
         <div className='flex flex-col'>
-          <div className='flex w-full flex-col pb-14 pt-16'>
+          <div className='flex w-full flex-col pb-10 pt-16'>
             <Input
-              name='email'
+              name='username'
               full
-              placeholder='Enter new email'
-              label='Add new email'
+              placeholder='Username'
+              label='Enter new username'
               className='!min-h-[3rem]'
             />
           </div>
@@ -41,4 +41,4 @@ const AddEmailPage = ({ refetch }: { refetch: () => {} }) => {
   );
 };
 
-export default AddEmailPage;
+export default PasswordPage;

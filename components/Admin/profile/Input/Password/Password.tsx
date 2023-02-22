@@ -2,10 +2,12 @@ import { InputReadOnly, InputText } from 'components';
 import { usePassword } from './usePassword';
 
 const Password = () => {
-  const { isLengthCorrect, isLowerCase, t } = usePassword();
+  const { isLengthCorrect, isLowerCase, isMobile, t } = usePassword();
   return (
     <div className='flex flex-col w-full max-w-[33rem] gap-6 mt-6'>
-      <InputReadOnly label='Password' value='123456789012' password />
+      {!isMobile && (
+        <InputReadOnly label='Password' value='123456789012' password />
+      )}
       <div className='p-6 mb-6 border border-app-gray border-opacity-20 rounded-four'>
         <h5 className='text-base'>Passwords should contain:</h5>
         <div className='mt-4 flex flex-col gap-1 text-sm'>

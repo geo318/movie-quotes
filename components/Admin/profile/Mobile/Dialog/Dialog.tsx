@@ -1,6 +1,8 @@
-import { Button, Divider, FormSubmit } from 'components';
+import { Button, Divider } from 'components';
+import { useDialog } from './useDialog';
 
 const Dialog = ({ close }: { close: () => void }) => {
+  const { t } = useDialog();
   return (
     <>
       <div

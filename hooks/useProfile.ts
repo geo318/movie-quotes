@@ -6,12 +6,9 @@ import {
   useZod,
 } from 'hooks';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from 'services';
-import { authActions } from 'store';
-import { profileActions } from 'store/profileSlice';
+import { authActions, flashActions, profileActions } from 'store';
 import { ProfileSubmitProps, RootState, User } from 'types';
 
 export const useProfile = () => {
@@ -22,7 +19,7 @@ export const useProfile = () => {
   const user = useAuthUser();
   const dispatch = useDispatch();
   const formState = useSelector((state: RootState) => state.profile.active);
-  const { ProfileSchema: schema } = useZod();
+  const { profileSchema: schema } = useZod();
 
   const setFormState = (state?: ProfileSubmitProps) => {
     dispatch(profileActions.setFormPassive());
@@ -38,25 +35,25 @@ export const useProfile = () => {
       await updateUser(data);
       dispatch(profileActions.setFormPassive());
       refetch();
+      if (isMobile && data?.avatar)
+        dispatch(flashActions.setFlashMessage('Avatar changed'));
     } catch (e: any) {
-      e.message === 'Request failed with status code 422'
+      e.message?.includes('422')
         ? dispatch(authActions.setFormError(e?.response?.data?.errors))
         : dispatch(
             authActions.setFormError({
-              name: 'quote_title_ka',
+              name: 'username',
               error: 'something wrong',
             })
           );
     }
   };
 
-  const router = useRouter();
-
   const profileNavigationKeys = [
     'emails',
     'password',
     'add-new-email',
-    'submit',
+    'username',
   ] as const;
 
   const isActiveProfile = profileNavigationKeys.some((key) => isActive(key));

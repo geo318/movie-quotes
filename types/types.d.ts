@@ -31,6 +31,8 @@ export type User = {
     email: string;
     email_verified_at: string;
   }[];
+  password?: string;
+  repeat_password?: string;
 };
 
 export type FeedData = {

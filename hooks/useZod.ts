@@ -80,9 +80,34 @@ export const useZod = () => {
       .min(1, { message: 'email required' as string })
       .email('Incorrect email' as string),
   };
-  const EmailSchema = z.object(emailValidation);
+  const passwordValidation = {
+    password: z
+      .string()
+      .min(1, { message: t('err_password_req') as string })
+      .regex(/^[a-z0-9]{8,15}$/, t('err_password_inc') as string),
+    repeat_password: z
+      .string()
+      .min(1, { message: t('err_password_repeat') as string }),
+  };
+  const usernameValidation = z
+    .string()
+    .min(3, { message: t('err_username_req') as string })
+    .regex(/[a-z0-9]{3,15}/, t('err_username_inc') as string);
 
-  const ProfileSchema = z
+  const usernameSchema = z.object({ username: usernameValidation });
+
+  const emailSchema = z.object(emailValidation);
+
+  const passwordSchema = z
+    .object(passwordValidation)
+    .refine(
+      (data) => (data.password ? data.password === data.repeat_password : true),
+      {
+        message: t('err_password_match') as string,
+        path: ['repeat_password'],
+      }
+    );
+  const profileSchema = z
     .object({
       avatar: validateImage,
       username: z
@@ -111,7 +136,9 @@ export const useZod = () => {
     addQuoteSchema,
     addMovieSchema,
     editMovieSchema,
-    EmailSchema,
-    ProfileSchema,
+    usernameSchema,
+    emailSchema,
+    profileSchema,
+    passwordSchema,
   };
 };
