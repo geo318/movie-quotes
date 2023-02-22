@@ -1,14 +1,16 @@
-import { InputText, Password, InputReadOnly } from 'components';
+import { InputText, Password, InputReadOnly, Warn } from 'components';
+import Link from 'next/link';
 import { FC } from 'react';
-import { ProfileSubmitProps } from 'types';
+import { ProfileSubmitProps, Props } from 'types';
 import { ProfileInputProps } from './type';
 import { useInput } from './useInput';
 
-const Input: FC<ProfileInputProps> = ({
+const Input: FC<ProfileInputProps & Props> = ({
   label,
   control,
   refetch,
   placeholder = '',
+  className = '',
   name = '',
   value = '',
   full = false,
@@ -24,6 +26,7 @@ const Input: FC<ProfileInputProps> = ({
     setPrimaryEmail,
     verifyEmail,
     handleRemove,
+    isMobile,
     t,
   } = useInput({ refetch, verified, name });
   return (
@@ -36,16 +39,16 @@ const Input: FC<ProfileInputProps> = ({
         {(!readOnly || full) && !primary && !verify ? (
           <>
             {!password ? (
-              <div className={!full ? 'lg:max-w-[33rem]' : 'w-full'}>
+              <div className={!full ? 'w-full lg:flex lg:gap-8' : 'w-full'}>
                 <InputText
                   name={name}
-                  className='w-full'
-                  inputStyle='text-base xl:text-xl !py-2'
+                  className={`w-full`}
+                  inputStyle={`${className} text-base xl:text-xl !py-2`}
                   label={label}
                   asterisk={false}
                   placeholder={placeholder}
                 />
-                {!full && <div className='text-xl' />}
+                {!full && <div className='text-xl lg:min-w-[18rem]' />}
               </div>
             ) : (
               <Password />
@@ -67,7 +70,7 @@ const Input: FC<ProfileInputProps> = ({
               <div
                 className={`h-16 relative lg:inline-flex flex-1 items-center lg:pt-5 pt-2 lg:text-xl text-base w-full lg:w-auto lg:min-w-[18rem] ${
                   primary && 'hidden'
-                }`}
+                } ${verify && 'lg:pt-2 pt-0'}`}
               >
                 <div
                   className={`lg:flex lg:items-center ${
@@ -75,23 +78,39 @@ const Input: FC<ProfileInputProps> = ({
                     'lg:relative absolute right-0 lg:top-auto top-5 flex'
                   } ${!primary && !editable ? 'lg:w-full w-auto' : ''} ${
                     !editable && !primary && !verify ? 'flex' : ''
-                  }`}
+                  } ${verify ? 'flex flex-row' : ''}`}
                 >
                   <div
                     className={`cursor-pointer ${
-                      !editable &&
-                      'border border-white rounded-md lg:border-0 px-4 py-2 lg:p-0'
+                      !editable && !verify
+                        ? 'border border-white rounded-md lg:border-0 px-4 py-2 lg:p-0'
+                        : ''
+                    } ${
+                      verify
+                        ? 'text-[#EC9524] lg:text-white flex items-center gap-2 lg:not-italic'
+                        : ''
                     }`}
                     onClick={() => {
-                      editable && handleFormState(name as ProfileSubmitProps);
-                      !editable &&
-                        !primary &&
-                        !verify &&
-                        setPrimaryEmail({ email: value });
-                      verify && verifyEmail({ email: value });
+                      if (!isMobile) {
+                        editable && handleFormState(name as ProfileSubmitProps);
+                        !editable &&
+                          !primary &&
+                          !verify &&
+                          setPrimaryEmail({ email: value });
+                        verify && verifyEmail({ email: value });
+                      }
                     }}
                   >
-                    {control}
+                    {verify && (
+                      <div className='block lg:hidden'>
+                        <Warn />
+                      </div>
+                    )}
+                    {isMobile ? (
+                      <Link href={`?${name}`}>{control}</Link>
+                    ) : (
+                      control
+                    )}
                   </div>
 
                   {!primary && value.includes('@') && (
@@ -100,7 +119,7 @@ const Input: FC<ProfileInputProps> = ({
                         className={`lg:block hidden border-r h-4 border-app-dark-gray mx-5`}
                       />
                       <div
-                        className={`cursor-pointer ml-auto lg:mg-0 ${
+                        className={`cursor-pointer ml-auto lg:ml-0 ${
                           !editable && 'py-2 lg:p-0'
                         }`}
                         onClick={() => handleRemove(value)}

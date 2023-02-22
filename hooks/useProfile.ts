@@ -17,7 +17,7 @@ import { ProfileSubmitProps, RootState, User } from 'types';
 export const useProfile = () => {
   const { refetch, isLoading } = useGetUser();
   const isMobile = useScreenWidth();
-  const isActive = useActiveQuery();
+  const { isActive } = useActiveQuery();
   const { t } = useTranslation('shared');
   const user = useAuthUser();
   const dispatch = useDispatch();
@@ -55,13 +55,11 @@ export const useProfile = () => {
   const profileNavigationKeys = [
     'emails',
     'password',
-    'addEmail',
+    'add-new-email',
     'submit',
   ] as const;
 
-  const isActiveProfile = profileNavigationKeys.some((key) =>
-    router.query.hasOwnProperty(key)
-  );
+  const isActiveProfile = profileNavigationKeys.some((key) => isActive(key));
 
   return {
     profileNavigationKeys,

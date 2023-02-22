@@ -32,7 +32,7 @@ const InputReadOnly = ({
             primary || verify
               ? primary
                 ? 'text-white bg-app-green border-app-green bg-opacity-20 px-3 py-2 rounded-[.25rem]'
-                : 'text-white bg-[#EC9524] border-[#EC9524] bg-opacity-20'
+                : 'text-white lg:bg-[#EC9524] lg:border-[#EC9524] lg:bg-opacity-20 bg-transparent border-transparent'
               : 'lg:text-app-black lg:bg-app-gray lg:border-app-gray bg-transparent border-transparent border-b-app-gray border-opacity-50 pb-4 rounded-none px-0'
           }`}
           placeholder={placeholder}
@@ -42,7 +42,15 @@ const InputReadOnly = ({
         />
         {
           <div className={`absolute top-1/2 -translate-y-1/2 right-[.875rem]`}>
-            {verify || primary ? primary ? <CheckMark /> : <Warn /> : null}
+            {verify || primary ? (
+              primary ? (
+                <CheckMark />
+              ) : (
+                <div className='hidden lg:block'>
+                  <Warn />
+                </div>
+              )
+            ) : null}
           </div>
         }
       </div>

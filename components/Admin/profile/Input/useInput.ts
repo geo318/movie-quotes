@@ -1,4 +1,4 @@
-import { useAuthUser } from 'hooks';
+import { useAuthUser, useScreenWidth } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -14,6 +14,7 @@ export const useInput = ({
   verified = false,
   name = '',
 }) => {
+  const isMobile = useScreenWidth();
   const dispatch = useDispatch();
   const { t } = useTranslation(['home', 'shared']);
   const [readOnly, setReadOnly] = useState(true);
@@ -72,6 +73,7 @@ export const useInput = ({
     verifyEmail,
     handleRemove,
     formState,
+    isMobile,
     t,
   };
 };

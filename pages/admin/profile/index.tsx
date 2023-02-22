@@ -1,5 +1,6 @@
 import {
   AddEmailButton,
+  AddEmailPage,
   AdminLayout,
   ArrowOutline,
   Divider,
@@ -31,6 +32,8 @@ const Profile = () => {
     setFormState,
     isLoading,
     isActiveProfile,
+    isActive,
+    profileNavigationKeys,
   } = useProfile();
 
   return (
@@ -40,14 +43,29 @@ const Profile = () => {
       <div className='grid xl:grid-cols-9 grid-cols-2'>
         <div className='2xl:col-span-7 col-span-9'>
           <ProfileHeader />
-          <>
+          <div
+            className={
+              isMobile
+                ? 'lg:bg-app-black-dark bg-[#24222F] rounded-xl mb-12 xl:px-20 px-8 pb-12 lg:mx-0 -mx-8'
+                : ''
+            }
+          >
+            {isMobile && isActive(profileNavigationKeys[2]) && (
+              <AddEmailPage refetch={refetch} />
+            )}
             <FormWrapper
               schema={schema}
               onSubmit={onSubmit}
               fill
               className='flex flex-col'
             >
-              <div className='lg:bg-app-black-dark bg-[#24222F] rounded-xl mb-12 xl:px-20 px-8 pb-12 lg:mx-0 -mx-8'>
+              <div
+                className={
+                  !isMobile
+                    ? 'lg:bg-app-black-dark bg-[#24222F] rounded-xl mb-12 xl:px-20 px-8 pb-12 lg:mx-0 -mx-8'
+                    : ''
+                }
+              >
                 <LoadingSlot isLoading={isLoading}>
                   {isActiveProfile ? (
                     <Mobile
@@ -117,10 +135,14 @@ const Profile = () => {
                 </LoadingSlot>
               </div>
 
-              <FormSubmit formState={formState} setFormState={setFormState} />
+              <FormSubmit
+                className='absolute lg:relative top-20 inset-x-0 lg:w-auto'
+                formState={formState}
+                setFormState={setFormState}
+              />
             </FormWrapper>
-            <div className='h-32'></div>
-          </>
+            <div className='lg:h-32' />
+          </div>
         </div>
       </div>
     </AdminLayout>

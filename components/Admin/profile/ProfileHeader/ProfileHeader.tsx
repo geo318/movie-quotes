@@ -4,8 +4,11 @@ import { useProfileHeader } from './useProfileHeader';
 const ProfileHeader = () => {
   const { t, handleNavigateBack } = useProfileHeader();
   return (
-    <>
-      <div className='mb-6 lg:hidden' onClick={() => handleNavigateBack()}>
+    <div className='flex'>
+      <div
+        className='mb-4 pb-2 pr-2 lg:hidden mr-auto'
+        onClick={() => handleNavigateBack()}
+      >
         <ArrowBack big />
       </div>
       <div className='hidden lg:block'>
@@ -13,7 +16,7 @@ const ProfileHeader = () => {
           {t('myProfile')}
         </h1>
       </div>
-    </>
+    </div>
   );
 };
 
