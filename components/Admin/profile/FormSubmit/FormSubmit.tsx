@@ -1,12 +1,14 @@
 import { Button } from 'components';
 import { FC } from 'react';
 import { ProfileProps, Props } from 'types';
+import { useFormSubmit } from './useFormSubmit';
 
 const FormSubmit: FC<Partial<ProfileProps & Props>> = ({
   formState,
   setFormState,
   className = '',
 }) => {
+  const { t } = useFormSubmit();
   return (
     <>
       {formState && (
@@ -16,10 +18,10 @@ const FormSubmit: FC<Partial<ProfileProps & Props>> = ({
               className='px-2 py-2 cursor-pointer'
               onClick={() => setFormState && setFormState()}
             >
-              Cancel
+              {t('cancel')}
             </div>
             <Button
-              text='Save changes'
+              text={t('saveChanges') as string}
               style='buttonRed'
               className='!px-4 ml-auto'
             />

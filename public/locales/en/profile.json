@@ -1,0 +1,38 @@
+{
+    "myProfile":"My profile",
+    "username":"Username",
+    "email":"Email",
+    "addNewEmail":"Add new email",
+    "newEmail":"New email",
+    "enterNewEmail":"Enter new email",
+    "password":"Password",
+    "newPassword":"New password",
+    "password_holder":"Enter password",
+    "confirmNewPassword":"Confirm New Password",
+    "repeat":"Repeat password",
+    "edit":"Edit",
+    "makeThisPrimary":"Make this primary",
+    "remove":"Remove",
+    "notVerified":"Not verified",
+    "passwordsShouldContain":"Passwords should contain:",
+    "8orMore":"8 or more characters",
+    "15orLess":"15 lowercase character",
+    "add":"Add",
+    "cancel":"Cancel",
+    "verify":"Please verify new email address",
+    "simpleAlert":"A simple alert—check it out!",
+    "pleaseCheckEmail":"Please check email to verify new address",
+    "primaryEmail":"Primary Email",
+    "areUSure":"Are you sure to make changes?",
+    "emailAdded":"Email added successfully!",
+    "passwordUpdated":"Password updated successfully!",
+    "usernameUpdated":"Username updated successfully!",
+    "saveChanges":"Save changes",
+    "avatarChanged":"Avatar changed",
+    "newEmailAdded":"New email added",
+    "emailSetPrimary":"Email set as Primary",
+    "enterNewUsername":"Enter new username"
+    
+
+
+}

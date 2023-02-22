@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useAddEmail } from './useAddEmail';
 
 const AddEmail = ({ refetch }: { refetch: () => {} }) => {
-  const { isLoading, schema, onSubmit, lang, t } = useAddEmail({ refetch });
+  const { isLoading, schema, onSubmit, t } = useAddEmail({ refetch });
 
   return (
     <>
@@ -35,13 +35,13 @@ const AddEmail = ({ refetch }: { refetch: () => {} }) => {
               <Input
                 name='email'
                 full
-                placeholder='Enter new email'
-                label='New Email'
+                placeholder={t('enterNewEmail') as string}
+                label={t('newEmail') as string}
               />
             </div>
             <div className='flex justify-end items-end'>
               <Link href='' className='ml-auto p-2 px-5 lg:text-xl'>
-                Cancel
+                {t('cancel')}
               </Link>
               <Button
                 text={t('add') as string}

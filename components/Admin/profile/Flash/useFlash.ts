@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -5,6 +6,7 @@ import { flashActions } from 'store';
 import { RootState } from 'types';
 
 export const useFlash = () => {
+  const { t } = useTranslation('profile');
   const [pop, setPop] = useState(false);
   const dispatch = useDispatch();
   const message = useSelector((state: RootState) => state.flash.flash);
@@ -24,5 +26,5 @@ export const useFlash = () => {
     return () => clearTimeout(timer);
   }, [message, closePopup]);
 
-  return { message, closePopup, pop };
+  return { message, closePopup, pop, t };
 };

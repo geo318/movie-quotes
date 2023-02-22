@@ -13,15 +13,15 @@ const AddEmailPage = ({ refetch }: { refetch: () => {} }) => {
             <Input
               name='email'
               full
-              placeholder='Enter new email'
-              label='Add new email'
+              placeholder={t('enterNewEmail') as string}
+              label={t('addNewEmail') as string}
               className='!min-h-[3rem]'
             />
           </div>
           <div className='relative'>
             <div className='flex items-end absolute w-full top-32'>
               <div onClick={() => goBack()} className='mr-auto py-2 lg:text-xl'>
-                Cancel
+                {t('cancel')}
               </div>
               <div className='ml-3 mt-10' onClick={() => toggleDialog()}>
                 <Button

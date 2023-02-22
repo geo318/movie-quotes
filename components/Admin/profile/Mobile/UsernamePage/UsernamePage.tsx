@@ -13,15 +13,15 @@ const PasswordPage = ({ refetch }: { refetch: () => {} }) => {
             <Input
               name='username'
               full
-              placeholder='Username'
-              label='Enter new username'
+              placeholder={t('username') as string}
+              label={t('enterNewUsername') as string}
               className='!min-h-[3rem]'
             />
           </div>
           <div className='relative'>
             <div className='flex items-end absolute w-full top-32'>
               <div onClick={() => goBack()} className='mr-auto py-2 lg:text-xl'>
-                Cancel
+                {t('cancel')}
               </div>
               <div className='ml-3 mt-10' onClick={() => toggleDialog()}>
                 <Button

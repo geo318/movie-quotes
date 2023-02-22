@@ -16,7 +16,7 @@ export const useInput = ({
 }) => {
   const isMobile = useScreenWidth();
   const dispatch = useDispatch();
-  const { t } = useTranslation(['home', 'shared']);
+  const { t } = useTranslation('profile');
   const [readOnly, setReadOnly] = useState(true);
   const user = useAuthUser();
   const formState = useSelector((state: RootState) => state.profile.active);
@@ -36,8 +36,8 @@ export const useInput = ({
 
   const setPrimaryEmail = async ({ email }: { email: string }) => {
     const flashMessage = verified
-      ? 'Email set as Primary'
-      : 'Please check email to verify new address';
+      ? t('emailSetPrimary')
+      : t('pleaseCheckEmail');
     dispatch(flashActions.toggleIsLoading());
     try {
       await setEmailAsPrimary(email, user.id);

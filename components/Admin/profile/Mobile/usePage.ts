@@ -15,7 +15,7 @@ export const usePage = ({
 }: UsePageProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const close = useCloseModal();
-  const { t } = useTranslation('shared');
+  const { t } = useTranslation('profile');
   const dispatch = useDispatch();
 
   const onSubmit = async (data: Partial<User>) => {

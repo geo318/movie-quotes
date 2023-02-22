@@ -11,7 +11,12 @@ const InputReadOnly = ({
 }) => {
   return (
     <div className='flex grow flex-col w-full lg:max-w-[33rem] justify-start items-start relative'>
-      <label htmlFor={name} className='block font-normal text-base pb-2'>
+      <label
+        htmlFor={name}
+        className={`block font-normal text-base pb-2 ${
+          primary ? 'uppercase' : ''
+        }`}
+      >
         {label}
       </label>
       <div className='relative w-full group'>

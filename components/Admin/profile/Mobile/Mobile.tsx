@@ -9,7 +9,7 @@ const Mobile: FC<ProfileProps> = ({
   formState,
   setFormState,
 }) => {
-  const { t, isActive, isMobile } = useMobile();
+  const { isActive } = useMobile();
   return (
     <>
       {isActive('emails') && (

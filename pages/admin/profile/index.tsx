@@ -94,9 +94,9 @@ const Profile = () => {
                       <div className='flex flex-col justify-center items-start mt-10'>
                         <div className='w-full lg:m-0 mb-5'>
                           <Input
-                            label='Username'
+                            label={t('username') as string}
                             name='username'
-                            control='Edit'
+                            control={t('edit') as string}
                             value={user.username}
                             placeholder={user.username}
                             editable
@@ -115,10 +115,10 @@ const Profile = () => {
                               {!isMobile && <AddEmailButton />}
 
                               <Input
-                                label='Password'
+                                label={t('password') as string}
                                 name='password'
-                                control='Edit'
-                                placeholder='Password'
+                                control={t('edit') as string}
+                                placeholder={t('password') as string}
                                 editable
                                 password
                               />
@@ -131,7 +131,7 @@ const Profile = () => {
                             href='?emails'
                             className='uppercase flex w-full items-center'
                           >
-                            <div>email</div>
+                            <div>{t('email')}</div>
                             <div className='ml-auto'>
                               <ArrowOutline />
                             </div>
@@ -174,8 +174,8 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
   const translation = await serverSideTranslations(locale as string, [
+    'profile',
     'shared',
-    'home',
   ]);
 
   return {

@@ -1,9 +1,6 @@
-import { useActiveQuery, useScreenWidth } from 'hooks';
-import { useTranslation } from 'next-i18next';
+import { useActiveQuery } from 'hooks';
 
 export const useMobile = () => {
-  const { t } = useTranslation();
-  const isMobile = useScreenWidth();
   const { isActive } = useActiveQuery();
-  return { t, isMobile, isActive };
+  return { isActive };
 };

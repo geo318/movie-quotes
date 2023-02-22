@@ -2,20 +2,19 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addEmail } from 'services';
-import { useCloseModal, useLang, useZod } from 'hooks';
+import { useCloseModal, useZod } from 'hooks';
 import { authActions, flashActions } from 'store';
 
 export const useAddEmail = ({ refetch }: { refetch: () => {} }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { EmailSchema: schema } = useZod();
+  const { emailSchema: schema } = useZod();
   const close = useCloseModal();
-  const { t } = useTranslation('shared');
-  const { lang } = useLang();
+  const { t } = useTranslation('profile');
   const dispatch = useDispatch();
 
   const onSubmit = async (email: { email: string }) => {
     setIsLoading(true);
-    const flashMessage = `New email added - ${email.email}`;
+    const flashMessage = `${t('newEmailAdded')} - ${email.email}`;
     try {
       await addEmail(email);
       refetch();
@@ -38,7 +37,6 @@ export const useAddEmail = ({ refetch }: { refetch: () => {} }) => {
     isLoading,
     onSubmit,
     schema,
-    lang,
     t,
   };
 };

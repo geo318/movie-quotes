@@ -2,7 +2,7 @@ import { CheckMark, CloseFlash } from 'components';
 import { useFlash } from './useFlash';
 
 const Flash = () => {
-  const { message, closePopup, pop } = useFlash();
+  const { message, closePopup, pop, t } = useFlash();
   return (
     <>
       {pop && (
@@ -11,7 +11,7 @@ const Flash = () => {
           <div className='hidden lg:block h-32 max-w-[25rem] w-full bg-[#D1E7DD] text-base z-50 fixed lg:top-36 top-32 right-36 rounded-four'>
             <div className='gap-2 p-4 flex'>
               <CheckMark big />
-              <p className='text-[#0F5132]'>A simple alert — check it out!</p>
+              <p className='text-[#0F5132]'>{t('simpleAlert')}</p>
               <div className='ml-auto cursor-pointer' onClick={closePopup}>
                 <CloseFlash />
               </div>

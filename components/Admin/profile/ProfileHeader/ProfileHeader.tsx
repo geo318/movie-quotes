@@ -4,7 +4,7 @@ import { useProfileHeader } from './useProfileHeader';
 const ProfileHeader = () => {
   const { t, handleNavigateBack } = useProfileHeader();
   return (
-    <div className='flex'>
+    <div className='flex lg:mt-2'>
       <div
         className='mb-4 pb-2 pr-2 lg:hidden mr-auto'
         onClick={() => handleNavigateBack()}

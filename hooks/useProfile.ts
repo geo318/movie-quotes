@@ -15,7 +15,7 @@ export const useProfile = () => {
   const { refetch, isLoading } = useGetUser();
   const isMobile = useScreenWidth();
   const { isActive } = useActiveQuery();
-  const { t } = useTranslation('shared');
+  const { t } = useTranslation('profile');
   const user = useAuthUser();
   const dispatch = useDispatch();
   const formState = useSelector((state: RootState) => state.profile.active);
@@ -36,7 +36,7 @@ export const useProfile = () => {
       dispatch(profileActions.setFormPassive());
       refetch();
       if (isMobile && data?.avatar)
-        dispatch(flashActions.setFlashMessage('Avatar changed'));
+        dispatch(flashActions.setFlashMessage(t('avatarChanged')));
     } catch (e: any) {
       e.message?.includes('422')
         ? dispatch(authActions.setFormError(e?.response?.data?.errors))

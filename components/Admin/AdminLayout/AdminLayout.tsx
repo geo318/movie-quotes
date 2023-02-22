@@ -12,9 +12,7 @@ const AdminLayout: FC<
   return (
     <>
       <Head>
-        <title>{`Epic Movie Quotes ${
-          movies != undefined && '- search movies'
-        }`}</title>
+        <title>{`Epic Movie Quotes`}</title>
         <meta
           name='description'
           content={`${

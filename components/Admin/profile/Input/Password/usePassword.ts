@@ -4,7 +4,7 @@ import { useWatch } from 'react-hook-form';
 
 export const usePassword = () => {
   const passwordValue: string = useWatch({ name: 'password' });
-  const { t } = useTranslation('shared');
+  const { t } = useTranslation('profile');
   const isLengthCorrect = /^.{8,}$/.test(passwordValue);
   const isLowerCase = /^[0-9a-z]{1,15}$/.test(passwordValue);
   const isMobile = useScreenWidth();

@@ -70,7 +70,7 @@ const Input: FC<ProfileInputProps & Props> = ({
               <div
                 className={`h-16 relative lg:inline-flex flex-1 items-center lg:pt-5 pt-2 lg:text-xl text-base w-full lg:w-auto lg:min-w-[18rem] ${
                   primary && 'hidden'
-                } ${verify && 'lg:pt-2 pt-0'}`}
+                } ${verify && 'lg:pt-4 pt-0'}`}
               >
                 <div
                   className={`lg:flex lg:items-center ${
@@ -91,14 +91,14 @@ const Input: FC<ProfileInputProps & Props> = ({
                         : ''
                     }`}
                     onClick={() => {
-                      if (!isMobile) {
-                        editable && handleFormState(name as ProfileSubmitProps);
-                        !editable &&
-                          !primary &&
-                          !verify &&
-                          setPrimaryEmail({ email: value });
-                        verify && verifyEmail({ email: value });
-                      }
+                      !isMobile &&
+                        editable &&
+                        handleFormState(name as ProfileSubmitProps);
+                      !editable &&
+                        !primary &&
+                        !verify &&
+                        setPrimaryEmail({ email: value });
+                      verify && verifyEmail({ email: value });
                     }}
                   >
                     {verify && (
@@ -124,7 +124,7 @@ const Input: FC<ProfileInputProps & Props> = ({
                         }`}
                         onClick={() => handleRemove(value)}
                       >
-                        Remove
+                        {t('remove')}
                       </div>
                     </>
                   )}

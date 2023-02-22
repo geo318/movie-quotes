@@ -11,9 +11,13 @@ const Emails = ({ user, refetch }: Partial<ProfileProps>) => {
           {!user.gmail ? (
             <>
               <Input
-                label={isMobile ? 'PRIMARY EMAIL' : 'Email'}
+                label={
+                  isMobile
+                    ? (t('primaryEmail') as string)
+                    : (t('email') as string)
+                }
                 primary
-                control='Primary Email'
+                control={t('primaryEmail') as string}
                 value={user.gmail || user.primary_email || user.email}
               />
               {isMobile && (
@@ -21,7 +25,7 @@ const Emails = ({ user, refetch }: Partial<ProfileProps>) => {
               )}
             </>
           ) : (
-            <Input label='Email' value={user.gmail} />
+            <Input label={t('email') as string} value={user.gmail} />
           )}
           {!user.gmail &&
             user?.emails
@@ -30,11 +34,11 @@ const Emails = ({ user, refetch }: Partial<ProfileProps>) => {
               .map((e) => (
                 <div key={e.id} className='mb-2 lg:m-0'>
                   <Input
-                    label={isMobile ? '' : 'Email'}
+                    label={isMobile ? '' : (t('email') as string)}
                     control={
                       !e.email_verified_at && e.email === user.email
-                        ? 'Not verified'
-                        : 'Make this primary'
+                        ? (t('notVerified') as string)
+                        : (t('makeThisPrimary') as string)
                     }
                     verify={!e.email_verified_at && e.email === user.email}
                     verified={!!e.email_verified_at}

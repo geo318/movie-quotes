@@ -15,7 +15,7 @@ const PasswordPage = ({ refetch }: { refetch: () => {} }) => {
           <div className='relative'>
             <div className='flex items-end absolute w-full top-32'>
               <div onClick={() => goBack()} className='mr-auto py-2 lg:text-xl'>
-                Cancel
+                {t('cancel')}
               </div>
               <div className='ml-3 mt-10' onClick={() => toggleDialog()}>
                 <Button
