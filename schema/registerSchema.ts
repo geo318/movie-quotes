@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import {
   usernameValidation,
-  emailValidation,
+  emailValidationObj,
   passwordValidation,
   refinePasswordSchema,
 } from './sharedValidations';
@@ -9,7 +9,7 @@ import {
 export const registerSchema = refinePasswordSchema(
   z.object({
     username: usernameValidation,
-    ...emailValidation,
+    ...emailValidationObj,
     ...passwordValidation,
   })
 );

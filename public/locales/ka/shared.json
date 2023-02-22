@@ -59,5 +59,6 @@
     "incorrectEmail":"არასწორი იმეილი",
     "imageRequired":"სურათი სავალდებულოა",
     "max2MB":"ზომა უნდა იყოს მაქს. 2MB",
-    "genreRequired":"სავალდებულია არჩევა"
+    "genreRequired":"სავალდებულია არჩევა",
+    "invalidUsernameOrEmail":"არასწორი პაროლი ან იმეილი"
 }

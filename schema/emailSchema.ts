@@ -1,4 +1,4 @@
 import { z } from 'zod';
-import { emailValidation } from './sharedValidations';
+import { emailValidationObj } from './sharedValidations';
 
-export const emailSchema = z.object(emailValidation);
+export const emailSchema = z.object(emailValidationObj);

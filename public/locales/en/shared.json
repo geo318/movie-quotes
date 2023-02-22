@@ -59,5 +59,6 @@
     "incorrectEmail":"Incorrect email",
     "imageRequired":"image is required",
     "max2MB":"Max file size is 2MB.",
-    "genreRequired":"Genres field required"
+    "genreRequired":"Genres field required",
+    "invalidUsernameOrEmail":"Invalid username or email"
 }

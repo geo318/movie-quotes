@@ -28,11 +28,18 @@ export const validateImage = z
   .refine((file) => file?.size <= MAX_FILE_SIZE, 'shared:max2MB')
   .refine((file) => ACCEPTED_MIME_TYPES.includes(file?.type), 'shared:mimes');
 
-export const emailValidation = {
-  email: z
-    .string()
-    .min(1, { message: 'shared:emailRequired' })
-    .email('shared:incorrectEmail'),
+export const emailValidation = z
+  .string()
+  .min(1, { message: 'shared:emailRequired' })
+  .email('shared:incorrectEmail');
+
+export const usernameValidation = z
+  .string()
+  .min(3, { message: 'home:err_username_req' })
+  .regex(/[a-z0-9]{3,15}/, 'home:err_username_inc');
+
+export const emailValidationObj = {
+  email: emailValidation,
 };
 
 export const passwordValidationWithoutConfirmation = {
@@ -46,11 +53,6 @@ export const passwordValidation = {
   ...passwordValidationWithoutConfirmation,
   repeat_password: z.string().min(1, { message: 'home:err_password_repeat' }),
 };
-
-export const usernameValidation = z
-  .string()
-  .min(3, { message: 'home:err_username_req' })
-  .regex(/[a-z0-9]{3,15}/, 'home:err_username_inc');
 
 export const refinePasswordSchema = (schema: Schema) =>
   schema.refine((data) => data.password === data.repeat_password, {
