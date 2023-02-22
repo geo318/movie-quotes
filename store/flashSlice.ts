@@ -12,7 +12,9 @@ const flashSlice = createSlice({
     setFlashMessage(state, action) {
       state.flash = action.payload;
     },
-
+    setFlashError(state, action) {
+      state.flash = action.payload;
+    },
     clearFlashError(state) {
       state.flash = '';
     },

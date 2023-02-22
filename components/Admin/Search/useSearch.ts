@@ -1,5 +1,4 @@
-import { useScreenWidth } from 'hooks';
-import { useDebounce } from 'hooks/useDebounce';
+import { useScreenWidth, useDebounce } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';

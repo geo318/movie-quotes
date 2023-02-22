@@ -13,3 +13,5 @@ export * from './useCloseModal';
 export * from './useProfile';
 export * from './useMovies';
 export * from './useSearchBar';
+export * from './useMovie';
+export * from './useDebounce';

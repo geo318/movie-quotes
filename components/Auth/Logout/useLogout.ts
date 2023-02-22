@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { logout } from 'services';
-import { authActions, fleshActions } from 'store';
+import { authActions, flashActions } from 'store';
 
 export const useLogout = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export const useLogout = () => {
       setCookie('access-token', 0);
       router.replace('/');
     } catch (e: any) {
-      dispatch(fleshActions.setFleshError(e.response.data));
+      dispatch(flashActions.setFlashError(e.response.data));
     }
   };
 
