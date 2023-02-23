@@ -100,10 +100,11 @@ const Profile = () => {
                             value={user.username}
                             placeholder={user.username}
                             editable
+                            className='lg:max-w-[33rem]'
                           />
                         </div>
 
-                        <Divider className='lg:flex hidden w-[70%] my-10' />
+                        <Divider className='lg:flex hidden w-[33rem] my-10' />
 
                         <div className='lg:flex flex-col gap-4 w-full lg:m-0 mb-4'>
                           {!isMobile && (
