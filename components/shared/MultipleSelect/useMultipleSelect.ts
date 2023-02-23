@@ -22,12 +22,14 @@ export const useMultipleSelect = (data: Genre[], selected?: Genre[]) => {
   }, [value, clearErrors]);
 
   useEffect(() => {
-    if (data && selected) {
-      setGenres(selected);
-      setCollection(
-        data.filter((el) => selected.every((sel) => sel.id !== el.id))
-      );
+    if (!selected?.length) {
+      setCollection(() => data);
+      return;
     }
+    setGenres(selected);
+    setCollection(
+      data.filter((el) => selected.every((sel) => sel.id !== el.id))
+    );
   }, [selected, data]);
 
   const handleSelect = (genre: Genre, id: number) => {
@@ -41,7 +43,8 @@ export const useMultipleSelect = (data: Genre[], selected?: Genre[]) => {
     setLabelClicked(true);
   };
 
-  const genresList = collection?.length ? collection : data;
+  const genresList =
+    collection.length || genres.length === data?.length ? collection : data;
 
   return {
     labelClicked: labelClicked && !!genres?.length,

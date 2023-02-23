@@ -108,7 +108,11 @@ const Post: FC<Post> = ({ post, lastFeedElementRef, modal }) => {
               <div className='flex mt-6'>
                 <Avatar
                   className='lg:h-[3.25rem] lg:w-[3.25rem] w-10 h-10'
-                  img={getImage(authUser?.avatar)}
+                  img={
+                    authUser?.gmail
+                      ? authUser?.avatar
+                      : getImage(authUser?.avatar)
+                  }
                   size={52}
                   loading={!authUser?.avatar}
                 />

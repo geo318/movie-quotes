@@ -65,6 +65,7 @@ const Input: FC<ProfileInputProps & Props> = ({
               password={password}
               value={value}
             />
+            {!control && <div className='text-xl lg:min-w-[18rem]' />}
 
             {control && (
               <div
