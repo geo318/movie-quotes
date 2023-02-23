@@ -40,7 +40,7 @@ export const useInput = ({
       : t('pleaseCheckEmail');
     dispatch(flashActions.toggleIsLoading());
     try {
-      await setEmailAsPrimary(email, user.id);
+      await setEmailAsPrimary(email, parseInt(user.id));
       refetch();
       dispatch(flashActions.setFlashMessage(flashMessage));
     } catch {}
