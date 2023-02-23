@@ -4,28 +4,29 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useSelector, useDispatch } from 'react-redux';
-import { echo, getNotifications, markAllAsRead, markAsRead } from 'services';
+import { getNotifications, markAllAsRead, markAsRead } from 'services';
 import { feedActions, noteActions } from 'store';
 import { RootState, Notification, AddComment } from 'types';
+import { useEcho } from 'hooks';
 
 export const useNotification = () => {
+  useEcho();
   const [initialized, setInitialized] = useState(false);
   const dispatch = useDispatch();
   const { t } = useTranslation('shared');
   const router = useRouter();
+  const user = useAuthUser();
   const { data } = useQuery({
     queryKey: 'notifications',
     queryFn: getNotifications,
   });
 
-  const user = useAuthUser();
-
   useEffect(() => {
-    if (user) {
+    if (user && typeof window != null) {
       setInitialized(true);
       if (initialized) {
-        echo.connect();
-        echo
+        window.echo.connect();
+        window.echo
           .private(`notifications.${user!.id}`)
           .listen('NewNotification', (data: { notification: Notification }) => {
             const note = data.notification;
@@ -43,7 +44,7 @@ export const useNotification = () => {
       }
     }
     return () => {
-      if (initialized) echo.disconnect();
+      if (initialized) window.echo.disconnect();
       setInitialized(false);
     };
   }, [user, initialized, dispatch]);
