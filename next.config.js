@@ -4,7 +4,7 @@ const { i18n } = require('./next-i18next.config');
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [process.env.NEXT_PUBLIC_HOSTNAME],
+    domains: [process.env.NEXT_PUBLIC_HOSTNAME, process.env.NEXT_PUBLIC_GOOGLE_PROVIDER],
     remotePatterns: [
       {
         protocol: process.env.NEXT_PUBLIC_PROTOCOL,
