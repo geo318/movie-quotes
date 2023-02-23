@@ -39,7 +39,7 @@ const NewQuote: FC<{ refetch: () => {}; movie: Movie }> = ({
 
         <div className='px-8'>
           <Avatar
-            img={getImage(user?.avatar || '')}
+            img={user?.gmail ? user?.avatar : getImage(user?.avatar)}
             text={user?.username}
             size={60}
             className='w-[3.75rem] h-[3.75rem]'
