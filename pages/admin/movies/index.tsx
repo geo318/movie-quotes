@@ -81,7 +81,7 @@ const Movies = () => {
               </Link>
             ))
           ) : (
-            <p>No movies added yet...</p>
+            <p>{t('noMovies')}</p>
           )
         ) : (
           <ModalLoadingOverlay />

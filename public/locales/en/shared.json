@@ -60,5 +60,6 @@
     "imageRequired":"image is required",
     "max2MB":"Max file size is 2MB.",
     "genreRequired":"Genres field required",
-    "invalidUsernameOrEmail":"Invalid username or email"
+    "invalidUsernameOrEmail":"Invalid username or email",
+    "noMovies":"No movies added yet..."
 }
