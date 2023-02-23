@@ -5,7 +5,6 @@ import {
   ChatIcon,
   HeartIcon,
   ModalLoadingOverlay,
-  Textarea,
   Figure,
 } from 'components';
 import { getImage, loadText } from 'helpers';
@@ -28,7 +27,6 @@ const Post: FC<Post> = ({ post, lastFeedElementRef, modal }) => {
               className={`col-span-2 rounded-xl bg-app-black-dark ${
                 !modal && 'xl:px-6 px-9 pt-6 lg:pb-10 pb-4'
               } mb-8 lg:m-0 ${!modal && '-mx-8'}`}
-
               ref={lastFeedElementRef as LegacyRef<HTMLDivElement>}
             >
               {!modal && (

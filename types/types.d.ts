@@ -18,7 +18,7 @@ export type AuthState = {
 };
 
 export type User = {
-  id: number;
+  id: string;
   username: string;
   email: string;
   primary_email: string;
