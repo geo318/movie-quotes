@@ -53,7 +53,7 @@ const Dropdown = ({}) => {
           </div>
         ))
       ) : (
-        <p>No notifications yet.</p>
+        <p>{t('noNotifications')}</p>
       )}
     </div>
   );

@@ -14,7 +14,6 @@ export const useImageUpload = ({
   const {
     register,
     setValue,
-    setError,
     formState: { errors },
   } = useFormContext();
   const isMobile = useScreenWidth();
@@ -22,24 +21,13 @@ export const useImageUpload = ({
 
   const checkFile = useCallback(
     (file: Blob) => {
-      const imageTypes = ['image/bmp', 'image/webp', 'image/png', 'image/jpeg'];
-      if (!imageTypes.includes(file.type) || !file.size) {
-        handleImage('');
-        setTimeout(() => {
-          setError(name, {
-            type: 'custom',
-            message: 'This file is of a wrong type',
-          });
-        }, 0);
-        return;
-      }
       const readImage = new FileReader();
       readImage.readAsDataURL(file);
       readImage.onload = async () => {
         handleImage(readImage.result as string);
       };
     },
-    [name, setError, handleImage]
+    [handleImage]
   );
 
   const handleDrop = (file: Blob[]) => {

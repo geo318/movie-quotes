@@ -14,3 +14,5 @@ export * from './Heading';
 export * from './ImageUpload';
 export * from './Img';
 export * from './MultipleSelect';
+export * from './LoadingSlot';
+export * from './Error';

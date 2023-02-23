@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { gmailAuth } from 'services';
 import { string } from 'zod';
 import { AddCommentProps, FormSubmitProps } from './formTypes';
-import { Props } from './propTypes';
+import { ProfileSubmitProps, Props } from './propTypes';
 
 export type DataProp = number | string | boolean;
 
@@ -18,9 +18,11 @@ export type AuthState = {
 };
 
 export type User = {
-  id: string;
+  id: number;
   username: string;
   email: string;
+  primary_email: string;
+  email_verified_at: string;
   avatar: string;
   gmail: string;
   emails: {
@@ -29,6 +31,8 @@ export type User = {
     email: string;
     email_verified_at: null | string;
   }[];
+  password?: string;
+  repeat_password?: string;
 };
 
 export type FeedData = {
@@ -49,6 +53,8 @@ export interface RootState {
   note: { notifications: Notification[] };
   movie: { movies: Movie[]; query: string };
   quote: { quote: FeedData };
+  flash: { flash: string; isLoading: boolean };
+  profile: { activeInput: ProfileSubmitProps[]; active: boolean };
 }
 
 export type InitialError = {

@@ -8,6 +8,7 @@ import {
   Quote,
   FeedData,
   Movie,
+  User,
 } from 'types';
 
 export const fetchCSRFToken = async () => {
@@ -154,4 +155,38 @@ export const deleteMovie = async (id: number) => {
 
 export const getGenres = async () => {
   return await axiosInstance.get(`api/genres/`);
+};
+
+export const addEmail = async (email: { email: string }) => {
+  return await axiosInstance.post('api/add-email', email);
+};
+
+export const checkLoggedIn = async ({ cookies = '' }) => {
+  return await axiosInstance({
+    url: 'api/check',
+    headers: {
+      Cookie: cookies,
+      referer: process.env.NEXT_PUBLIC_FRONT_URL,
+    },
+  });
+};
+
+export const setEmailAsPrimary = async (email: string, id: number) => {
+  return await axiosInstance.get(`api/set-primary-email/${id}?email=${email}`);
+};
+
+export const removeEmail = async (email: string) => {
+  return await axiosInstance.delete(`api/delete-email?email=${email}`);
+};
+
+export const updateUser = async (data: Partial<User>) => {
+  return await axiosInstance.post(
+    'api/edit-user',
+    { ...data, ...{ _method: 'PATCH' } },
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
 };

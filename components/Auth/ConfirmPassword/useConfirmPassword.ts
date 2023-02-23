@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { confirmEmail } from 'services';
 import { authActions } from 'store';
-import { z } from 'zod';
+import { confirmPasswordSchema as schema } from 'schema';
 import { ResetPasswordProps } from 'types';
 
 export const useConfirmPassword = () => {
@@ -16,23 +16,6 @@ export const useConfirmPassword = () => {
 
   const query: string = router.query['reset-password'] as string;
   const [email, token] = query.split('/').reverse()[0].split('?email=');
-
-  const schema = z
-    .object({
-      token: z.string(),
-      email: z.string(),
-      password: z
-        .string()
-        .min(1, { message: t('err_password_req') as string })
-        .regex(/^[a-z0-9]{8,15}$/, t('err_password_inc') as string),
-      repeat_password: z
-        .string()
-        .min(1, { message: t('err_password_repeat') as string }),
-    })
-    .refine((data) => data.password === data.repeat_password, {
-      message: t('err_password_match') as string,
-      path: ['repeat_password'],
-    });
 
   const onSubmit = async (data: ResetPasswordProps) => {
     try {

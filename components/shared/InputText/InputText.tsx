@@ -1,5 +1,6 @@
 import {
   ClearInput,
+  Error,
   Eye,
   EyeHidden,
   InputError,
@@ -20,6 +21,7 @@ const InputText: FC<InputProps> = ({
   className = '',
   refObj,
   select = false,
+  asterisk = true,
 }) => {
   const {
     register,
@@ -30,6 +32,7 @@ const InputText: FC<InputProps> = ({
     blur,
     setBlur,
     setValue,
+    t,
   } = useInputText({ name, value, select });
   return (
     <>
@@ -41,7 +44,7 @@ const InputText: FC<InputProps> = ({
         {label && (
           <label htmlFor={name} className='block font-normal text-base pb-2'>
             {label}
-            <span className='text-app-red'> *</span>
+            {asterisk && <span className='text-app-red'> *</span>}
           </label>
         )}
         <div className='relative'>
@@ -94,13 +97,7 @@ const InputText: FC<InputProps> = ({
           )}
         </div>
 
-        {errors?.[name] ? (
-          <div className='mt-1'>
-            <span className='text-app-red text-sm leading-6'>
-              {errors?.[name] && <p>{errors[name]?.message as string}</p>}
-            </span>
-          </div>
-        ) : null}
+        <Error errors={errors} name={name} />
       </div>
     </>
   );

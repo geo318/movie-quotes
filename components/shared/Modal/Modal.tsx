@@ -19,7 +19,7 @@ const Modal: FC<ModalProps> = ({
     >
       <ModalContainer modalOpenOnload={true} closeRoute closeRef={closeRef}>
         <div
-          className={`lg:max-w-[37.5rem] lg:px-28 px-7 py-[3.25rem] relative w-screen min-h-screen lg:min-h-0 lg:h-auto bg-app-bg rounded-ten ${className}`}
+          className={`${className} lg:max-w-[37.5rem] lg:px-28 px-7 py-[3.25rem] relative w-screen min-h-screen lg:min-h-0 lg:h-auto bg-app-bg rounded-ten`}
         >
           <div
             ref={closeRef}

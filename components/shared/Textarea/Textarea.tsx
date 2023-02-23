@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { InputProps } from 'types';
 import { useTextarea } from './useTextarea';
+import { Error } from 'components';
 
 const Textarea: FC<InputProps> = ({
   name,
@@ -12,7 +13,7 @@ const Textarea: FC<InputProps> = ({
   labelStyle = '',
   value,
 }) => {
-  const { register, errors } = useTextarea();
+  const { register, errors, t } = useTextarea();
 
   return (
     <div className={`relative ${className}`}>
@@ -34,13 +35,7 @@ const Textarea: FC<InputProps> = ({
           rows={rows}
           defaultValue={value || ''}
         />
-        {errors?.[name] ? (
-          <div className='mt-1'>
-            <span className='text-app-red text-sm leading-6'>
-              {errors?.[name] && <p>{errors[name]!.message as string}</p>}
-            </span>
-          </div>
-        ) : null}
+        <Error errors={errors} name={name} />
       </div>
     </div>
   );

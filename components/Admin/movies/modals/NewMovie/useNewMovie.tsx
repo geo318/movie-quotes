@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMovie, getGenres, updateMovie } from 'services';
 import { Movie } from 'types';
-import { useAuthUser, useCloseModal, useZod } from 'hooks';
+import { useAuthUser, useCloseModal } from 'hooks';
 import { useQuery } from 'react-query';
 import { authActions } from 'store';
+import { editMovieSchema, addMovieSchema } from 'schema';
 
 export const useNewMovie = (id?: number, refetch?: () => void) => {
-  const { addMovieSchema, editMovieSchema } = useZod();
   const schema = id ? editMovieSchema : addMovieSchema;
   const [image, setImage] = useState('');
   const handleImage = (img: string) => {

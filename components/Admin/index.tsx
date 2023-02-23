@@ -11,3 +11,4 @@ export * from './Search';
 export * from './AddButton';
 export * from './movies/modals/NewMovie';
 export * from './movies';
+export * from './profile';

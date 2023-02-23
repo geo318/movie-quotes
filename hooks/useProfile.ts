@@ -1,21 +1,69 @@
-import { useAuthUser, useGetUser, useLang } from 'hooks';
+import { useActiveQuery, useAuthUser, useGetUser, useScreenWidth } from 'hooks';
 import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
-import { User } from 'types';
-import { z } from 'zod';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from 'services';
+import { authActions, flashActions, profileActions } from 'store';
+import { ProfileSubmitProps, RootState, User } from 'types';
+import { profileSchema as schema } from 'schema';
 
 export const useProfile = () => {
-  useGetUser();
-  const { lang } = useLang();
-  const { t } = useTranslation('shared');
+  const { refetch, isLoading } = useGetUser();
+  const isMobile = useScreenWidth();
+  const { isActive } = useActiveQuery();
+  const { t } = useTranslation('profile');
   const user = useAuthUser();
-  const [isFormSubmittable, setIsFormSubmittable] = useState(false);
+  const dispatch = useDispatch();
+  const formState = useSelector((state: RootState) => state.profile.active);
 
-  const checkFormState = (state: boolean) => setIsFormSubmittable(state);
-
-  const schema = z.object({ user_avatar: z.any() });
-  const onSubmit = (data: Partial<User>) => {
-    console.log(data);
+  const setFormState = (state?: ProfileSubmitProps) => {
+    dispatch(profileActions.setFormPassive());
+    if (!state) {
+      dispatch(profileActions.clearForm());
+      return;
+    }
+    dispatch(profileActions.editInput(state));
   };
-  return { schema, checkFormState, isFormSubmittable, onSubmit, lang, user, t };
+
+  const onSubmit = async (data: Partial<User>) => {
+    try {
+      await updateUser(data);
+      dispatch(profileActions.setFormPassive());
+      refetch();
+      if (isMobile && data?.avatar)
+        dispatch(flashActions.setFlashMessage(t('avatarChanged')));
+    } catch (e: any) {
+      e.message?.includes('422')
+        ? dispatch(authActions.setFormError(e?.response?.data?.errors))
+        : dispatch(
+            authActions.setFormError({
+              name: 'username',
+              error: 'something wrong',
+            })
+          );
+    }
+  };
+
+  const profileNavigationKeys = [
+    'emails',
+    'password',
+    'add-new-email',
+    'username',
+  ] as const;
+
+  const isActiveProfile = profileNavigationKeys.some((key) => isActive(key));
+
+  return {
+    profileNavigationKeys,
+    isActiveProfile,
+    setFormState,
+    isActive,
+    schema,
+    formState,
+    onSubmit,
+    refetch,
+    isMobile,
+    isLoading,
+    user,
+    t,
+  };
 };

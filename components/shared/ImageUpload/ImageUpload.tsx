@@ -1,4 +1,4 @@
-import { Photo, Button } from 'components';
+import { Photo, Button, Error } from 'components';
 import { FC } from 'react';
 import { ImageUpProps } from './type';
 import { useImageUpload } from './useImageUpload';
@@ -75,13 +75,7 @@ const ImageUpload: FC<ImageUpProps> = ({
           </Button>
         </div>
       )}
-      {errors?.[name] ? (
-        <div className='mt-1'>
-          <span className='text-app-red text-sm leading-6'>
-            {errors?.[name] && <p>{errors[name]!.message as string}</p>}
-          </span>
-        </div>
-      ) : null}
+      <Error errors={errors} name={name} />
     </div>
   );
 };

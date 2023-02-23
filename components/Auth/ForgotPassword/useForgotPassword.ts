@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { checkEmail, fetchCSRFToken } from 'services';
 import { authActions } from 'store';
-import { z } from 'zod';
+import { emailSchema as schema } from 'schema';
 import { EmailProps } from 'types';
 
 export const useForgotPassword = () => {
@@ -13,13 +13,6 @@ export const useForgotPassword = () => {
   const { t } = useTranslation('home');
   const router = useRouter();
   const dispatch = useDispatch();
-
-  const schema = z.object({
-    email: z
-      .string()
-      .min(1, { message: t('err_email_req') as string })
-      .email(t('err_email_inc') as string),
-  });
 
   const onSubmit = async (data: EmailProps) => {
     try {

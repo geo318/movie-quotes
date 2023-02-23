@@ -3,15 +3,14 @@ import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addQuote } from 'services';
-import { z } from 'zod';
 import { Quote } from 'types';
-import { useAuthUser, useLang, useZod } from 'hooks';
+import { useAuthUser, useLang } from 'hooks';
 import { authActions } from 'store';
+import { addQuoteSchema as schema } from 'schema';
 
 export const useNewQuote = (refetch: () => {}) => {
   const [image, setImage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { addQuoteSchema: schema } = useZod();
   const { t } = useTranslation('shared');
   const { lang } = useLang();
   const authUser = useAuthUser();
