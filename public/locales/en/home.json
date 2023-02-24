@@ -12,7 +12,7 @@
     "back_login":"Back to log in",
     "password_holder":"At least 8 & max.15 lower case characters",
     "err_password_req":"Password is required",
-    "err_password_inc":"Incorrect password",
+    "err_password_inc":"Incorrect password, at least 8 required",
     "err_password_repeat":"Please, repeat password",
     "err_password_match":"Passwords don't match",
     "name":"Name",

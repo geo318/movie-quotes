@@ -1,5 +1,6 @@
 import { Spinner } from 'components';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FC } from 'react';
 import { AvatarProps } from './types';
 
@@ -14,7 +15,7 @@ const Avatar: FC<AvatarProps> = ({
   containerStyle = '',
 }) => {
   return (
-    <div className={`flex gap-6 group ${containerStyle}`}>
+    <div className={`flex gap-6 ${containerStyle}`}>
       <div
         className={`overflow-hidden flex justify-center items-center rounded-full ${
           active && 'border-2 border-app-red'
@@ -44,9 +45,11 @@ const Avatar: FC<AvatarProps> = ({
           </p>
         )}
         {subText && (
-          <p className='sm:text-base sm:text-white text-sm text-app-gray group-hover:underline'>
-            {subText}
-          </p>
+          <Link href='/admin/profile' className='hover:underline'>
+            <p className='sm:text-base sm:text-white text-sm text-app-gray'>
+              {subText}
+            </p>
+          </Link>
         )}
       </div>
     </div>

@@ -18,7 +18,7 @@ const NotificationSocket: FC<NotificationSocketProps> = ({
   return (
     <Modal
       close={false}
-      className='px-20 py-[3.25rem] max-w-[35rem] top-20 lg:top-0 !w-auto mx-9 max-h-96'
+      className='px-20 py-[3.25rem] max-w-[35rem] top-20 lg:top-0 !w-auto mx-9 max-h-96 min-h-[10rem]'
     >
       <div className='px-2 flex flex-col justify-center items-center'>
         {loading ? (

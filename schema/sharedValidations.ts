@@ -36,7 +36,7 @@ export const emailValidation = z
 export const usernameValidation = z
   .string()
   .min(3, { message: 'home:err_username_req' })
-  .regex(/[a-z0-9]{3,15}/, 'home:err_username_inc');
+  .regex(/[a-z0-9]{3,15}/, { message: 'home:err_username_inc' });
 
 export const emailValidationObj = {
   email: emailValidation,

@@ -10,15 +10,15 @@ const Error = ({
 }) => {
   const { t } = useError();
   return (
-    <>
+    <div className='h-6 flex items-end mt-1'>
       {errors?.[name] ? (
-        <div className='mt-1 px-2'>
+        <div>
           <span className='text-app-red text-sm leading-6'>
             {errors[name] && <p>{t(`${errors[name]!.message}`)}</p>}
           </span>
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 

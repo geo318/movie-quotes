@@ -10,14 +10,15 @@ const Slides: FC = () => {
       {slides.map((slide) => (
         <article
           key={slide.id}
-          className={`${
+          className={`relative ${
             slide.id !== 1 && slide.bg
-          } top-0 lg:bg-fixed lg:sticky bg-cover bg-no-repeat relative lg:h-screen max-w-screen justify-center items-center ${
+          } top-0 lg:bg-fixed lg:sticky bg-cover bg-no-repeat relative lg:h-full lg:min-h-screen max-w-screen justify-center items-center ${
             slide.id === 1 && 'lg:mt-[-15vh]'
           }`}
         >
+          <div className='bg-app-slides-overlay absolute inset-0' />
           <Image
-            sizes='(max-width: 700px) 50vw, 90vw'
+            sizes='(max-width: 2000px) 85vw, 95vw'
             src={slide.img}
             alt={slide.quote}
             className='object-cover -z-10 min-h-[33rem] md:min-h-[61rem] max-h-screen max-w-screen w-full'
