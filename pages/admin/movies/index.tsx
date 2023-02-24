@@ -114,7 +114,6 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return {
     props: {
-      destination: '/admin/movies',
       ...translation,
     },
   };

@@ -11,8 +11,8 @@ export const profileSchema = refinePasswordSchema(
       avatar: validateImage,
       username: z
         .string()
-        .min(3, { message: 'err_username_req' })
-        .regex(/[a-z0-9]{3,15}/, 'err_username_inc'),
+        .min(3, { message: 'home:err_username_req' })
+        .regex(/[a-z0-9]{3,15}/, 'home:err_username_inc'),
       ...passwordValidation,
     })
     .partial()
