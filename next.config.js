@@ -5,14 +5,14 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-	process.env.NEXT_PUBLIC_HOSTNAME, 
-	process.env.NEXT_PUBLIC_GOOGLE_PROVIDER
+      process.env.NEXT_PUBLIC_HOSTNAME,
+      process.env.NEXT_PUBLIC_GOOGLE_PROVIDER,
     ],
     remotePatterns: [
       {
         protocol: process.env.NEXT_PUBLIC_PROTOCOL,
         hostname: process.env.NEXT_PUBLIC_HOSTNAME,
-	port: '',
+        port: '',
         pathname: '**',
       },
     ],

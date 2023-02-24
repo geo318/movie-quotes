@@ -36,11 +36,7 @@ const InputText: FC<InputProps> = ({
   } = useInputText({ name, value, select });
   return (
     <>
-      <div
-        className={`${errors?.[name] ? 'mb-1' : 'mb-4'} ${
-          type === 'hidden' ? 'hidden' : ''
-        } ${className}`}
-      >
+      <div className={`${type === 'hidden' ? 'hidden' : ''} ${className}`}>
         {label && (
           <label htmlFor={name} className='block font-normal text-base pb-2'>
             {label}
@@ -86,13 +82,7 @@ const InputText: FC<InputProps> = ({
                 type === 'password' ? 'right-8' : 'right-[.875rem]'
               }`}
             >
-              {errors[name] ? (
-                <InputError />
-              ) : blur ? (
-                <InputSuccess />
-              ) : (
-                <ClearInput onClick={() => setValue(name, '')} />
-              )}
+              {errors[name] ? <InputError /> : blur && <InputSuccess />}
             </div>
           )}
         </div>

@@ -42,8 +42,8 @@ const Input: FC<ProfileInputProps & Props> = ({
               <div className={!full ? 'w-full lg:flex lg:gap-8' : 'w-full'}>
                 <InputText
                   name={name}
-                  className={`w-full`}
-                  inputStyle={`${className} text-base xl:text-xl !py-2`}
+                  className={`w-full lg:max-w-[33rem]`}
+                  inputStyle={`text-base xl:text-xl !py-2`}
                   label={label}
                   asterisk={false}
                   placeholder={placeholder}

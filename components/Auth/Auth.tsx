@@ -16,16 +16,7 @@ const Auth: FC = () => {
   const { isActive, isEmailSent, isEmailVerified } = useAuth();
   return (
     <>
-      {isActive('register') &&
-        (!isEmailSent ? (
-          !isEmailVerified ? (
-            <Register />
-          ) : (
-            <CheckEmail />
-          )
-        ) : (
-          <ConfirmEmail />
-        ))}
+      {isActive('register') && <Register />}
       {isActive('login') && <Login />}
       {isActive('forgot-password') && <ForgotPassword />}
       {isActive('reset-password') && <ConfirmPassword />}

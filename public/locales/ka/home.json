@@ -13,7 +13,7 @@
     "password_holder":"მინ. 8 & მაქს. 15 ქვედა რეგისტრის ასო",
     "err_password_req":"პაროლი სავალდებულოა",
     "err_password_inc":"არასწორი პაროლი",
-    "err_password_repeat":"გაიმეორე პაროლი",
+    "err_password_repeat":"გაიმეორე პაროლი, ჩაწერე მინ. 8 სიმბოლო",
     "err_password_match":"პაროლები არ ემთხვევა",
     "name":"სახელი",
     "get_started":"რეგისტრაცია",
