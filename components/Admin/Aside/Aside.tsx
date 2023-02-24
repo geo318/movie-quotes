@@ -13,7 +13,11 @@ const Aside: FC<Props> = ({ className = '' }) => {
       <Link href='/admin/profile'>
         <Avatar
           className='lg:w-[3.75rem] lg:h-[3.75rem] w-10 h-10'
-          img={user?.gmail ? user?.avatar : getImage(user?.avatar)}
+          img={
+            user?.avatar?.includes('google')
+              ? user?.avatar
+              : getImage(user?.avatar)
+          }
           text={user?.username}
           subText={t('editProfile') as string}
           active={nav.profile === path}
