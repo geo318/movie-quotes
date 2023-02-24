@@ -18,12 +18,9 @@ export const useConfirmEmail = () => {
         url: url.replace('?confirm-email=', ''),
       });
       setCookie('email-verified', true);
-    } catch (e: any) {
-      e?.response?.status === 403
-        ? router.replace('/403')
-        : router.replace('/404');
-    }
+    } catch (e: any) {}
   };
+
   const { isLoading } = useQuery({
     queryKey: ['verify-registration', router.query.signature],
     queryFn: confirmEmail,
