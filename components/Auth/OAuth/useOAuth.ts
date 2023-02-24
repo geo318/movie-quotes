@@ -13,7 +13,7 @@ export const useOAuth = () => {
   const handleGmailAuth = async () => {
     try {
       const user = await axiosInstance({
-        url: 'api/auth/callback',
+        url: 'api/auth/callback' + url.replace('/', ''),
       });
       setCookie('access-token', 1);
       dispatch(authActions.setUser(user.data.user));

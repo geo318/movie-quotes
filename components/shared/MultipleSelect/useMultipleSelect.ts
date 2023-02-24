@@ -44,7 +44,7 @@ export const useMultipleSelect = (data: Genre[], selected?: Genre[]) => {
   };
 
   const genresList =
-    collection.length || genres.length === data?.length ? collection : data;
+    collection?.length || genres?.length === data?.length ? collection : data;
 
   return {
     labelClicked: labelClicked && !!genres?.length,
