@@ -29,6 +29,8 @@ module.exports = {
           'linear-gradient(180deg, #11101A 0%, #08080D 50.52%, rgba(0, 0, 0, 90%) 100%)',
         'app-gradient-dialog':
           'linear-gradient(252.94deg, rgba(239, 239, 239, 0.08) -1.81%, rgba(239, 239, 239, 0.00514528) 102.5%, rgba(1, 1, 1, 0.00260417) 102.51%, rgba(239, 239, 239, 0.05) 102.52%)',
+        'app-slides-overlay':
+          'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 55.21%, rgba(0, 0, 0, 0) 100%)',
         'app-slide-one': "url('/assets/images/img-1.png')",
         'app-slide-two': "url('/assets/images/img-2.png')",
         'app-slide-three': "url('/assets/images/img-3.png')",

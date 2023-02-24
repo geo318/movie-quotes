@@ -2,7 +2,7 @@ import { deleteCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { axiosInstance, fetchCSRFToken, logout } from 'services';
+import { axiosInstance, logout } from 'services';
 import { authActions } from 'store';
 
 export const useOAuth = () => {
@@ -23,9 +23,20 @@ export const useOAuth = () => {
       await logout();
       deleteCookie('XSRF-TOKEN');
       setCookie('access-token', 0);
-      e.response?.status === 403
-        ? router.replace('/403')
-        : router.replace('/404');
+      switch (e.response?.status) {
+        case 404:
+          router.replace('/404');
+          break;
+        case 422: {
+          router.push({
+            pathname: `/${router.locale}`,
+            query: { login: '', email: e.response.data.message },
+          });
+          break;
+        }
+        default:
+          router.replace('/403');
+      }
     }
   };
 
