@@ -2,6 +2,7 @@ import { Schema, z } from 'zod';
 
 export const validateGeorgian = z
   .string()
+  .min(1, { message: 'shared:noEmpty' })
   .regex(
     new RegExp('^[ა-ჰ0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
     'shared:useGeorgian'
@@ -9,6 +10,7 @@ export const validateGeorgian = z
 
 export const validateEnglish = z
   .string()
+  .min(1, { message: 'shared:noEmpty' })
   .regex(
     new RegExp('^[a-zA-Z0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
     'shared:useLatin'
@@ -35,8 +37,8 @@ export const emailValidation = z
 
 export const usernameValidation = z
   .string()
-  .min(3, { message: 'home:err_username_req' })
-  .regex(/[a-z0-9]{3,15}/, { message: 'home:err_username_inc' });
+  .min(1, { message: 'home:err_username_req' })
+  .regex(/^[a-z0-9]{3,15}$/, { message: 'home:err_username_inc' });
 
 export const emailValidationObj = {
   email: emailValidation,

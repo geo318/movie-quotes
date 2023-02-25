@@ -31,5 +31,6 @@
     "avatarChanged":"სურათი განახლდა",
     "newEmailAdded":"დაემატა ახალი ელ.ფოსტა",
     "emailSetPrimary":"მთავარი იმეილი",
-    "enterNewUsername":"ჩაწერე ახალი სახელი"
+    "enterNewUsername":"ჩაწერე ახალი სახელი",
+    "confirm":"დადასტურება"
 }

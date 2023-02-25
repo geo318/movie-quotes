@@ -38,22 +38,29 @@ export const usePage = ({
     setIsLoading(false);
   };
 
+  const [formError, setFormError] = useState(true);
   const [open, setOpen] = useState(false);
-  const toggleDialog = () => {
-    setTimeout(() => {
-      setOpen((b) => !b);
-    }, 0);
+  const [trigger, setTrigger] = useState(false);
+  const handleTrigger = (bool: boolean) => setTrigger(bool);
+  const handleFormError = (bool: boolean) => setFormError(bool);
+
+  const toggleDialog = (bool: boolean) => {
+    if (formError) return;
+    setOpen(bool);
   };
   const router = useRouter();
   const goBack = () => router.back();
 
   return {
+    handleFormError,
+    handleTrigger,
     toggleDialog,
-    open,
-    goBack,
     isLoading,
     onSubmit,
+    trigger,
     schema,
+    goBack,
+    open,
     t,
   };
 };

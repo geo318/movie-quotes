@@ -2,8 +2,18 @@ import { Button, Dialog, FormWrapper, Password } from 'components';
 import { usePasswordPage } from './usePasswordPage';
 
 const PasswordPage = ({ refetch }: { refetch: () => {} }) => {
-  const { isLoading, schema, onSubmit, t, goBack, open, toggleDialog } =
-    usePasswordPage({ refetch });
+  const {
+    isLoading,
+    schema,
+    onSubmit,
+    t,
+    goBack,
+    open,
+    toggleDialog,
+    handleFormError,
+    trigger,
+    handleTrigger,
+  } = usePasswordPage({ refetch });
 
   return (
     <>
@@ -17,7 +27,13 @@ const PasswordPage = ({ refetch }: { refetch: () => {} }) => {
               <div onClick={() => goBack()} className='mr-auto py-2 lg:text-xl'>
                 {t('cancel')}
               </div>
-              <div className='ml-3 mt-10' onClick={() => toggleDialog()}>
+              <div
+                className='ml-3 mt-10'
+                onClick={() => {
+                  toggleDialog(true);
+                  handleTrigger(true);
+                }}
+              >
                 <Button
                   typeButton
                   text={t('add') as string}
@@ -26,7 +42,14 @@ const PasswordPage = ({ refetch }: { refetch: () => {} }) => {
                   disabled={isLoading}
                 />
               </div>
-              {open && <Dialog close={toggleDialog} />}
+
+              <Dialog
+                toggleDialog={toggleDialog}
+                handleFormError={handleFormError}
+                trigger={trigger}
+                handleTrigger={() => handleTrigger(false)}
+                open={open}
+              />
             </div>
           </div>
         </div>

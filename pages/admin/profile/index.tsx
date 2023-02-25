@@ -175,14 +175,13 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
   const translation = await serverSideTranslations(locale as string, [
+    'home',
     'profile',
     'shared',
-    'home',
   ]);
 
   return {
     props: {
-      destination: '/admin/movies',
       ...translation,
     },
   };

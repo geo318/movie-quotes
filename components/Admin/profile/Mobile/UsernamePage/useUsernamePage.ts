@@ -5,12 +5,32 @@ import { useTranslation } from 'next-i18next';
 
 export const useUsernamePage = ({ refetch }: { refetch: () => {} }) => {
   const { t } = useTranslation('profile');
-  const flashMessage = t('usernameUpdated');
-  const { toggleDialog, open, goBack, isLoading, onSubmit } = usePage({
-    refetch,
+  const {
+    open,
+    goBack,
+    trigger,
+    onSubmit,
+    isLoading,
+    toggleDialog,
+    handleTrigger,
+    handleFormError,
+  } = usePage({
     schema,
+    refetch,
     submitCb: updateUser,
-    flashMessage,
+    flashMessage: t('usernameUpdated'),
   });
-  return { toggleDialog, open, goBack, isLoading, onSubmit, t, schema };
+
+  return {
+    handleFormError,
+    handleTrigger,
+    toggleDialog,
+    isLoading,
+    onSubmit,
+    trigger,
+    goBack,
+    schema,
+    open,
+    t,
+  };
 };

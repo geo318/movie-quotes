@@ -83,6 +83,7 @@ const NewMovie: FC<NewMovieProps> = ({ movie, refetch }) => {
               label='Eng'
               rows={3}
               labelStyle='!text-xl text-app-dark-gray'
+              inputStyle='min-h-[3rem] !text-xl'
               value={movie?.description.en}
             />
             <Textarea
@@ -91,6 +92,7 @@ const NewMovie: FC<NewMovieProps> = ({ movie, refetch }) => {
               label='ქარ'
               rows={3}
               labelStyle='!text-xl text-app-dark-gray'
+              inputStyle='min-h-[3rem] !text-xl'
               value={movie?.description.ka}
             />
             <Textarea
