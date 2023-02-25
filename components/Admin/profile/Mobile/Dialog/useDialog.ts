@@ -10,7 +10,7 @@ export const useDialog = ({
   toggleDialog,
 }: DialogProps) => {
   const {
-    formState: { isValid },
+    formState: { isValid, isSubmitSuccessful },
     trigger: triggerValidation,
   } = useFormContext();
 
@@ -26,6 +26,10 @@ export const useDialog = ({
     trigger && toggleDialog(false);
   }, [trigger, triggerValidation, toggleDialog, isValid]);
 
+  useEffect(() => {
+    isSubmitSuccessful && toggleDialog(false);
+  }, [isSubmitSuccessful, toggleDialog]);
+
   const { t } = useTranslation('profile');
-  return { t };
+  return { t, isValid, isSubmitSuccessful };
 };

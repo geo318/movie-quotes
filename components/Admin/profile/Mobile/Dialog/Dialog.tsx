@@ -10,7 +10,7 @@ const Dialog: FC<DialogProps> = ({
   handleTrigger,
   open,
 }) => {
-  const { t } = useDialog({
+  const { t, isValid } = useDialog({
     toggleDialog,
     handleFormError,
     trigger,
@@ -20,7 +20,7 @@ const Dialog: FC<DialogProps> = ({
 
   return (
     <>
-      {open && (
+      {open && isValid && (
         <>
           <div
             className='bg-app-gradient-dark opacity-50 backdrop-blur-sm fixed inset-0 z-40'
@@ -41,7 +41,6 @@ const Dialog: FC<DialogProps> = ({
                   text={t('confirm')}
                   style='buttonRed'
                   className='!px-4 ml-auto'
-                  onClick={() => toggleDialog(false)}
                 />
               </div>
             </div>

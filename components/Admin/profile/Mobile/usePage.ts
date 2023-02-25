@@ -46,9 +46,7 @@ export const usePage = ({
 
   const toggleDialog = (bool: boolean) => {
     if (formError) return;
-    setTimeout(() => {
-      setOpen(bool);
-    }, 0);
+    setOpen(bool);
   };
   const router = useRouter();
   const goBack = () => router.back();
