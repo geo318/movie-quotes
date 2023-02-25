@@ -2,6 +2,7 @@ import { Schema, z } from 'zod';
 
 export const validateGeorgian = z
   .string()
+  .min(1, { message: 'shared:noEmpty' })
   .regex(
     new RegExp('^[ა-ჰ0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
     'shared:useGeorgian'
@@ -9,6 +10,7 @@ export const validateGeorgian = z
 
 export const validateEnglish = z
   .string()
+  .min(1, { message: 'shared:noEmpty' })
   .regex(
     new RegExp('^[a-zA-Z0-9.,!@#$%^&*()_+-;\':"|,.<>? ]+$'),
     'shared:useLatin'

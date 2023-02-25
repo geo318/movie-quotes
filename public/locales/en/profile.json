@@ -31,8 +31,6 @@
     "avatarChanged":"Avatar changed",
     "newEmailAdded":"New email added",
     "emailSetPrimary":"Email set as Primary",
-    "enterNewUsername":"Enter new username"
-    
-
-
+    "enterNewUsername":"Enter new username",
+    "confirm":"Confirm"
 }
