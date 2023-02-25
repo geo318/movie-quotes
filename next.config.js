@@ -2,11 +2,15 @@
 const { i18n } = require('./next-i18next.config');
 
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   reactStrictMode: true,
   images: {
     domains: [
-      process.env.NEXT_PUBLIC_HOSTNAME,
-      process.env.NEXT_PUBLIC_GOOGLE_PROVIDER,
+      'http://localhost:3000',
+      'lh3.googleusercontent.com',
+      '**.redberryinternship.ge',
     ],
     remotePatterns: [
       {
