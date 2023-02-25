@@ -7,6 +7,7 @@ import {
   Quote,
   Pen,
   NewMovie,
+  Plus,
 } from 'components';
 import { getImage } from 'helpers';
 import { GetServerSideProps } from 'next';
@@ -44,7 +45,7 @@ const Movies = () => {
             movies
           />
         </div>
-        <AddButton text={t('addMovie')} icon={<Pen />}>
+        <AddButton text={t('addMovie')} icon={<Plus />}>
           <NewMovie refetch={refetch} />
         </AddButton>
       </div>
