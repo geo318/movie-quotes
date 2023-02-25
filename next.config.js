@@ -8,8 +8,9 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
-      process.env.NEXT_PUBLIC_HOSTNAME,
-      process.env.NEXT_PUBLIC_GOOGLE_PROVIDER,
+      'http://localhost:3000',
+      'lh3.googleusercontent.com',
+      '**.redberryinternship.ge',
     ],
     remotePatterns: [
       {
