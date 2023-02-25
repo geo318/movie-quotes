@@ -5,12 +5,32 @@ import { useTranslation } from 'next-i18next';
 
 export const usePasswordPage = ({ refetch }: { refetch: () => {} }) => {
   const { t } = useTranslation('profile');
-  const flashMessage: string = t('passwordUpdated');
-  const { toggleDialog, open, goBack, isLoading, onSubmit } = usePage({
+  const {
+    open,
+    goBack,
+    trigger,
+    onSubmit,
+    isLoading,
+    toggleDialog,
+    handleTrigger,
+    handleFormError,
+  } = usePage({
     refetch,
     schema,
     submitCb: updateUser,
-    flashMessage,
+    flashMessage: t('passwordUpdated'),
   });
-  return { toggleDialog, open, goBack, isLoading, onSubmit, t, schema };
+
+  return {
+    handleFormError,
+    handleTrigger,
+    toggleDialog,
+    isLoading,
+    onSubmit,
+    trigger,
+    goBack,
+    schema,
+    open,
+    t,
+  };
 };

@@ -5,11 +5,32 @@ import { emailSchema as schema } from 'schema';
 
 export const useAddEmailPage = ({ refetch }: { refetch: () => {} }) => {
   const { t: translate } = useTranslation('profile');
-  const { toggleDialog, open, goBack, isLoading, onSubmit, t } = usePage({
+  const {
+    t,
+    open,
+    goBack,
+    trigger,
+    onSubmit,
+    isLoading,
+    toggleDialog,
+    handleTrigger,
+    handleFormError,
+  } = usePage({
     refetch,
     schema,
     submitCb: addEmail,
     flashMessage: translate('emailAdded') as string,
   });
-  return { toggleDialog, open, goBack, isLoading, onSubmit, t, schema };
+  return {
+    handleFormError,
+    handleTrigger,
+    toggleDialog,
+    isLoading,
+    onSubmit,
+    trigger,
+    goBack,
+    schema,
+    open,
+    t,
+  };
 };

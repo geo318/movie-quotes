@@ -1,4 +1,5 @@
-import { Photo, Button, Error } from 'components';
+import { Photo, Button, Error, Img } from 'components';
+import Image from 'next/image';
 import { FC } from 'react';
 import { ImageUpProps } from './type';
 import { useImageUpload } from './useImageUpload';
@@ -73,6 +74,17 @@ const ImageUpload: FC<ImageUpProps> = ({
               {...getInputProps()}
             />
           </Button>
+          <div className='w-10 h-10'>
+            {image && (
+              <Image
+                src={image || ''}
+                height={40}
+                width={40}
+                alt=''
+                className='object-cover h-full w-full rounded-sm'
+              />
+            )}
+          </div>
         </div>
       )}
       <Error errors={errors} name={name} />

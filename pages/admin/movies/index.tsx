@@ -26,7 +26,7 @@ const Movies = () => {
         <h1 className='sm:text-2xl text-xl sm:line-clamp-none line-clamp-1'>
           {t('myMovieList')}
           <span className='ml-1 xl:inline-flex hidden'>{`(${t('total')} ${
-            movieData?.length ? movieData?.length : ''
+            movieData?.length ? movieData?.length : '0'
           })`}</span>
         </h1>
         <div
