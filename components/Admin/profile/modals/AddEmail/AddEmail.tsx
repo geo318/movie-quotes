@@ -2,7 +2,7 @@ import {
   Button,
   Divider,
   FormWrapper,
-  Input,
+  InputText,
   Modal,
   ModalLoadingOverlay,
 } from 'components';
@@ -32,9 +32,8 @@ const AddEmail = ({ refetch }: { refetch: () => {} }) => {
 
           <div className='flex flex-col px-8 mt-14'>
             <div className='flex w-full flex-col gap-6'>
-              <Input
+              <InputText
                 name='email'
-                full
                 placeholder={t('enterNewEmail') as string}
                 label={t('newEmail') as string}
               />
