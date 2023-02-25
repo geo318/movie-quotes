@@ -36,11 +36,11 @@ const Emails = ({ user, refetch }: Partial<ProfileProps>) => {
                   <Input
                     label={isMobile ? '' : (t('email') as string)}
                     control={
-                      !e.email_verified_at && e.email === user.email
+                      !e.email_verified_at
                         ? (t('notVerified') as string)
                         : (t('makeThisPrimary') as string)
                     }
-                    verify={!e.email_verified_at && e.email === user.email}
+                    verify={!e.email_verified_at}
                     verified={!!e.email_verified_at}
                     value={e.email}
                     refetch={refetch}
