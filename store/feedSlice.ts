@@ -11,6 +11,7 @@ const feedSlice = createSlice({
   initialState: initialFeedState,
   reducers: {
     addQuote(state, action: { payload: FeedData }) {
+      if (state.feedData?.some((q) => q?.id === action.payload?.id)) return;
       state.feedData.unshift(action.payload);
     },
     updateQuote(state, action: { payload: Partial<FeedData> }) {
