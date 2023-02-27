@@ -24,7 +24,7 @@ const Movies = () => {
   return (
     <AdminLayout movies>
       <div className='flex items-center'>
-        <h1 className='sm:text-2xl text-xl sm:line-clamp-none line-clamp-1'>
+        <h1 className='sm:text-2xl text-base sm:line-clamp-none line-clamp-1 lg:mr-0 mr-auto'>
           {t('myMovieList')}
           <span className='ml-1 xl:inline-flex hidden'>{`(${t('total')} ${
             movieData?.length ? movieData?.length : '0'
@@ -35,7 +35,7 @@ const Movies = () => {
           ref={ref}
           className={`${
             search ? 'lg:w-[25rem]' : 'lg:w-32'
-          } transition-all ml-auto mr-8`}
+          } transition-all ml-auto mr-8 hidden lg:block`}
         >
           <Search
             className={`min-w-full hidden xl:block ${
@@ -45,7 +45,11 @@ const Movies = () => {
             movies
           />
         </div>
-        <AddButton text={t('addMovie')} icon={<Plus />}>
+        <AddButton
+          text={t('addMovie')}
+          icon={<Plus />}
+          className='min-w-[10.7rem]'
+        >
           <NewMovie refetch={refetch} />
         </AddButton>
       </div>

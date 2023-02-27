@@ -39,7 +39,7 @@ const Post = () => {
           )}
         </div>
         <div className='xl:col-span-4 col-span-5'>
-          <div className='flex flex-col lg:flex-row justify-center gap-5 xl:items-center'>
+          <div className='flex justify-center gap-5 xl:items-center'>
             <h1 className='text-2xl text-app-yellow line-clamp-1 mr-auto'>
               {loadText(
                 `${movie?.movie_title[lang]} (${movie?.year})`,
