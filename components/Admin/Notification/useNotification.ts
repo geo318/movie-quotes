@@ -1,4 +1,4 @@
-import { useAuthUser } from 'hooks';
+import { useActiveQuery, useAuthUser, useClickOutSide } from 'hooks';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -11,6 +11,7 @@ import { useEcho } from 'hooks';
 
 export const useNotification = () => {
   useEcho();
+  const [id, setId] = useState<number>();
   const [initialized, setInitialized] = useState(false);
   const dispatch = useDispatch();
   const { t } = useTranslation('shared');
@@ -20,6 +21,8 @@ export const useNotification = () => {
     queryKey: 'notifications',
     queryFn: getNotifications,
   });
+  const { isActive } = useActiveQuery();
+  const readQuoteUri = `${router.asPath.split('?')[0]}?read-quote`;
 
   useEffect(() => {
     if (user && typeof window != null) {
@@ -58,13 +61,22 @@ export const useNotification = () => {
     (state: RootState) => state.note.notifications
   );
 
+  const [openModal, setOpenModal] = useState(false);
+  useEffect(() => {
+    openModal && setOpenModal(false);
+  }, [openModal]);
+
   const markAsReadHandler = async ({
     id,
     read,
+    quoteId,
   }: {
     id: number;
     read: boolean;
+    quoteId: number;
   }) => {
+    setId(quoteId);
+    setOpenModal(true);
     if (read) return;
     try {
       dispatch(noteActions.markAsRead(id));
@@ -81,11 +93,16 @@ export const useNotification = () => {
   const num = notifications?.filter((e) => e.read === 0).length;
 
   return {
-    num,
     markAllAsReadHandler,
     markAsReadHandler,
     notifications,
+    readQuoteUri,
+    setOpenModal,
+    openModal,
+    isActive,
     router,
+    num,
+    id,
     t,
   };
 };

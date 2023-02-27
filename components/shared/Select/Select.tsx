@@ -4,6 +4,7 @@ import { SelectProps } from './types';
 import { useSelect } from './useSelect';
 
 const Select: FC<SelectProps> = ({
+  clearDropdown = false,
   children,
   className = '',
   modalClassName = '',
@@ -40,14 +41,16 @@ const Select: FC<SelectProps> = ({
           {face}
         </div>
       )}
-      <ModalContainer
-        selectRef={select}
-        closeOnClick={closeOnClick}
-        closeRef={closeRef}
-        intercept={intercept}
-      >
-        <div className={modalClassName}>{children}</div>
-      </ModalContainer>
+      {!clearDropdown && (
+        <ModalContainer
+          selectRef={select}
+          closeOnClick={closeOnClick}
+          closeRef={closeRef}
+          intercept={intercept}
+        >
+          <div className={modalClassName}>{children}</div>
+        </ModalContainer>
+      )}
     </div>
   );
 };

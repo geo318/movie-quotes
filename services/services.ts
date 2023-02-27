@@ -23,6 +23,11 @@ export const getQuotes = async ({ page = 1, query = '*' }) => {
   return await axiosInstance({ url: url.toString() });
 };
 
+export const getQuote = async (id?: number) => {
+  if (!id) return;
+  return await axiosInstance.get(`api/quote/${id}`);
+};
+
 export const register = async (data: RegisterProps) => {
   return await axiosInstance.post('api/register', data);
 };

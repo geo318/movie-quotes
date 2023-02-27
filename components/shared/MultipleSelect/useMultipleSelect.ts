@@ -28,7 +28,7 @@ export const useMultipleSelect = (data: Genre[], selected?: Genre[]) => {
     }
     setGenres(selected);
     setCollection(
-      data.filter((el) => selected.every((sel) => sel.id !== el.id))
+      data?.filter((el) => selected.every((sel) => sel.id !== el.id))
     );
   }, [selected, data]);
 
