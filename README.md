@@ -68,8 +68,11 @@ You can run development server by executing:
 npm run dev
 ```
 ##
-## Design Resource
-* [Figma design](https://www.figma.com/file/5uMXCg3itJwpzh9cVIK3hA/Movie-Quotes-Bootcamp-assignment?node-id=5134%3A33290&t=g8Re9fGoWibBsQsL-0) - Figma is a collaborative web application for interface design, with additional offline features enabled by desktop applications for macOS and Windows.
+## Resources
+* [Figma design](https://www.figma.com/file/5uMXCg3itJwpzh9cVIK3hA/Movie-Quotes-Bootcamp-assignment?node-id=5134%3A33290&t=g8Re9fGoWibBsQsL-0) - Design resource
+* [Semantic commits](https://redberry.gitbook.io/resources/other/git-is-semantikuri-komitebi) - Git commit guides
+* [Assignment](https://redberry.gitbook.io/assignment-iv-movie-quotes-1/) - Assignment guides and requirements
+
 ##
 ## Project structure
 
