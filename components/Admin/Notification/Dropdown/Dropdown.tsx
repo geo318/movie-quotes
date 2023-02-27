@@ -7,9 +7,9 @@ const Dropdown = ({}) => {
   return (
     <div className='notification overflow-y-auto max-h-[48rem] lg:py-10 py-3 px-8 flex flex-col gap-4'>
       <div className='mb-5 flex items-center'>
-        <h3 className='lg:text-3xl text-xl'>{t('notifications')}</h3>
+        <h3 className='lg:text-3xl text-lg'>{t('notifications')}</h3>
         <p
-          className='lg:text-xl text-sm underline cursor-pointer ml-auto'
+          className='lg:text-xl text-sm underline cursor-pointer ml-auto text-right'
           onClick={() => markAllAsReadHandler({ num: notifications.length })}
         >
           {t('markAllAsRead')}
@@ -26,9 +26,9 @@ const Dropdown = ({}) => {
             <Avatar
               img={getImage(n.user.avatar)}
               size={80}
-              className='lg:w-20 w-14 !border-app-green'
+              className='lg:w-20 w-14 !border-app-green absolute lg:relative'
               active={!n.read}
-              containerStyle='!inline-block float-left lg:float-none absolute lg:relative'
+              containerStyle='!inline-block float-left lg:float-none relative'
             />
             <div className='lg:flex inline-block float-left lg:float-none flex-col gap-2 lg:text-xl text-base ml-3 xl:ml-0 pl-14 lg:pl-0 h-14 lg:h-auto'>
               <p>{n.user.username}</p>

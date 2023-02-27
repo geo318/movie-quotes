@@ -67,7 +67,7 @@ const feedSlice = createSlice({
         );
         return;
       }
-      state.feedData[quoteIndex].likes.push({
+      state.feedData[quoteIndex]?.likes.push({
         id: new Date().valueOf(),
         quote_id: quoteId,
         user_id: userId,
